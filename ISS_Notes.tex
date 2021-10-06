@@ -1,0 +1,104 @@
+\documentclass[11pt]{report}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{vmargin}									
+\usepackage{hyperref}
+\usepackage{subfig}
+\usepackage{booktabs}
+\usepackage{longtable}
+\setmarginsrb{2.5 cm}{2.5 cm}{2.5 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
+\graphicspath{{images/}}
+
+
+\title{Information Systems Security}				        % Title
+%\author{Riccardo Zaccone}						            % Author
+\author{Marco Smorti \\ Riccardo Zaccone}   % Authors
+%\date{\today}										    % Date
+\date{Gennuary 21, 2021}								    % Date
+
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\hypersetup{
+	pdftitle={\thetitle},
+	pdfauthor={\theauthor},
+	pdfsubject={},
+	pdfkeywords={},
+	hidelinks}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\thetitle}
+\cfoot{\thepage}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+	\centering
+	\includegraphics[scale=0.6]{logoPoli.png}\\[1.0 cm]				
+	\textsc{\LARGE POLITECNICO DI TORINO}\\[-0.2 cm]		% Name
+	\rule{\linewidth}{0.2 mm} \\
+	\textsc{\large Master degree in Computer Engineering}\\[1.0 cm]		
+	\rule{\linewidth}{0.2 mm} \\[0.4 cm]
+	{ \huge \bfseries \thetitle}\\
+	\rule{\linewidth}{0.2 mm} \\%[1 cm]
+	\textsc{\Large Notes from the course 01TYMOV of Prof. Antonio Lioy \\ A.A. 2020/21}\\[0 cm]	
+	\textsc{}\\[0.4 cm]
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{Main authors:}\\
+			\theauthor
+			\end{flushleft}
+			\end{minipage}~
+			\begin{minipage}{0.4\textwidth}
+			\begin{flushright} \large
+		\end{flushright}
+	\end{minipage}\\[1.0 cm]
+
+
+
+	%DISCLAIMER
+	\begin{minipage}{\textwidth}
+		IMPORTANT NOTICE: these notes are not in any way promoted or checked by the professor or any
+		person of the course teaching staff, so they are provided “AS-IS” and without any guarantee. However,
+		we put a great effort to make them and verify their correctness, we hope they will be useful for you.
+	\end{minipage}\\ [0.5 cm]
+
+	{\large Version 1.0 \\ \thedate}\\
+
+	
+\end{titlepage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{ext_sections/preliminary}
+\include{ext_sections/contributors}
+\tableofcontents
+\pagebreak
+
+\include{chapters/chapter1}
+\include{chapters/chapter2}
+\include{chapters/chapter3}
+\include{chapters/chapter4}
+\include{chapters/chapter5}
+\include{chapters/chapter6}
+\include{chapters/chapter7}
+
+
+
+\appendix
+\include{appendix/GNUFreeDocumentationLicense}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
