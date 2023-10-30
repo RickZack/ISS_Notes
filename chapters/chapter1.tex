@@ -77,12 +77,30 @@ Before setting up a defense, we must understand what the risks are. To make a ri
 
 After considering the assets, the next step is to identify the events that could affect their normal operation. The first point is that each asset has some \textbf{vulnerabilities} (for example, disks that are vulnerable to physical damage like a hammer hitting the disk), and some vulnerabilities can pose a real \textbf{threat} depending on the environment. For example, if a disk is left in an open place, someone might use a hammer to damage the disk. However, if the disk is locked in a room where nobody can access it, the vulnerability still exists but is not a real threat.
 
+\vspace{5mm}
 So, the process of analyzing a service searching for risks take place as follows:
-\begin{itemize}
+\begin{itemize}[]
   \item Find the \textbf{assets} of the service to be protected;
   \item Finding the \textbf{vulnerabilities} of each asset;
-  \item Finding the \textbf{threats}, giving the way in witch the assets are used
+  \item Finding the \textbf{threats}, giving the way in witch the assets are used;
 \end{itemize}
 
+\vspace{5mm}
+Once we identify the threats we must:
+\begin{itemize}
+  \item decide for each threat which \textbf{impact} it could have (what happens if disk is destroyed? If there's only one copy it could be a distaster, but if there are many that's not a problem)
+  \item the \textbf{event probability} of the threat. This is the last point to get the \textbf{risk estimation}.
+\end{itemize}
+
+% TMP: new content
+\ifthenelse{\boolean{showNew}}{
+  \section{Risk management}
+  To prioritize the risks, we can build a \textbf{risk assessment matrix} (or risk heat map):
+  \begin{figure}[h]
+    \includegraphics[page = 10,trim = 1cm 3cm 1cm 12cm, clip, width = \textwidth]{\slides}
+  \end{figure}
+} {}
+% end TMP: new content
+  
 
 
