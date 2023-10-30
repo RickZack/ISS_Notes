@@ -9,12 +9,21 @@
 \usepackage{subfig}
 \usepackage{booktabs}
 \usepackage{longtable}
+\usepackage{wrapfig} % wrap figure around text
+
+% temporary solutions for conditional content, noted as "TMP"
+\usepackage{ifthen} 
+\newboolean{showOld}
+\setboolean{showOld}{true}
+%
+
+
 \setmarginsrb{2.5 cm}{2.5 cm}{2.5 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
 \graphicspath{{images/}}
 
 
 \title{Information Systems Security}				        % Title
-%\author{Riccardo Zaccone}						            % Author
+%\author{Riccardo Zaccone}				            % Author
 \author{Marco Smorti \\ Riccardo Zaccone}   % Authors
 %\date{\today}										    % Date
 \date{January 21, 2021}								    % Date
@@ -85,8 +94,12 @@
 \tableofcontents
 \pagebreak
 
+\def\slides{slides/01_intro.pdf}
 \include{chapters/chapter1}
+
+\def\slides{slides/02_crypto_p1.pdf}
 \include{chapters/chapter2}
+
 \include{chapters/chapter3}
 \include{chapters/chapter4}
 \include{chapters/chapter5}

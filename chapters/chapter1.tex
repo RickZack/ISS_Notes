@@ -1,2 +1,88 @@
-\chapter{Introduction to the security of ICT systems}
-a
+\chapter{Chapter}
+
+\section{Introduction to the security of ICT systems}
+Cybersecurity has become very important in today's world. Since every system relies on computer systems, any kind of damage can result in significant economic losses. Even indirect attacks that do not aim to steal money have economic costs. Cybersecurity is essential because attacks can be performed without the need to physically access the target location.
+
+
+The reasons why cybersecurity is important are as follows:
+\begin{itemize}
+\item Big damage on successful attacks
+\item Easy accessibility of systems
+\end{itemize}
+
+We must consider all the possible consequences of a successful attack. First, there can be \textbf{financial loss} (direct loss, for example, if someone gains access to bank account credentials, and indirect loss if the revelation that the company has been attacked negatively affects the stock exchange). There can be \textbf{recovery costs} because every successful attack results in damage, and there will be expenses required to return the system to normal operations and to enhance it to prevent new attacks. There can also be \textbf{productivity losses} if the attacks halt or delay processes. A successful attack may lead to \textbf{business disruption} because customers may seek alternative suppliers if a company is vulnerable to attacks.
+
+
+For all these reasons we should protect systems. Most of the innovation is based on two main pillars:
+\begin{itemize}
+    \item The ability to communicate from any part of the world (communication networks)
+    \item The increasing use of personal and mobile devices
+\end{itemize}
+These two foundations are no longer sufficient for innovative products; every new product now requires a security system.
+
+
+\section{Complexity of the ICT scenario}
+The ICT scenario is complex for various reasons. One key factor is the sheer number of different mobile and connected \textbf{devices}, including desktops, laptops, tablets, smartphones, smart TVs, fridges, and cars. All these devices can now connect to the internet, making security a critical concern.
+\textbf{Communication networks } have shifted to data-only networks, meaning there are no more analog phone networks. This change implies that almost everything is vulnerable to potential attacks. It's not just wireless networks that can be targeted; even wired networks are susceptible to security threats.
+\textbf{Distributed services} are on the rise, requiring constant technical solutions to keep them running. This often involves outsourcing parts of server management, hosting, and adopting cloud services. This means that computers are no longer confined within a company, which necessitates trust in the service providers. Additionally, software development is getting more complicated due to various factors like software layering, framework integration, and the use of multiple programming languages. This complexity increases the chances of errors and vulnerabilities.
+In terms of security, the challenges can be summarized by the first engineering axiom:
+\begin{center}
+    "The more complex a system is, the harder it is to ensure its correctness."    
+\end{center}
+Therefore, it's essential to keep systems as simple as possible. For instance, the number of bugs in a program tends to increase more than proportionally with the number of lines of code. The current complexity of information systems favors attackers, who can discover increasingly ingenous and unforeseen attack paths.\\ 
+To express this idea clearly, we follow the \textbf{KISS rule}: \emph{"Keep it Simple, Stupid."}
+
+
+
+
+% TMP old only
+\ifthenelse{\boolean{showOld}}{
+  \section{A definition of ICT Security}
+  Each of us has a different concept of security: for example, the obligation to use safety belts when driving depends on country to country. Security is a personal concept but at engineering we need to give some formal definitions.
+  Cybersecurity is a distributed part of a company and each employee of a company must have the
+  awareness for cybersecurity.
+  \begin{itemize}
+    \item  \emph{" Cybersecurity is the set of products, services, organization rules and individual behaviors that protect
+    the ICT system of a company."}
+  \end{itemize}
+  Let us explain the keywords in the definition.
+  \begin{description}
+    \item [Products:] refers to something that people can buy (such as products for firewall and VPN);
+    \item [Services:] these services are implemented by buying products;
+    \item [Organization rules:] they are required because even if for example a new system is set up with password, rules must give information to employees on how much complex the password must be,
+    otherwise there will be no rules but personal behaviors, which could make the use of technical
+    solutions less effective.
+  \end{description}
+  \begin{itemize}
+    \item It is the duty to protect the resources from undesired access, guarantee the privacy of information,
+    ensure the service operation and availability in case of unpredictable events (C.I.A. = Confidentiality,
+    Integrity, Availability).
+  \end{itemize}
+
+  %% TODO: finish this part, before risk estimation
+}{
+  % else
+}
+
+
+
+\section{Risk estimation}
+
+\begin{wrapfigure}{r}{0.55\textwidth}
+  \centering
+  \includegraphics[page=8, width = 0.55\textwidth]{\slides}
+\end{wrapfigure}
+
+Before setting up a defense, we must understand what the risks are. To make a risk estimation, it is good to start from the \textbf{service}. Once we know the service we need to protect, we must identify the assets used to provide that service, and there are four categories of assets: \textbf{ICT resources} (computers, disks, networks), \textbf{data} (not the disks but something intangible that could be deleted or modified), \textbf{location} (assets must be inside a protected room), and \textbf{human resources} (which means the group of people who possess the knowledge that must not be shared).
+
+After considering the assets, the next step is to identify the events that could affect their normal operation. The first point is that each asset has some \textbf{vulnerabilities} (for example, disks that are vulnerable to physical damage like a hammer hitting the disk), and some vulnerabilities can pose a real \textbf{threat} depending on the environment. For example, if a disk is left in an open place, someone might use a hammer to damage the disk. However, if the disk is locked in a room where nobody can access it, the vulnerability still exists but is not a real threat.
+
+So, the process of analyzing a service searching for risks take place as follows:
+\begin{itemize}
+  \item Find the \textbf{assets} of the service to be protected;
+  \item Finding the \textbf{vulnerabilities} of each asset;
+  \item Finding the \textbf{threats}, giving the way in witch the assets are used
+\end{itemize}
+
+
+
