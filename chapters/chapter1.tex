@@ -29,7 +29,7 @@ In terms of security, the challenges can be summarized by the first engineering 
 \begin{center}
     "The more complex a system is, the harder it is to ensure its correctness."    
 \end{center}
-Therefore, it's essential to keep systems as simple as possible. For instance, the number of bugs in a program tends to increase more than proportionally with the number of lines of code. The current complexity of information systems favors attackers, who can discover increasingly ingenous and unforeseen attack paths.\\ 
+Therefore, it's essential to keep systems as simple as possible. For instance, the number of bugs in a program tends to increase more than proportionally with the number of lines of code. The current complexity of information systems favors attackers, who can discover increasingly ingenious and unforeseen attack paths.\\ 
 To express this idea clearly, we follow the \textbf{KISS rule}: \emph{"Keep it Simple, Stupid."}
 
 
@@ -38,57 +38,52 @@ To express this idea clearly, we follow the \textbf{KISS rule}: \emph{"Keep it S
 % TMP old only
 \ifthenelse{\boolean{showOld}}{
   \section{A definition of ICT Security}
-  Each of us has a different concept of security: for example, the obligation to use safety belts when driving depends on country to country. Security is a personal concept but at engineering we need to give some formal definitions.
-  Cybersecurity is a distributed part of a company and each employee of a company must have the
-  awareness for cybersecurity.
-  \begin{itemize}
-    \item  \emph{" Cybersecurity is the set of products, services, organization rules and individual behaviors that protect
-    the ICT system of a company."}
-  \end{itemize}
+  Each of us has a different concept of security: for example, the obligation to use safety belts when driving depends on country to country. Security is a personal concept but in engineering, we need to provide some formal definitions.
+  Cybersecurity is a distributed part of a company, and every employee of a company must have the awareness for cybersecurity.
+  \begin{enumerate}
+    \item[1.] "Cybersecurity is the set of products, services, organization rules, and individual behaviors that protect the ICT system of a company."
+  \end{enumerate}
   Let us explain the keywords in the definition.
   \begin{description}
     \item [Products:] refers to something that people can buy (such as products for firewall and VPN);
     \item [Services:] these services are implemented by buying products;
-    \item [Organization rules:] they are required because even if for example a new system is set up with password, rules must give information to employees on how much complex the password must be,
-    otherwise there will be no rules but personal behaviors, which could make the use of technical
-    solutions less effective.
+    \item [Organization rules:] they are required because even if, for example, a new system is set up with a password, rules must provide information to employees on how complex the password must be; otherwise, there will be no rules but personal behaviors, which could make the use of technical solutions less effective.
   \end{description}
-  \begin{itemize}
-    \item It is the duty to protect the resources from undesired access, guarantee the privacy of information,
-    ensure the service operation and availability in case of unpredictable events (C.I.A. = Confidentiality,
-    Integrity, Availability).
-  \end{itemize}
+  \begin{enumerate}
+    \item [2.] It is the duty to protect the resources from undesired access, guarantee the privacy of information, ensure the service operation, and availability in case of unpredictable events (\textbf{C.I.A. = Confidentiality, Integrity, Availability}).
+  \end{enumerate}
 
   More in detail, these three concepts have the following meaning:
   \begin{itemize}
-    \item Confidentiality covers two related concepts:
-    \begin{itemize}
-        \item Data confidentiality: assures that private or confidential information is not made available or disclosed to unauthorized individuals.
-        \item Privacy: assures that individuals control or influence what information related to them may be collected and stored and by whom and to whom that information may be disclosed.
-    \end{itemize}
+    \item \textbf{Confidentiality} covers two related concepts:
+    \begin{description}
+        \item [Data confidentiality:] assures that private or confidential information is not made available or disclosed to unauthorized individuals.
+        \item [Privacy:] assures that individuals control or influence what information related to them may be collected and stored and by whom and to whom that information may be disclosed.
+    \end{description}
     In terms of requirements and the definition of a loss of security, it means preserving authorized restrictions on information access and disclosure, including means for protecting personal privacy and proprietary information. A loss of confidentiality is the unauthorized disclosure of information.
 
-    \item Integrity covers two related concepts:
-    \begin{itemize}
-        \item \textbf{Data integrity:} assures that information (both stored and in transmitted packets) and programs are changed only in a specified and authorized manner.
-        \item \textbf{System integrity:} assures that a system performs its intended function in an unimpaired manner, free from deliberate or inadvertent unauthorized manipulation of the system.
-    \end{itemize}
-    In terms of requirements and the definition of a loss of security, it means guarding against improper information modification or destruction, including ensuring information nonrepudiation and authenticity. A loss of integrity is the unauthorized modification or destruction of information.
+    \item \textbf{Integrity covers} two related concepts:
+    \begin{description}
+        \item [Data integrity:] assures that information (both stored and in transmitted packets) and programs are changed only in a specified and authorized manner.
+        \item [System integrity:] assures that a system performs its intended function in an unimpaired manner, free from deliberate or inadvertent unauthorized manipulation of the system.
+    \end{description}
+    In terms of requirements and the definition of a loss of security, it means guarding against improper information modification or destruction, including ensuring information non-repudiation and authenticity. A loss of integrity is the unauthorized modification or destruction of information.
 
-    \item \textbf{Availability}: assures that systems work promptly, and service is not denied to authorized users. In terms of requirements and the definition of a loss of security, it means ensuring timely and reliable access to and use of information. A loss of availability is the disruption of access to or use of information or an information system.
-\end{itemize}
+    \item \textbf{Availability:} assures that systems work promptly, and service is not denied to authorized users. In terms of requirements and the definition of a loss of security, it means ensuring timely and reliable access to and use of information. A loss of availability is the disruption of access to or use of information or an information system.
+  \end{itemize}
 
-This definition is a good starting point for cybersecurity, but more than the C.I.A. triad is required; two of the most mentioned are as follows:
+  This definition is a good starting point for cybersecurity, but more than the C.I.A. triad is required; two of the most mentioned are as follows:
 
-\begin{itemize}
-    \item \textbf{Authenticity}: the property of being genuine and being able to be verified and trusted; confidence in the validity of a transmission, a message, or message originator. This means verifying that users are who they say they are and that each input arriving at the system came from a trusted source.
+  \begin{itemize}
+    \item \textbf{Authenticity:} the property of being genuine and being able to be verified and trusted; confidence in the validity of a transmission, a message, or message originator. This means verifying that users are who they say they are and that each input arriving at the system came from a trusted source.
 
-    \item \textbf{Accountability}: the security goal that generates the requirement for actions of an entity to be traced uniquely to that entity. This supports nonrepudiation, deterrence, fault isolation, intrusion detection and prevention, and after-action recovery and legal action.
-\end{itemize}
-\begin{enumerate}
-  \item[1.] The objective is to guard the information with the same professionalism and attention as for the jewels and deposit certificates stored in a bank caveau.
-  \item[3.] The ICT system is the safe of our most valuable information; ICT security is the equivalent of the locks, combinations, and keys required to protect it.
-\end{enumerate}
+    \item \textbf{Accountability:} the security goal that generates the requirement for actions of an entity to be traced uniquely to that entity. This supports non-repudiation, deterrence, fault isolation, intrusion detection and prevention, and after-action recovery and legal action.
+  \end{itemize}
+
+  \begin{enumerate}
+    \item[1.] "The objective is to guard the information with the same professionalism and attention as for the jewels and deposit certificates stored in a bank caveau".
+    \item[3.] "The ICT system is the safe of our most valuable information; ICT security is the equivalent of the locks, combinations, and keys required to protect it".
+  \end{enumerate}
 
 }{
   % else
@@ -118,9 +113,20 @@ So, the process of analyzing a service searching for risks take place as follows
 \vspace{5mm}
 Once we identify the threats we must:
 \begin{itemize}
-  \item decide for each threat which \textbf{impact} it could have (what happens if disk is destroyed? If there's only one copy it could be a distaster, but if there are many that's not a problem)
+  \item decide for each threat which \textbf{impact} it could have (what happens if disk is destroyed? If there's only one copy it could be a disaster, but if there are many that's not a problem)
   \item the \textbf{event probability} of the threat. This is the last point to get the \textbf{risk estimation}.
 \end{itemize}
+
+\bigskip
+Recap of terminology:
+\begin{description}
+  \item[Asset:] the set of goods
+  \item[Vulnerability:] weakness of an asset; 
+  \item[Threat:] deliberate action/accidental even that can procure the loss of a security property exploiting a vulnerability;
+  \item[Attack:] threat occurrence (deliberate action);
+  \item[(negative) Event:] threat occurrence     
+\end{description}
+
 
 % TMP: new content
 \ifthenelse{\boolean{showNew}}{
@@ -131,6 +137,120 @@ Once we identify the threats we must:
   \end{figure}
 } {}
 % end TMP: new content
-  
+
+
+\section{Analysis and management of security}
+
+\begin{wrapfigure}{l}{0.40\textwidth}
+  \centering
+  \includegraphics[page = 11,trim = 2cm 2.1cm 2cm 4cm, clip, width = 0.40\textwidth]{\slides}
+\end{wrapfigure}
+Risk estimation is only a piece for analysis and management of security. We can see that \textbf{assets}, \textbf{vulnerabilities}, \textbf{threats} give us the \textbf{risks} and then we start the \textbf{management} of the security. This means that for those risks that are not acceptable, either because they have high impact or high probability to end up in an attack, we need to select countermeasures and implement them. The last step is \textbf{audit}, that means that some independent person comes to check our work (if we correctly identified risks, selected the correct countermeasures, implemented them correctly).
+
+In this course we will consider three of these blocks: vulnerabilities, the available countermeasures, and how to implement countermeasures.
+
+
+\begin{wrapfigure}{o}{0.55\textwidth}
+  \centering
+  \includegraphics[page = 12,trim = 0.4cm 3.5cm 0.8cm 4cm, clip, width = 0.55\textwidth]{\slides}
+\end{wrapfigure}
+What is the correct step in the lifecycle of a system to implement security?\\
+In brief, there is no single correct point for implementing security because it must be addressed at each stage of the design process.\\ 
+In more detail, when we perform the \textbf{analysis of requirements} for our system, we must conduct a risk assessment; based on these risks, we can define security policies and procedures that we will apply throughout the rest of the system design.\\ 
+When evaluating \textbf{technical options}, we also need to identify security products. For example, when choosing a database, we must consider security alongside other factors such as speed and cost. If we opt for a database that automatically encrypts data, we have already addressed a security concern. Conversely, if we choose a faster database that lacks an encryption system, we will need to design that separately, incurring additional costs and efforts. \\
+When \textbf{designing} the services that the system will offer, we must also include the security services component. Security should be integrated at each stage of the design process, not added as an afterthought. If we create a prototype website or app without any security measures, it will be challenging to retrofit security later on.
+
+
+\section{Relation in the security field}
+During the development of our system, we must integrate security at each step and ensure that the design is correctly implemented. We must test the system, including its security aspects. An example of this is testing against unexpected inputs to ensure that the system does not accept and process incorrect inputs.
+
+While implementing our system, it is important to establish security mechanisms. Some systems include security functions, but they are often deactivated due to associated costs (generally, activating security may slow down the system). For instance, the default password of a home router may be shared among different units, so it is necessary to change that password.
+
+When the system is operational, security must be managed on a daily basis, as the security landscape changes constantly.
+
+
+\section{Relation in the security field}
+
+The black box is the system itself.
+Assets are exposed to vulnerabilities, and those vulnerabilities increase security risks. 
+Additionally, threats exploit vulnerabilities, and the existence of vulnerabilities creates the opportunity for a threat.
+\begin{wrapfigure}{l}{0.55\textwidth}
+  \centering
+      \includegraphics[page = 14,trim = 1cm 3cm 1cm 5cm, clip, width = 0.55\textwidth]{\slides}
+  \end{wrapfigure}
+On the left, there are the security requirements that we want to implement. Security requirements are indicated by security risks, and security requirements are met by security controls.
+
+The \textbf{security control} is the most important piece of the picture nowadays. It is an element placed in the system to protect against a specific threat and reduce the risks to which the system is exposed. Examples of security controls include firewalls, VPNs, and disk encryption.
+
+\bigskip
+Some terminology:
+\begin{description}
+  \item[Incident:] A security event that compromises the integrity, confidentiality, or availability of an information asset (generic definition).
+  \item[(Data) breach:] An incident that results in the disclosure or potential exposure of data.
+    \begin{itemize}
+      \item Disclosure: Occurs when data is intentionally given to someone.
+      \item Exposure: Data becomes available to anyone who knows where to find it.
+    \end{itemize}
+  \item[(Data) disclosure:] A breach for which it is confirmed that data was actually disclosed (not just exposed) to an unauthorized party.
+\end{description}
+The difference between the last two is that the last one is a breach involving data that were not just exposed but also confirmed to be disclosed to an unauthorized party.
+
+
+\newpage
+\section{Window of exposure}
+\begin{wrapfigure}{r}{0.60\textwidth}
+\centering
+    \includegraphics[page = 16,trim = 0.2cm 1.7cm 0.2cm 4cm, clip, width = 0.60\textwidth]{\slides}
+\end{wrapfigure}
+The \textbf{window of exposure} is \emph{the time between the discovery of a new vulnerability and the installation of a patch}.
+
+
+Analyzing the graph from the left, we notice a consistently low level of risk, which, although it can never be reduced to 0, remains close to it.
+However, at a certain juncture, a new vulnerability is discovered, causing the risk to surge due to its uncontrollable nature.
+At a specific point (marked as the red point), an individual exploits this vulnerability to execute an attack. This action leads to the vulnerability becoming public, thereby making it accessible to everyone.
+This initial stage is commonly referred to as \textbf{discovery}.
+
+After an attack is carried out, two distinct groups of individuals become aware of it: the \emph{bad guys} who aim to compromise the system and the \emph{good guys} who strive to safeguard the system. Within these two categories, there is also the product vendor, who must be informed of the vulnerability. The vendor should, in turn, promptly notify its customers of the newly discovered vulnerability. While the vendor is working on fixing the vulnerability, users of that product should refrain from attempting to fix it, which is typically impossible. Instead, they should focus on updating their security tools, at the very least, to detect if the vulnerability is actively being exploited in attacks. This is the \textbf{publication} phase during which the vulnerability becomes public knowledge, and everyone is awaiting a fix while also making efforts to detect potential attacks.
+
+Finally, at some point in time, the vendor creates a patch to fix the vulnerability. However, the patch must be distributed, and the risk only decreases when the patch becomes widely known and is eventually installed, rendering the system \textbf{protected}. The window of exposure can persist for days or even months, which is why security is an ongoing effort.
+
+\section{Some statistics}
+\begin{wrapfigure}{r}{0.60\textwidth}
+\centering
+    \includegraphics[page = 17,trim = 1cm 2.6cm 1cm 7cm, clip, width = 0.60\textwidth]{\slides}
+\end{wrapfigure}
+The graphic shows that there are about 10 million attacks per month using malware. That is why we should always keep our anti-virus/anti-malware updated.\\
+
+
+
+If we consider web servers across all sectors, 44\% of servers were consistently vulnerable to attacks every day of the year.
+\begin{wrapfigure}{r}{0.60\textwidth}
+  \centering
+      \includegraphics[page = 18,trim = 1cm 1.7cm 1cm 7cm, clip, width = 0.60\textwidth]{\slides}
+\end{wrapfigure}
+
+The term \textbf{0 day} refers to the first day when a vulnerability is reported to the public and has not yet been fixed.
+
+The banking sector boasts the best security track record, with the lowest vulnerability rate (rarely vulnerable for 30 days or less each year).
+
+In general, achieving strong security is challenging. Vulnerabilities can be discovered by both well-intentioned individuals (good guys) and malicious actors (bad guys). Some people investigate software to uncover vulnerabilities and inform the vendor to patch them before they are exploited by malicious actors. This proactive approach is taken to ensure patches are in place before vulnerabilities are discovered by the bad guys.
+
+The "\textbf{0-day initiative}" (\textbf{ZDI}) discovers vulnerabilities and notifies the relevant organizations \emph{before} making them public. ZDI typically provides a 120-day grace period from the discovery of a new vulnerability to allow the vendor to fix it before disclosing it to the public. Longer deadlines can be risky, as bad guys may discover the vulnerability during the extended time frame.
+
+\vspace{5mm}
+Example:
+\begin{itemize}
+  \item 8 May 18: ZDI reports the vulnerability to the vendor, and the vendor acknowledges the report.
+  \item 14 May 18: The vendor replies that they have successfully reproduced the issue reported by ZDI.
+  \item 9 Sep 18: The vendor reports an issue with the fix and states that the fix might not be included in the September release.
+  \item 10 Sep 18: ZDI issues a caution about a potential 0-day (which means that the vulnerability, for which a fix is not available, is going to be published).
+  \item 11 Sep 18: The vendor confirms that the fix did not make it into the build.
+  \item 12 Sep 18: ZDI confirms its intention to 0-day on 20 Sep 18.
+\end{itemize}
+
+% TODO: cyber threats schema
+
+
+
 
 
