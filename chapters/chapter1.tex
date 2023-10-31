@@ -59,7 +59,37 @@ To express this idea clearly, we follow the \textbf{KISS rule}: \emph{"Keep it S
     Integrity, Availability).
   \end{itemize}
 
-  %% TODO: finish this part, before risk estimation
+  More in detail, these three concepts have the following meaning:
+  \begin{itemize}
+    \item Confidentiality covers two related concepts:
+    \begin{itemize}
+        \item Data confidentiality: assures that private or confidential information is not made available or disclosed to unauthorized individuals.
+        \item Privacy: assures that individuals control or influence what information related to them may be collected and stored and by whom and to whom that information may be disclosed.
+    \end{itemize}
+    In terms of requirements and the definition of a loss of security, it means preserving authorized restrictions on information access and disclosure, including means for protecting personal privacy and proprietary information. A loss of confidentiality is the unauthorized disclosure of information.
+
+    \item Integrity covers two related concepts:
+    \begin{itemize}
+        \item \textbf{Data integrity:} assures that information (both stored and in transmitted packets) and programs are changed only in a specified and authorized manner.
+        \item \textbf{System integrity:} assures that a system performs its intended function in an unimpaired manner, free from deliberate or inadvertent unauthorized manipulation of the system.
+    \end{itemize}
+    In terms of requirements and the definition of a loss of security, it means guarding against improper information modification or destruction, including ensuring information nonrepudiation and authenticity. A loss of integrity is the unauthorized modification or destruction of information.
+
+    \item \textbf{Availability}: assures that systems work promptly, and service is not denied to authorized users. In terms of requirements and the definition of a loss of security, it means ensuring timely and reliable access to and use of information. A loss of availability is the disruption of access to or use of information or an information system.
+\end{itemize}
+
+This definition is a good starting point for cybersecurity, but more than the C.I.A. triad is required; two of the most mentioned are as follows:
+
+\begin{itemize}
+    \item \textbf{Authenticity}: the property of being genuine and being able to be verified and trusted; confidence in the validity of a transmission, a message, or message originator. This means verifying that users are who they say they are and that each input arriving at the system came from a trusted source.
+
+    \item \textbf{Accountability}: the security goal that generates the requirement for actions of an entity to be traced uniquely to that entity. This supports nonrepudiation, deterrence, fault isolation, intrusion detection and prevention, and after-action recovery and legal action.
+\end{itemize}
+\begin{enumerate}
+  \item[1.] The objective is to guard the information with the same professionalism and attention as for the jewels and deposit certificates stored in a bank caveau.
+  \item[3.] The ICT system is the safe of our most valuable information; ICT security is the equivalent of the locks, combinations, and keys required to protect it.
+\end{enumerate}
+
 }{
   % else
 }
