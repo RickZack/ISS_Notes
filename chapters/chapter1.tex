@@ -215,19 +215,16 @@ After an attack is carried out, two distinct groups of individuals become aware 
 Finally, at some point in time, the vendor creates a patch to fix the vulnerability. However, the patch must be distributed, and the risk only decreases when the patch becomes widely known and is eventually installed, rendering the system \textbf{protected}. The window of exposure can persist for days or even months, which is why security is an ongoing effort.
 
 \section{Some statistics}
-\begin{wrapfigure}{r}{0.60\textwidth}
-\centering
-    \includegraphics[page = 17,trim = 1cm 2.6cm 1cm 7cm, clip, width = 0.60\textwidth]{\slides}
-\end{wrapfigure}
-The graphic shows that there are about 10 million attacks per month using malware. That is why we should always keep our anti-virus/anti-malware updated.\\
-
-
-
-If we consider web servers across all sectors, 44\% of servers were consistently vulnerable to attacks every day of the year.
-\begin{wrapfigure}{r}{0.60\textwidth}
+\begin{wrapfigure}{r}{0.55\textwidth}
   \centering
-      \includegraphics[page = 18,trim = 1cm 1.7cm 1cm 7cm, clip, width = 0.60\textwidth]{\slides}
+  \includegraphics[page = 17,trim = 1cm 2.6cm 1cm 7cm, clip, width = 0.55\textwidth]{\slides}
 \end{wrapfigure}
+The graphic shows that there are about 10 million attacks per month using malware. That is why we should always keep our anti-virus/anti-malware updated.
+If we consider web servers across all sectors, 44\% of servers were consistently vulnerable to attacks every day of the year.
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 18,trim = 1cm 1.7cm 1cm 7cm, clip, width = 0.60\textwidth]{\slides}
+\end{figure}
 
 The term \textbf{0 day} refers to the first day when a vulnerability is reported to the public and has not yet been fixed.
 
@@ -248,9 +245,108 @@ Example:
   \item 12 Sep 18: ZDI confirms its intention to 0-day on 20 Sep 18.
 \end{itemize}
 
-% TODO: cyber threats schema
+% TMP: new part
+\ifthenelse{\boolean{showNew}}{
+  \section{Cyber threats}
+
+  \subsection*{Components}
+  \begin{wrapfigure}{r}{0.30\textwidth}
+    \centering
+        \includegraphics[page = 20,trim = 8cm 3cm 8cm 11cm, clip, width = 0.30\textwidth]{\slides}
+    \end{wrapfigure}
+  There are \textbf{three main components} in cyber threats:
+  \begin{itemize}
+    \item threats actors (and their motivation)
+    \item attack vectors (vulnerabilities and context)
+    \item vulnerable targets (value for owner and attacker)
+  \end{itemize}
 
 
+  \subsection*{Motivations: \emph{MICE}}
+  What are the motivations behind this?
+  \begin{itemize}
+    \item \textbf{M is for Money:} direct transfer, blackmail, ... or indirect (e.g. data reselling);
+    \item \textbf{Is is for Ideology:} political, religious, hacktivism;
+    \item \textbf{C is for Compromise:} individuals with no choice due to blackmail or threat against their families or themselves;
+    \item \textbf{E is for Ego:} bragging around and positive reputation, "we do it because we can".
+  \end{itemize}
+  \begin{figure}[h]
+    \includegraphics[page = 21,trim = 22cm 2.1cm 1cm 12cm, clip, width = 0.10\textwidth]{\slides}
+  \end{figure}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[page = 22,trim = 1cm 2.1cm 1cm 4cm, clip, width = 0.50\textwidth]{\slides}
+    \caption{Threat actors}
+  \end{figure}
+
+
+  \subsection*{Standardization bodies}
+  Standardization bodies in cybersecurity are organizations that develop and publish standards and guidelines to enhance security and interoperability in computer systems and networks.
+  %TODO: might be better to add subfigures here
+  \begin{figure}[!h]
+    \centering
+    \includegraphics[page = 23,trim = 1cm 3cm 1cm 2cm, clip, width = 0.50\textwidth]{\slides}
+    \includegraphics[page = 24,trim = 1cm 3cm 1cm 2cm, clip, width = 0.50\textwidth]{\slides}
+  \end{figure}
+} {}
+
+
+
+
+\section{What is Security?}
+\emph{"Security is a process, not a product".}
+\begin{flushright}
+  (Bruce Schneier, Crypto-Gram, May 2005)
+\end{flushright}
+If we have learned anything from the past couple of years, it is that \textbf{computer security flaws are inevitable}.
+Systems break, vulnerabilities are reported in the press, and still many people put their faith in the next product, or the next upgrade, or the next patch. "This time it's secure," they say. So far, it has not been.
+\textbf{Security is a process, not a product}. Products provide some protection, but the only way to effectively do business in an insecure world is to put processes in place that recognize the inherent insecurity in the products.
+\textbf{The trick is to reduce your risk of exposure regardless of the products or patches}.
+
+\subsection*{Security Principles}
+To make it possible, it is necessary to follow some security principles:
+\begin{itemize}
+  \item \textbf{Security in depth}: if the enemy can defeat the first line of defense, there must be a second line to stop the attacker. Do not rely on just one defense, as that defense may have a bug or problem. It is better to have multiple levels of defense, so as the attacker breaks through the defenses, it will become increasingly difficult to keep penetrating.
+  
+  \item \textbf{Security by design}: this means that the security design is integrated into the system from the beginning and not added as an afterthought.
+  
+  \item \textbf{Security by default}: users should not have the choice to activate or deactivate security. Security should be enabled by default, and it should require significant effort to disable security features.
+  
+  \item \textbf{Least privilege}: this principle dictates that any element operating within the system should be assigned the minimum amount of privileges necessary to perform its task. Imagine a scenario where a system has excessive privileges, and it is being attacked by a virus. The virus could gain access to everything because of the excessive privileges.
+  
+  \item \textbf{Need-to-know}: this principle emphasizes that access to any component of the system should be granted only for the data required to execute a specific task. For example, in the case of Amazon, several people work within the system. When a customer places an order on Amazon, the first person handling the order can only see the details of what was ordered. They do not have access to information about who placed the order or the destination of the goods.
+\end{itemize}
+
+% TMP: old content1
+\ifthenelse{\boolean{showOld}}{
+\subsection*{European Central Bank}
+ECB made on 31/01/2013 some "\emph{Recommendations for the security of Internet payments}". In general, when there is a regulation there are \textbf{generic} recommendations, but typically lawyers do not want to get into details. In the security scenario this is changed recently. It is not possible to let individual companies decide what are the good rules for security. These recommendations apply to payment schemas governance authorities, payment service providers (PSP), and merchants that use credit cards for payments.
+
+The main recommendations are:
+\begin{itemize}
+    \item Protect the initiation of Internet payments, as well as access to sensitive payment data, by \textbf{strong customer authentication};
+    \item \textbf{Limit the number of log-in or authentication attempts}, define rules for Internet payment services session “time out,” and set time limits for the validity of authentication;
+    \item Establish \textbf{transaction monitoring mechanisms} designed to prevent, detect, and block fraudulent payment transactions (reminiscent of Security in depth);
+    \item \textbf{Provide assistance} and guidance to customers about best online security practices, set up alerts, and provide tools to help customers monitor transactions.
+\end{itemize}
+}{}
+
+\subsection*{Security properties}
+\begin{center}
+  \begin{tabular}{||l l||}
+    \hline
+     Authentication (simple/mutual) & autenticazione (semplice/mutua) \\
+     Peer authentication & autenticazione (della controparte) \\
+     Data/origin authentication & autenticazione (dei dati) \\ 
+     Authorization, access control & autorizzazione, controllo accessi \\
+     \textbf{Integrity} & \textbf{integrità}\\
+     \textbf{Confidentiality, privacy, secrecy} & \textbf{riservatezza, confindenzialità} \\ 
+     Non-repudiation & non ripudio \\ 
+     \textbf{Availability} & \textbf{disponibilità}\\
+     Traceability, accountability  & tracciabilità \\
+    % \hline
+  \end{tabular}
+\end{center}
 
 
 
