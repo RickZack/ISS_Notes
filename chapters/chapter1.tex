@@ -344,9 +344,85 @@ The main recommendations are:
      Non-repudiation & non ripudio \\ 
      \textbf{Availability} & \textbf{disponibilità}\\
      Traceability, accountability  & tracciabilità \\
-    % \hline
+     \hline
   \end{tabular}
 \end{center}
 
 
+\section{Peer authentication}
 
+\subsection*{Simple peer authentication}
+
+\noindent
+\begin{minipage}{0.5\textwidth}
+  \centering
+  \includegraphics[page = 29,trim = 1cm 3cm 1cm 5cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.4\textwidth}
+  When there is communication between two peers that take part in the communication, they must authenticate. Two entities are considered peers if they implement the same protocol on different systems; for example, two TCP modules in two communicating systems. Computer systems usually ask some questions like the ones in the picture. Typically, for a proof, we provide a password. This is simple authentication: only one party authenticates. It attempts to provide confidence that an entity is not engaging in either masquerade or an unauthorized replay of a previous connection.
+\end{minipage}
+
+
+\subsection*{Mutual peer authentication}
+\noindent
+\begin{minipage}{0.5\textwidth}
+  \centering
+  \includegraphics[page = 30,trim = 1cm 3cm 1cm 4.5cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.4\textwidth}
+  In mutual peer authentication, we also require a formal proof that we are connected to the real server. A fake server could display the same page as the ordinary bank just to obtain credentials from the user. When we connect to a server, we typically trust the server, but we need proof. Both parties authenticate each other.
+\end{minipage}
+
+\subsection*{Data origin authentication}
+\noindent
+\begin{minipage}{0.5\textwidth}
+  \centering
+  \includegraphics[page = 31,trim = 1cm 3cm 1cm 4.5cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.4\textwidth}
+  Someone could write an email to request an increase in someone's salary, signed by the director, but there is no proof that the email came from the director. An electronic email typically lacks proper authentication. The same issue applies to files. Data are usually not authenticated, so there is a need for an authentication system for data as well.
+\end{minipage}
+
+\section{Non-repudiation}
+Non-repudiation is a \textbf{formal proof} that is admissible in a court of law, providing \textbf{undeniable evidence of the data's creator}. Non-repudiation prevents either the sender or receiver from denying a transmitted message. This has several implications because we not only need \textbf{authentication} but also \textbf{integrity}. If someone alters data in a document, it should be detectable because it is no longer the original authenticated document.
+
+There is a difference between authentication and identification. Authentication involves using electronic means to verify identity, such as a username and password. However, if the password is stolen, it raises doubts about whether it is the legitimate user or someone else. On the other hand, identification is much stronger, as seen in technologies like the Touch ID on smartphones, where the user is the only one capable of performing that operation.
+
+\textbf{Beware!} The concept of "non-repudiation" is typically associated with not only technical aspects but also with specific procedures carried out voluntarily. We rarely achieve non-repudiation with protocols or procedures that automatically perform actions on behalf of the user.
+
+\subsection*{Example of non-repudiation}
+%&& !inSnippetMode
+Let's consider non-repudiation of an electronic signature:
+\begin{itemize}
+    \item Syntax (is that your signature?)
+    \item Semantics (did you understand what you were signing?) - what you don't understand has no legal value (for example the small lines in a document that are not understandable).
+    \item Will (have you signed voluntarily?)
+    \item Identification (was really YOU the signer?)
+    \item Time (when did you sign?)
+    \item Place (where did you sign?)
+\end{itemize}
+The electronic signature is a set of bits that represent the signature of a person. If we do not know where these bits must be placed to represent the signature, we cannot know which person the signature belongs to. For these reasons, there are specifications for electronic signatures.
+
+
+\subsection*{Availability}
+An availability service is one that protects a system to ensure its availability. This service addresses the security
+concerns raised by denial-of-service attacks. It depends on proper management and control of system resources
+and thus depends on access control service and other security services.
+
+
+\subsection*{Authorization (access control)}
+\begin{wrapfigure}{r}{0.55\textwidth}
+  \centering
+  \includegraphics[page = 33,trim = 0.3cm 2.7cm 3cm 4.5cm, clip, width = 0.55\textwidth]{\slides}
+\end{wrapfigure}
+Authentication means identifying the actors in the system. After authentication, we can make decisions. For example, in the figure, Barbara has correctly identified herself and then asks the computer to "open the box of Alice's car" and the computer performs an \textbf{authorization decision (or access control)}. This is because the car in the box does not belong to Barbara. Therefore, a system must also determine if someone is authorized to perform an operation or not.
+
+
+\textbf{Important difference!}
+\begin{itemize}
+  \item \textbf{Authorization} is the process of verifying whether you, who have already been authenticated, are permitted to perform a particular operation.
+  \item \textbf{Authentication} is the process of identifying the users of a system.
+\end{itemize}
