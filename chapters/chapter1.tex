@@ -921,9 +921,65 @@ It also \ul{observes the victim system} before contacting the C\&C: when Mirai i
 The kind of attacks, since it is a DoS network-based, is driven by C\&C that can decide which attack to make and can open many \texttt{TCP} connections, send tons of \texttt{UDP} packets, or use \texttt{GRE} or simple \texttt{SYN flooding}.
 
 \subsection*{BrickerBot}
-
 \begin{wrapfigure}{r}{0.55\textwidth}
   \centering
   \includegraphics[page = 88,trim = 1cm 8cm 0.8cm 4cm, clip, width = 0.55\textwidth]{\slides}
 \end{wrapfigure}
+In October 2017, a message appeared on blogs and chat platforms (as shown on the left side). In this particular case, Wind, a telecommunications company, was faced with an issue where they had to physically replace all the modems. They were unable to resolve the problem remotely. The modems had malfunctioned and needed replacement. The individual responsible for this attack claimed to have done it for the greater good, possibly to prevent the formation of a botnet. This incident bore some similarities to the Deutsche Telekom case in 2016, albeit with more severe consequences.
 
+\paragraph*{Lesons learnt:}
+\begin{itemize}
+  \item \textbf{Use strong passwords};
+  \item \textbf{change default password} upon installation;
+  \item \textbf{Permit external administrative access only from specific “trusted” networks} (and not from any address on internet): using IP addresses as “filter” to allow access is anyway weak, but at least is
+        better than allowing it from all;
+  \item \textbf{Apply timely all security patches to minimise the WOE}: in the Wind-Infostrada case, the bug was
+        well-known, so the company should have installed the patches.
+\end{itemize}
+
+\section{Attack maps: sample data sources}
+There are many websites that can show how many attacks are being performed. It is possible because many of
+these sites are providers of security solutions. They get the information from their own software which is
+installed on millions of devices and detects possibly attacks. The websites have many labels which tell exactly
+what attack is:
+\begin{itemize}
+  \item \textbf{OAS} = \emph{On-Access Scan}: Anti-malware that performs a scan to detect malware before accessing a file.
+  \item \textbf{ODS} = \emph{On-Demand Scan}: Scans inserted USB pens before files are copied.
+  \item \textbf{MAV} = \emph{Mail Anti-Virus}: Antivirus for emails that checks attachments.
+  \item \textbf{WAV} = \emph{Web Anti-Virus}: Before downloading something from the internet, the item is temporarily stored in a central facility, checked for possible malware, and only transmitted to the destination if nothing is found.
+  \item \textbf{IDS} = \emph{Intrusion Detection System}: Monitors networks and hosts for possible attacks.
+  \item \textbf{VUL} = \emph{Vulnerability Scan}: More pro-active; some machines periodically try to contact others on the network and check for vulnerabilities. If something is found, a warning is sent.
+  \item \textbf{KAS} = \emph{Kaspersky Anti-Spam}: Specifically for Kaspersky.
+  \item \textbf{BAD} = \emph{Botnet Activity Detection}: Detects botnets performing activity.
+\end{itemize}
+
+
+\section{The three (four) pillars of security}
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 92,trim = 0.5cm 2.5cm 0.5cm 4cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+\begin{enumerate}
+  \item \textbf{Planning} (security, policy, ...);
+  \item \textbf{Avoidance} (FW, VPN, PKI, ...);
+  \item \textbf{Detection} (IDS, monitor, ...);
+  \item \textbf{Investigation} (forensic analysis, internal audit, ...);
+\end{enumerate}
+
+\section{The NIST cybersecurity framework}
+\begin{figure}[H]
+  \centering
+  \includegraphics[page = 93,trim = 5cm 3.2cm 5cm 4cm, clip, width = 0.30\textwidth]{\slides}
+  \caption[short]{
+   \href{https://www.nist.gov/cyberframework/online-learning/five-functions}{https://www.nist.gov/cyberframework/online-learning/five-functions} }
+\end{figure}
+
+\section{Final slides}
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 94,trim = 0.5cm 2.5cm 0.5cm 4cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 95,trim = 0.5cm 2.5cm 0.5cm 3cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
