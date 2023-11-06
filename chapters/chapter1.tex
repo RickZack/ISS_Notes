@@ -37,7 +37,7 @@ To express this idea clearly, we follow the \textbf{KISS rule}: \emph{"Keep it S
 
 % TMP old only
 \ifthenelse{\boolean{showOld}}{
-  \section{A definition of ICT Security}
+  \section{A definition of ICT Security [OLD]}
   Each of us has a different concept of security: for example, the obligation to use safety belts when driving depends on country to country. Security is a personal concept but in engineering, we need to provide some formal definitions.
   Cybersecurity is a distributed part of a company, and every employee of a company must have the awareness for cybersecurity.
   \begin{enumerate}
@@ -85,9 +85,7 @@ To express this idea clearly, we follow the \textbf{KISS rule}: \emph{"Keep it S
     \item[3.] "The ICT system is the safe of our most valuable information; ICT security is the equivalent of the locks, combinations, and keys required to protect it".
   \end{enumerate}
 
-}{
-  % else
-}
+}{}
 
 
 
@@ -128,14 +126,12 @@ Recap of terminology:
 \end{description}
 
 
-% TMP: new content
-\ifthenelse{\boolean{showNew}}{
-  \section{Risk management}
-  To prioritize the risks, we can build a \textbf{risk assessment matrix} (or risk heat map):
-  \begin{figure}[h]
-    \includegraphics[page = 10,trim = 1cm 3cm 1cm 12cm, clip, width = \textwidth]{\slides}
-  \end{figure}
-} {}
+\section{Risk management}
+To prioritize the risks, we can build a \textbf{risk assessment matrix} (or risk heat map):
+\begin{figure}[h]
+  \includegraphics[page = 10,trim = 1cm 3cm 1cm 12cm, clip, width = \textwidth]{\slides}
+\end{figure}
+
 % end TMP: new content
 
 
@@ -246,40 +242,40 @@ Example:
 \end{itemize}
 
 % TMP: new part
+
+\section{Cyber threats}
+
+\subsection*{Components}
+\begin{wrapfigure}{r}{0.30\textwidth}
+  \centering
+  \includegraphics[page = 20,trim = 8cm 3cm 8cm 11cm, clip, width = 0.30\textwidth]{\slides}
+\end{wrapfigure}
+There are \textbf{three main components} in cyber threats:
+\begin{itemize}
+  \item threats actors (and their motivation)
+  \item attack vectors (vulnerabilities and context)
+  \item vulnerable targets (value for owner and attacker)
+\end{itemize}
+
+
+\subsection*{Motivations: \emph{MICE}}
+What are the motivations behind this?
+\begin{itemize}
+  \item \textbf{M is for Money:} direct transfer, blackmail, ... or indirect (e.g. data reselling);
+  \item \textbf{Is is for Ideology:} political, religious, hacktivism;
+  \item \textbf{C is for Compromise:} individuals with no choice due to blackmail or threat against their families or themselves;
+  \item \textbf{E is for Ego:} bragging around and positive reputation, "we do it because we can".
+\end{itemize}
+\begin{figure}[h]
+  \includegraphics[page = 21,trim = 22cm 2.1cm 1cm 12cm, clip, width = 0.10\textwidth]{\slides}
+\end{figure}
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 22,trim = 1cm 2.1cm 1cm 4cm, clip, width = 0.50\textwidth]{\slides}
+  \caption{Threat actors}
+\end{figure}
+
 \ifthenelse{\boolean{showNew}}{
-  \section{Cyber threats}
-
-  \subsection*{Components}
-  \begin{wrapfigure}{r}{0.30\textwidth}
-    \centering
-    \includegraphics[page = 20,trim = 8cm 3cm 8cm 11cm, clip, width = 0.30\textwidth]{\slides}
-  \end{wrapfigure}
-  There are \textbf{three main components} in cyber threats:
-  \begin{itemize}
-    \item threats actors (and their motivation)
-    \item attack vectors (vulnerabilities and context)
-    \item vulnerable targets (value for owner and attacker)
-  \end{itemize}
-
-
-  \subsection*{Motivations: \emph{MICE}}
-  What are the motivations behind this?
-  \begin{itemize}
-    \item \textbf{M is for Money:} direct transfer, blackmail, ... or indirect (e.g. data reselling);
-    \item \textbf{Is is for Ideology:} political, religious, hacktivism;
-    \item \textbf{C is for Compromise:} individuals with no choice due to blackmail or threat against their families or themselves;
-    \item \textbf{E is for Ego:} bragging around and positive reputation, "we do it because we can".
-  \end{itemize}
-  \begin{figure}[h]
-    \includegraphics[page = 21,trim = 22cm 2.1cm 1cm 12cm, clip, width = 0.10\textwidth]{\slides}
-  \end{figure}
-  \begin{figure}[h]
-    \centering
-    \includegraphics[page = 22,trim = 1cm 2.1cm 1cm 4cm, clip, width = 0.50\textwidth]{\slides}
-    \caption{Threat actors}
-  \end{figure}
-
-
   \subsection*{Standardization bodies}
   Standardization bodies in cybersecurity are organizations that develop and publish standards and guidelines to enhance security and interoperability in computer systems and networks.
   %TODO: might be better to add subfigures here
@@ -321,19 +317,6 @@ To make it possible, it is necessary to follow some security principles:
   \item \textbf{Need-to-know}: this principle emphasizes that access to any component of the system should be granted only for the data required to execute a specific task. For example, in the case of Amazon, several people work within the system. When a customer places an order on Amazon, the first person handling the order can only see the details of what was ordered. They do not have access to information about who placed the order or the destination of the goods.
 \end{itemize}
 
-% TMP: old content1
-\ifthenelse{\boolean{showOld}}{
-  \subsection*{European Central Bank}
-  ECB made on 31/01/2013 some "\emph{Recommendations for the security of Internet payments}". In general, when there is a regulation there are \textbf{generic} recommendations, but typically lawyers do not want to get into details. In the security scenario this is changed recently. It is not possible to let individual companies decide what are the good rules for security. These recommendations apply to payment schemas governance authorities, payment service providers (PSP), and merchants that use credit cards for payments.
-
-  The main recommendations are:
-  \begin{itemize}
-    \item Protect the initiation of Internet payments, as well as access to sensitive payment data, by \textbf{strong customer authentication};
-    \item \textbf{Limit the number of log-in or authentication attempts}, define rules for Internet payment services session “time out,” and set time limits for the validity of authentication;
-    \item Establish \textbf{transaction monitoring mechanisms} designed to prevent, detect, and block fraudulent payment transactions (reminiscent of Security in depth);
-    \item \textbf{Provide assistance} and guidance to customers about best online security practices, set up alerts, and provide tools to help customers monitor transactions.
-  \end{itemize}
-}{}
 
 \section{Security properties}
 \begin{center}
@@ -431,22 +414,6 @@ Authentication means identifying the actors in the system. After authentication,
   \item \textbf{Authentication} is the process of identifying the users of a system.
 \end{itemize}
 
-\ifthenelse{\boolean{showOld}}{
-  \subsubsection*{Pyramid of security}
-  \begin{figure}[h]
-    \centering
-    \includegraphics[trim = 0.2cm 0cm 0.2cm 0cm, clip, width = 0.55\textwidth]{chapter1/pyramid_of_security.png}
-  \end{figure}
-  Authentication is the most fundamental feature in our system. Without the ability to identify the actors, we cannot establish a strong security foundation. Building upon authentication, we have:
-  \begin{itemize}
-    \item Authorization (who can perform specific actions),
-    \item Privacy (who can access data),
-    \item Integrity (who can modify data), and
-    \item Logging (keeping records of actions).
-  \end{itemize}
-  Unfortunately, many systems rely on weak authentication methods, often limited to just usernames and passwords. This weak link can undermine the entire security structure. This is a common issue in many organizations, as managers may not fully grasp the technical principles necessary to understand how these various security mechanisms work together.
-}{}
-
 
 \subsection{Privacy}
 \subsubsection*{Privacy (communication)}
@@ -522,30 +489,10 @@ To defend something, we must know \ul{where the enemy is}. There are a few possi
   \item \textbf{Everywhere:} Since attackers can be both inside and outside the organization, \ul{security measures must be implemented at the application level}. Furthermore, since applications handle data, data protection must be independent of the physical location where the data is stored. For example, if a service like Dropbox is used but is not considered secure by the company, it is possible to encrypt the data before uploading it to Dropbox.
 \end{itemize}
 
-\ifthenelse{\boolean{showOld}}{
-  \subsection*{Attack Origin (2016)}
-  Statistics can be challenging to compile because companies often do not disclose when they have been attacked. As a result, statistics may not be frequently updated. According to a statistic from Verizon, the breakdown of internal and external attacks is as follows:
 
-  \begin{itemize}
-    \item Internal: 20\%
-    \item External: 80\%
-  \end{itemize}
-
-  When reading such statistics, it's important to be cautious about the demographics of the companies surveyed. Verizon, being one of the world's largest internet providers, mainly serves users connected to the internet. Consequently, a significant portion of the attacks are originating from the internet. If the statistics were based on local attacks, such as those within manufacturing industries, the figures might be different.
-
-  The types of attacks vary over time. The graph on the left illustrates the trend in the number of attacks each year, with malware infections being the most prevalent. This is due to the constant development of new malwares each month. There is always the chance that a malware can exploit an unknown vulnerability (see Window of Exposure).
-
-  The graph also highlights the relatively frequent occurrence of laptop or mobile device theft. The problem with stolen laptops or smartphones extends beyond the economic loss of replacing the device. It also involves the loss of data, especially if the user had not backed up their data, and the potential exposure of restricted information stored on the devices.
-
-  An example of this is an article from Corriere in 2009, which reported: "US PCs sold at the Peshàwar market: Computers
-  of the US army with restricted data sold for 650\$ along the road where NATO troops are attacked by the
-  Taliban. Still full of classified information, such as names, sites, and weak points".
-
-  \begin{figure}[h]
-    \centering
-    \includegraphics[width = 0.55\textwidth]{chapter1/attacks.png}
-  \end{figure}
-}{}
+An example of this is an article from Corriere in 2009, which reported: "US PCs sold at the Peshàwar market: Computers
+of the US army with restricted data sold for 650\$ along the road where NATO troops are attacked by the
+Taliban. Still full of classified information, such as names, sites, and weak points.
 
 
 
@@ -559,20 +506,6 @@ To defend something, we must know \ul{where the enemy is}. There are a few possi
     \item \textbf{Active Attacker:} Can read, but also modify, delete, or create data/traffic.
   \end{itemize}
 }{}
-
-\ifthenelse{\boolean{showOld}}{
-  \subsection*{Insecurity: the deep roots}
-  \begin{itemize}
-    \item "Attack technology is developing in an open-source environment and is evolving rapidly": Most attack tools are released as open-source, making them easily accessible and allowing for rapid development through small improvements.
-    \item "Defensive strategies are reactionary": Security measures often lag behind new attack techniques, leaving us vulnerable until new protections are developed.
-    \item "Thousands - perhaps millions - of systems with weak security are connected to the Internet": Ensuring the security of all connected computers is essential, as one compromised computer can impact others on the network.
-    \item "The explosion in use of the Internet is straining our scarce technical talent. The average level of system administrators has decreased dramatically in the last 5 years.": The increasing use of user-friendly interfaces has led to a decline in technical knowledge, despite improved productivity.Technical expertise is crucial for effective cybersecurity.
-    \item "Increasingly complex software is being written by programmers who have received no training in writing secure code": Secure code is critical for preventing vulnerabilities and exploitation. Not all programmers need to be experts in security, but they should be aware of secure coding practices.
-    \item "Attacks and attack tools transcend geography and national boundaries.": Investigations often span multiple countries, making it difficult to track down cybercriminals, especially in regions with lax cybersecurity laws.
-    \item "The difficulty of criminal investigation of cybercrime coupled with the complexity of international law means that prosecution of computer crime is unlikely.": The complexity of international law and the challenges of investigating cybercrimes often result in a lack of effective prosecution.
-  \end{itemize}
-}{}
-
 
 \subsection*{Basic problems (technological)}
 \begin{itemize}
@@ -672,35 +605,24 @@ There is an attacker and a victim. The attacker somehow creates a network of dae
 
 Masters and daemons are not real individuals but part of the botnet. The only human involved is the attacker, who disconnects after initiating the DDOS attack.
 
-
-\subsubsection*{Case History: DDoS towards Yahoo Server Farm}
-
-The first well-known attack of this kind occurred on Feb 8th, 2000, at 10:30 am (PST) against the Yahoo Server Farm. Administrators wrote a report that stated:
-\begin{itemize}
-  \item "The initial flood of packets, which we later realized was in excess of 1 Gbit/sec, took down one of our routers..."
-  \item "... after the router recovered, we lost all routing to our upstream ISP..." This happened because an internet connection requires two routers. Yahoo's people rebooted their own router, but at the other end of the communication link, the router was still down.
-  \item "... it was somewhat difficult to tell what was going on, but at the very least, we noticed lots of ICMP traffic..."
-  \item "... at 1:30 pm, we got basic routing back up and then realized that we were under a DDoS attack."
-\end{itemize}
-Later, the attack was traced back to the 15-year-old Canadian boy Michael Calce (aka MafiaBoy). Even if getting to the attacker is not always possible, a U.S. lawyer can easily identify who the daemons are and seek refunds from them, even if the daemon was a victim of the attacker, for example, if the attacker took control of a computer for DDoS purposes.
-
+\begin{casehistory}{DDoS towards Yahoo Server Farm}
+  The first well-known attack of this kind occurred on Feb 8th, 2000, at 10:30 am (PST) against the Yahoo Server Farm. Administrators wrote a report that stated:
+  \begin{itemize}
+    \item "The initial flood of packets, which we later realized was in excess of 1 Gbit/sec, took down one of our routers..."
+    \item "... after the router recovered, we lost all routing to our upstream ISP..." This happened because an internet connection requires two routers. Yahoo's people rebooted their own router, but at the other end of the communication link, the router was still down.
+    \item "... it was somewhat difficult to tell what was going on, but at the very least, we noticed lots of ICMP traffic..."
+    \item "... at 1:30 pm, we got basic routing back up and then realized that we were under a DDoS attack."
+  \end{itemize}
+  Later, the attack was traced back to the 15-year-old Canadian boy Michael Calce (aka MafiaBoy). Even if getting to the attacker is not always possible, a U.S. lawyer can easily identify who the daemons are and seek refunds from them, even if the daemon was a victim of the attacker, for example, if the attacker took control of a computer for DDoS purposes.
+\end{casehistory}
 
 
-\ifthenelse{\boolean{showOld}}{
-  An interesting legal implication for zombie nodes: "Be Secure or Be Sued":
-  \begin{quote}
-    "There is a distinct probability that if your site has been hijacked for a denial of service attack, then you could be liable for damages. I would definitely advise clients they have grounds to sue."
-    \begin{flushright}
-      Nick Lockett, an e-commerce lawyer at Sidley \& Austin.
-    \end{flushright}
-  \end{quote}
-}{}
-
-\subsubsection*{Case History: DDoS towards "Krebs on Security" Blog}
-On September 27, 2016, the administrator of the blog received a DDoS attack that generated 665 Gbps, and it was generated by a botnet of IoT devices (or claimed to be such).
-There was no use of any reflectors or amplifiers, just millions of devices that performed perfectly valid requests.
-It seemed like millions of users wanted to connect to the website at the same time. This generated a significant amount of traffic, and even though the blog was hosted on Akamai, the traffic was so substantial that the company had to give up and made the blog unreachable by dropping that destination from their routing table on September 29.
-There was no known reason for the attack; perhaps it is connected to Krebs' analysis of similar attacks against online game servers.
+\begin{casehistory}{{DDoS towards "Krebs on Security" Blog}}
+  On September 27, 2016, the administrator of the blog received a DDoS attack that generated 665 Gbps, and it was generated by a botnet of IoT devices (or claimed to be such).
+  There was no use of any reflectors or amplifiers, just millions of devices that performed perfectly valid requests.
+  It seemed like millions of users wanted to connect to the website at the same time. This generated a significant amount of traffic, and even though the blog was hosted on Akamai, the traffic was so substantial that the company had to give up and made the blog unreachable by dropping that destination from their routing table on September 29.
+  There was no known reason for the attack; perhaps it is connected to Krebs' analysis of similar attacks against online game servers.
+\end{casehistory}
 
 
 \subsection{Shadow Server / Fake Server}
@@ -758,30 +680,6 @@ For instance, there was an attack against the WinNT server (versions 3.51 and 4.
 
 The issue stemmed from the fact that at port 135, there was a new Microsoft-only service that was a remote procedure call (RPC) and had a bug. When it received a malformed packet, it went into an infinite loop, continuously asking, "where is a good packet?" Since the ARP server (?) was part of the operating system's kernel, it consumed 100\% of the CPU without the possibility of interruption. Microsoft developed a solution with Service Pack 3 (SP3), in which they addressed and corrected this bug.
 
-
-\ifthenelse{\boolean{showOld}}{
-  \subsection*{Some Typical Application-Level Problems}
-  \begin{itemize}
-    \item \textbf{Buffer Overflow}:
-          \begin{itemize}
-            \item Occurs when a programmer allocates a memory buffer without verifying that the data being stored does not overflow that allocated memory. This can allow an attacker to inject malicious code.
-          \end{itemize}
-    \item \textbf{Storing Sensitive Information in Cookies}:
-          \begin{itemize}
-            \item This can expose sensitive information to third parties, either during transit or locally on the client.
-          \end{itemize}
-    \item \textbf{Storing Passwords in Clear Text in a Database}:
-          \begin{itemize}
-            \item This practice makes passwords readable by third parties, such as backup operators responsible for data copies.
-          \end{itemize}
-    \item \textbf{"Invent" a protection system}:
-          \begin{itemize}
-            \item The issue here lies in the potential risks associated with inadequate protection.
-          \end{itemize}
-  \end{itemize}
-}{}
-
-
 \section{Virus \& Co. (malware)}
 \begin{itemize}
   \item \textbf{Virus}:
@@ -822,4 +720,210 @@ Payment for these vulnerabilities is often made using cryptocurrency. The buyers
 
 
 \subsubsection*{Zeus: Cyber Theft Ring}
-"It often happens to receive an email that asks you to send money outside of the country in exchange for a large sum of money. If you accept this request, you will supposedly receive the money. They may begin by testing you, sending a small amount of money, for example, \$10,000, and then ask you to send \$7,000 to Nigeria, allowing you to keep \$3,000 for yourself. However, by agreeing to this, you will be facilitating money laundering, as the funds are stolen from someone's bank account and transferred to you, making you appear responsible. You will then send the money via MoneyGram, while the individuals in Nigeria will disappear, leaving you to face potential legal consequences. This scenario is a typical case of acting as a 'money mule,' which involves accepting funds from a stolen bank account and forwarding them to the intended destination."
+It often happens to receive an email that asks you to send money outside of the country in exchange for a large sum of money.
+If you accept this request, you will supposedly receive the money.
+They may begin by testing you, sending a small amount of money, for example, \$10,000, and then ask you to send \$7,000 to Nigeria, allowing you to keep \$3,000 for yourself.
+However, by agreeing to this, you will be facilitating money laundering, as the funds are stolen from someone's bank account and transferred to you, making you appear responsible.
+You will then send the money via MoneyGram, while the individuals in Nigeria will disappear, leaving you to face potential legal consequences. This scenario is a typical case of acting as a 'money mule,' which involves accepting funds from a stolen bank account and forwarding them to the intended destination."
+\begin{figure}[H]
+  \centering
+
+  \includegraphics[page = 61,trim = 0.5cm 2.2cm 0.5cm 4.5cm, clip, width = 0.70\textwidth]{\slides}
+
+  \includegraphics[page = 62,trim = 0.5cm 2.2cm 0.5cm 4.5cm, clip, width = 0.80\textwidth]{\slides}
+
+  \includegraphics[page = 63,trim = 0.5cm 2.2cm 0.5cm 4.5cm, clip, width = 0.80\textwidth]{\slides}
+\end{figure}
+
+
+Most of the victims are based in US or UK. The
+mule organization is spread across many countries:
+US, Europe, British Ireland, but malware
+coders/exploiters are typically in the East Europe.
+In the picture there are also numbers about the Law
+Enforcement Response.
+
+\subsection*{Ransomware}
+Ransomware is a type of malware that is designed to extort a \textbf{ransom}, typically by demanding money in exchange for releasing something. When ransomware infects a computer, it usually encrypts the contents of the disk, rendering them unreadable. This also applies to tablets and smartphones, for example, by changing access passwords to data.
+
+However, paying the requested ransom (usually in bitcoin) does not always guarantee the recovery of your data. This is because the key required to unlock the files is typically stored on a server that could be shut down as a result of a police investigation. As a result, the attacker may no longer have access to the key used for locking the data.
+
+\subsection*{Ransomware-as-a-service}
+For some time, there was a \emph{ransomware-as-a-service}, in which individuals provided the source code for ransomware; this enabled people to use ransomware even if they had little understanding of how it worked. This service was known as the \textbf{TOX malware} and operated on the \textbf{TOR anonymous network}. TOX would demand a ransom and handle the payment, charging a 20\% service fee.
+The "customer" has the only task to distribute it to the victims (for example by leaving a USB pen in public places).
+TOX saw rapid growth, with around 1,000 customers per week and infecting approximately 100 devices per hour.
+
+Even though TOX was eventually stopped by law enforcement, ransomware threats continue to exist. Technology alone is insufficient for protecting against ransomware. While having a robust anti-malware system installed is helpful, it's important to note that this type of attack targets not only end-users but also servers.
+
+\subsection*{Ransomware: Not only technology but also procedures and organization}
+Ransomware typically \textbf{encrypts data} that can only be restored with the proper decryption key. Regular backups can provide a potential solution, but is that enough?
+\begin{itemize}
+  \item \textbf{How old is the backup?} Consider the age of your backups. Even if you create daily backups, ransomware developers are aware of this practice and have developed a stealthy variant known as silent ransomware. \emph{Silent ransomware} infiltrates your system but instead of encrypting your current data, it targets your backup files. This can continue for several days, rendering your backups unreadable, and it may only be discovered later that the backups are corrupted.
+  \item \textbf{Offline or Network Backups?} Backups should be made offline. For instance, consider a case where a dentist's office used a Network-Attached Storage (NAS) system for continuous backup of local data; ransomware found this setup and encrypted the data on the network storage, rendering the backups useless.\\
+        To enhance security, an \ul{inverted backup} technique is recommended. In this approach, the backup disk is not directly connected to the target PC (the one whose data is being backed up). Instead, there should be another node that remotely mounts the target PC's disk, makes a copy, and then disconnects from the target PC. Even if the target PC is infected, this process remains unaffected. Importantly, the backup node should not be connected to the network to prevent potential malware interference.
+  \item \textbf{Verified or "Trusted" Backups?} Have you verified the correctness of your backups, or have you merely trusted them? There is a well-known case in Sweden where magnetic tapes used for backups were corrupted during transportation due to heated seats generating currents on wires, creating magnetic fields that damaged the tapes. This issue was only discovered when data corruption occurred, and there was a need to access the backups.
+  \item \textbf{When was the attack?} To identify the correct backup, it's essential to know the timestamp of the attack. There have been cases, such as a video archive, where determining the accurate backup was challenging. In this example, a journalist looking for video clips noticed inconsistencies in file names. While backups existed, determining which one was correct depended on when the attack took place. Without knowledge of the attack's timing, selecting the right backup for restoration becomes impossible.
+\end{itemize}
+
+
+
+\section{Basic problems (non-technological)}
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 68,trim = 3cm 4.5cm 3cm 5cm, clip, width = 0.70\textwidth]{\slides}
+  \caption{Even the most sophisticated technological tools can be
+    made useless by human error}
+\end{figure}
+
+\begin{itemize}
+  \item \textbf{Low Problem Understanding (Awareness):} People often lack awareness of security issues and tend to implement security measures only after experiencing problems. This behavior stems from the belief that such issues will not affect them.
+  \item \textbf{Human Mistakes (Especially When Overloaded or Stressed):} Errors are more common when individuals are under stress or overwhelmed with work.
+  \item \textbf{Inherent Human Trust:} Humans tend to have a natural inclination to trust others, especially in online interactions where face-to-face contact is absent.
+  \item \textbf{Complex Interfaces/Architectures Can Mislead Users and Lead to Errors.}
+  \item \textbf{Performance Decrease Due to the Application of Security Measures:} Consider the example of a company that sought Lioy's assistance with antivirus software. Although the company claimed to have the best antivirus, they frequently experienced virus infections that disrupted their system. Lioy visited the company's premises and examined everything, including antivirus installation and updates. While exploring the office to understand the problem, he noticed a desktop with the antivirus icon disabled. Lioy inquired about this, and an employee explained that the antivirus's file scanning process caused delays in accessing files, prompting employees to disable it temporarily for more efficient work. Surprisingly, all employees followed the same practice. Lioy concluded that the company had a non-technological problem.
+\end{itemize}
+
+\subsection*{Social engineering techniques and strategies}
+In the context of information security, \textbf{social engineering} is the \ul{psychological manipulation of people to induce them into performing actions or divulging confidential information}. Typically, the targets are \textbf{naive users}, such as those who may be urged to "immediately change their password due to an alleged PC attack". However, even experienced users can be targeted, for instance, by replicating a genuine email but altering its attachment or URL.
+
+These tactics are employed through various channels, including email, phone, fax, and even physical documents; they often relay on \textbf{psychological pressure}. Usually, this is achieved in two ways:
+\begin{itemize}
+  \item By \ul{exploiting human empathy} towards a friend or a co-worker, for example generating a fake message conveying a message like "Help me, otherwise I'll be in trouble…", leading to some action that could be against best practices, creating an opportunity for an attack.
+  \item By \ul{pretending to be a boss}, also asking for something that could be forbidden, under the threat "do it, or I'll report it to your boss…".
+\end{itemize}
+
+In general, those who run these psychological attacks try to show familiarity with the company's procedures, habits, and personnel to gain trust and make the target lower his \textbf{defenses}.
+
+
+\subsubsection*{Phishing(pronounced "fishing")}
+\begin{wrapfigure}{r}{0.30\textwidth}
+  \centering
+  \includegraphics[page = 71,trim = 3cm 5cm 3cm 6cm, clip, width = 0.30\textwidth]{\slides}
+\end{wrapfigure}
+It is an attack technique based on attracting a network service user to a fake server (shadow server), using mail or IM, for acquiring his authentication credentials or other personal information, or persuading him to install a plugin or extension which turns out to be a virus or a Trojan.
+An example message can look like: "Dear Internet banking user, please fill in the attached module and return it to us ASAP according to the privacy law 675…". There are some variants:
+\begin{itemize}
+  \item \textbf{Spear phishing}, when the message includes several personal data to disguise the fake message as a legitimate one (e.g., email address, name of Dept/Office, phone number, etc.)
+  \item \textbf{Whaling}, when the target user holds a position of responsibility or power, such as a CEO or CIO. This has two main advantages from the attacker's point of view: the damage done by deceiving these types of people can be much greater, as their credentials can give the attacker great power; these people generally occupy a commercial and administrative position, which usually means that they do not have the necessary knowledge to handle security issues.
+\end{itemize}
+
+
+\subsubsection*{Pharming}
+It's a term of controversial use and embodies a set of several techniques to redirect a user towards a shadow server by:
+\begin{itemize}
+  \item changing the "hosts" file at the client.
+  \item changing the nameserver pointers at the client.
+  \item changing the nameservers at a DHCP server (e.g., an ADSL/Wireless router).
+  \item poisoning the cache of a nameserver.
+\end{itemize}
+This could happen via a \textbf{direct attack} if there is a vulnerability or misconfiguration, or via an \textbf{indirect attack} with a virus or worm.
+
+
+\subsection*{Fake Mail / IM}
+\begin{wrapfigure}{r}{0.30\textwidth}
+  \centering
+  \includegraphics[page = 72,trim = 5cm 3cm 5cm 14cm, clip, width = 0.30\textwidth]{\slides}
+\end{wrapfigure}
+Creating a fake email is relatively easy, but maintaining the right "tone" can be challenging. For instance, questions like "Should I sign the emails as Antonio Lioy, or just Antonio, or A. L.?" need to be addressed, as an incorrect tone can lead to the detection of the fake email. The creation of fake SMS or instant messages (IM) is also possible, allowing for various deceptive scenarios:
+\begin{itemize}
+  \item \emph{Fake ATM withdrawal} messages that prompt the recipient to call a specified number, which then solicits their confidential credentials.
+  \item \emph{Fake kidnapping alarms}, often delivered via IM. It is not uncommon for individuals, particularly older men, to approach the police claiming, "Help me because my daughter has been kidnapped, and they demand 200,000 euros for her release." In reality, the person making the request is often a woman met on social media who has established a fake relationship with the victim to elicit empathy and financial support.
+\end{itemize}
+
+
+\begin{casehistory}{"Mr. Confindustria in Brussels tricked by a hacker: 500,000 Euros lost. Fired." (Repubblica journal on 30th September 2017)}
+  "Transfer immediately half a million to this foreign bank account." However, this email was sent by a hacker, and the money disappeared. The fake order was (seemingly) signed by Director Panucci: "Please execute and don't call me because I'm out of the office with the president."
+\end{casehistory}
+
+\textbf{Final message}: all the employees should be trained in the security problems of modern life.
+
+
+\begin{casehistory}{T.J. Maxx attack (2007)}
+  In 2007, there was an attack against T.J. Maxx, a chain of shops. The attack occurred externally, allowing the attacker to access 45 million credit card numbers from customers. The attack lasted for about 18 months, ending in January 2007. It gained notoriety when a group of 300 banks, affected by the attack as they had to refund customers, initiated a class action lawsuit against T.J. Maxx, seeking a \$10 million refund. This was due to the fact that, even though it was known in 2007 that the wireless protocol WEP was insecure, T.J. Maxx continued to use WEP instead of WPA. The attacker didn't need to physically enter the shop; instead, they could sit in a nearby park with a laptop and appropriate software, intercepting all transactions between the cash register and the back-end server. The attack was carried out by 10 people (3 USA, 3 UKR, 2 CHN, 1 BEL, 1 EST + "Delpiero") with the assistance of an ex-hacker who had been hired by the US Secret Service.\\
+  This practice is not uncommon; when an attacker is apprehended, they are often given the opportunity to work for the government as a consultant or to help prevent future attacks."
+\end{casehistory}
+Considering the legislation, in general, \ul{the law does not prescribe specific security measures to be taken}, but \ul{merely advises establishing defenses in accordance with the state of the art}.\\
+This means that a security manager must always stay up-to-date and apply the most recent solutions against new types of attacks.
+
+
+\begin{casehistory}{US Air Force phishing test transforms into a problem (04/2010)}
+  In April 2010, during an Operational Readiness Exercise (ORE) at Andersen Air Force Base located on Guam Island, a phishing email was used to test the response of airmen. The email, sent by security testers, claimed that film crews were starting production of 'Transformers 3' on Guam and invited airmen to submit applications on a website if they wished to work on the shoot. The website then requested sensitive information, which the airmen should have been trained not to provide. The outcome of this exercise became widely known because one of the airmen posted the news outside the base, reaching the civilian world. As rumors spread that the highly anticipated film was coming to Guam, local media began contacting the base, leading to efforts to clarify the situation.
+
+  Andersen AFB's leadership expressed regret for any confusion caused by this phishing exercise. They emphasized the importance of individuals being cautious about the genuine threat posed by phishing emails, with the hope that others can learn from this exercise.
+\end{casehistory}
+
+
+\section{Some important recent attacks}
+The first attack discussed is \textbf{Stuxnet}, known for being the first cyber-attack to cause physical damage. Next is \textbf{Black Energy}, one of the most well-known attacks used against critical infrastructure, such as the electrical grid distribution. Finally, we have \textbf{Mirai}, \textbf{BlueBorne}, and \textbf{BrickerBot}. These attacks are all targeted at IoT devices, embedded systems, the automotive sector, and home devices.
+
+\subsection{Against Cyber-Physical Systems}
+
+\subsubsection*{Stuxnet (2010)}
+It is important because it is the prototype of a new kind of attack, since it caused physical damage (like a virus) and it attempts to propagate itself to other systems (like a worm): the target were \textbf{SCADA systems} of a specific manufacturer attached to the infected nodes. SCADA stands for Supervisory Control and Data Acquisition, and they are those computer systems that control process plants or machinery, for example production systems for cars, food, and so on. Since SCADA is the interface between computer and physical reality, an attack against it could damage physical system components. Stuxnet was a very sophisticated attack because this worm contained four attack vectors:
+
+\begin{itemize}
+  \item one was based on an already known vulnerability (for which a patch existed);
+  \item one exploited an already known vulnerability, but for which no patch was available (for those who got the patch for the first one);
+  \item two "zero-day" vulnerabilities (if there were countermeasures for the known vulnerability).
+\end{itemize}
+
+\paragraph*{Attack mode}
+It seems that the first infection came through a USB pen inserted in one of the computers that managed the
+SCADA system. Then it propagated through all the computers connected to the network of the enrichment
+plant in Iran thanks to shared disks, Microsoft Spooler Subsystem and RPC services bugs. The infection via
+USB key was possible because inside that network of computer there was no internet connection, and a USB
+Key was required for updates of SCADA systems. It seems that the technician arrived from another country
+for the maintenance with the USB pen (and good software in it), got distracted in the hotel from some girls
+while someone added to the USB pen the malware. This malware was disguised as a \ul{driver} (pretended to be a
+driver) \ul{with a digital signature validated by Microsoft and used two different certificates}. Additionally, the
+guilty was not only from Microsoft but also of the developers, because the SCADA system had only one shared
+default password for the back-end database.
+
+\paragraph*{Attack motivations}
+Even the timing and the location are peculiar. First, on 17/6/10, the first damage was created, and it became known that Stuxnet existed. For this reason, an investigation started, and one week later, on 24/6/10, the analysts detected the use of the first signature certificate and revoked it on 17/7/10. However, the malware then started using a second signature certificate. Since its discovery, it took one month for security bulletins by CERT (Computer Emergency Response Team) and MS (Microsoft). Then, Microsoft started developing patches that were gradually released through October '10. This malware stopped propagating itself on 24/6/2012 (which was written inside its code). This suggests that the malware was targeted to a specific time window.
+
+Most of the attacks are against the most developed countries, but this malware was found in 52\% of cases in Iran. It seems to be targeted at a specific area: \emph{this worm had the target of destroying the uranium enrichment plant in Iran}.
+
+\paragraph*{Attack consequences}
+The malware was able to manipulate the speed of the cylinders used for uranium enrichment beyond safe limits, all without triggering any alerts in the monitoring system used by the technicians. As a result, the technicians only managed to halt the system after significant damage had already occurred. This setback delayed the Iran Uranium Program by several years in their efforts to restore the proper functioning of the facilities.
+
+
+\paragraph*{Lessons learnt from this attack:}
+\begin{itemize}
+  \item Physical system separation (air gap) does not imply security: in fact, without any other standard protections (anti-virus, OS patches, firewall), these systems are not secure. In this specific case, the systems did not use any kind of standard protection, relying too much on the physical barrier;
+  \item Unnecessary active services can be a source of vulnerabilities: MS-RPC, shared network print queues, shared network disks were not necessary but still running. In general, any unnecessary service should be disabled;
+  \item A validation list for software to be installed should be used: it seems that the technician copied all the content of his USB pen, also copying the added malware. He should have copied only the file necessary for the SCADA systems update.
+\end{itemize}
+
+
+
+\subsection{Against critical infrastructure}
+
+\subsubsection*{Fancy Bear / APT 28}
+This hacking group is believed to have ties to the Russian military intelligence agency, GRU. Over the years, they have been involved in cyber-attacks and espionage activities against various high-profile targets; some of their notable targets include the German and Norwegian parliaments, the French television network TV5Monde, the White House, NATO, the U.S. Democratic National Committee, and the Organization for Security and Co-operation in Europe (OSCE). \\
+Additionally, during the years 2014-2016, they developed Android malware specifically designed to target the Ukrainian Army's Rocket Forces and Artillery.
+
+
+\subsection*{Against Internet-of-Things, automotive, home}
+
+\subsubsection*{Mirai}
+Mirai is the most famous IOT \textbf{cyberworm} discovered around September-November 2016. This kind of attack does not damage directly but simply saturates the resources (like the DoS). Every system infected by Mirai becomes part of a huge botnet for a large-scale DDoS. It was used for disruptive attacks such as:
+\begin{itemize}
+  \item Krebs on Security → up to 620 Gbit/s
+  \item Ars Technica → up to 1Tbit/s
+  \item Dyn DNS provider → requests from tens of millions of IPs
+\end{itemize}
+
+Botnets are deployed into millions of IoT devices such as cameras, residential routers, or baby monitors because these devices have almost no installed protection. In this way, Mirai can easily spread into home networks. The fast networks (such as 4G and 5G) make it even more critical because these devices can send a lot of data per second.
+Mirai is a very complex malware because \ul{it has almost no external dependencies} (this means that the malware is compiled with static libraries) and it is cross-compiled to be executed on several platforms. Mirai is released as an \ul{open-source worm}: this means that not only it is possible to study it, but also that new variants can be easily developed by other attackers.
+Mirai contains a \ul{propagation scan phase} to compromise additional targets (starts contacting other nodes if it can infect them).
+It also \ul{observes the victim system} before contacting the C\&C: when Mirai is installed on a device, it doesn't know if it is a true or fake device (maybe used to study Mirai's behavior) and for this reason, when it starts, it connects to a fake C\&C. \texttt{IF} the communication works, it means that there is a problem (because the connection should not work, which means that someone is giving Mirai full access), and it shuts down automatically. Only after performing this check, it \texttt{THEN} contacts the real C\&C.\\
+The kind of attacks, since it is a DoS network-based, is driven by C\&C that can decide which attack to make and can open many \texttt{TCP} connections, send tons of \texttt{UDP} packets, or use \texttt{GRE} or simple \texttt{SYN flooding}.
+
+\subsection*{BrickerBot}
+
+\begin{wrapfigure}{r}{0.55\textwidth}
+  \centering
+  \includegraphics[page = 88,trim = 1cm 8cm 0.8cm 4cm, clip, width = 0.55\textwidth]{\slides}
+\end{wrapfigure}
+

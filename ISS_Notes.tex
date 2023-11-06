@@ -10,9 +10,9 @@
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{wrapfig} % wrap figure around text
-\usepackage{enumitem} % Remove the space before lists (ex. itemize)
 \usepackage{soul} % DON'T use \underline{}. use \ul{}. See https://tex.stackexchange.com/questions/9550/why-does-underlined-text-not-get-wrapped-once-it-hits-the-end-of-a-line
-
+\usepackage{float}
+\usepackage{tcolorbox}
 
 % temporary solutions for conditional content, noted as "TMP"
 \usepackage{ifthen} 
@@ -21,6 +21,7 @@
 \newboolean{showNew}
 \setboolean{showNew}{true}
 
+\usepackage{enumitem} % Remove the space before lists (ex. itemize)
 \setlist[description]{font=$\bullet$\enskip\bfseries} % custom description with bullet, just like itemize; bullet, skip, bold
 
 
@@ -56,26 +57,31 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Framed box for "Case history"
+\newtcolorbox{casehistory}[1]{colback=yellow!5!white,
+colframe=yellow!75!black,fonttitle=\bfseries,
+title={Case history: #1}}
+
 \begin{titlepage}
 	\centering
-	\includegraphics[scale=0.6]{logoPoli.png}\\[1.0 cm]				
+	\includegraphics[scale=0.6]{logoPoli.png}\\[1.0 cm]
 	\textsc{\LARGE POLITECNICO DI TORINO}\\[-0.2 cm]		% Name
 	\rule{\linewidth}{0.2 mm} \\
-	\textsc{\large Master degree in Computer Engineering}\\[1.0 cm]		
+	\textsc{\large Master degree in Computer Engineering}\\[1.0 cm]
 	\rule{\linewidth}{0.2 mm} \\[0.4 cm]
 	{ \huge \bfseries \thetitle}\\
 	\rule{\linewidth}{0.2 mm} \\%[1 cm]
-	\textsc{\Large Notes from the course 01TYMOV of Prof. Antonio Lioy \\ A.A. 2020/21}\\[0 cm]	
+	\textsc{\Large Notes from the course 01TYMOV of Prof. Antonio Lioy \\ A.A. 2020/21}\\[0 cm]
 	\textsc{}\\[0.4 cm]
-	
+
 	\begin{minipage}{0.4\textwidth}
 		\begin{flushleft} \large
 			\emph{Main authors:}\\
 			\theauthor
-			\end{flushleft}
-			\end{minipage}~
-			\begin{minipage}{0.4\textwidth}
-			\begin{flushright} \large
+		\end{flushleft}
+	\end{minipage}~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright} \large
 		\end{flushright}
 	\end{minipage}\\[1.0 cm]
 
@@ -90,7 +96,7 @@
 
 	{\large Version 1.0 \\ \thedate}\\
 
-	
+
 \end{titlepage}
 
 
