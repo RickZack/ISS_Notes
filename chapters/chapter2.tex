@@ -24,6 +24,45 @@ Cryptography is used in communication and for data storage (for example, to stor
 
 
 \subsection*{Cryptography's strength (Kerchoffs' principle)}
-Kerckhoffs' Principle (1883) states that the security of a cryptosystem must lie in the choice of its keys only;
-everything else (including the algorithm itself) should be considered of public knowledge. However, this
-principle relies on the fact that the keys have the following properties
+Kerckhoffs' Principle (1883) states that \ul{the security of a cryptosystem must lie in the choice of its keys only};
+everything else (including the algorithm itself) should be considered of public knowledge. 
+However, this principle relies on the fact that the keys have the following properties.
+\begin{itemize}
+    \item Are kept \textbf{secret};
+    \item Are managed only by \textbf{trusted systems};
+    \item Are of \textbf{adequate length} % TODO: cross-reference this
+\end{itemize}
+
+If these properties are met, 
+not only it has no importance that the encryption and decryption algorithms are kept secret, but it is better to
+make the algorithms public so that they can be widely analysed, and their possible flaws and vulnerabilities identified.
+
+\subsection*{Security through obscurity (STO)}
+The Kerckhoffs' Principle is related to the concept of \textbf{Security through obscurity}: it means that a system is protected, but the details on how it has been protected are not disclosed.\\
+Generally, \ul{this alone is not considered a valid security mechanism} because if someone discovers how the system has been protected (and we have seen that there are also non-technical ways by which this can be achieved), it is no longer secure. 
+
+For this reason, we say that \emph{"Security through obscurity is as bad with computer systems as it is with women"}.
+\begin{quote}
+    "Men try to hide things from women, but when they discover the truth, it is worse than if they had known it from the beginning"
+\end{quote}
+\begin{flushright}
+    (Antonio Lioy)
+  \end{flushright}
+\emph{Editor's note:} don't hide things from your partner, regardless of gender.
+
+
+However, there is a category of people (such as military men) which tend to apply STO, but as an \ul{additional
+layer}. It is possible to use STO as a layer only if a really strong algorithm is used (but not a secret one).
+
+
+
+\section{Symmetric and asymmetric cryptography}
+Depending on which relation exists between key-1 and key-2 there are different kinds of cryptography.
+
+\subsection*{Secret key / symmetric cryptography}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 6,trim = 2.5cm 3cm 2.5cm 13cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+
+It is so named because only a single key is shared by the sender and receiver. In the diagram, there is a plaintext used as input for the encryption (E) block, along with the key. The result is a comprehensible text that is transmitted to the receiver. To retrieve the original text, the decryption (D) block algorithm is used with the same key that was used for encrypting the initial text. If a different key is used, an output is generated, but it will be incorrect (and typically understandable). The issue in the diagram is represented by the dashed line: how can the key be securely shared between the sender and receiver? The formulas used are as follows."
