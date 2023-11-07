@@ -1,0 +1,29 @@
+\chapter{Cryptographic techniques
+for cybersecurity}
+
+
+\section{Cryptography}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 2,trim = 0.5cm 3cm 1cm 5cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+
+
+The most used technique to achieve protection for many centuries is \textbf{cryptography}; a mathematical technique that involves algorithms for encryption and decryption:
+\begin{itemize}
+    \item the encryption algorithm takes a message (in clear) and transforms it in such a way that it becomes unintelligible;
+    \item to recover the original text, the decryption algorithms make it readable again.
+\end{itemize}
+Next to the algorithms, \textbf{key-1} is needed for encryption and \textbf{key-2} for decryption, both of which are streams of bits.
+Cryptography is used in communication and for data storage (for example, to store data on disks without permission to read them except for authorized users). The common terminology used in cryptography includes two other keywords:
+\begin{itemize}
+    \item \textbf{Plaintext} or \textbf{cleartext}: the unencrypted message, typically referred to as \textbf{P};
+    \item \textbf{Ciphertext}: the encrypted message, typically referred to as \textbf{C}. Note that in some countries, the term "encrypted" may sound offensive for religious reasons (related to the cult of the dead); in such cases, "\emph{enciphered}" is preferred.
+\end{itemize}
+
+
+\subsection*{Cryptography's strength (Kerchoffs' principle)}
+Kerckhoffs' Principle (1883) states that the security of a cryptosystem must lie in the choice of its keys only;
+everything else (including the algorithm itself) should be considered of public knowledge. However, this
+principle relies on the fact that the keys have the following properties
