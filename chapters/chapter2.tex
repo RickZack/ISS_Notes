@@ -65,4 +65,13 @@ Depending on which relation exists between key-1 and key-2 there are different k
     \includegraphics[page = 6,trim = 2.5cm 3cm 2.5cm 13cm, clip, width = 0.55\textwidth]{\slides}
 \end{figure}
 
-It is so named because only a single key is shared by the sender and receiver. In the diagram, there is a plaintext used as input for the encryption (E) block, along with the key. The result is a comprehensible text that is transmitted to the receiver. To retrieve the original text, the decryption (D) block algorithm is used with the same key that was used for encrypting the initial text. If a different key is used, an output is generated, but it will be incorrect (and typically understandable). The issue in the diagram is represented by the dashed line: how can the key be securely shared between the sender and receiver? The formulas used are as follows."
+It is so named because \textbf{only a single key} is shared by the sender and receiver. In the diagram, there is a plaintext used as input for the encryption (E) block, along with the key. The result is a comprehensible text that is transmitted to the receiver. To retrieve the original text, the decryption (D) block algorithm is used with the same key that was used for encrypting the initial text. If a different key is used, an output is generated, but it will be incorrect (and typically understandable). 
+
+The issue in the diagram is represented by the dashed line: how can the key be securely shared between the sender and receiver? The formulas used are as follows.
+
+% TODO: fix these formulas 
+\begin{align*}
+K_1 &= K_2 = K\\
+C &= enc(K,P)   & or  C = \{P\} K \\
+P &= dec(K,C) = enc^{-1} (K,C)
+\end{align*}

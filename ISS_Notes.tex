@@ -2,27 +2,25 @@
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor} % moved up here to prevent errors: https://tex.stackexchange.com/questions/99049/latex-error-option-clash-for-package-xcolor-even-if-i-put-listings-before
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{vmargin}									
 \usepackage{hyperref}
 \usepackage{subfig}
 \usepackage{booktabs}
-\usepackage{longtable}
+\usepackage{amsmath}
 \usepackage{wrapfig} % wrap figure around text
 \usepackage{soul} % DON'T use \underline{}. use \ul{}. See https://tex.stackexchange.com/questions/9550/why-does-underlined-text-not-get-wrapped-once-it-hits-the-end-of-a-line
 \usepackage{float}
 \usepackage{tcolorbox}
 
-% temporary solutions for conditional content, noted as "TMP"
+% temporary solutions for conditional content
 \usepackage{ifthen} 
-\newboolean{showOld}
+\newboolean{showOld} % shows content no longer present in the slides
 \setboolean{showOld}{true}
-\newboolean{showNew}
+\newboolean{showNew} % shows content added in 2023/24
 \setboolean{showNew}{true}
-
-\usepackage{enumitem} % Remove the space before lists (ex. itemize)
-\setlist[description]{font=$\bullet$\enskip\bfseries} % custom description with bullet, just like itemize; bullet, skip, bold
 
 
 \setmarginsrb{2.5 cm}{2.5 cm}{2.5 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
@@ -112,6 +110,7 @@ title={Case history: #1}}
 \def\slides{slides/02_crypto.pdf}
 \include{chapters/chapter2}
 
+\def\slides{slides/03_authN.pdf}
 \include{chapters/chapter3}
 
 \include{chapters/chapter4}
