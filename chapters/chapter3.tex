@@ -202,7 +202,7 @@ The disadvantages of password-based authentication are:
 
 
 
-\subsection*{The "Dictionary" Attack}
+\subsection{The "Dictionary" Attack}
 \begin{figure}[h]
   \centering
   \includegraphics[width = 0.30\textwidth]{chapter3/dictionary_attack.jpg}
@@ -233,7 +233,7 @@ The main hypothesis is that the user has chosen one of the words contained in th
 
 \textbf{Pre-computation} is the key because if you wait until you get a copy of the password hash, and only at that point you start computing all the possible hash values, it could be too late because the password could have changed.
 
-\subsection*{Rainbow table}
+\subsection{Rainbow table}
 A dictionary attack can be made faster and more effective by the \textbf{Rainbow table} technique. It is still a \textit{dictionary attack}, \ul{but it involves a trade-off between space and time}. Trying all possible passwords and computing the hash would be fast, but the result would be a huge database. If you have a complete database, the lookup would be fast, but fewer passwords are stored, and a bit more time is taken to compute the password if the corresponding hash is present. This is an improvement because \ul{it makes an exhaustive attack feasible for certain password sets}.
 
 Imagine creating a rainbow table to attack a password that we know contains 12 digits. 
@@ -242,7 +242,7 @@ A rainbow table could be used to reduce the number of rows in the database by a 
 \[
 r: h \Rightarrow p
 \]
-It is a function $r$ that takes as input a hash and creates one possibile password. Beware that this is NOT the inverse of the hash ($h^{-1}$), because the inverse of hash does not exist. It is just a mapping function that from a hash creates one of the possible passwords of the whole set.
+It is a function $r$ that takes a hash as input and creates one possible password. Beware that this is NOT the inverse of the hash ($h^{-1}$) because the inverse of the hash does not exist. It is just a mapping function that, from a hash, creates one of the possible passwords of the whole set.
 
 \paragraph*{Pre-computing}
 Then, the pre-computing is the following:
@@ -253,8 +253,27 @@ Then, the pre-computing is the following:
 \end{figure}
 
 \begin{enumerate}
-  \item Select $10^9$ distinct passwords (the wanted size) called P
-  \item For each of them initialize the computation starting from that specific password, and then iterate for 1000 times; each times the has of the current password is computed (called k) and then the reduction function is used to go from k to another possible password;
-  \item At the end, the password P of the first cycle is stored in the database together with the last computation of the reduction function (called p).
-  \item Then, the entry implicitly represents all the 1000 password tried. Not that there is no more has to be stored.
+  \item Select $10^9$ distinct passwords (the desired size) called $P$.
+  \item For each of them, initialize the computation starting from that specific password, and then iterate 1000 times; each time the hash of the current password is computed (called $k$), and then the reduction function is used to go from $k$ to another possible password.
+  \item At the end, the password $P$ of the first cycle is stored in the database together with the last computation of the reduction function (called $p$).
+  \item Then, the entry implicitly represents all the 1000 passwords tried. Note that there is no more hash to be stored.
 \end{enumerate}
+
+
+\paragraph*{Attack}
+Then the attack rises in this way:
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 16,trim = 1cm 8cm 3cm 5cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+\begin{enumerate}
+  \item $\mathrm{HP}$ is the leaked hash of a password;
+  \item Start an iteration of at most 1000 times, and each time, the reduction function is used to derive a possible password from the hash value;
+  \item Next, search the database to check if there is a row where $p$ (the result of the reduction function) is at the end of the chain. In that case, we found the chain containing that hash; otherwise, a new value $k$ is calculated by performing the password hash;
+  \item After finding the chain, the computation of the hash must be done again to identify which hash matches the one we have.
+\end{enumerate}
+
+The problem is that since the reduction function is going from a hash to one possible password, there could be
+two different hashes that generates the same password, and this is called fusion. Rather than using a reduction
+function, a set of n reduction functions is used, one for each reduction step. On internet there are on sale pre-
+computed rainbow tables for various hash functions and password sets (e.g., SHA1 for alphanumeric)
