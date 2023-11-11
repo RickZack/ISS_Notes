@@ -347,8 +347,7 @@ Some algorithms have adjustable complexity (to counter brute-force attacks).
 \[
   \texttt{SHA-1(SHA-1(password))}
 \]
-Then, the hex encoding of the result is stored, preceded by * (to distinguish this case from MySQL versions < 4.1).\\
-For example, for the password "Superman!!!," the field \texttt{user.password} is
+Then, the hex encoding of the result is stored, preceded by * (to distinguish this case from MySQL versions < 4.1). For example, for the password "Superman!!!," the field \texttt{user.password} is
 \begin{verbatim}
     user.password = *868E8E4F0E782EAA610A67B01E63EF04817F60005
 \end{verbatim}
@@ -359,5 +358,112 @@ To verify that this is the double hash of the word, you can use the following co
 This is the standard way for MySQL to store passwords, which is not secure. It is advisable to change the standard way MySQL uses to store passwords by using a salted approach.
 
 
+\section{Strong (peer) authN}
+Recently, there has been a growing emphasis on the requirement to move away from standard authentication methods and adopt strong peer authentication. While this is consistently requested in specifications, it is often not formally defined or defined in multiple, potentially confusing ways.
 
+
+
+\subsection{ECB Definition for Internet Banking}
+According to the European Central Bank (ECB), \ul{strong customer authentication (authN) is a procedure based on the use of two or more of knowledge, ownership, and inherence.} The selected elements must be \ul{mutually independent}, ensuring that the breach of one does not compromise the others. At least one element should be non-reusable and non-replicable (except for inherence), and not capable of being surreptitiously stolen via the Internet. The strong authentication procedure should be designed to protect the confidentiality of the authentication data; for example, if a password is used, it cannot be sent in clear text.
+
+
+
+\subsection{PCI-DSS definition for payment with credit cards}
+According to PCI-DSS definition, which is for payment with credit cards, starting from v3.2 it requires multi-
+factor authentication (MFA) for access into the cardholder data environment (CDE): it does not matter if it
+a trusted or untrusted network, and it is also used when the access is performed by administrators. The only
+exception is with direct console access (physical security), which means that you enter the room where the server is placed. For remote access it is always required from untrusted network and by users and third-parties (such as maintenance).
+This was the best practise until Jan '18 and it has been made compulsory afterwards.
+\textbf{Remember}: MFA is \textbf{not} twice the same factor (e.g., two passwords).
+
+
+\subsection{PCI-DSS Definition for Payment with Credit Cards}
+According to the PCI-DSS definition, which applies to payment with credit cards, starting from v3.2, multi-factor authentication (MFA) is required for access into the cardholder data environment (CDE). This requirement is applicable regardless of whether the network is trusted or untrusted, and it is also mandatory for administrators accessing the CDE. 
+
+The only exception is for direct console access, which involves physical security measures, such as entering the room where the server is located. However, for remote access, MFA is always required, especially from untrusted networks, and for users and third parties (e.g., maintenance).
+
+This best practice was in effect until January '18 and became mandatory thereafter.
+
+\textbf{Remember}: MFA does \textbf{not} mean using the same factor twice, like using two passwords.
+
+
+
+\subsection{Other definitions}
+According to the \textit{Handbook of Applied Cryptography},\\
+authentication is a \textbf{cryptographic challenge-response identification protocol}. 
+
+More in general, it is a technique resisting to a well-defined set of attacks. 
+
+An authN technique can be classified as strong or weak depending on the attack model:
+\begin{itemize}
+  \item E.g., users of Internet Banking follow the ECB definition;
+  \item E.g., employees of PSP adhere to the PCI-DSS definition.
+\end{itemize}
+
+In general, pay attention to your specific application field because it defines the types of risks and the level of strength required for your strong authentication.
+
+
+
+
+\section{Challenge-Response Authentication (CRA)}
+Challenge-response protocol is a possible way to implement strong authentication. CRA means that there is a
+challenge sent to the Claimant from the Verifier. The Claimant replies with the solution computed using some
+secret knowledge and the challenge. The Verifier compares the response with a solution computed via a secret
+associated with the Claimant.
+
+
+% Using minipage
+\vspace{2mm} 
+\noindent
+\begin{minipage}{0.5\textwidth}
+  \centering
+  \includegraphics[page = 25,trim = 0.5cm 2.2cm 1cm 9.8cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.4\textwidth}
+  Someone claims to own the identifier (ID). The verifier looks that there is a row
+  associated with that ID and sends to the
+  claimant the challenge. The claimant has
+  a key (\(K_c\)) and uses it to perform some
+  kind of computation (function \(f\)) and
+  generates a response. The response can
+  be checked by applying the function \(g\) to
+  the challenge and to a well-known key (\(K_V\)) of the Verifier. The keys can be different or the same.
+\end{minipage}
+
+
+\subsubsection*{General issues of CRA}
+\begin{itemize}
+  \item \textbf{The challenge must be non-repeatable to avoid replay attacks}. For this reason, usually, the challenge
+  is a (random) nonce.
+  \item \textbf{The function \(f\) must be non-invertible}, otherwise, a listener can record the traffic and easily find the
+  shared secret by using the function \(K_c = f^{-1}(response, challenge)\).
+\end{itemize}
+
+
+
+\subsection*{Symmetric CRA}
+
+\noindent
+\begin{minipage}{0.5\textwidth}
+  \centering
+  \includegraphics[page = 27,trim = 0.5cm 2.2cm 1cm 9.8cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.4\textwidth}
+  In this case, there is a common key
+  shared between Claimant and Verifier,
+  which is typically the password or
+  passphrase of the user. The function \(f\) is computed two times: once from the user
+  to make the response, and once from the
+  verifier to verify the match. 
+\end{minipage}
+
+\subsubsection*{General issues of Symmetric CRA}
+General issues with Symmetric CRA are:
+\begin{itemize}
+  \item The easiest implementation uses a hash function (faster than encryption) such as SHA1 (deprecated),
+  SHA2 (recommended) or SHA3 (future);
+  \item \(K_{ID}\) must be known in cleartext to the Verifier and this may lead to attacks against the \( ID: K_{ID} \) table at the Verifier;
+\end{itemize}
 

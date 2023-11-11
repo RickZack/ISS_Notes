@@ -24,6 +24,12 @@
 \setboolean{showNew}{true}
 
 
+% Framed box for "Case history"
+\newtcolorbox{casehistory}[1]{colback=yellow!5!white,
+colframe=yellow!75!black,fonttitle=\bfseries,
+title={Case history: #1}}
+
+
 \setmarginsrb{2.5 cm}{2.5 cm}{2.5 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
 \graphicspath{{./images/}}
 
@@ -56,10 +62,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Framed box for "Case history"
-\newtcolorbox{casehistory}[1]{colback=yellow!5!white,
-colframe=yellow!75!black,fonttitle=\bfseries,
-title={Case history: #1}}
 
 \begin{titlepage}
 	\centering
