@@ -30,14 +30,14 @@ While authenticating an \emph{actor}, there are three categories of \textbf{auth
         knowledge, how it can be demonstrated, and the way it is transmitted.
   \item \textbf{Ownership}: authentication relies on something that \emph{only the user possesses} (often called an
         "authenticator"), for example, a token, smart card, or smartphone.\\
-         The associated risks can be related
+        The associated risks can be related
         to the authenticator itself, such as the possibility of infection with malware, the potential for it to be
         manufactured in a country that imposes government control, or the risk of it being stolen, cloned, or
         used without the owner's authorization (e.g., forgetting an unlocked smartphone).
   \item \textbf{Inherence}: \emph{something the user is}, for example, a biometric characteristic (such as a fingerprint).\\
         The associated risks include counterfeiting and privacy concerns. Inherence factors pose a greater risk
         than the previous cases because, for example, a biometric characteristic \ul{cannot be
-        replaced when compromised}. For this reason, inherence factors should be limited to very secure environments,
+          replaced when compromised}. For this reason, inherence factors should be limited to very secure environments,
         typically used only for local authentication, as a mechanism to unlock a secret or a device.
 \end{itemize}
 
@@ -55,52 +55,52 @@ While authenticating an \emph{actor}, there are three categories of \textbf{auth
   \centering
   \includegraphics[width = 0.70\textwidth]{chapter3/NIST_sp800_63b.png}
   \caption*{General model for digital authentication as described in
-  NIST SP800.63B}
+    NIST SP800.63B}
 \end{figure}
 
 \begin{itemize}
   \item In this model, an actor who wants to use a system
-  is called an \colorbox{LimeGreen}{\textbf{applicant}}: if it possesses an
-  authenticator it can provide it to the \colorbox{Goldenrod}{\textit{CSP} (Credential Service Provider)}, or it can get one (for example, when a student is enrolled in Politecnico,
-  he is given a smart card that works as an
-  authenticator). The CSP is that component that will
-  issue or enrol user credential and authenticator, and verify and store associated attributes.
+        is called an \colorbox{LimeGreen}{\textbf{applicant}}: if it possesses an
+        authenticator it can provide it to the \colorbox{Goldenrod}{\textit{CSP} (Credential Service Provider)}, or it can get one (for example, when a student is enrolled in Politecnico,
+        he is given a smart card that works as an
+        authenticator). The CSP is that component that will
+        issue or enrol user credential and authenticator, and verify and store associated attributes.
 
 
-  When this procedure is completed successfully, the actor becomes a \colorbox{Cyan}{\textbf{subscriber}}, which is an entity recorded in the authentication system.
+        When this procedure is completed successfully, the actor becomes a \colorbox{Cyan}{\textbf{subscriber}}, which is an entity recorded in the authentication system.
 
 
-  \item Later, when the actor wants to use some network service, typically the actor is called a \colorbox{LimeGreen}{\textbf{claimant}}, because they claim to be a valid user. Typically, an authentication protocol against a \colorbox{Goldenrod}{verifier} is run to verify this claim. When this process ends successfully, the actor becomes 
-  \colorbox{Cyan}{\textbf{a subscriber}} \textbf{with an open authenticated session} with the \colorbox{Goldenrod}{relying party}, that will request and receive an authN assertion from the Verifier to assess user identity (and attributes).
+  \item Later, when the actor wants to use some network service, typically the actor is called a \colorbox{LimeGreen}{\textbf{claimant}}, because they claim to be a valid user. Typically, an authentication protocol against a \colorbox{Goldenrod}{verifier} is run to verify this claim. When this process ends successfully, the actor becomes
+        \colorbox{Cyan}{\textbf{a subscriber}} \textbf{with an open authenticated session} with the \colorbox{Goldenrod}{relying party}, that will request and receive an authN assertion from the Verifier to assess user identity (and attributes).
 
-  The relying party, which requests the actor to be authenticated, is the end application. The verifier may have communication with the CSP to validate the binding between the authenticator used in the authentication protocol and the credential claimed.
+        The relying party, which requests the actor to be authenticated, is the end application. The verifier may have communication with the CSP to validate the binding between the authenticator used in the authentication protocol and the credential claimed.
 \end{itemize}
 
 \subsubsection*{Recap}
 \begin{itemize}
-  \item \textbf{The credential binds an authenticator to the subscriber via an ID}: 
-  \begin{itemize}
-    \item for example, an X.509 certificate can be considered the credential, as it binds the identity and attributes written inside the certificate with the authenticator. In this case, the authenticator is the private key that the user controls.
-  \end{itemize}
-  \item \textbf{CSP (Credential Service Provider)}: 
-  \begin{itemize}
-    \item will issue or enrol user credential and authenticator
-    \item verify and store associated attributes
-  \end{itemize}
+  \item \textbf{The credential binds an authenticator to the subscriber via an ID}:
+        \begin{itemize}
+          \item for example, an X.509 certificate can be considered the credential, as it binds the identity and attributes written inside the certificate with the authenticator. In this case, the authenticator is the private key that the user controls.
+        \end{itemize}
+  \item \textbf{CSP (Credential Service Provider)}:
+        \begin{itemize}
+          \item will issue or enrol user credential and authenticator
+          \item verify and store associated attributes
+        \end{itemize}
   \item \textbf{Verifier}:
-  \begin{itemize}
-    \item executes an authN protocol to verify possess of a valid
-    authenticator and credential
-  \end{itemize}
+        \begin{itemize}
+          \item executes an authN protocol to verify possess of a valid
+                authenticator and credential
+        \end{itemize}
   \item \textbf{Relying party}:
-  \begin{itemize}
-    \item will request/receive an authN assertion from the Verifier to
-    assess user identity (and attributes)
-  \end{itemize}
+        \begin{itemize}
+          \item will request/receive an authN assertion from the Verifier to
+                assess user identity (and attributes)
+        \end{itemize}
 \end{itemize}
 
 
-These roles may be separate or collapsed together. 
+These roles may be separate or collapsed together.
 Thinking about a \emph{Linux machine} used locally, the enrollment phase involves creating a new user with a username (the credential) and a password (the authenticator). In this scenario, the CSP is the operating system itself, and when a user wants to use a server on this machine, they need to perform login, which is the verifier. The relying party is any software running on that machine that uses the identity as proven by the login service of the operating system.
 
 
@@ -118,19 +118,22 @@ is Doodle, while the verifier (as well as the CSP) is Google or Facebook.
   \centering
   \includegraphics[page = 8,trim = 0.4cm 3cm 0.4cm 5.5cm, clip, width = 0.55\textwidth]{\slides}
 \end{figure}
-Suppose that the user wants to access an application server (Relying Party). In this case, the server will include both the Relying Party and Verifier. 
-The user has been identified with the User ID and has a secret associated with that User ID. 
+Suppose that the user wants to access an application server (Relying Party). In this case, the server will include both the Relying Party and Verifier.
+The user has been identified with the User ID and has a secret associated with that User ID.
 The server's identifier contains a table with the User ID and the result of the function $f$ applied to the secret. Normally, the secret should never be stored in cleartext; of course, if the function $f$ is the identity function, it means you are storing the secret in cleartext, which is not recommended.
 
-When the user wants to access the service, they receive an \textbf{authentication request}. Initially, they provide the \textbf{User ID}, and then the verifier asks for a \textbf{proof request}; the user replies with the \textbf{proof $ = F(S_{\mathrm{UID}})$}, which is the result of the computation with the function $F$ applied to the user's secret. 
+When the user wants to access the service, they receive an \textbf{authentication request}. Initially, they provide the \textbf{User ID}, and then the verifier asks for a \textbf{proof request}; the user replies with the \textbf{proof $ = F(S_{\mathrm{UID}})$}, which is the result of the computation with the function $F$ applied to the user's secret.
 
 In this scenario, several problems need to be addressed:
 \begin{itemize}
-  \item On the user side, how is the secret stored? How is the secret provided (e.g., if it is a password entered via a keyboard, a keylogger could disclose it)? Is the transmission of the proof secure? 
+  \item On the user side, how is the secret stored? How is the secret provided (e.g., if it is a password entered via a keyboard, a keylogger could disclose it)? Is the transmission of the proof secure?
   \item On the server side, how are the secrets related to the user stored? When a proof is received, how is it verified to be the correct proof?
-\end{itemize} 
+\end{itemize}
+
+
 
 \section{Passwords (reusable)}
+
 \begin{figure}[h]
   \centering
   \includegraphics[page = 9,trim = 0.4cm 5cm 0.4cm 5.5cm, clip, width = 0.55\textwidth]{\slides}
@@ -154,17 +157,17 @@ Now, looking at the server, when the server receives the password, it needs to c
 Password-based authentication is usually convenient for the user, but only if they have to remember just one password, a reusable one. The current situation is unfortunate because in some applications, there is a need for several passwords that cannot be remembered by a person, so they would need to be stored on the user's side, which is a source of insecurity. The \textbf{disadvantages} of password-based authentication are:
 The disadvantages of password-based authentication are:
 \begin{itemize}
-    \item The user-side password storage: it could be written on a post-it or on a client-side password manager (also called password wallet), that stores it encrypted typically using only one passphrase;
-    \item Guessable passwords;
-    \item Server-side password storage: the server must know the password in cleartext or an unprotected digest of it (dictionary attack);
-    \item \textbf{Sniffing}: Password can be sniffed while it is sent across the network;
-    \item \textbf{DB attacks}: There could be attacks to the password DB at the verifier (if DB contains plaintext or only obfuscated password);
-    \item \textbf{Password guessing}: it is very dangerous if it can be done offline, for example against a list of password hashes;
-    \item \textbf{Password enumeration}: if the password is limited in length or character type, or if authN protocol doesn't block 
-    \item \textbf{Password duplication}: using the same password for different services, due to user password reuse. This could be a problem because if the user has the same password for a high-security service and for a weaker one, an attacker could discover it on the weaker system and have access to the high-security one;
-    \item \textbf{Cryptography aging}: the solution adopted for verifying the secret should not be tied to a specific cryptographic algorithm, because it could be then difficult to adapt to the need for changing the algorithm used, due to new attacks and more computing power;
-    \item \textbf{Password capture} via server spoofing and phishing;
-    \item \textbf{MITM attacks}.
+  \item The user-side password storage: it could be written on a post-it or on a client-side password manager (also called password wallet), that stores it encrypted typically using only one passphrase;
+  \item Guessable passwords;
+  \item Server-side password storage: the server must know the password in cleartext or an unprotected digest of it (dictionary attack);
+  \item \textbf{Sniffing}: Password can be sniffed while it is sent across the network;
+  \item \textbf{DB attacks}: There could be attacks to the password DB at the verifier (if DB contains plaintext or only obfuscated password);
+  \item \textbf{Password guessing}: it is very dangerous if it can be done offline, for example against a list of password hashes;
+  \item \textbf{Password enumeration}: if the password is limited in length or character type, or if authN protocol doesn't block
+  \item \textbf{Password duplication}: using the same password for different services, due to user password reuse. This could be a problem because if the user has the same password for a high-security service and for a weaker one, an attacker could discover it on the weaker system and have access to the high-security one;
+  \item \textbf{Cryptography aging}: the solution adopted for verifying the secret should not be tied to a specific cryptographic algorithm, because it could be then difficult to adapt to the need for changing the algorithm used, due to new attacks and more computing power;
+  \item \textbf{Password capture} via server spoofing and phishing;
+  \item \textbf{MITM attacks}.
 \end{itemize}
 
 
@@ -189,9 +192,9 @@ The disadvantages of password-based authentication are:
 \begin{itemize}
   \item Should be only in user's head;
   \item If passwords are a lot, use an encrypted file or a password wallet;
-  \ifthenelse{\boolean{showNew}}{
+        \ifthenelse{\boolean{showNew}}{
   \item It's better use an encrypted file, or a "password wallet / manager".
-  }{}
+        }{}
 \end{itemize}
 
 \subsubsection*{Storing passwords on the client-side}
@@ -215,19 +218,19 @@ If you store the plain hash of a password, dictionary attacks are possible. This
 \end{enumerate}
 Hashes are not invertible functions, but it is possible to make a \textbf{pre-computation}. Therefore, even if there is no copy of any password hash yet, it is possible to decide that it would be worthwhile to attack passwords stored as plain SHA-1 hashes in the future.
 
-You must obtain a dictionary containing not only the Italian language but all possible languages. 
-For each word in the dictionary, you compute the hash of the word and store it in a database paired with the corresponding word. 
-By "word," we mean a potential passphrase, not a part of it. 
+You must obtain a dictionary containing not only the Italian language but all possible languages.
+For each word in the dictionary, you compute the hash of the word and store it in a database paired with the corresponding word.
+By "word," we mean a potential passphrase, not a part of it.
 Typically, attackers have dictionaries extended to include words such as names of famous people.
 
 
 The main hypothesis is that the user has chosen one of the words contained in the dictionary. The attack proceeds as follows:
 \begin{enumerate}
   \item At some point, the attacker obtains a hash value due to a leakage.
-  \item The attacker performs a simple \textbf{lookup} as follows: 
-  \( w = \mathrm{lookup}(\mathrm{DB}, \mathrm{HP}) \), 
-  where DB is the database
-  and HP is the computed hash of a word in the database, if any of the hash passwords appears in any tuple.
+  \item The attacker performs a simple \textbf{lookup} as follows:
+        \( w = \mathrm{lookup}(\mathrm{DB}, \mathrm{HP}) \),
+        where DB is the database
+        and HP is the computed hash of a word in the database, if any of the hash passwords appears in any tuple.
   \item If the response is positive, the password is equal to that word. If not, the password is not from the dictionary.
 \end{enumerate}
 
@@ -236,15 +239,17 @@ The main hypothesis is that the user has chosen one of the words contained in th
 \subsection{Rainbow table}
 A dictionary attack can be made faster and more effective by the \textbf{Rainbow table} technique. It is still a \textit{dictionary attack}, \ul{but it involves a trade-off between space and time}. Trying all possible passwords and computing the hash would be fast, but the result would be a huge database. If you have a complete database, the lookup would be fast, but fewer passwords are stored, and a bit more time is taken to compute the password if the corresponding hash is present. This is an improvement because \ul{it makes an exhaustive attack feasible for certain password sets}.
 
-Imagine creating a rainbow table to attack a password that we know contains 12 digits. 
-The exhaustive attack would require $10^{12}$ rows, which is a huge number of lines containing passwords and the corresponding hash values. 
+Imagine creating a rainbow table to attack a password that we know contains 12 digits.
+The exhaustive attack would require $10^{12}$ rows, which is a huge number of lines containing passwords and the corresponding hash values.
 A rainbow table could be used to reduce the number of rows in the database by a factor of 1000. In this way, we get a $10^9$ rows database, where each line represents 1000 passwords. To achieve that, we use the \textbf{reduction function}:
 \[
-r: h \Rightarrow p
+  r: h \Rightarrow p
 \]
-It is a function $r$ that takes a hash as input and creates one possible password. Beware that this is NOT the inverse of the hash ($h^{-1}$) because the inverse of the hash does not exist. It is just a mapping function that, from a hash, creates one of the possible passwords of the whole set.
+It is a function $r$ that takes a hash as input and creates one possible password. \textbf{Beware that this is NOT the inverse of the hash ($h^{-1}$)}, because the inverse of the hash does not exist. It is just a mapping function that, from a hash, creates one of the possible passwords of the whole set; in other words, the reduction function is a different function with a \ul{swapped domain and codomain of the hash function}.
 
-\paragraph*{Pre-computing}
+For other informations, check \url{https://en.wikipedia.org/wiki/Rainbow_table}.
+
+\paragraph*{Pre-computation}
 Then, the pre-computing is the following:
 
 \begin{figure}[h]
@@ -264,8 +269,9 @@ Then, the pre-computing is the following:
 Then the attack rises in this way:
 \begin{figure}[h]
   \centering
-  \includegraphics[page = 16,trim = 1cm 8cm 3cm 5cm, clip, width = 0.55\textwidth]{\slides}
+  \includegraphics[page = 16,trim = 1cm 8.2cm 3cm 5cm, clip, width = 0.55\textwidth]{\slides}
 \end{figure}
+
 \begin{enumerate}
   \item $\mathrm{HP}$ is the leaked hash of a password;
   \item Start an iteration of at most 1000 times, and each time, the reduction function is used to derive a possible password from the hash value;
@@ -274,6 +280,84 @@ Then the attack rises in this way:
 \end{enumerate}
 
 The problem is that since the reduction function is going from a hash to one possible password, there could be
-two different hashes that generates the same password, and this is called fusion. Rather than using a reduction
+two different hashes that generates the same password, and this is called \textbf{fusion}. Rather than using a reduction
 function, a set of n reduction functions is used, one for each reduction step. On internet there are on sale pre-
-computed rainbow tables for various hash functions and password sets (e.g., SHA1 for alphanumeric)
+computed rainbow tables for various hash functions and password sets (e.g., SHA1 for alphanumeric).
+
+
+This technique is used by various attack programs.
+
+
+\subsection{Using salt in storing passwords}
+The critical point in the previous kind of attack is that the attacker performs pre-computation. Without the rainbow
+table and without the database created by the dictionary,
+it would take a lot of time. For this reason, \textbf{do not provide the attacker with the information needed for pre-computation},
+because it is based on the idea that the attacker may know which is the password (through the dictionary).
+
+\begin{itemize}
+  \item Using the following technique, even if it can be possible to guess what a possible password is, the attacker
+        does not get the hash table because every time a User ID is created, the system generates a \textbf{salt} that is different for each user.\\
+        The salt is a random (unpredictable) and long (increased dictionary complexity) string of bytes.
+        Users do not have to memorize the salt, which should contain rarely used or control characters.\\
+        Then the hash is computed using the password concatenated with salt:\\
+        $\mathrm{HP} = hash(pwd | salt)$;
+  \item The verifier stores UID,
+        $\mathrm{HP}_{\mathrm{UID}}$ and $salt_{\mathrm{UID}}$.\\
+        If someone gets the information in the database, he also gets the salt, but only then the
+        computation can start, which will require a lot of time and in the meanwhile the password could have been
+        changed. Additionally, there are different HP for users having the same password.
+\end{itemize}
+
+This makes the dictionary attacks nearly impossible (including those based on rainbow tables).
+
+
+\subsubsection*{Example: Passwords in Linux}
+Originally stored in \texttt{/etc/passwd}, hashed with a DES-based
+hash function named \texttt{crypt()}.
+Since \texttt{/etc/passwd} needs to be world-readable (contains
+usernames, UID, GID, home, shell, etc.), passwords have been
+moved to \texttt{/etc/shadow}, readable only by system processes.
+Passwords are stored in the following form - see \texttt{crypt(5)}:
+
+\begin{verbatim}
+  $id$salt$hashedpwd
+\end{verbatim}
+Different hash functions are used depending on the ID, for example:
+\begin{itemize}
+  \item 1 = MD5, \ldots, 5 = SHA-256, 6 = SHA-512, \ldots
+\end{itemize}
+If \texttt{\$id\$salt} is absent, the old DES-based hash is used (with
+a 12-bit salt, and the password is truncated to 8 characters) - danger!
+Some algorithms have adjustable complexity (to counter brute-force attacks).
+
+
+\begin{casehistory}{The LinkedIn Attack}
+  In June 2012, someone was able to copy 6.5 million passwords from LinkedIn, which were unsalted plain SHA-1
+  hashes. The person published those hashes on the internet and asked for crowdsourcing, used for cooperative
+  password cracking (which means trying to compute SHA-1 hashing of words and looking if someone has a match).
+  At least 236,578 passwords were found before Interpol was able to ban the website that published the
+  password hashes.
+
+  Note that simultaneously LinkedIn found out that the LinkedIn app for iPad/iPhone was sending in clear sensitive data
+  (not relevant to LinkedIn!).
+\end{casehistory}
+
+\subsubsection*{Example: Passwords in MySQL}
+\textbf{MySQL} is a database where usernames and passwords are stored in the "user" table. MySQL (from v4.1) uses a \textbf{double hash (without salt!)} to store passwords:
+\[
+  \texttt{SHA-1(SHA-1(password))}
+\]
+Then, the hex encoding of the result is stored, preceded by * (to distinguish this case from MySQL versions < 4.1).\\
+For example, for the password "Superman!!!," the field \texttt{user.password} is
+\begin{verbatim}
+    user.password = *868E8E4F0E782EAA610A67B01E63EF04817F60005
+\end{verbatim}
+To verify that this is the double hash of the word, you can use the following command on Linux:
+\begin{verbatim}
+  $ echo -n "Superman!!!" | sha1sum | xxd -r -p | sha1sum
+\end{verbatim}
+This is the standard way for MySQL to store passwords, which is not secure. It is advisable to change the standard way MySQL uses to store passwords by using a salted approach.
+
+
+
+
