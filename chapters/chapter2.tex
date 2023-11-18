@@ -62,15 +62,80 @@ Depending on which relation exists between key-1 and key-2 there are different k
 \begin{figure}[h]
     \centering
     \includegraphics[page = 6,trim = 2.5cm 3cm 2.5cm 13cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Symmetric cryptography}
+    \label{fig:cap2slide6}
 \end{figure}
 
 It is so named because \textbf{only a single key} is shared by the sender and receiver. In the diagram, there is a plaintext used as input for the encryption (E) block, along with the key. The result is a comprehensible text that is transmitted to the receiver. To retrieve the original text, the decryption (D) block algorithm is used with the same key that was used for encrypting the initial text. If a different key is used, an output is generated, but it will be incorrect (and typically understandable). 
 
-The issue in the diagram is represented by the dashed line: how can the key be securely shared between the sender and receiver? The formulas used are as follows.
+The formulas used are as follows.
 
 % TODO: fix these formulas 
 \begin{align*}
-K_1 &= K_2 = K\\
-C &= enc(K,P)   & or  C = \{P\} K \\
+K_1 &= K_2 = K \\
+C &= enc(K,P)   & \text{or } C = \{P\} K \\
 P &= dec(K,C) = enc^{-1} (K,C)
 \end{align*}
+Note that $C = \{P\} K$ means "\textit{encrypt the plaintext P using the key K}".
+
+
+% TODO: cross reference "Key distribution for symmetric cryptography"
+The issue in the diagram (Figure \ref{fig:cap2slide6}) is represented by the dashed line: how can the key be securely shared between the sender and receiver?
+We'll see it in \textit{Key distribution for symmetric cryptography}.
+
+
+\subsection*{Symmetric algorithms}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 7,trim = 1cm 1.5cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption*{Some famous symmetric encryption algorithms (block)}
+\end{figure}
+
+There are many algorithms, and the table on the left represents just a small selection. \\
+The first column provides the name, the second indicates the key length, and the third specifies the basic unit each algorithm can encrypt. These algorithms are referred to as "\textbf{block algorithms}" because they operate on a fixed number of bits.
+
+The \textbf{DES} algorithm, once a standard for many years, is now considered obsolete and should never be used. 
+
+The most commonly used algorithm of this kind is \textbf{AES}, currently recognized as the state of the art (the strongest).
+
+\textbf{RC5} performs optimally when the block size is double the word size of the CPU architecture (e.g., 64-bit architecture -> 128-bit block) on which the algorithm is implemented.
+
+Why are there so many algorithms? Because there are various types of computers, and many algorithms are not suitable for low CPU power.
+
+
+\subsubsection*{The EX-OR (XOR) function}
+\begin{wrapfigure}{r}{0.255\textwidth}
+    \centering
+    \includegraphics[page = 8,trim = 21cm 7.2cm 0.5cm 8.5cm, clip, width = 0.25\textwidth]{\slides}
+    \caption*{XOR function}
+\end{wrapfigure}
+
+It is the ideal "confusion" operator, available on all CPU. \\
+The peculiarity of this truth table is that it has 50\% of
+0 and 50\% of 1: 
+if XOR is performed with 2 random inputs (probability 0:1 = 50\% : 50\%),
+then the output will also be equally random; while, for example, AND is more likely to produce 0.
+That means that XOR does not change the probability distribution of the input, even though it generates different outputs.
+Some properties:
+\begin{itemize}
+    \item if $A \oplus B = Z$ \\ 
+    then $Z \oplus B = A$  or $Z \oplus A = B$
+    \item $A \oplus 0 = A$ \\
+    $A \oplus 1 = \overline{A}$\\
+    $A \oplus A = 0$\\
+    $A \oplus \overline{A} = 1$
+\end{itemize}
+
+
+\subsubsection*{DES}
+\textbf{DES} stands for "\textbf{Data Encryption Standard}" and it is a standard defined by \textit{FIPS 46/2} (Federal Information Processing Standard, the body responsible for setting standards for the American government). The modes for applying DES to data that is not equally divided into blocks are mentioned in the FIPS 81 standard.
+
+DES is a unique algorithm because it has a 64-bit key, but its effective strength is equivalent to that of a \textbf{56-bit key}, as 8 bits are used for parity. This means that when a key is generated for the DES algorithm, only 56 bits are truly random, and every 7 bits, the algorithm inserts a bit that serves as the parity of the preceding 7 bits. When an attacker attempts to crack DES, they only need to discover these 56 truly random bits. DES is the only algorithm that distinguishes between actual (bits used to create the key) and effective (total number of bits) bits.
+
+Developed in the 1960s, DES uses a \textbf{64-bit data block}, a size chosen when computers were less powerful. To perform all the necessary mathematical computations, a special-purpose unit called an \textbf{encryption processor} was created because DES relies on it to perform:
+
+\begin{itemize}
+    \item \textbf{XOR}: which is not a problem → elementary operation;
+    \item \textbf{Shift}: not a problem → elementary operation;
+    \item \textbf{Permutation}: expensive operation. The permutation is not random, there are several ones, but still implementing that was much more efficient if done directly in hardware.
+\end{itemize}
