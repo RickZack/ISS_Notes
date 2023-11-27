@@ -270,7 +270,7 @@ For each block \(i = 0, \ldots, N\),
 \end{figure}
 
 
-\subsection{CBC (Cipher Block Chaining)}
+\subsubsection{CBC (Cipher Block Chaining)}
 
 \paragraph*{Encryption}
 This mode resolves all of ECB's problems.
@@ -310,7 +310,7 @@ The IV can also be sent encrypted using ECB since it is just a block.
 
 
 
-\subsection*{Padding (aligning, filling)}
+\subsubsection*{Padding (aligning, filling)}
 \begin{figure}[H]
     \centering
     \includegraphics[page = 18,trim = 3.5cm 7cm 3.5cm 9cm, clip, width = 0.55\textwidth]{\slides}
@@ -364,3 +364,27 @@ interpretation of the last block. The biggest padding is required when there is 
 With SSH2, padding equal to data gives different ciphertexts (even when encrypted with the same key).\\
 The padding type for a certain algorithm determines the type of (some) possible attacks, but it also depends
 upon the algorithm used.
+
+\subsubsection{Ciphertext stealing (CTS)}
+When using padding, the size of the ciphertext is bigger than the plaintext. This may not be acceptable in
+several cases (for example, data encrypted on a hard disk that may not fit on the same disk). It is possible to use
+CTS instead of padding. The last (partial) block is filled with bytes taken from the second-to-last block
+(encrypted), then these bytes are removed from the second-to-last block (which becomes a partial one). After
+encryption, the positions of the last and second-to-last blocks are exchanged.
+
+It is useful when it is not possible to increase the size of data after encryption, but the computation time slightly increases.
+
+
+\subsubsection*{CTS Example with ECB (encryption)}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 23,trim = 2cm 1.5cm 0.4cm 4cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+\begin{enumerate}
+    \item The plaintext is split into blocks;
+    \item The second-to-last block is full, so it is possible to encrypt it with the key;
+    \item The last one is not full and creates a problem;
+    \item The encrypted block $C_{n-1}$ is split into two parts: \textit{head} and \textit{tail}. The tail has the same size as the part that is missing in the last block;
+    \item The tail is added to the partial block, creating a full block;
+    \item The fully created block is transmitted, and then the head is transmitted.
+\end{enumerate}
