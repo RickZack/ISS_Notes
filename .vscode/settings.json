@@ -5,6 +5,7 @@
         "FIPS",
         "grayware",
         "hashedpwd",
+        "Kerchoff's",
         "Lioy",
         "malwares",
         "meetinthemiddle",
@@ -14,7 +15,9 @@
         "nameserver",
         "oversizing",
         "precomputation",
+        "precomputations",
         "precompute",
+        "RIJNDAEL",
         "Stuxnet",
         "TDES",
         "tilded"

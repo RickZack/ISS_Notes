@@ -1,7 +1,7 @@
 <img src="http://www.nuovariprografica.it/wp-content/uploads/2017/07/Logo-POLITO-tesi-di-laurea.png" width="100">
 
 # ISS Notes
-Notes from the course 01TYMOV of Prof. Antonio Lioy, POLITECNICO DI TORINO A.A. 2022/23.
+Notes from the course 01TYMUV of Prof. Antonio Lioy, POLITECNICO DI TORINO A.A. 2022/23.
 
 ## Authors
 

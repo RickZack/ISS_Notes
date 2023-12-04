@@ -11,7 +11,7 @@
 \usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage{wrapfig} % wrap figure around text
-\usepackage{soul} % DON'T use \underline{}. use \ul{}. See https://tex.stackexchange.com/questions/9550/why-does-underlined-text-not-get-wrapped-once-it-hits-the-end-of-a-line
+\usepackage{soul} % DON'T use \underline{}. use \ul{}.
 \usepackage{float}
 \usepackage{tcolorbox}
 \usepackage{verbatim}
@@ -23,12 +23,11 @@
 \newboolean{showNew} % shows content added in 2023/24
 \setboolean{showNew}{true}
 
+% "mod" without too much space
+\newcommand{\Mod}{\text{ mod }}
 
 % Framed box for "Case history"
-\newtcolorbox{casehistory}[1]{colback=yellow!5!white,
-colframe=yellow!75!black,fonttitle=\bfseries,
-title={Case history: #1}}
-
+\newtcolorbox{casehistory}[1]{colback=yellow!5!white,colframe=yellow!75!black,fonttitle=\bfseries,title={Case history: #1}}
 
 \setmarginsrb{2.5 cm}{2.5 cm}{2.5 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
 \graphicspath{{./images/}}
