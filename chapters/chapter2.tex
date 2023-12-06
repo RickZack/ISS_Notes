@@ -904,7 +904,7 @@ implementations than SHA-2 or any of the other finalists.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[page = 65,trim = 1cm 10cm 1cm 5cm, clip, width = 0.55\textwidth]{\slides}
+    \includegraphics[page = 65,trim = 1cm 10cm 1cm 5.2cm, clip, width = 0.55\textwidth]{\slides}
     \caption{Strength of different hash functions belonging to SHA-3 family as function of digest
         length and block size}
 \end{figure}
@@ -967,10 +967,9 @@ The problem now to be faced is how to protect the digest: in the simple case in 
 that a file on disk has not been changed, a good approach could be to store the digest in a different and secure
 place, so that it will not be altered. When sending data, the digest cannot be exchanged out of band, so it means
 that the digest must be intrinsically secure. There are two mostly adopted techniques:
-% TODO: \ref them
 \begin{itemize}
     \item Authentication by means of \textbf{keyed digest} (Chapter \ref{chap:keyed_digest});
-    \item Authenticated encryption (Chapter \ref{chap:authenticated_encryption}).
+    \item Authenticated encryption (Chapter \ref{chap:ae}).
 \end{itemize}
 
 \subsubsection{Authentication by means of keyed digest}\label{chap:keyed_digest}
@@ -1048,19 +1047,19 @@ Improper combination of secure algorithms may lead to an insecure result!
 Because neither of these three solutions is perfect, current efforts are towards a joint AE algorithm: this is named \textbf{authenticated encryption}.
 
 
-\paragraph*{Authenticated encryption}
+\subsubsection*{Authenticated encryption}\label{chap:ae}
 
-Authenticated Encryption (AE) represents a cryptographic approach that integrates both \textbf{privacy} and \textbf{authentication/integrity} within a single operation.
+\textit{Authenticated Encryption} (\textbf{AE}) represents a cryptographic approach that integrates both \textbf{privacy} and \textbf{authentication/integrity} within a single operation.
 This unified approach ensures that the same dataset serves the dual purpose of maintaining confidentiality while simultaneously verifying the authenticity/integrity of the information.
 
-This methodology is characterized by the use of a single key and algorithm, promoting efficiency and reducing the likelihood of errors in combining these two crucial functions. 
+This methodology is characterized by the use of a single key and algorithm, promoting efficiency and reducing the likelihood of errors in combining these two crucial functions.
 
 One notable advantage of AE is its ability to counter chosen-ciphertext attacks that may occur during online encryption processes. In such attacks, an adversary manipulates a ciphertext and observes the recipient's response to detect potential vulnerabilities, such as through padding or decryption oracle attacks. AE addresses this concern by emphasizing the need to verify the integrity of the ciphertext before decryption. This verification process ensures that the data maintains its confidentiality (through encryption) and authenticity/integrity simultaneously.
 
 
 \subparagraph*{IGE (Infinite Garble Extension)}
 
-IGE\footnote{This algorithm is not recommended, but the professor explained it for teaching purposes.} is an authenticated encryption algorithm, providing \textbf{confidentiality, integrity, and authentication} all in one. 
+IGE\footnote{This algorithm is not recommended, but the professor explained it for teaching purposes.} is an authenticated encryption algorithm, providing \textbf{confidentiality, integrity, and authentication} all in one.
 Essentially, it is similar to CBC with one addition: in CBC, a modification in one block of the ciphertext affects only the block itself and the next one (and then propagation stops). In contrast, IGE uses a mechanism by which \ul{a modification in any block will affect every block after the mangled one}.
 
 \begin{figure}[h]
@@ -1072,8 +1071,329 @@ Essentially, it is similar to CBC with one addition: in CBC, a modification in o
 This is important because it means that by putting a last block of plaintext with fixed content (e.g., composed of all zeros or containing the number of blocks of the plaintext), in the decryption phase, it is sufficient to look at the last block and check if it contains the expected value. If not, one can immediately conclude that there has been an attack against integrity. In this context, the last block is what was previously called the tag.
 
 
-\subparagraph*{RFC 5116 - Interface and algorithms for
-authenticated encryption}
-There are various ways to perform authenticated encryption; one of the most important is Authenticated Encryption with Associated Data (AEAD), documented in RFC 5116. This is precisely the type of solution needed for emails and network packets. In essence, authenticated encryption is an algorithm that provides both of the aforementioned functionalities on plaintext. Conversely, AEAD distinguishes between the part that requires privacy and the part that needs integrity. Referring to the figure above, the header is the portion that needs only integrity and authentication (also called associated data), while the payload is the part for which confidentiality is also required (hence referred to as plaintext).
+\subparagraph*{RFC 5116 - Interface and algorithms for authenticated encryption}
+There are various ways to perform authenticated encryption; one of the most important is \textit{Authenticated Encryption with Associated Data} (\textbf{AEAD}), documented in RFC 5116.
+
+This is precisely the type of solution needed for emails and network packets. In essence, authenticated encryption is an algorithm that provides both of the aforementioned functionalities on plaintext. Conversely, AEAD distinguishes between the part that requires privacy and the part that needs integrity.
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 80,trim = 0.5cm 1.3cm 0.4cm 6cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{AEAD}
+    \label{fig:AEAD}
+\end{figure}
+
+Referring to Figure \ref{fig:AEAD}, the header is the portion that needs only integrity and authentication (also called associated data), while the payload is the part for which confidentiality is also required (hence referred to as plaintext).
 
 This algorithm requires a single symmetric key and a nonce to prevent replay attacks. The result is the ciphertext, which is placed inside the packet as encrypted payload. In front of that, in clear, there are the header and the nonce. Inside the encrypted payload, there is one part that provides integrity not only for the payload itself but also for the header and the nonce; this part is typically referred to as the \textbf{tag}.
+
+
+\subsubsection{Authenticated encryption: standards}
+ISO/IEC 19772:2009 defines six standard \textbf{modes}. By applying these modes with basic encryption algorithms, it is possible to achieve authenticated encryption with associated data (AEAD):
+
+\begin{itemize}
+    \item OCB 2.0 (Offset Codebook Mode) [single-pass AEAD, patented];
+    \item AESKW (AES Key Wrap);
+    \item CCM (CTR mode with CBC-MAC) [double pass];
+    \item EAX (Encrypt then Authenticate then X(trans)late) = CTR + OMAC [double-pass AEAD, free];
+    \item Encrypt-then-MAC;
+    \item GCM (Galois/Counter Mode).
+\end{itemize}
+other modes exist and are/will be recommended by other bodies (e.g. NIST, IETF).
+
+
+\paragraph*{GCM as an example of AEAD}
+
+An algorithm applied in GCM mode encryption takes these parameters:
+
+\begin{itemize}
+    \item On encryption, $(C, T) = \text{algo\_GCM\_enc}(K, IV, P, A)$, with
+          \begin{itemize}
+              \item IV size: $[1 \ldots 2^{64} \text{ bits}]$ (96 bits is most efficient)
+              \item P size: $[0 \ldots 2^{39} - 256 \text{ bits}]$
+              \item A (associated authenticated data) size: $[0 \ldots 2^{56} \text{ bits}]$
+              \item C has the same size as P
+              \item T is the authentication tag with size: $[0 \ldots 128 \text{ bits}]$: Comparing with cryptographic hash functions, this tag is not very large, and we argue that a big integrity code is necessary for strong security. However, beware that since we are not using a hash algorithm here, the security is equal to the number of bits, whereas for cryptographic hash functions, we saw that the protection is half the length of the digest. Therefore, in this case, a tag of 128 bits provides the same protection as a digest that is 256 bits long.
+
+          \end{itemize}
+    \item On decryption, $P = \text{algo\_GCM\_dec}(K, IV, C, A, T)$
+          \begin{itemize}
+              \item P is the original plaintext (if authentication is OK)
+              \item ... or a special value FAIL if the authentication check failed
+          \end{itemize}
+\end{itemize}
+
+GCM is defined for only the encryption algorithms with 128-bit block (for example we cannot have DES in
+GCM, but it is possible to have AES).
+
+\paragraph*{CCM as an example of AEAD}
+It is Counter-mode with CBC-MAC: first an authentication tag of (plaintext + associated data) is computed
+by CBC-MAC, then the plaintext and the tag are (separately) encrypted in CTR mode: so, it is a double pass
+algorithm. It is defined for encryption algorithms with 128-bit block
+
+
+\subsubsection*{Authenticated encryption: applications}
+\begin{itemize}
+    \item TLS-1.3 uses GCM and CCM;
+    \item 802.11i uses CCM;
+    \item ZigBee (short-range protocol for IoT) uses CCM* (=CCM + auth-only + enc-only);
+    \item ANSI C12.22 (network transmission of electronic measures, e.g., house power meter) uses \textbf{EAX'} (a famous case of \underline{failure}): nowadays, it is common to use the electric wire to send electronic measures of a power meter. Because there is no firewall over an electric wire, by attaching a proper device to the electric network, it could be possible to read measures of other people or create fake transmissions. Therefore, protection is needed for privacy (for example, a house not consuming could signal that nobody is at home and so it can be robbed) and for authenticity (the measures sent must be the real ones).
+          \begin{itemize}
+              \item The modification of the base algorithm created a vulnerability, so the algorithm has been proven to be broken (article\footnote{\url{https://eprint.iacr.org/2012/018.pdf}} by Minematsu, Morita, and Iwata);
+              \item EAX had a formal proof of its security ... but ANSI sacrificed it for 3-5 less encryption steps and 40 bytes less memory usage (was this so important for embedded systems?).
+          \end{itemize}
+\end{itemize}
+
+
+\paragraph{Comparison of AE modes}
+\begin{itemize}
+    \item \textbf{GCM:} the most popular, on-line single-pass AEAD, parallelizable, used by TLS, present in OpenSSL;
+          \begin{itemize}
+              \item For encryption, generates ciphertext + authentication tag;
+              \item For decryption, first computes the authentication tag and only if it matches the one in input then the ciphertext is decrypted;
+              \item Fast on Intel architecture (~4 cycle/byte) using AES-NI for encryption and \\
+              PCLMULQDQ for the tag.
+          \end{itemize}
+    \item \textbf{OCB 2.0:} the fastest one, on-line single-pass AEAD, GPL patented so scarcely used, now free but for military uses;
+    \item \textbf{EAX:} on-line double-pass AEAD, slow but small (uses just the encryption block), so very good for constrained systems;
+    \item \textbf{CCM:} off-line double-pass, the slowest one. Note that double-pass is 2x slower than one-pass (in software).
+\end{itemize}
+
+% Partially new
+\ifthenelse{\boolean{showNew}}{
+    \paragraph*{NIST lightweight crypto (LWC)}
+    The NIST Lightweight Cryptography (LWC) initiative, launched in August 2018, aimed to identify efficient Authenticated Encryption with Associated Data (AEAD) lightweight algorithms for embedded system.
+    After two rigorous rounds of evaluation, the winner announced on July 2, 2023, is \textbf{ASCON}. ASCON is proven to be highly effective for encryption, AEAD, and hashing applications.
+
+    \subparagraph*{ASCON}
+    Ascon is a family of lightweight authenticated ciphers that had been selected by US National Institute of Standards and Technology (NIST) for future standardization of the lightweight cryptography.
+
+    It is not designed to replace AES or SHA3 but rather serves as a lightweight solution suitable for resource-constrained environments. 
+    For Authenticated Encryption with Associated Data (AEAD) applications, ASCON offers various configurations such as Table \ref{tab:ascon-aead-configurations} and Table \ref{tab:ascon-hashing-configurations}
+
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|c|c|}
+            \hline
+            \textbf{Configuration} & \textbf{Key} & \textbf{Nonce} & \textbf{Tag} & \textbf{Rate} & \textbf{Capacity} & \textbf{ \(pa\)} & \textbf{\(pb\)} \\
+            \hline
+            \text{ASCON-128}  & 128 & 128 & 128 & 64 & 256 & 12 & 6 \\
+            \hline
+            \text{ASCON-128a} & 128 & 128 & 128 & 128 & 192 & 12 & 8 \\
+            \hline
+        \end{tabular}
+        \caption{ASCON AEAD Configurations}
+        \label{tab:ascon-aead-configurations}
+    \end{table}
+    
+
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Configuration} & \textbf{Output} & \textbf{Rate} & \textbf{Capacity} & \textbf{Permutation \(pa\)} & \textbf{Permutation \(pb\)} \\
+        \hline
+        \text{ASCON-hash} & 256 & 64 & 256 & 12 & 12 \\
+        \hline
+        \text{ASCON-xof} & arbitrary & 64 & 256 & 12 & 12 \\
+        \hline
+        \text{ASCON-hasha} & 256 & 64 & 256 & 12 & 8 \\
+        \hline
+        \text{ASCON-xofa} & arbitrary & 64 & 256 & 12 & 8 \\
+        \hline
+        \end{tabular}
+        \caption{ASCON Hashing Configurations}
+        \label{tab:ascon-hashing-configurations}
+        \end{table}
+}{}
+
+\subsection{Authentication by Digest and Asymmetric Cryptography: Digital Signature}
+
+As mentioned earlier in Chapter \ref{chap:keyed_digest}, authenticated encryption offers data integrity, authentication, and confidentiality. However, as discussed in the context of keyed digest, it lacks the ability to provide non-repudiation. This limitation arises from the fact that peers share the key used to compute a valid keyed digest. Consequently, it becomes challenging to determine which of the two peers generated it.
+
+\underline{Non-repudiation} is achieved by using digest and asymmetric cryptography: the digest is encrypted with the private key of the sender, so that the use of his public key will prove the source.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 89,trim = 1cm 1.4cm 1cm 3cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Digital signature: computing and verifying a
+    message digest encrypted via asymmetric encryption}
+\end{figure}
+
+Using formulas, such a communication takes place as following:
+\begin{itemize}
+    \item Signer: $H = \text{enc}(S.SK, \text{hash}(M))$
+    \item Transmission: $M \Vert H$
+    \item Verifier: $X = \text{dec}(S.PK, H)$
+    \item Verification phase: if $(X == \text{hash}(M))$ then OK, else it means that something has been changed during transmission.
+\end{itemize}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 90,trim = 1cm 1.3cm 1cm 3cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Signature creation and verification}
+\end{figure}
+
+This is the mechanism by which \textbf{digital signatures} are implemented. 
+The last piece to obtain full non-repudiation is a mechanism by which it must be possible to guarantee that the association between a public key and an identity is true: 
+this is called a \textbf{public key certificate} (Chapter \ref{chap:public-key-certificate}).
+
+An attack that is possible to perform against this schema is the \textit{modification of a digital signature}: changing any bit of the encrypted data leads to a failure in the verification phase, but the same happens with any modification to the digital signature. No matter if the data is correct; \underline{it is not possible to say whether the modification affected the data or the signature}.
+
+Another case worth discussing is taking a digital signature performed by someone else, then taking that person's public key as well (to make sure the public key fits the digital signature), and then attaching it so as to make it appear that the file is attributed to that person. This will still result in a failure in the verification phase since the digital signature contains the encrypted digest of the original data; \ul{the digital signature is bound to the data, so it is not possible to attach a signature to other data.}
+
+
+\subsubsection{Authentication and integrity: analysis}
+We have examined two methods to achieve authentication and integrity:
+
+\begin{itemize}
+    \item By means of a \textbf{shared secret:}
+    \begin{itemize}
+        \item Useful only for the receiver.
+        \item Cannot be used as proof without disclosing the secret key.
+        \item Not useful for non-repudiation.
+        \item Good for two peers who trust each other, serving as protection against a third party.
+    \end{itemize}
+
+    \item By means of \textbf{asymmetric encryption:}
+    \begin{itemize}
+        \item Being slow, it is applied to the digest only.
+        \item Can be used as formal proof.
+        \item Can be used for non-repudiation, provided that it is possible to demonstrate the owner of the public key (public key certificate, Chapter \ref*{chap:public-key-certificate}).
+    \end{itemize}
+\end{itemize}
+
+
+\paragraph{Digital vs handwritten signature}
+Digital signatures provide both authentication and integrity, whereas handwritten signatures offer only authentication. Therefore, digital signatures are considered superior due to their \underline{tight bound with the data}. It's important to note that each user possesses a private key, which can be utilized to generate an infinite number of digital signatures, each unique to a different document.
+
+
+\subsection{Public key certificate}\label{chap:public-key-certificate}
+As we have seen so far, a digital signature has a great benefit; it can provide non-repudiation. 
+However, non-repudiation is achieved if, in addition to performing a correct digital signature, it is possible to ascribe with certainty the public key to an actor's private key. 
+The attribution of a key to an actor is usually done through a \textbf{public key certificate}: it is \textit{“a data structure used to securely bind a public key to some attributes}.” 
+Typically, it binds a key to an identity, but other associations are possible too (e.g., IP address). 
+The security in this binding is provided by a digital signature: the entity that created the certificate, named the \textit{certification authority} (\textbf{CA}), digitally signs the certificate, so that it is at the same time:
+\begin{itemize}
+    \item a proof of authentication: it is a valid certificate because it has been created by a certification authority;
+    \item a proof of integrity: the data are correct, and they have not been modified since the document was issued.
+\end{itemize}
+
+Like a common identity document, a public key certificate also has a \textbf{limited lifetime}. It can also \textbf{be
+revoked} on request, both by the user and the issuer.
+
+\subsubsection{Formats for public key certificates}
+
+\begin{itemize}
+    \item \textbf{X.509:}
+    \begin{itemize}
+        \item v1, v2 (defined by ISO): not very successful;
+        \item \textbf{v3} (ISO + IETF): has achieved great usage and is nowadays the most common format because
+        it can be applied to the security of several internet protocols;
+    \end{itemize}
+    \item \textbf{Non-X.509:} Since X.509 was developed by ISO, seen as the standardization body for
+    big corporations, some people who do not trust big corporations have created alternative certification
+    structures such as:
+    \begin{itemize}
+        \item PGP: mostly used in the underground movement;
+        \item SPKI (IETF).
+    \end{itemize}
+    None of these have achieved great diffusion.
+    \item \textbf{PKCS\#6:} It is a standard promoted by RSA before X.509 was invented. It is partly
+    compatible with X.509, but RSA declared it obsolete.
+\end{itemize}
+
+\paragraph{Structure of a X.509 certificate}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 95,trim = 14cm 4cm 1.5cm 3.5cm, clip, width = 0.40\textwidth]{\slides}
+    \caption{Structure of a X.509 certificate}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Version:} Since there are multiple versions of the same format, as seen previously.
+    \item \textbf{Serial number:} Each certificate is uniquely identified.
+    \item \textbf{Signature algorithm:} Since the certificate is protected with a digital signature, its format includes information about the algorithm used for the signature.
+    \item \textbf{Issuer:} This is the name of the entity that created the certificate, the certification authority. The syntax used to specify this information is called DN (distinguished name), composed of three different fields:
+    \begin{itemize}
+        \item \texttt{C}: Country (e.g., Italy).
+        \item \texttt{O}: Organization (e.g., Politecnico di Torino).
+        \item \texttt{OU}: Organizational unit, which means the department that created this certificate (e.g., certification authority).
+    \end{itemize}
+    \item \textbf{Validity:} Defines the period for which the certificate is considered valid. Outside that period, the CA does not guarantee the correspondence.
+    \item \textbf{Subject:} The entity controlling the private key corresponding to the certified public key. Here, the DN is used to identify that entity, with additional fields not mentioned earlier:
+    \begin{itemize}
+        \item \texttt{CN}: Common name (e.g., Antonio Lioy).
+        \item \texttt{Email}: The email of the entity. Including these fields is important because public key certificates are used to protect internet applications. For example, to send an email to "Antonio Lioy," the mail server needs to understand the certified mail for the entity, making the email field necessary. The same reasoning applies to other applications for which protection is wanted.
+    \end{itemize}
+    \item \textbf{subjectPublicKeyInfo:} The field containing the public key; it specifies the algorithm, the key length, and all the bits that constitute it.
+    \item \textbf{CA digital signature:} The digital signature of the certification authority computed over the certificate. This way, any modification to it can be detected, as seen previously (Chapter \ref{chap:public-key-certificate}).
+\end{itemize}
+
+So, this mechanism finally solves the problem of knowing who the actor controlling the private key corresponding to the public key is.
+
+\subsubsection{PKI (Public-Key Infrastructure)}
+This is an infrastructure which is performing two kind of tasks: technical (create certificates) and
+administrative (before creating a certificate, checking the identity of the requestor is needed). 
+So, this infrastructure oversees \textit{creating}, \textit{distributing}, and \textit{revoking} the public key certificates.
+
+
+\paragraph*{Certificate revocation}
+Every certificate has a certain validity, but it can be revoked before its expiration date. The revocation can be requested by the owner or by the creator of the certificate:
+
+\begin{itemize}
+    \item The owner can request the revocation in case he has no more control over the private key (e.g., private key stored on a stolen smartcard). 
+    This case resembles when a credit card is lost: the owner should go and request to revoke the certificate as soon as possible because if the thief uses that private key, it will appear as if the original owner has performed the signature. This is the most common case in which a certificate is revoked.
+    
+    \item The creator can revoke the certificate in case a certificate has been created for a fake identity. If someone has managed to demonstrate a fake identity to a certification authority, he will receive a valid certificate. Nevertheless, if later the certification authority discovers the deception, it will revoke the certificate automatically.
+\end{itemize}
+
+When a certificate is revoked, the certification authority creates a list stating that the certificate is no longer valid. Since the certification authority does not know when and where the stolen key will be used, the transaction protected by a signature is received by various actors (the receivers). These receivers must check whether the certificate was valid at the time of the signature. The actor responsible for verifying if the signature was valid or not is called the \textbf{relying party} (\textbf{RP}).
+This means that before trusting the certificate, it should be checked if it is valid or not.
+
+\subparagraph*{Revocation mechanism}
+There are two mechanisms to perform a check on the signature:
+
+\begin{itemize}
+    \item \textbf{CRL (Certificate Revocation List):} The certification authority creates a list of revoked certificates. The list is digitally signed by the CA to ensure authenticity and integrity. Without the digital signature, someone could manipulate the list by removing or adding certificates. The CRL contains information about \underline{all} revoked certificates, allowing the receiver to verify the validity of a certificate at the time it was issued. For instance, if a document signed three months ago is received today, the verification must consider the validity status of the key three months ago. The drawback is that the entire list must be downloaded to check a single certificate, but it provides a comprehensive history of each certificate.
+
+    \item \textbf{OCSP (On-line Certificate Status Protocol):} This mechanism is preferred for real-time checks, such as transactions. OCSP is a client-server protocol where a specific service can be queried to determine the current validity status of a certificate. Unlike CRL, OCSP does not consider previous states of the certificate. The response from the server is signed, preventing anyone from providing a fake response.
+\end{itemize}
+
+
+
+\paragraph{Structure of a X.509 CRL}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 95,trim = 14cm 4cm 1.5cm 3.5cm, clip, width = 0.40\textwidth]{\slides}
+    \caption{Structure of a X.509 CRL}
+\end{figure}
+
+The X.509 CRL shares common parameters with the X.509 certificate, including \textit{version}, \textit{signature algorithm}, and \textit{issuer}.
+However, the X.509 CRL structure introduces the "\textbf{thisUpdate}" parameter, indicating \underline{the time when the CRL was created}. 
+This timestamp is crucial because if a signature check is conducted on a document signed before this date, the relevant information is found in the CRL. Conversely, if the verification pertains to an event occurring after the "thisUpdate" date, the current CRL may not be suitable, and a more recent CRL needs to be obtained. Following this parameter, there is a list of revoked certificates, each accompanied by the \textit{userCertificate} and \textit{revocationDate}.
+
+
+\subsubsection*{Verification of a signature / certificate}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 101,trim = 0.5cm 1.3cm 1cm 3cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Verification of a signature / certificate}
+\end{figure}
+
+Suppose we want to verify a signature. The verification process involves obtaining the public key certificate signed by the entity providing it (e.g., the certificate of "Antonio Lioy" is signed by "Politecnico di Torino"). A crucial question arises: how can we verify that this last signature is valid? To check the validity of the CA's signature, we need the public key certificate of that CA. However, this certificate is created and signed by another CA, and the verification of this signature requires the public key certificate of the second CA. This chain of dependencies creates a recursive problem\footnote{\textit{Quis custodiet ipsos custodes?}}. 
+Consequently, a hierarchical infrastructure for the certification and distribution of public-key certificates becomes essential.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 102,trim = 1cm 1.3cm 1cm 3cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Certification hierarchy}
+    \label{fig:certification-hierarchy}
+\end{figure}
+
+Such a hierarchical infrastructure is depicted on Figure \ref{fig:certification-hierarchy}. 
+For example, to check the signature of "Politecnico di Torino," which created the public key certificate for "Antonio Lioy," the certificate of "CA Torino" is needed, which contains the signature of "CA IT"; to check if this one is good, the certificate of the entity that signed the "CA IT" certificate is needed, so the "CA EU" must be obtained. 
+This last CA ends the chain; in fact, the "CA EU" is signed by the European CA itself: this last certificate is trusted a priori (\textit{self-signed}), it cannot be verified, and for this reason is also called \textbf{TLCA}, \textbf{Root CA}, or even \textbf{God}.

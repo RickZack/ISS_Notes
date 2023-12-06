@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "ascon",
         "Cyberthreats",
         "Duqu",
         "FIPS",
@@ -14,6 +15,7 @@
         "MITM",
         "nameserver",
         "oversizing",
+        "PCLMULQDQ",
         "precomputation",
         "precomputations",
         "precompute",
