@@ -1397,3 +1397,39 @@ Consequently, a hierarchical infrastructure for the certification and distributi
 Such a hierarchical infrastructure is depicted on Figure \ref{fig:certification-hierarchy}. 
 For example, to check the signature of "Politecnico di Torino," which created the public key certificate for "Antonio Lioy," the certificate of "CA Torino" is needed, which contains the signature of "CA IT"; to check if this one is good, the certificate of the entity that signed the "CA IT" certificate is needed, so the "CA EU" must be obtained. 
 This last CA ends the chain; in fact, the "CA EU" is signed by the European CA itself: this last certificate is trusted a priori (\textit{self-signed}), it cannot be verified, and for this reason is also called \textbf{TLCA}, \textbf{Root CA}, or even \textbf{God}.
+
+Please note that in the world there is not only one TLCA, nor are there a few: typically, in computer systems, there are quite a lot of trusted CAs, and this is due to two main reasons:
+
+\begin{itemize}
+    \item \textbf{Security:} The one who would control the only TLCA would also control the other ones, by faking them;
+    \item \textbf{Commercial:} To obtain a certificate from a certification authority, a price must be paid to it.
+\end{itemize}
+
+For the second reason, the list of trusted CAs can be different on systems produced by different manufacturers: since it is a matter of who places the trust, one system can accept or not accept a CA as a trusted one. For example, in the past, Microsoft performed only light checks on incoming trusted CAs but requested the payment of \$250,000 to be in its list.
+
+The problem that arises is: \textbf{can't an attacker fake the whole tree}? 
+Of course, that is possible: if the device is left unattended and the attacker manages to have administrative privileges, it is possible to add another (fake) Root CA, making the whole hierarchical system useless for that device. 
+The list of Root CAs can be managed either by the operating system or by the application being used.
+
+
+\subsubsection{Performance}
+Cryptographic performance is primarily dependent on the CPU, including its architecture, instruction set, and cache size. Some CPUs are equipped with specialized instructions tailored for cryptographic algorithms. Generally, client-side performance is not a significant concern, unless dealing with less powerful devices like IoT, embedded systems, or clients overloaded by multiple applications. On the other hand, server environments or network nodes (e.g., routers) may face performance challenges when implementing security measures. 
+
+In such cases, cryptographic accelerators, such as \textbf{Hardware Security Modules} (\textbf{HSMs}), can be employed. These modules offer primitive instructions to execute various security algorithms. Additionally, \textbf{special-purpose accelerators} are available, which not only handle hardware-based cryptographic operations but also support packet processing for specific security protocols (e.g., SSL, IPsec). Alternatively, \textbf{generic accelerators} may focus on expediting computations related to a particular cryptographic algorithm, such as AES, for various protocols.
+
+
+\paragraph*{CNSA}
+In 2018, the NSA released a new suite named CNSA (Commercial National Security Algorithm Suite), which includes the following algorithms:
+\begin{itemize}
+    \item \textbf{Symmetric Encryption:} AES-256 - Any key shorter than 256 bits is now considered insufficient. To protect real-time (e.g., stream) data, it suggests using mode CTR for low bandwidth applications or GCM for those requiring high bandwidth. Moreover, GCM provides authenticated encryption, offering an additional advantage.
+    \item \textbf{Hash:} SHA-384
+    \item \textbf{Key Agreement:} ECDH and ECMQV
+    \item \textbf{Digital Signature:} ECDSA, with EC on the curve P-384
+\end{itemize}
+For legacy systems, such as old systems that are still operational and unable to perform EC or GCM, it is recommended to use:
+\begin{itemize}
+    \item \textbf{Key Agreement:} DH-3072
+    \item \textbf{Key Exchange, Digital Signature:} RSA-3072
+    \item New quantum-resistant algorithms are expected by 2022.
+\end{itemize}
+
