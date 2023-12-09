@@ -468,3 +468,58 @@ General issues with Symmetric CRA are:
 \end{itemize}
 There is a technique called \textbf{SCRAM} (Salted CRA Mechanism) which solves this problem by using hashed
 passwords at the Verifier, which also offers \underline{channel binding} and \underline{mutual authentication}, while we are always talking about single authentication
+
+
+\subsubsection{Mutual symmetric CRA (v1)}
+\noindent
+\begin{minipage}{0.4\textwidth}
+  Imagine that we are not using a hash but encryption (although it would work in the same way), and let's consider the scenario of mutual authentication.
+
+  Alice and Bob share a key \(K_{AB}\), and Alice sends a message \(A\) to Bob (which means: "Hey, I'm Alice!"). 
+  Bob responds with a challenge \(C_B\), 
+  and Alice replies with \(\text{enc}(K_{AB}, C_B)\), which is the encryption of the challenge using the shared key. 
+  Then, Alice could create a challenge (\(C_A\)), and Bob would respond in the same way by computing \(\text{enc}(K_{AB}, C_A)\). 
+  \ul{This approach provides protection against MITM attacks because, if the challenges are nonces, the Replay Attack is not possible.}
+  
+  \textbf{Beware!} This protocol is outdated and insecure.
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.5\textwidth}
+  \centering
+  \includegraphics[page = 29,trim = 4cm 2.2cm 4cm 9cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+
+\subsubsection{Mutual symmetric CRA (v2)}
+\vspace*{5mm}
+\noindent
+\begin{minipage}{0.4\textwidth}
+  IBM, in its SNA network system, employed a similar technique with a different implementation: they reduced the number of messages for improved performance without compromising security.
+
+  In the initial step, Alice transmits both the identity (\(A\)) and the challenge (\(C_A\)). The response from Bob includes both the challenge (\(C_B\)) and the encryption \(\text{enc}(K_{AB}, C_A)\). Finally, Alice responds with \(\text{enc}(K_{AB}, C_B)\). Although this may appear equivalent to the previous solution in terms of functionality and security, \underline{it is not}.
+  
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.5\textwidth}
+  \centering
+  \includegraphics[page = 30,trim = 4cm 2.2cm 4cm 9cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+
+
+
+
+\subsubsection*{Attack to the mutual symmetric CRA (v2)}
+\vspace*{5mm}
+\noindent
+\begin{minipage}{0.4\textwidth}
+  Here, Mike pretends to be Alice. Mike sends to Bob Alice's identity (\(A\)) and Alice's challenge (\(C_A\)). Bob replies with \(C_B\) and \(\text{enc}(K_{AB}, C_A)\).
+  
+  At this point, Mike does not know \(K_{AB}\) and cannot compute the response to the challenge. However, Mike opens a new connection with Bob, sending Alice's identity (\(A\)) again but, this time, sends the challenge sent from Bob (\(C_B\)). Bob replies again with another challenge (\(C_C\)) and \(\text{enc}(K_{AB}, C_B)\), which is the answer to the challenge of the 1st connection. Mike can finally provide the correct answer. 
+  
+  \ul{Of course, this can be countered if there is a limit on connections}.
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.5\textwidth}
+  \centering
+  \includegraphics[page = 31,trim = 2cm 2.2cm 2cm 4cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+
