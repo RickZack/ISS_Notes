@@ -48,13 +48,13 @@ While authenticating an \emph{actor}, there are three categories of \textbf{auth
 % \begin{figure}[h]
 %   \centering
 %   \includegraphics[page = 6,trim = 1cm 2.1cm 1cm 3.8cm, clip, width = 0.50\textwidth]{\slides}
-%    \caption*{General model for digital authentication as described in NIST SP800.63B}
+%    \caption{General model for digital authentication as described in NIST SP800.63B}
 % \end{figure}
 
 \begin{figure}[h]
   \centering
   \includegraphics[width = 0.70\textwidth]{chapter3/NIST_sp800_63b.png}
-  \caption*{General model for digital authentication as described in
+  \caption{General model for digital authentication as described in
     NIST SP800.63B}
 \end{figure}
 
@@ -104,8 +104,6 @@ These roles may be separate or collapsed together.
 Thinking about a \emph{Linux machine} used locally, the enrollment phase involves creating a new user with a username (the credential) and a password (the authenticator). In this scenario, the CSP is the operating system itself, and when a user wants to use a server on this machine, they need to perform login, which is the verifier. The relying party is any software running on that machine that uses the identity as proven by the login service of the operating system.
 
 
-Another example is the use of Google Identity for different services, such as the Doodle Service to agree on a date. For Doodle, there is the option to use Google or Facebook Credentials. In this case, the relying party is Doodle, while the verifier (as well as the CSP) is Google or Facebook.
-
 
 Another example is the use of Google Identity for different services, such as the Doodle Service to schedule an
 appointment. For Doodle, there is an option to use Google or Facebook Credentials. In this case, the relying party
@@ -117,6 +115,7 @@ is Doodle, while the verifier (as well as the CSP) is Google or Facebook.
 \begin{figure}[h]
   \centering
   \includegraphics[page = 8,trim = 0.4cm 3cm 0.4cm 5.5cm, clip, width = 0.55\textwidth]{\slides}
+  \caption{Generic authentication protocol}
 \end{figure}
 Suppose that the user wants to access an application server (Relying Party). In this case, the server will include both the Relying Party and Verifier.
 The user has been identified with the User ID and has a secret associated with that User ID.
@@ -132,17 +131,18 @@ In this scenario, several problems need to be addressed:
 
 
 
-\section{Passwords (reusable)}
+\subsection{Passwords (reusable)}
 
 \begin{figure}[h]
   \centering
   \includegraphics[page = 9,trim = 0.4cm 5cm 0.4cm 5.5cm, clip, width = 0.55\textwidth]{\slides}
+  \caption{Authentication with password}
 \end{figure}
 
 
 Imagine that the secret is a \textbf{reusable password} (meaning that it is always the same), and the user is identified by their User ID, with the secret being the password associated with that user. On the server side, there is a table containing usernames and passwords in plain text or a function $H$ computed over the password.
 
-Once again, there will be an \textbf{authentication request}, followed by the user sending their \textbf{UID}. Then, a password request is made, and the user responds with \textbf{$P_{\mathrm{UID}}$}.
+Once again, there will be an \textbf{authentication request}, followed by the user sending their \textbf{UID}. Then, a password request is made, and the user responds with \textbf{$P_{\text{UID}}$}.
 
 Assume the network is secure and focus on the verifier's side. The secret is the user's password, and the client creates and transmits the proof, typically using a function $F = I$, which is the identity function. The proof is the password sent in plain text, which is, of course, dangerous.
 
@@ -153,17 +153,16 @@ Now, looking at the server, when the server receives the password, it needs to c
 \end{enumerate}
 
 
-\subsection*{Problems of reusable passwords}
+\subsubsection{Problems of reusable passwords}
 Password-based authentication is usually convenient for the user, but only if they have to remember just one password, a reusable one. The current situation is unfortunate because in some applications, there is a need for several passwords that cannot be remembered by a person, so they would need to be stored on the user's side, which is a source of insecurity. The \textbf{disadvantages} of password-based authentication are:
-The disadvantages of password-based authentication are:
 \begin{itemize}
-  \item The user-side password storage: it could be written on a post-it or on a client-side password manager (also called password wallet), that stores it encrypted typically using only one passphrase;
-  \item Guessable passwords;
-  \item Server-side password storage: the server must know the password in cleartext or an unprotected digest of it (dictionary attack);
+  \item \textbf{The user-side password storage}: it could be written on a post-it or on a client-side password manager (also called password wallet), that stores it encrypted typically using only one passphrase;
+  \item \textbf{Guessable passwords};
+  \item \textbf{Server-side password storage}: the server must know the password in cleartext or an unprotected digest of it (dictionary attack);
   \item \textbf{Sniffing}: Password can be sniffed while it is sent across the network;
   \item \textbf{DB attacks}: There could be attacks to the password DB at the verifier (if DB contains plaintext or only obfuscated password);
   \item \textbf{Password guessing}: it is very dangerous if it can be done offline, for example against a list of password hashes;
-  \item \textbf{Password enumeration}: if the password is limited in length or character type, or if authN protocol doesn't block
+  \item \textbf{Password enumeration}: if the password is limited in length or character type, or if authN protocol doesn't block;
   \item \textbf{Password duplication}: using the same password for different services, due to user password reuse. This could be a problem because if the user has the same password for a high-security service and for a weaker one, an attacker could discover it on the weaker system and have access to the high-security one;
   \item \textbf{Cryptography aging}: the solution adopted for verifying the secret should not be tied to a specific cryptographic algorithm, because it could be then difficult to adapt to the need for changing the algorithm used, due to new attacks and more computing power;
   \item \textbf{Password capture} via server spoofing and phishing;
@@ -171,7 +170,8 @@ The disadvantages of password-based authentication are:
 \end{itemize}
 
 
-\subsection*{Password best practice}
+
+\subsubsection*{Password best practice}
 \begin{itemize}
   \item Use a \textbf{mixture} of alphabetic characters (both uppercase and lowercase), digits, and special characters. Unfortunately, there are many systems that don't allow the use of special characters or impose limits on password length.
   \item Use a \textbf{long} password, preferably at least 8 characters in length.
@@ -180,8 +180,8 @@ The disadvantages of password-based authentication are:
   \item Whenever possible, \textbf{consider not using passwords}. However, this may be unavoidable unless biometric techniques are employed.
 \end{itemize}
 
-\subsection*{Storing passwords}
-\subsubsection*{Storing passwords on the server-side}
+\subsubsection*{Storing passwords}
+\paragraph*{Storing passwords on the server-side}
 \begin{itemize}
   \item Never store passwords in cleartext.
   \item If the password is \textbf{encrypted}, the server must have access to the encryption key in cleartext, which can be a security concern. To enhance security, it's recommended to \textbf{store a password digest}. However, be cautious of dictionary attacks that can be expedited by techniques such as \textbf{rainbow tables}. To mitigate these types of attacks, you can introduce an unpredictable element known as a "\textbf{salt}".
@@ -464,6 +464,7 @@ General issues with Symmetric CRA are:
 \begin{itemize}
   \item The easiest implementation uses a hash function (faster than encryption) such as SHA1 (deprecated),
   SHA2 (recommended) or SHA3 (future);
-  \item \(K_{ID}\) must be known in cleartext to the Verifier and this may lead to attacks against the \( ID: K_{ID} \) table at the Verifier;
+  \item \(K_{ID}\) must be known in cleartext to the Verifier and this may lead to attacks against the \( \{ID: K_{ID}\} \) table at the Verifier;
 \end{itemize}
-
+There is a technique called \textbf{SCRAM} (Salted CRA Mechanism) which solves this problem by using hashed
+passwords at the Verifier, which also offers \underline{channel binding} and \underline{mutual authentication}, while we are always talking about single authentication
