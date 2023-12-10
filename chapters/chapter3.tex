@@ -378,7 +378,7 @@ This was the best practise until Jan '18 and it has been made compulsory afterwa
 
 
 \subsection{PCI-DSS Definition for Payment with Credit Cards}
-According to the PCI-DSS definition, which applies to payment with credit cards, starting from v3.2, multi-factor authentication (MFA) is required for access into the cardholder data environment (CDE). This requirement is applicable regardless of whether the network is trusted or untrusted, and it is also mandatory for administrators accessing the CDE. 
+According to the PCI-DSS definition, which applies to payment with credit cards, starting from v3.2, multi-factor authentication (MFA) is required for access into the cardholder data environment (CDE). This requirement is applicable regardless of whether the network is trusted or untrusted, and it is also mandatory for administrators accessing the CDE.
 
 The only exception is for direct console access, which involves physical security measures, such as entering the room where the server is located. However, for remote access, MFA is always required, especially from untrusted networks, and for users and third parties (e.g., maintenance).
 
@@ -390,9 +390,9 @@ This best practice was in effect until January '18 and became mandatory thereaft
 
 \subsection{Other definitions}
 According to the \textit{Handbook of Applied Cryptography},\\
-authentication is a \textbf{cryptographic challenge-response identification protocol}. 
+authentication is a \textbf{cryptographic challenge-response identification protocol}.
 
-More in general, it is a technique resisting to a well-defined set of attacks. 
+More in general, it is a technique resisting to a well-defined set of attacks.
 
 An authN technique can be classified as strong or weak depending on the attack model:
 \begin{itemize}
@@ -413,7 +413,7 @@ associated with the Claimant.
 
 
 % Using minipage
-\vspace{2mm} 
+\vspace{2mm}
 \noindent
 \begin{minipage}{0.5\textwidth}
   \centering
@@ -435,14 +435,14 @@ associated with the Claimant.
 \subsubsection*{General issues of CRA}
 \begin{itemize}
   \item \textbf{The challenge must be non-repeatable to avoid replay attacks}. For this reason, usually, the challenge
-  is a (random) nonce.
+        is a (random) nonce.
   \item \textbf{The function \(f\) must be non-invertible}, otherwise, a listener can record the traffic and easily find the
-  shared secret by using the function \(K_c = f^{-1}(response, challenge)\).
+        shared secret by using the function \(K_c = f^{-1}(response, challenge)\).
 \end{itemize}
 
 
 
-\subsection*{Symmetric CRA}
+\subsection{Symmetric CRA}
 
 \noindent
 \begin{minipage}{0.5\textwidth}
@@ -456,14 +456,14 @@ associated with the Claimant.
   which is typically the password or
   passphrase of the user. The function \(f\) is computed two times: once from the user
   to make the response, and once from the
-  verifier to verify the match. 
+  verifier to verify the match.
 \end{minipage}
 
 \subsubsection*{General issues of Symmetric CRA}
 General issues with Symmetric CRA are:
 \begin{itemize}
   \item The easiest implementation uses a hash function (faster than encryption) such as SHA1 (deprecated),
-  SHA2 (recommended) or SHA3 (future);
+        SHA2 (recommended) or SHA3 (future);
   \item \(K_{ID}\) must be known in cleartext to the Verifier and this may lead to attacks against the \( \{ID: K_{ID}\} \) table at the Verifier;
 \end{itemize}
 There is a technique called \textbf{SCRAM} (Salted CRA Mechanism) which solves this problem by using hashed
@@ -475,12 +475,12 @@ passwords at the Verifier, which also offers \underline{channel binding} and \un
 \begin{minipage}{0.4\textwidth}
   Imagine that we are not using a hash but encryption (although it would work in the same way), and let's consider the scenario of mutual authentication.
 
-  Alice and Bob share a key \(K_{AB}\), and Alice sends a message \(A\) to Bob (which means: "Hey, I'm Alice!"). 
-  Bob responds with a challenge \(C_B\), 
-  and Alice replies with \(\text{enc}(K_{AB}, C_B)\), which is the encryption of the challenge using the shared key. 
-  Then, Alice could create a challenge (\(C_A\)), and Bob would respond in the same way by computing \(\text{enc}(K_{AB}, C_A)\). 
+  Alice and Bob share a key \(K_{AB}\), and Alice sends a message \(A\) to Bob (which means: "Hey, I'm Alice!").
+  Bob responds with a challenge \(C_B\),
+  and Alice replies with \(\text{enc}(K_{AB}, C_B)\), which is the encryption of the challenge using the shared key.
+  Then, Alice could create a challenge (\(C_A\)), and Bob would respond in the same way by computing \(\text{enc}(K_{AB}, C_A)\).
   \ul{This approach provides protection against MITM attacks because, if the challenges are nonces, the Replay Attack is not possible.}
-  
+
   \textbf{Beware!} This protocol is outdated and insecure.
 \end{minipage}
 \hspace{0.05\textwidth}
@@ -496,7 +496,7 @@ passwords at the Verifier, which also offers \underline{channel binding} and \un
   IBM, in its SNA network system, employed a similar technique with a different implementation: they reduced the number of messages for improved performance without compromising security.
 
   In the initial step, Alice transmits both the identity (\(A\)) and the challenge (\(C_A\)). The response from Bob includes both the challenge (\(C_B\)) and the encryption \(\text{enc}(K_{AB}, C_A)\). Finally, Alice responds with \(\text{enc}(K_{AB}, C_B)\). Although this may appear equivalent to the previous solution in terms of functionality and security, \underline{it is not}.
-  
+
 \end{minipage}
 \hspace{0.05\textwidth}
 \begin{minipage}{0.5\textwidth}
@@ -512,9 +512,9 @@ passwords at the Verifier, which also offers \underline{channel binding} and \un
 \noindent
 \begin{minipage}{0.4\textwidth}
   Here, Mike pretends to be Alice. Mike sends to Bob Alice's identity (\(A\)) and Alice's challenge (\(C_A\)). Bob replies with \(C_B\) and \(\text{enc}(K_{AB}, C_A)\).
-  
-  At this point, Mike does not know \(K_{AB}\) and cannot compute the response to the challenge. However, Mike opens a new connection with Bob, sending Alice's identity (\(A\)) again but, this time, sends the challenge sent from Bob (\(C_B\)). Bob replies again with another challenge (\(C_C\)) and \(\text{enc}(K_{AB}, C_B)\), which is the answer to the challenge of the 1st connection. Mike can finally provide the correct answer. 
-  
+
+  At this point, Mike does not know \(K_{AB}\) and cannot compute the response to the challenge. However, Mike opens a new connection with Bob, sending Alice's identity (\(A\)) again but, this time, sends the challenge sent from Bob (\(C_B\)). Bob replies again with another challenge (\(C_C\)) and \(\text{enc}(K_{AB}, C_B)\), which is the answer to the challenge of the 1st connection. Mike can finally provide the correct answer.
+
   \ul{Of course, this can be countered if there is a limit on connections}.
 \end{minipage}
 \hspace{0.05\textwidth}
@@ -523,3 +523,145 @@ passwords at the Verifier, which also offers \underline{channel binding} and \un
   \includegraphics[page = 31,trim = 2cm 2.2cm 2cm 4cm, clip, width = \linewidth]{\slides}
 \end{minipage}
 
+\ifthenelse{\boolean{showNew}}{
+  \subsubsection*{GSM (in)security}
+  In our discussion on improved authentication methods beyond basic passwords, we highlighted the effectiveness of the challenge-response approach with symmetric keys. To illustrate this concept in a real-world scenario, let's delve into GSM authentication and its relevance to security.
+
+
+  \textbf{GSM} (\textit{Global System for Mobile Communications}) has been designed violating the principle of security through obscurity and
+  relies on three confidential algorithms:
+  \begin{itemize}
+    \item A8, operating within the \underline{SIM} (Subscriber Identity Module), focuses on symmetric key generation, laying the foundation for secure connections.
+    \item A3, also embedded in the \underline{SIM}, handles authentication processes, providing a robust framework for verifying user identities.
+    \item Additionally, A5, a stream cipher implemented in the \underline{mobile device}, contributes to data encryption, safeguarding sensitive information during transmission.
+          \begin{itemize}
+            \item GSM's security approach introduces some level of secrecy through the implementation of A5/1 and A5/2, where A5/1 is the more commonly used variant and A5/2 is intentionally weakened in specific regions for surveillance purposes.
+            \item A5/3, based on the Kasumi block cipher, offers an alternative encryption method, but it's not widely used.
+          \end{itemize}
+  \end{itemize}
+
+  Implementing \textbf{security through obscurity}, as highlighted, is inherently problematic. This approach is not only detrimental in terms of the algorithm's efficacy but also raises concerns about the design process itself. The fact that a limited group of individuals crafted the process without seeking revisions, reviews, or insights from external experts resulted in a suboptimal design. This underlines the importance of inclusive and collaborative design practices for creating robust and effective security measures.
+
+  Furthermore, the discretion of Mobile Network Operators (MNOs) comes into play, allowing them to choose algorithms for A8, A3, and A5. Typically, A8 and A3 are constructed using the COMP128 secret function, involving the computation of \[Z = \text{COMP128}(X, Y)\]
+  with each variable being 128 bits.
+  A8 extracts the least significant 54 bits of Z to generate the connection key \[Kc = lsb( 54, Z )\]
+  while A3 utilizes the most significant 32 bits of Z to produce a "\textit{Signed RESponse}" \[SRES = msb( 32, Z )\]
+  actually this is not a digital signal because it is not using any public key.
+
+  \paragraph{GSM Security Overview}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[page = 34,trim = 3cm 3cm 3cm 4cm, clip, width = 0.50\textwidth]{\slides}
+    \caption{GMS authentication}
+  \end{figure}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[page = 35,trim = 3cm 3cm 3cm 4cm, clip, width = 0.50\textwidth]{\slides}
+    \caption{GMS encryption}
+  \end{figure}
+  In GSM authentication, a symmetric Challenge-Response Authentication (CRA) is employed to verify the identity of the Mobile Station (\textbf{MS}),such as a mobile phone, to the Base Station (\textbf{BS}) through its SIM.
+  The SIM holds an \textbf{individual subscriber authentication key} ($Ki$), a confidential 128-bit secret shared with the Authentication Centre (AC). \\
+  The process unfolds as the BS transmits a random 128-bit challenge ($C$) to the SIM, and in response, the SIM computes the 32-bit Signed Response (SRES) using the A3 algorithm with inputs $C$ and $Ki$:
+  \[\text{SRES} = A3( C, Ki )\]
+  This value is, in fact, a keyed digest, as it is computed based on a key.
+
+
+  However, a notable vulnerability arises with COMP128-1, which is identified as weak. Exploiting chosen-challenge and differential cryptanalysis techniques, a relatively modest number of challenges, around 150,000, are adequate to compute Ki. This weakness opens the door to potential security breaches, enabling actions such as SIM cloning, where an unauthorized party can replicate the SIM, sharing the same Ki.\\
+  Consequently, with the compromised Ki, the attacker gains the ability to decrypt the communication traffic by computing the Connection Key ($Kc$) for that specific Ki and the challenge ($C$) sent by the BS. This vulnerability highlights the importance of addressing weaknesses in authentication protocols to ensure the integrity of GSM security.
+}{}
+
+
+\subsection{Asymmetric CRA}
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 36,trim = 0.5cm 2.3cm 0.5cm 8cm, clip, width = 0.55\textwidth]{\slides}
+  \caption{Asymmetric CRA}
+\end{figure}
+It is also possible to employ an asymmetric challenge-response mechanism. In this scenario, the user does not transmit their identity directly but rather provides their X.509 certificate, which declares both their identity and public key (the claimant possesses the corresponding private key, $ID.PK$). The Verifier initiates the process by generating a challenge, employing a random nonce \(R\) encrypted with the public key. The claimant decrypts the challenge using their private key and returns the decrypted value to the Verifier. If the response matches the \(R\) value specified in the challenge, it confirms possession of the private key. The only necessary verification involves checking if a valid ID is registered in the Verifier's database.
+
+\paragraph*{Asymmetric CRA: analysis}
+Asymmetric Challenge-Response Authentication (CRA) is \ul{the strongest usable mechanism}, eliminating the need for storing any secrets at the Verifier. It is consistently implemented for \textit{peer authentication} (client and server) in protocols such as IPsec, SSH, and TLS. Additionally, it serves as a fundamental component for user authentication in a new authentication system named FIDO (Chapter \href{chap:fido}).
+% TODO: cross-reference FIDO
+
+However, it comes with certain downsides:
+\begin{itemize}
+  \item \textbf{Slowness}, stemming from the inherent sluggishness of asymmetric cryptography.
+  \item Inaccurate design may result in \textbf{unintentional signature creation by the Claimant}.
+        The Claimant, while receiving something, performs a computation with the private key.
+        This computation, used both for decryption and creating a signature, poses a risk of inadvertently signing a document. To mitigate this risk, the data provided as input for decryption on the claimant-side must follow a \underline{specific format}.
+  \item Public Key Infrastructure (\textbf{PKI}) \textbf{issues}, including concerns related to \textit{trusted roots}, \textit{name constraints}, and \textit{revocation}, since it relies on certificates. These issues can be avoided if the Verifier stores \(ID.PK\), however this strategy shifts the equivalent PKI effort to the Verifier.
+        This approach is adopted by SSH, wherein the public key is taken and made public on the server, despite with the significant risk of someone potentially altering the key stored on the server.
+\end{itemize}
+
+
+\subsection{One-time password (OTP)}
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 38,trim = 0.5cm 3cm 1cm 5cm, clip, width = 0.55\textwidth]{\slides}
+  \caption{One Time Password (OTP)}
+\end{figure}
+Instead of employing reusable passwords, users are assigned passwords that are valid for a single login session. When a claimant seeks access to the server, they respond by providing their userID. Subsequently, the server issues a request for a specific password from an extensive list, for instance, password number 48. If passwords $P49_{UID}$ and $P50_{UID}$ have already been utilized, the user transmits $P48_{UID}$ and marks it as used in the table.
+
+At this juncture, the server maintains a table containing user identifiers (UID) and the undisclosed secret ($S_{UID}$) that the user is unaware of.
+This secret is utilized for password generation. The Verifier, in turn, replicates the function used to generate the password to regenerate it and verifies if it aligns with the one transmitted by the user. This methodology renders passwords \textbf{immune to} potential \textbf{sniffing attacks}, as they can be transmitted in plaintext, knowing that the subsequent login will involve a different password.
+
+\paragraph*{Summary}
+\begin{itemize}
+  \item The password in this authentication protocol is \textbf{only valid for a single run}, necessitating a new password for each subsequent authentication session.
+  \item This characteristic makes it \textbf{immune to sniffing attacks}, as the intercepted password becomes obsolete after one use.
+  \item However, it is \textbf{subject to} Man-in-the-Middle (\textbf{MITM}) attacks when an entity assumes the role of the verifier. To mitigate this risk, Verifier authentication is essential.
+  \item Provisioning for subscribers involves managing a large number of passwords, leading to potential password exhaustion.
+  \item Additionally, \textbf{inserting passwords can be challenging} due to their typically random and complex nature, designed to prevent guessing attacks.
+\end{itemize}
+
+\subparagraph*{OTP provisioning to the users}
+For OTP provisioning to users, additional precautions may be necessary when the claimant operates on a device lacking computational capabilities or on an insecure/untrusted workstation. In such cases, physical safety measures can include:
+\begin{itemize}
+  \item A sheet of paper containing pre-computed passwords.
+  \item Hardware authenticator (crypto token): a device where passwords are stored or generated.
+\end{itemize}
+
+By contrast, when working on an intelligent and secure/trusted workstation, OTPs can be \textbf{automatically computed} by a dedicated application (commonly found in smartphones, tablets, laptops, etc.).
+
+
+\subsubsection{The S/KEY system}
+This was the first OTP definition and implementation by Bell Labs (1981).
+\begin{itemize}
+  \item The user generates a secret \(S_{ID}\).
+  \item Then the user autonomously computes \(N\) one-time passwords where \(P_1 = h(S_{ID})\), \(P_2 = h(P_1)\), ..., \(P_N = h(P_{N-1})\) (associated hash).
+  \item The Verifier stores the last one \(P_N\). This password will never be used directly for authentication but only indirectly.
+  \item When the user wants to access the server, the Verifier (which has \(P_N\)) asks for \(P_{N-1}\) and gets \(X\) from the user. Then the following check is performed:
+  % TODO: align them as with code
+  \begin{align*}
+    \text{if } (P_N \neq h(X)) \text{ then FAIL} \\
+    \text{else OK; store } X \text{ as } P_{N-1}
+  \end{align*}
+\end{itemize}
+
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 43,trim = .5cm 2.1cm .5cm 3.6cm, clip, width = 0.55\textwidth]{\slides}
+  \caption{The S/KEY System}
+\end{figure}
+
+
+The technique employed here involves the Verifier requesting passwords \textbf{in reverse order}. This approach allows the Verifier to operate without the need to possess knowledge of the user's secret, placing the responsibility on the user to be familiar with all passwords. This methodology is detailed in RFC-1760 and employs MD4 (although alternative options are possible). \(S/KEY\) serves as an illustration of an Off-line / Pre-computed OTP. 
+
+It is crucial to note that \textbf{MITM} (Man-in-the-Middle) \textbf{attacks are possible with OTP}. Consequently, \(S/KEY\) should be utilized in conjunction with \textbf{server authentication}.
+
+
+\paragraph{S/KEY - generation of the password list}
+The user inserts a passphrase (PP), which must be a minimum of 8 characters long and kept secret. If disclosed, the security of S/KEY is compromised. The passphrase is concatenated with a server-provided seed (sent in cleartext from S to C), allowing the use of the same passphrase for multiple servers (using different seeds). It is also possible to safely reuse the same passphrase by changing the seed.
+
+A 64-bit quantity is extracted from the MD4 hash, which generates a 128-bit result (by XORing the first/third 32-bit groups and the second/fourth groups).
+
+\paragraph{S/KEY - passwords}
+
+64-bit passwords are a compromise, but you have yet to enter them. Entering 64-bit as hexadecimal characters means 16 hexadecimal characters. So, normally they are entered as a sequence of six short English words chosen from a dictionary of 2048 (e.g., 0 = A, 1 = ABE, 2 = ACE, 3 = ACT, 4 = AD, 5 = ADA). It means selecting 11 bits from the computed hash and using a dictionary which has some simple words corresponding to the combinations (2048 in this case), \textbf{and the client and server must share the same dictionary}. For example:
+\begin{itemize}
+    \item Password (text): "YOU SING A NICE OLD SONG," but not because it is a password but because “YOU” is one of the words in the dictionary and it represents 11 bits. In total, there are 6 words, which means 66-bits (more than 64, so it is good).
+    \item Password (numeric): 1D6E5001884BD711 (hex) or 2,120,720,442,049,943,313 (decimal).
+\end{itemize}
+This is just an example of how to encode a long bit string in a user-friendly way. See Figure 39 for Password generation and verification using the S/KEY system.
