@@ -790,3 +790,40 @@ Ensuring that the subscriber is a human rather than a program can be achieved th
 \end{itemize}
 
 
+\subsubsection{Biometric systems}
+The main idea is to measure a biological characteristic of the user, such as fingerprint, voice, retinal scan, iris scan, hand's blood vein pattern, heart rate, and hand geometry.
+EHowever, it is important to note that each technique can potentially be circumvented. Moreover, biometrics is not replaceable, highlighting the necessity of implementing additional security measures to mitigate potential vulnerabilities. 
+Regardless of the chosen biometric solution, two parameters must be considered:
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 59,trim = 2.5cm 2.5cm 2.5cm 4cm, clip, width = 0.55\textwidth]{\slides}
+  \caption{FAR and FRR}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{FAR (False Acceptance Rate):} the rate at which the system incorrectly accepts a biometric signal as valid.
+    \item \textbf{FRR (False Rejection Rate):} the rate at which the system erroneously rejects a valid signal as if it were fake.
+\end{itemize}
+The two normal distributions refer to fingerprints that match (green) and those that do not. The two distributions overlap, necessitating the establishment of a threshold. Regardless of where the threshold is set, it is important to note that FAR and FRR cannot both be equal to zero.
+They may be partly tuned, but they heavily depend on the cost of the device. Moreover, some biological characteristics are variable; for example, the user can have a finger wound, the voice altered due to emotion, or retinal blood pattern altered due to alcohol or drugs.
+
+Other than technical challenges, there are also various non-technical issues:
+\begin{itemize}
+    \item \textbf{Psychological acceptance}:
+        \begin{itemize}
+            \item "Big Brother" syndrome, related to personal data collection.
+            \item Some technologies are intrusive and could be harmful; for example, retinal scans may not be suitable for everyone.
+        \end{itemize}
+    \item \textbf{Privacy concerns} arise since, at this point, it is not just a matter of authentication but of identification, making it irrepudiable.
+    \item Biometric features \textbf{cannot be changed} if copied. Unlike passwords, which can be changed if there is a fear of disclosure, a biometric authentication cannot. Therefore, it should not be sent across the network and can only be useful for locally replacing a PIN or a password.
+    \item \textbf{Lack of a standard API/SPI} leads to:
+        \begin{itemize}
+            \item High development costs.
+            \item Heavy dependence on single/few vendors.
+        \end{itemize}
+\end{itemize}
+
+
+\subsection{Kerberos (and SSO)}
+
