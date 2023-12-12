@@ -3,7 +3,7 @@
 \section{What is authentication}
 
 
-\subsection*{Definitions of authentication}
+\subsection{Definitions of authentication}
 There are three different definitions of \emph{authentication:}
 \begin{itemize}
   \item \textbf{RGC-4949 (Internet security glossary)}:\\
@@ -21,7 +21,7 @@ The key aspects of these definitions  are that they define the authentication of
 % Maybe add a cross-reference to "different but related", idk to what yet
 
 
-\subsection*{Authentication factors}
+\subsection{Authentication factors}
 While authenticating an \emph{actor}, there are three categories of \textbf{authentication factors} that can be used:
 \begin{itemize}
   \item \textbf{Knowledge}: authentication relies on something that \emph{only the user knows}, for example a static
@@ -76,7 +76,7 @@ While authenticating an \emph{actor}, there are three categories of \textbf{auth
         The relying party, which requests the actor to be authenticated, is the end application. The verifier may have communication with the CSP to validate the binding between the authenticator used in the authentication protocol and the credential claimed.
 \end{itemize}
 
-\subsubsection*{Recap}
+\subsubsection{Recap}
 \begin{itemize}
   \item \textbf{The credential binds an authenticator to the subscriber via an ID}:
         \begin{itemize}
@@ -171,7 +171,7 @@ Password-based authentication is usually convenient for the user, but only if th
 
 
 
-\subsubsection*{Password best practice}
+\subsubsection{Password best practice}
 \begin{itemize}
   \item Use a \textbf{mixture} of alphabetic characters (both uppercase and lowercase), digits, and special characters. Unfortunately, there are many systems that don't allow the use of special characters or impose limits on password length.
   \item Use a \textbf{long} password, preferably at least 8 characters in length.
@@ -180,15 +180,15 @@ Password-based authentication is usually convenient for the user, but only if th
   \item Whenever possible, \textbf{consider not using passwords}. However, this may be unavoidable unless biometric techniques are employed.
 \end{itemize}
 
-\subsubsection*{Storing passwords}
-\paragraph*{Storing passwords on the server-side}
+\subsubsection{Storing passwords}
+\paragraph{Storing passwords on the server-side}
 \begin{itemize}
   \item Never store passwords in cleartext.
   \item If the password is \textbf{encrypted}, the server must have access to the encryption key in cleartext, which can be a security concern. To enhance security, it's recommended to \textbf{store a password digest}. However, be cautious of dictionary attacks that can be expedited by techniques such as \textbf{rainbow tables}. To mitigate these types of attacks, you can introduce an unpredictable element known as a "\textbf{salt}".
 \end{itemize}
 
 
-\subsubsection*{Storing password on the client-side}
+\subsubsection{Storing password on the client-side}
 \begin{itemize}
   \item Should be only in user's head;
   \item If passwords are a lot, use an encrypted file or a password wallet;
@@ -197,7 +197,7 @@ Password-based authentication is usually convenient for the user, but only if th
         }{}
 \end{itemize}
 
-\subsubsection*{Storing passwords on the client-side}
+\subsubsection{Storing passwords on the client-side}
 \begin{itemize}
   \item Passwords should be memorized by the user.
   \item If there are numerous passwords to manage, consider using an encrypted file or a password wallet.
@@ -249,7 +249,7 @@ It is a function $r$ that takes a hash as input and creates one possible passwor
 
 For other informations, check \url{https://en.wikipedia.org/wiki/Rainbow_table}.
 
-\paragraph*{Pre-computation}
+\paragraph{Pre-computation}
 Then, the pre-computing is the following:
 
 \begin{figure}[h]
@@ -265,7 +265,7 @@ Then, the pre-computing is the following:
 \end{enumerate}
 
 
-\paragraph*{Attack}
+\paragraph{Attack}
 Then the attack rises in this way:
 \begin{figure}[h]
   \centering
@@ -311,7 +311,7 @@ because it is based on the idea that the attacker may know which is the password
 This makes the dictionary attacks nearly impossible (including those based on rainbow tables).
 
 
-\subsubsection*{Example: Passwords in Linux}
+\subsubsection{Example: Passwords in Linux}
 Originally stored in \texttt{/etc/passwd}, hashed with a DES-based
 hash function named \texttt{crypt()}.
 Since \texttt{/etc/passwd} needs to be world-readable (contains
@@ -342,7 +342,7 @@ Some algorithms have adjustable complexity (to counter brute-force attacks).
   (not relevant to LinkedIn!).
 \end{casehistory}
 
-\subsubsection*{Example: Passwords in MySQL}
+\subsubsection{Example: Passwords in MySQL}
 \textbf{MySQL} is a database where usernames and passwords are stored in the "user" table. MySQL (from v4.1) uses a \textbf{double hash (without salt!)} to store passwords:
 \[
   \texttt{SHA-1(SHA-1(password))}
@@ -432,7 +432,7 @@ associated with the Claimant.
 \end{minipage}
 
 
-\subsubsection*{General issues of CRA}
+\subsubsection{General issues of CRA}
 \begin{itemize}
   \item \textbf{The challenge must be non-repeatable to avoid replay attacks}. For this reason, usually, the challenge
         is a (random) nonce.
@@ -459,7 +459,7 @@ associated with the Claimant.
   verifier to verify the match.
 \end{minipage}
 
-\subsubsection*{General issues of Symmetric CRA}
+\subsubsection{General issues of Symmetric CRA}
 General issues with Symmetric CRA are:
 \begin{itemize}
   \item The easiest implementation uses a hash function (faster than encryption) such as SHA1 (deprecated),
@@ -507,7 +507,7 @@ passwords at the Verifier, which also offers \underline{channel binding} and \un
 
 
 
-\subsubsection*{Attack to the mutual symmetric CRA (v2)}
+\subsubsection{Attack to the mutual symmetric CRA (v2)}
 \vspace*{5mm}
 \noindent
 \begin{minipage}{0.4\textwidth}
@@ -524,7 +524,7 @@ passwords at the Verifier, which also offers \underline{channel binding} and \un
 \end{minipage}
 
 \ifthenelse{\boolean{showNew}}{
-  \subsubsection*{GSM (in)security}
+  \subsubsection{GSM (in)security}
   In our discussion on improved authentication methods beyond basic passwords, we highlighted the effectiveness of the challenge-response approach with symmetric keys. To illustrate this concept in a real-world scenario, let's delve into GSM authentication and its relevance to security.
 
 
@@ -579,7 +579,7 @@ passwords at the Verifier, which also offers \underline{channel binding} and \un
 \end{figure}
 It is also possible to employ an asymmetric challenge-response mechanism. In this scenario, the user does not transmit their identity directly but rather provides their X.509 certificate, which declares both their identity and public key (the claimant possesses the corresponding private key, $ID.PK$). The Verifier initiates the process by generating a challenge, employing a random nonce \(R\) encrypted with the public key. The claimant decrypts the challenge using their private key and returns the decrypted value to the Verifier. If the response matches the \(R\) value specified in the challenge, it confirms possession of the private key. The only necessary verification involves checking if a valid ID is registered in the Verifier's database.
 
-\paragraph*{Asymmetric CRA: analysis}
+\paragraph{Asymmetric CRA: analysis}
 Asymmetric Challenge-Response Authentication (CRA) is \ul{the strongest usable mechanism}, eliminating the need for storing any secrets at the Verifier. It is consistently implemented for \textit{peer authentication} (client and server) in protocols such as IPsec, SSH, and TLS. Additionally, it serves as a fundamental component for user authentication in a new authentication system named FIDO (Chapter \href{chap:fido}).
 % TODO: cross-reference FIDO
 
@@ -605,7 +605,7 @@ Instead of employing reusable passwords, users are assigned passwords that are v
 At this juncture, the server maintains a table containing user identifiers (UID) and the undisclosed secret ($S_{UID}$) that the user is unaware of.
 This secret is utilized for password generation. The Verifier, in turn, replicates the function used to generate the password to regenerate it and verifies if it aligns with the one transmitted by the user. This methodology renders passwords \textbf{immune to} potential \textbf{sniffing attacks}, as they can be transmitted in plaintext, knowing that the subsequent login will involve a different password.
 
-\paragraph*{Summary}
+\paragraph{Summary}
 \begin{itemize}
   \item The password in this authentication protocol is \textbf{only valid for a single run}, necessitating a new password for each subsequent authentication session.
   \item This characteristic makes it \textbf{immune to sniffing attacks}, as the intercepted password becomes obsolete after one use.
@@ -614,7 +614,7 @@ This secret is utilized for password generation. The Verifier, in turn, replicat
   \item Additionally, \textbf{inserting passwords can be challenging} due to their typically random and complex nature, designed to prevent guessing attacks.
 \end{itemize}
 
-\subparagraph*{OTP provisioning to the users}
+\subparagraph{OTP provisioning to the users}
 For OTP provisioning to users, additional precautions may be necessary when the claimant operates on a device lacking computational capabilities or on an insecure/untrusted workstation. In such cases, physical safety measures can include:
 \begin{itemize}
   \item A sheet of paper containing pre-computed passwords.
@@ -690,7 +690,7 @@ This system is \textbf{susceptible to time-based attacks} against both subscribe
 
 Since the Verifier stores the secret for each user, it must manage a highly sensitive database. In the event of a security breach where the database is compromised, the attacker gains the ability to impersonate users and compute the passwords for any user. An incident of this nature occurred in an attack against a TOTP system named \textit{RSA SecurID}.
 
-\paragraph*{A TOTP example: RSA SecurID}
+\paragraph{A TOTP example: RSA SecurID}
 In this system, the Claimant sends the triple \{\textit{user},\textit{PIN}, \textit{tokencode(seed, time)}\} in clear to the Verifier. 
 As \textit{RSA SecurID} is a physical device continuously displaying the correct password, if someone other than the subscriber reads and uses it, an attacker could gain access with the subscriber's identity. This emphasizes the need for an additional authentication factor. Therefore, one factor is "\textit{owning the device}" while the other is "\textit{knowing the (reusable) password}".
 
@@ -705,7 +705,7 @@ Based on the user and PIN, the Verifier checks against three possible token code
 Moreover, each device is associated with \underline{two PINs}: the first one is the one used normally for \underline{authentication}, while the second is called \underline{duress code}, and it is used to generate an alarm when the subscriber is under attack (for example, when the user is forced by a criminal to authenticate).
 
 
-\subparagraph*{SecurID: architecture}
+\subparagraph{SecurID: architecture}
 \begin{figure}[h]
   \centering
   \includegraphics[page = 50,trim = .5cm 2.2cm .5cm 4cm, clip, width = 0.55\textwidth]{\slides}
@@ -755,9 +755,38 @@ The solutions illustrated so far require the user to receive something: a list o
 In the schema depicted in the figure, the user is provided with a secret key, which is a \textit{reusable password}. During authentication, the user sends the user ID and the reusable password, necessary for clear user identification. Although reusable passwords may not be very robust, the verifier can ensure the user's authenticity through the third step: it looks up the registered phone number in its database. Subsequently, the verifier generates an OTP and sends it (out of band) to the user's cell phone, typically via SMS (step four). This process is considered out of band because the OTP transmission uses a different medium than the communication between the server and the user. Finally, in step five, the user provides the OTP just received.
 
 % TODO: is this good practice?
-\paragraph*{}
+\paragraph{}
 This is a widely used system by many banks and identity providers, such as those involved in SPID. This system also reduces the burden on the user, who does not need to have a modern smartphone but just a minimal device to receive the message: the OTP is generated by the server only when needed and then sent in a trusted way to the user. However, be aware that at step five, a secure channel with server authentication is needed to avoid MITM attacks. The Out-of-Band (OOB) channel is frequently a text via SMS message. Since most mobile networks are nowadays implemented with VoIP, mobile user identification, and SS7 protocol (which are quite insecure), NIST suggests using the Push mechanism over a TLS channel to the registered subscriber device. This is done by putting the message inside a notification, the confirmation of which is made by inserting the user's fingerprint.
 
 
 \subsubsection{Two-/Multi- Factors AuthN (2FA/MFA)}
-It has already been pointed out that, if we want to provide strong authentication, more than one factor should be used. This is also named 2FA, or more generally, MFA. MFA is used both to increase authentication strength and to protect the physical authenticator, as seen with OTP. Usually, a PIN is used for authenticator protection.
+It has already been pointed out that, if we want to provide strong authentication, more than one factor should be used. This is also named \textbf{2FA}, or more generally, \textbf{MFA}. MFA is used both to increase authentication strength and to protect the physical authenticator, as seen with OTP. Usually, a \textbf{PIN} is used for authenticator protection.
+\begin{itemize}
+  \item \textbf{PIN transmitted along with OTP:} As seen, the possible problem is that it can be sniffed when entered or transmitted across the network.
+  \item \textbf{PIN entered to compute the OTP itself:} Like in RSA SecurID.
+  \item \textbf{PIN (or inherence factor) used to unlock the authenticator,} which is very risky if:
+  \begin{itemize}
+      \item No protection from \textbf{multiple unlock attempts}.
+      \item \textbf{The lock mechanism} is weak, for example, the fingerprint sensor is not strong enough to recognize only the device owner's fingerprint.
+      \item \textbf{Unlocking is valid for a time window}: if someone has access to the authenticator in the time window in which it is unlocked, then they can use the user identity.
+  \end{itemize}
+\end{itemize}
+
+\subparagraph{Importance of MFA: the Iphone ransomware}
+In May 2014, a security incident occurred involving iCloud accounts with single-factor authentication, resulting in unauthorized access. 
+The attackers employed a "remote lock" feature through the "Find My Device" functionality. Users of affected devices, such as iPhones and iPads, received a menacing message indicating the breach: "\textit{Device hacked by Oleg Pliss!}" 
+The attackers demanded a payment of 100 USD/EUR via a specified PayPal account (lock404(at)hotmail.com) for the restoration of control. 
+
+Alternatively, users were informed of the option to use "recovery mode," although this came at the cost of losing all device data and applications. It's crucial to note that even complying with the payment demand did not guarantee a resolution, as the attackers provided a fake PayPal account.
+This incident highlighted the vulnerabilities associated with single-factor authentication and emphasized the importance of robust security measures in safeguarding user accounts.\\
+\href{http://thehackernews.com/2014/05/apple-devices-hacked-by-oleg-pliss-held.html}{More info here.}
+
+\subsection{Authentication of human beings}
+Ensuring that the subscriber is a human rather than a program can be achieved through two solutions:
+\begin{itemize}
+    \item \textbf{CAPTCHA} techniques (\textit{Completely Automated Public Turing test to tell Computers and Humans
+    Apart}): for example, a picture with images of distorted characters;
+    \item \textbf{Biometric} techniques: for example, fingerprints.
+\end{itemize}
+
+
