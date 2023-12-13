@@ -824,6 +824,41 @@ Other than technical challenges, there are also various non-technical issues:
         \end{itemize}
 \end{itemize}
 
-
+%\ifthenelse{\boolean{showNew}}{
 \subsection{Kerberos (and SSO)}
 
+Kerberos, named after the three-headed dog from Greek mythology that guarded the entrance to the underworld, is an authentication system based on a \textit{Trusted Third Party} (\textbf{TTP}). 
+Originally developed as part of the MIT project Athena, Kerberos holds significance beyond the realm of HTTP-based services. 
+
+One of its distinguishing features is its innovative approach to user password management; rather than transmitting passwords across the network, Kerberos utilizes them \underline{only locally}, as \textbf{symmetric cryptographic keys}. 
+In the Kerberos framework, there are two important concepts:
+\begin{itemize}
+  \item the term "\textbf{realm}" denotes the Kerberos domain, which represents the collection of systems employing Kerberos as their authentication system.
+  \item Additionally, a \textbf{credential} within Kerberos is identified as \texttt{user.instance@realm}, resembling an email address but specific to the Kerberos domain. This structure attaches to each user the role that the user is assuming at this moment for a given operation.
+\end{itemize}
+
+
+\paragraph{Ticket}
+Kerberos employs a data structure known as a \underline{ticket} for client authentication to servers. These tickets possess a \textbf{variable lifetime}. In the earlier Version 4, the maximum duration was restricted to 21 hours, structured around five-minute time slots, totaling 255. However, in the more recent Version 5, the validity period is explicitly defined, allowing tickets to be valid for an extended duration, even years. Despite being potentially unlimited, it is recommended to opt for shorter duration tickets to mitigate potential security risks associated with prolonged authentication privileges.
+
+One notable characteristic of Kerberos tickets is their encryption with the \textbf{symmetric key of the target server}. This encryption ensures that the ticket remains secure and can only be decrypted at the destination server, adding an extra layer of protection to the authentication process.
+
+In the initial Kerberos \textit{Version 4}, \textbf{tickets were bound to the IP address of the client}, serving as an identifier for accessing a specific server. However, recognizing the vulnerability of IP addresses to spoofing, this association with IP addresses was eliminated in Version 5, enhancing the robustness of the Kerberos authentication system.
+
+It's essential to highlight that each ticket is uniquely tied to a single credential. If a user possesses multiple credentials, they must obtain distinct tickets for each credential. While the primary purpose of tickets is to facilitate client authentication, Kerberos also offers the optional feature of server authentication using these tickets.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 63,trim = 1cm 2.5cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+  \caption{Kerberos High-level view}
+\end{figure}
+
+
+\paragraph*{High-level view}
+At a high level, Kerberos operates as a comprehensive authentication system within a network. In this intricate network, various actors come into play, including the client, which represents the user's workstation eager to establish a connection with the system. Alongside numerous clients, there exist distinct servers such as application servers, a database server, a web server, a print server, and a disk server, each serving a specific purpose within the network infrastructure. The primary objective is to employ Kerberos for robust authentication across this diverse set of servers.
+
+The Kerberos framework comprises two pivotal servers: the Authentication Server and the Ticket Granting Server (TGS). The Authentication Server holds a database of utmost importance as it contains the keys representing user passwords. This database, though critical, poses a security risk due to the clear storage of user passwords. Furthermore, the Authentication Server manages the key associated with the TGS. On the TGS, there exists another vital database, listing keys corresponding to each application server in the network. This intricate setup ensures the secure handling of authentication requests.
+
+Consider the scenario where a client, stationed at their workstation, expresses the desire to utilize Kerberos for authentication. The client initiates the process by requesting a ticket, signaling the intent to access servers within the Kerberos realm. The critical element provided is the Ticket Granting Ticket (TGT), denoted by brace notation to signify encryption. This encrypted data is handed to the client with the destination being the TGS. While the client cannot decrypt it, the TGS will utilize this encrypted information to confirm the client's authenticity.
+
+Now, focusing on the client's perspective, the received ticket is akin to an envelope encrypted with the user's password. While the client can locally decrypt the password and access the contents, the ticket remains encrypted for the TGS. This encryption strategy prevents unauthorized entities from exploiting potential replay attacks. In other words, even if an eavesdropper copies the encrypted ticket, a replay attack is rendered impossible due to inherent security measures within the Kerberos protocol. This emphasis on security ensures the robustness of the system, preventing unauthorized access attempts and safeguarding the integrity of the authentication process.
