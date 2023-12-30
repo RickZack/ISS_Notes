@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg:svg version="1.1" width="644.71234" height="680" id="svg2" inkscape:version="1.1 (c68e22c387, 2021-05-23)" sodipodi:docname="Kerberos Protocol.svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <svg:title id="title7318">Kerberos Protocol</svg:title>
+  <sodipodi:namedview inkscape:snap-grids="true" inkscape:snap-to-guides="true" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="1920" inkscape:window-height="1137" id="namedview4559" showgrid="false" fit-margin-top="10" fit-margin-left="10" fit-margin-right="10" fit-margin-bottom="10" inkscape:zoom="1.1136289" inkscape:cx="189.02167" inkscape:cy="349.75745" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:window-maximized="1" inkscape:current-layer="g69476" showguides="true" inkscape:guide-bbox="true" inkscape:document-rotation="0" inkscape:pagecheckerboard="0">
+    <sodipodi:guide orientation="1,0" position="170.48603,570.46987" id="guide4582" inkscape:locked="false"/>
+    <sodipodi:guide orientation="1,0" position="406.34112,433.09609" id="guide4584" inkscape:locked="false"/>
+  </sodipodi:namedview>
+  <svg:defs id="defs4">
+    <svg:linearGradient x1="-0.089875847" y1="845.68494" x2="-0.089875847" y2="852.12524" id="grad29-256" gradientUnits="userSpaceOnUse" gradientTransform="scale(1.4311811,0.69872358)">
+      <svg:stop id="stop4366" style="stop-color:#ffcc00;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4368" style="stop-color:#ffffff;stop-opacity:1" offset="0.5"/>
+      <svg:stop id="stop4370" style="stop-color:#ffcc00;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="-0.042570479" y1="1698.0981" x2="-0.042570479" y2="1708.9767" id="grad29-252" gradientUnits="userSpaceOnUse" gradientTransform="scale(2.8703001,0.34839562)">
+      <svg:stop id="stop4359" style="stop-color:#a7a7a7;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4361" style="stop-color:#ffffff;stop-opacity:1" offset="0.5"/>
+      <svg:stop id="stop4363" style="stop-color:#a7a7a7;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="1" y1="0" x2="0" y2="0" id="grad27-233">
+      <svg:stop id="stop4354" style="stop-color:#fafafa;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4356" style="stop-color:#339966;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="0" y1="1" x2="0" y2="0" id="grad30-232">
+      <svg:stop id="stop4349" style="stop-color:#fafafa;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4351" style="stop-color:#339966;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:pattern id="grad34-231" x="0" y="0" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <svg:path d="M 0 0 L 1 0 L 1 1 z" style="fill:url(#grad30-232)" id="path4344"/>
+      <svg:path d="M 0 0 L 0 1 L 1 1 z" style="fill:url(#grad27-233)" id="path4346"/>
+    </svg:pattern>
+    <svg:linearGradient x1="0" y1="0" x2="0" y2="1" id="grad28-113">
+      <svg:stop id="stop4339" style="stop-color:#000000;stop-opacity:0.40000001" offset="0"/>
+      <svg:stop id="stop4341" style="stop-color:#e7e4cd;stop-opacity:0.40000001" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="0" y1="1" x2="0" y2="0" id="grad30-112">
+      <svg:stop id="stop4334" style="stop-color:#000000;stop-opacity:0.40000001" offset="0"/>
+      <svg:stop id="stop4336" style="stop-color:#e7e4cd;stop-opacity:0.40000001" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="0" y1="0" x2="1" y2="0" id="grad25-111">
+      <svg:stop id="stop4329" style="stop-color:#000000;stop-opacity:0.40000001" offset="0"/>
+      <svg:stop id="stop4331" style="stop-color:#e7e4cd;stop-opacity:0.40000001" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="1" y1="0" x2="0" y2="0" id="grad27-110">
+      <svg:stop id="stop4324" style="stop-color:#000000;stop-opacity:0.40000001" offset="0"/>
+      <svg:stop id="stop4326" style="stop-color:#e7e4cd;stop-opacity:0.40000001" offset="1"/>
+    </svg:linearGradient>
+    <svg:pattern id="grad35-109" x="0" y="0" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <svg:path d="M 0.5 0.5 L 0 0 L 0 1 z" style="fill:url(#grad27-110)" id="path4315"/>
+      <svg:path d="M 0.5 0.5 L 1 0 L 1 1 z" style="fill:url(#grad25-111)" id="path4317"/>
+      <svg:path d="M 0.5 0.5 L 0 0 L 1 0 z" style="fill:url(#grad30-112)" id="path4319"/>
+      <svg:path d="M 0.5 0.5 L 0 1 L 1 1 z" style="fill:url(#grad28-113)" id="path4321"/>
+    </svg:pattern>
+    <svg:linearGradient x1="1" y1="0" x2="0" y2="0" id="grad27-105">
+      <svg:stop id="stop4310" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4312" style="stop-color:#e7e4cd;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:pattern id="grad34-104" x="0" y="0" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <svg:path d="M 0 0 L 1 0 L 1 1 z" style="fill:url(#grad30-94)" id="path4305"/>
+      <svg:path d="M 0 0 L 0 1 L 1 1 z" style="fill:url(#grad27-105)" id="path4307"/>
+    </svg:pattern>
+    <svg:linearGradient x1="0" y1="1" x2="0" y2="0" id="grad30-94">
+      <svg:stop id="stop4300" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4302" style="stop-color:#e7e4cd;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="0" y1="0" x2="1" y2="0" id="grad25-90">
+      <svg:stop id="stop4295" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4297" style="stop-color:#339966;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="0" y1="0" x2="0" y2="1" id="grad28-89">
+      <svg:stop id="stop4290" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4292" style="stop-color:#339966;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:pattern id="grad31-88" x="0" y="0" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <svg:path d="M 0 0 L 0 1 L 1 1 z" style="fill:url(#grad28-89)" id="path4285"/>
+      <svg:path d="M 0 0 L 1 0 L 1 1 z" style="fill:url(#grad25-90)" id="path4287"/>
+    </svg:pattern>
+    <svg:linearGradient x1="0" y1="0" x2="1" y2="0" id="grad25-81">
+      <svg:stop id="stop4280" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4282" style="stop-color:#b6a06d;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="0" y1="0" x2="0" y2="1" id="grad28-80">
+      <svg:stop id="stop4275" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4277" style="stop-color:#b6a06d;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:pattern id="grad31-79" x="0" y="0" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <svg:path d="M 0 0 L 0 1 L 1 1 z" style="fill:url(#grad28-80)" id="path4270"/>
+      <svg:path d="M 0 0 L 1 0 L 1 1 z" style="fill:url(#grad25-81)" id="path4272"/>
+    </svg:pattern>
+    <svg:linearGradient x1="0" y1="0" x2="0" y2="1" id="grad28-74">
+      <svg:stop id="stop4265" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4267" style="stop-color:#c9ba96;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="1" y1="0" x2="0" y2="0" id="grad27-73">
+      <svg:stop id="stop4260" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4262" style="stop-color:#c9ba96;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:pattern id="grad32-72" x="0" y="0" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <svg:path d="M 0 1 L 0 0 L 1 0 z" style="fill:url(#grad27-73)" id="path4255"/>
+      <svg:path d="M 0 1 L 1 1 L 1 0 z" style="fill:url(#grad28-74)" id="path4257"/>
+    </svg:pattern>
+    <svg:linearGradient x1="0" y1="1" x2="0" y2="0" id="grad30-67">
+      <svg:stop id="stop4250" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4252" style="stop-color:#e1d8c1;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="0" y1="0" x2="0" y2="1" id="grad28-60">
+      <svg:stop id="stop4245" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4247" style="stop-color:#c6d1e3;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="0" y1="1" x2="0" y2="0" id="grad30-59">
+      <svg:stop id="stop4240" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4242" style="stop-color:#c6d1e3;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="0" y1="0" x2="1" y2="0" id="grad25-58">
+      <svg:stop id="stop4235" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4237" style="stop-color:#c6d1e3;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="1" y1="0" x2="0" y2="0" id="grad27-57">
+      <svg:stop id="stop4230" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4232" style="stop-color:#c6d1e3;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:pattern id="grad35-56" x="0" y="0" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <svg:path d="M 0.5 0.5 L 0 0 L 0 1 z" style="fill:url(#grad27-57)" id="path4221"/>
+      <svg:path d="M 0.5 0.5 L 1 0 L 1 1 z" style="fill:url(#grad25-58)" id="path4223"/>
+      <svg:path d="M 0.5 0.5 L 0 0 L 1 0 z" style="fill:url(#grad30-59)" id="path4225"/>
+      <svg:path d="M 0.5 0.5 L 0 1 L 1 1 z" style="fill:url(#grad28-60)" id="path4227"/>
+    </svg:pattern>
+    <svg:linearGradient x1="0" y1="0" x2="0" y2="1" id="grad28-19">
+      <svg:stop id="stop4216" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4218" style="stop-color:#c0c0c0;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="1" y1="0" x2="0" y2="0" id="grad27-18">
+      <svg:stop id="stop4211" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4213" style="stop-color:#c0c0c0;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:pattern id="grad32-17" x="0" y="0" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <svg:path d="M 0 1 L 0 0 L 1 0 z" style="fill:url(#grad27-18)" id="path4206"/>
+      <svg:path d="M 0 1 L 1 1 L 1 0 z" style="fill:url(#grad28-19)" id="path4208"/>
+    </svg:pattern>
+    <svg:linearGradient x1="0" y1="1" x2="0" y2="0" id="grad30-13">
+      <svg:stop id="stop4201" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4203" style="stop-color:#dfdfdf;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="0" y1="0" x2="1" y2="0" id="grad25-9">
+      <svg:stop id="stop4196" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4198" style="stop-color:#a7a7a7;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:linearGradient x1="0" y1="0" x2="0" y2="1" id="grad28-8">
+      <svg:stop id="stop4191" style="stop-color:#ffffff;stop-opacity:1" offset="0"/>
+      <svg:stop id="stop4193" style="stop-color:#a7a7a7;stop-opacity:1" offset="1"/>
+    </svg:linearGradient>
+    <svg:pattern id="grad31-7" x="0" y="0" width="1" height="1" patternContentUnits="objectBoundingBox">
+      <svg:path d="M 0 0 L 0 1 L 1 1 z" style="fill:url(#grad28-8)" id="path4186"/>
+      <svg:path d="M 0 0 L 1 0 L 1 1 z" style="fill:url(#grad25-9)" id="path4188"/>
+    </svg:pattern>
+    <svg:linearGradient x1="-0.28313592" y1="757.34088" x2="-0.28313592" y2="725.56677" id="linearGradient5627" xlink:href="#grad30-13" gradientUnits="userSpaceOnUse" gradientTransform="scale(1.2714742,0.78648862)"/>
+    <svg:linearGradient x1="-0.27307731" y1="785.237" x2="-0.27307731" y2="749.7218" id="linearGradient5629" xlink:href="#grad30-13" gradientUnits="userSpaceOnUse" gradientTransform="scale(1.3183081,0.75854804)"/>
+    <svg:linearGradient x1="-0.2529422" y1="847.74475" x2="-0.2529422" y2="814.44067" id="linearGradient5631" xlink:href="#grad30-13" gradientUnits="userSpaceOnUse" gradientTransform="scale(1.4232502,0.70261717)"/>
+    <svg:linearGradient x1="0" y1="807.30621" x2="0" y2="769.68579" id="linearGradient5633" xlink:href="#grad30-67" gradientUnits="userSpaceOnUse" gradientTransform="scale(1.3561789,0.73736582)"/>
+    <svg:linearGradient x1="0" y1="807.30621" x2="0" y2="769.68579" id="linearGradient5635" xlink:href="#grad30-67" gradientUnits="userSpaceOnUse" gradientTransform="scale(1.3561789,0.73736582)"/>
+    <svg:linearGradient x1="0" y1="807.30621" x2="0" y2="769.68579" id="linearGradient5637" xlink:href="#grad30-67" gradientUnits="userSpaceOnUse" gradientTransform="scale(1.3561789,0.73736582)"/>
+    <svg:linearGradient x1="-0.090327933" y1="790.98456" x2="-0.090327933" y2="774.25879" id="linearGradient5639" xlink:href="#grad30-13" gradientUnits="userSpaceOnUse" gradientTransform="scale(1.3284927,0.75273279)"/>
+    <svg:linearGradient x1="-0.042570479" y1="1698.0981" x2="-0.042570479" y2="1708.9767" id="linearGradient5641" xlink:href="#grad29-252" gradientUnits="userSpaceOnUse" gradientTransform="scale(2.8703001,0.34839562)"/>
+    <svg:linearGradient x1="-0.089875847" y1="845.68494" x2="-0.089875847" y2="852.12524" id="linearGradient5643" xlink:href="#grad29-256" gradientUnits="userSpaceOnUse" gradientTransform="scale(1.4311811,0.69872358)"/>
+  </svg:defs>
+  <svg:metadata id="metadata7">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title>Kerberos Protocol</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Jeran Renz</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:date>26-feb-2012</dc:date>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/4.0/"/>
+        <dc:language>en</dc:language>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Kerberos</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:description>Kerberos Protocol</dc:description>
+        <dc:contributor>
+          <cc:Agent>
+            <dc:title>Jeran Renz, Naloj</dc:title>
+          </cc:Agent>
+        </dc:contributor>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/by-sa/4.0/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:requires rdf:resource="http://creativecommons.org/ns#Notice"/>
+        <cc:requires rdf:resource="http://creativecommons.org/ns#Attribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+        <cc:requires rdf:resource="http://creativecommons.org/ns#ShareAlike"/>
+      </cc:License>
+    </rdf:RDF>
+  </svg:metadata>
+  <svg:g id="layer1" transform="translate(1.675057,-61.993324)">
+    <svg:g transform="matrix(1.2499982,0,0,1.2499982,36.214288,-505.66641)" id="group29-3" style="font-size:12px;fill:none;stroke-linecap:square;stroke-miterlimit:3">
+      <svg:title id="title4382">Feuille.29</svg:title>
+      <svg:g transform="translate(27.0622)" id="shape3-4">
+        <svg:title id="title4385">Feuille.3</svg:title>
+        <svg:path d="m 0,595.28 v -3.21 l 12.61,-8.34 v 4.16 z" id="path4387" style="fill:url(#grad31-7);stroke:#ffffff;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(0,-3.20229)" id="shape4-10">
+        <svg:title id="title4390">Feuille.4</svg:title>
+        <svg:path d="m 0,579.55 12.16,-8.54 27.52,15.93 -12.62,8.34 z" id="path4392" style="fill:url(#linearGradient5627);stroke:#ffffff;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g id="shape11-14">
+        <svg:title id="title4395">Feuille.11</svg:title>
+        <svg:path d="m 0,576.35 27.06,15.72 v 3.21 L 0,579.58 Z" id="path4397" style="fill:url(#grad32-17);stroke:#000000;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(2.94717,-4.84819)" id="group12-20">
+        <svg:title id="title4400">Feuille.12</svg:title>
+        <svg:g transform="translate(0,-0.472502)" id="shape13-21">
+          <svg:title id="title4403">Feuille.13</svg:title>
+          <svg:path d="m 0,580.77 1.98,1.18 1.66,-1.08 -1.99,-1.18 z m 2.46,-1.65 1.98,1.18 1.65,-1.09 -1.98,-1.18 z m 2.45,-1.66 1.99,1.19 1.65,-1.09 -1.98,-1.18 z m 2.46,-1.65 1.98,1.18 1.66,-1.08 -1.99,-1.19 z m 3.69,2.22 1.98,1.18 1.65,-1.08 -1.98,-1.19 z m 3.68,2.22 1.98,1.18 1.66,-1.08 -1.99,-1.19 z m 3.69,2.22 1.98,1.18 1.65,-1.08 -1.98,-1.18 z m 7.37,4.44 1.98,1.18 1.65,-1.08 -1.98,-1.18 z m 3.68,2.22 1.98,1.18 1.66,-1.08 -1.99,-1.18 z m -2.46,1.66 1.99,1.18 1.65,-1.09 -1.98,-1.18 z m -3.68,-2.22 1.98,1.18 1.66,-1.09 -1.99,-1.18 z m -1.23,-3.88 1.98,1.18 1.66,-1.08 -1.99,-1.18 z m -2.46,1.66 1.99,1.18 1.65,-1.09 -1.98,-1.18 z m -3.68,-2.22 1.98,1.18 1.66,-1.09 -1.99,-1.18 z m -3.69,-2.22 1.99,1.18 1.65,-1.09 -1.98,-1.18 z m -3.68,-2.22 1.98,1.18 1.66,-1.09 -1.99,-1.18 z m -2.46,1.65 1.99,1.18 1.65,-1.09 -1.98,-1.18 z m 3.69,2.22 1.98,1.18 1.65,-1.09 -1.98,-1.18 z m 3.68,2.22 1.99,1.18 1.65,-1.09 -1.98,-1.18 z m 3.69,2.22 1.98,1.18 1.65,-1.09 -1.98,-1.18 z m 3.68,2.22 1.99,1.18 1.65,-1.09 -1.98,-1.18 z m 3.69,2.22 1.98,1.18 1.65,-1.08 -1.98,-1.19 z m -2.46,1.65 1.98,1.19 1.66,-1.09 -1.99,-1.18 z m -3.68,-2.22 1.98,1.19 1.65,-1.09 -1.98,-1.18 z m -11.06,-6.66 9.35,5.62 1.66,-1.08 -9.36,-5.62 z m -3.68,-2.22 1.98,1.18 1.65,-1.08 -1.98,-1.18 z" id="path4405" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(7.79402e-4)" id="shape14-23">
+          <svg:title id="title4408">Feuille.14</svg:title>
+          <svg:path d="m 7.37,575.81 1.99,1.18 v -0.47 l -1.99,-1.18 z m 3.69,2.22 1.98,1.18 v -0.47 l -1.98,-1.18 z m 3.68,2.22 1.98,1.18 v -0.47 l -1.98,-1.18 z m 3.69,2.22 1.98,1.18 v -0.47 L 18.43,582 Z m 3.68,2.22 1.98,1.18 v -0.47 l -1.98,-1.18 z m 3.69,2.22 1.98,1.18 v -0.47 l -1.99,-1.18 z M 9.35,576.52 v 0.47 l 1.66,-1.09 v -0.47 z m 3.69,2.22 v 0.47 l 1.65,-1.09 v -0.47 z m 3.68,2.22 v 0.47 l 1.66,-1.09 v -0.47 z m 3.69,2.22 v 0.47 l 1.65,-1.08 v -0.48 z m 3.68,2.22 v 0.47 l 1.66,-1.08 v -0.48 z m 3.69,2.22 v 0.47 l 1.65,-1.08 v -0.48 z m 1.7,1.51 1.98,1.18 v -0.47 l -1.98,-1.18 z m 1.98,0.71 v 0.47 l 1.66,-1.08 v -0.47 z M 4.91,577.46 6.9,578.65 v -0.48 l -1.99,-1.18 z m 3.69,2.22 1.98,1.19 v -0.48 L 8.6,579.21 Z m 3.68,2.22 1.99,1.19 v -0.48 l -1.99,-1.18 z m 3.69,2.23 1.98,1.18 v -0.48 l -1.98,-1.18 z m 3.68,2.22 1.99,1.18 v -0.48 l -1.99,-1.18 z m 3.69,2.22 1.98,1.18 v -0.47 l -1.98,-1.19 z M 6.9,578.17 v 0.47 l 1.65,-1.08 v -0.47 z m 3.68,2.22 v 0.47 l 1.66,-1.08 v -0.47 z m 3.69,2.22 v 0.48 L 15.92,582 v -0.47 z m 3.68,2.22 v 0.48 l 1.66,-1.09 v -0.47 z m 3.69,2.22 v 0.48 l 1.65,-1.09 v -0.47 z m 3.68,2.22 v 0.48 l 1.66,-1.09 v -0.47 z m 1.7,1.52 1.99,1.18 v -0.47 l -1.99,-1.19 z m 1.99,0.71 v 0.47 l 1.65,-1.09 v -0.47 z M 2.46,579.12 4.44,580.3 v -0.47 l -1.98,-1.19 z m 3.68,2.22 1.99,1.18 v -0.47 l -1.99,-1.18 z m 3.69,2.22 1.98,1.18 v -0.47 l -1.98,-1.18 z m 3.68,2.22 1.99,1.18 v -0.47 l -1.99,-1.18 z m 3.69,2.22 1.98,1.18 v -0.47 l -1.98,-1.18 z m 3.68,2.22 1.99,1.18 v -0.47 l -1.99,-1.18 z M 4.44,579.83 v 0.47 l 1.65,-1.09 v -0.47 z m 3.69,2.22 v 0.47 l 1.65,-1.09 v -0.47 z m 3.68,2.22 v 0.47 l 1.65,-1.09 v -0.47 z m 3.69,2.22 v 0.47 l 1.65,-1.09 v -0.47 z m 3.68,2.22 v 0.47 l 1.65,-1.09 v -0.47 z m 3.69,2.22 v 0.47 l 1.65,-1.09 v -0.47 z m 1.7,1.51 1.98,1.18 v -0.47 l -1.98,-1.18 z m 1.98,0.71 v 0.47 l 1.65,-1.08 v -0.48 z M 0,580.77 l 1.98,1.18 v -0.47 L 0,580.3 Z m 3.69,2.22 1.98,1.18 v -0.47 l -1.99,-1.18 z m 3.68,2.22 9.35,5.62 v -0.47 l -9.35,-5.62 z m 11.05,6.66 1.99,1.19 v -0.48 L 18.42,591.4 Z M 1.98,581.48 v 0.47 l 1.66,-1.08 v -0.48 z m 3.69,2.22 v 0.47 l 1.65,-1.08 v -0.48 z m 11.05,6.66 v 0.47 l 1.66,-1.08 v -0.47 z m 3.69,2.22 v 0.47 l 1.65,-1.08 v -0.47 z m 1.7,1.51 1.98,1.19 v -0.48 l -1.98,-1.18 z m 1.98,0.71 v 0.48 l 1.66,-1.09 v -0.47 z" id="path4410" style="fill:#969696;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+      <svg:g id="shape18-25">
+        <svg:title id="title4413">Feuille.18</svg:title>
+        <svg:path d="m 0,576.35 12.16,-8.54 27.52,15.92 v 4.16 L 27.06,595.28 0,579.58 Z" id="path4415" style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(12.7559,-15.5906)" id="group19-27">
+        <svg:title id="title4418">Moniteur LCD</svg:title>
+        <svg:g id="shape20-28">
+          <svg:title id="title4421">Feuille.20</svg:title>
+          <svg:path d="M 40.21,585.71 A 111.16,92.448 2.98 0 1 13.29,572.6 l -6.11,3.54 v 1.7 l 30.59,17.44 16.09,-9.22 v -3.19 L 46.1,577.56 V 547.3 A 109.076,90.718 -176.31 0 0 5.89,524.41 L 0,527.74 A 104.788,87.1513 3.6 0 1 40.21,550.63 111.266,92.5389 -176.4 0 0 0,527.74 v 34.94 a 118.749,98.765 -176.03 0 0 13.3,9.9 118.749,98.765 -176.03 0 0 26.91,13.13 z" id="path4423" style="fill:#ff00ff;fill-opacity:0;stroke:#000000;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(40.2142,-9.56693)" id="shape21-30">
+          <svg:title id="title4426">Feuille.21</svg:title>
+          <svg:path d="m 0,595.28 5.89,-3.34 V 556.87 L 0,560.2 Z" id="path4428" style="fill:url(#grad31-7);stroke:#ffffff;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0,-44.6457)" id="shape22-33">
+          <svg:title id="title4431">Feuille.22</svg:title>
+          <svg:path d="m 0,572.39 a 104.788,87.1513 3.6 0 1 40.21,22.89 l 5.89,-3.34 A 109.076,90.718 -176.31 0 0 5.89,569.06 Z" id="path4433" style="fill:url(#linearGradient5629);stroke:#ffffff;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(7.1811)" id="shape23-36">
+          <svg:title id="title4436">Feuille.23</svg:title>
+          <svg:path d="m 0,577.84 30.59,17.44 16.09,-9.22 v -3.19 l -7.76,-5.31 v 4.82 l -5.89,3.33 A 111.16,92.448 2.98 0 1 6.1,572.6 L 0,576.14 Z" id="path4438" style="fill:url(#linearGradient5631);stroke:#ffffff;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0,-9.56693)" id="shape24-39">
+          <svg:title id="title4441">Feuille.24</svg:title>
+          <svg:path d="m 0,572.24 a 118.749,98.765 -176.03 0 0 40.21,23.04 V 560.2 A 111.266,92.5389 -176.4 0 0 0,537.31 Z" id="path4443" style="fill:url(#grad32-17);stroke:#000000;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g id="shape25-42">
+          <svg:title id="title4446">Feuille.25</svg:title>
+          <svg:path d="m 0,562.68 a 156.148,129.88 -175.09 0 0 13.29,9.92 l -6.11,3.54 v 1.7 l 30.59,17.44 16.09,-9.22 v -3.19 L 46.1,578.46 V 547.3 A 132.638,110.315 -176.32 0 0 5.89,524.41 L 0,527.74 v 34.94" id="path4448" style="stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(3.59055,-13.8898)" id="shape26-45">
+          <svg:title id="title4451">Feuille.26</svg:title>
+          <svg:path d="m 0,546.31 v 30.04 l 33.03,18.93" id="path4453" style="stroke:#ffffff;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(13.6441,-1.84252)" id="shape27-49">
+          <svg:title id="title4456">Feuille.27</svg:title>
+          <svg:path d="m 0,581.53 23.98,13.75 12.64,-7.37" id="path4458" style="stroke:#ffffff;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(3.59055,-13.8898)" id="shape28-53">
+          <svg:title id="title4461">Feuille.28</svg:title>
+          <svg:path d="m 0.72,575.86 32.31,18.42 v 1 -30.19 L 0,546.31 l 0.72,0.35 z" id="path4463" style="fill:url(#grad35-56);stroke:#000000;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+    </svg:g>
+    <svg:rect width="182.0939" height="416.53976" rx="9.755044" ry="12.132212" x="450.16116" y="106.93412" id="rect4379" style="font-size:12px;fill:#ffffff;stroke:#404040;stroke-width:1.56447;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:1.56447, 6.25786;stroke-dashoffset:0"/>
+    <svg:g transform="matrix(1.2499982,0,0,1.2499982,499.50759,-525.55295)" id="group30-61" style="font-size:12px;fill:none;stroke-linecap:square;stroke-miterlimit:3">
+      <svg:title id="title4466">Serveur</svg:title>
+      <svg:g id="shape31-62">
+        <svg:title id="title4469">Feuille.31</svg:title>
+        <svg:path d="M 51.02,534.92 31.4,524.41 0,541.52 0.01,585.45 a 33.0369,30.8521 -180 0 0 19.36,9.83 L 51.02,578.17 Z M 8.71,548.36 a 34.0948,31.84 -180 0 0 10.66,3.79 33.7139,31.4843 0 0 1 -10.66,-3.79 z" id="path4471" style="fill:#ff00ff;fill-opacity:0;stroke:#000000;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(0,-43.1295)" id="shape32-64">
+        <svg:title id="title4474">Feuille.32</svg:title>
+        <svg:path d="M 19.36,595.27 51.02,578.05 31.4,567.54 0,584.65 a 34.0948,31.84 -180 0 0 19.37,10.63 z" id="path4476" style="fill:url(#linearGradient5633)" inkscape:connector-curvature="0"/>
+        <svg:path d="M 19.36,595.27 51.02,578.05 31.4,567.54 0,584.65 a 34.0948,31.84 -180 0 0 19.37,10.63" id="path4478" style="stroke:#ffffff;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(0.0115937)" id="shape33-69">
+        <svg:title id="title4481">Feuille.33</svg:title>
+        <svg:path d="M 19.36,552.15 A 33.7139,31.4843 0 0 1 0,541.47 v 43.98 a 33.0369,30.8521 -180 0 0 19.36,9.83 l -0.01,-43.13 z" id="path4483" style="fill:url(#grad32-72)" inkscape:connector-curvature="0"/>
+        <svg:path d="M 19.36,552.15 A 33.7139,31.4843 0 0 1 0,541.47 v 43.98 a 33.0369,30.8521 -180 0 0 19.36,9.83 l -0.01,-43.13" id="path4485" style="stroke:#ffffff;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(19.3628,-0.0487457)" id="shape34-76">
+        <svg:title id="title4488">Feuille.34</svg:title>
+        <svg:path d="m 0,552.19 v 43.09 l 31.66,-17.06 v -43.25 z" id="path4490" style="fill:url(#grad31-79);stroke:#ffffff;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(0,-0.00156214)" id="shape35-82">
+        <svg:title id="title4493">Feuille.35</svg:title>
+        <svg:path d="M 51.02,534.92 31.4,524.41 0,541.52 0.01,585.45 a 33.0369,30.8521 -180 0 0 19.36,9.83 l 31.65,-17.11 v -43.25" id="path4495" style="stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="rotate(-20,-60.495715,560.6122)" id="shape36-85">
+        <svg:title id="title4498">Feuille.36</svg:title>
+        <svg:ellipse cx="1.4821" cy="593.25702" rx="1.4821" ry="2.0181601" id="ellipse4500" style="fill:url(#grad31-88);stroke:#000000;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round"/>
+      </svg:g>
+      <svg:g transform="translate(3.13992,-6.23262)" id="shape37-91">
+        <svg:title id="title4503">Feuille.37</svg:title>
+        <svg:path d="m 0,583.3 a 37.8205,34.5426 -96.44 0 0 13.08,6.72" id="path4505" style="stroke:#000000;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        <svg:path d="m 0,585.93 a 37.8205,34.5426 -96.44 0 0 13.08,6.72" id="path4507" style="stroke:#000000;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        <svg:path d="m 0,588.56 a 37.8205,34.5426 -96.44 0 0 13.08,6.72" id="path4509" style="stroke:#000000;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(2.6166,-30.546)" id="group38-98">
+        <svg:title id="title4512">Feuille.38</svg:title>
+        <svg:g transform="translate(0,-7.06961)" id="shape39-99">
+          <svg:title id="title4515">Feuille.39</svg:title>
+          <svg:path d="m 0.47,588.56 a 32.9981,30.8159 -180 0 0 13.08,6.72 0.670503,0.62616 -180 0 0 0,-1.22178 32.1003,29.9774 0 0 1 -12.82,-6.52822 0.434387,0.40566 -180 0 0 -0.725202,0.34486 0.946727,0.884117 -180 0 0 0.463543,0.68143 z" id="path4517" style="fill:#000000;stroke:#000000;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(4.16081,-8.60965)" id="shape40-101">
+          <svg:title id="title4520">Feuille.40</svg:title>
+          <svg:path d="m 4.02,595.23 a 4.90309,2.98481 -90.9 0 0 -3.92,-1.96 3.22599,1.60837 -180 0 0 3.92,1.96 z" id="path4522" style="fill:url(#grad34-104);stroke:#ffffff;stroke-width:0.12;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0.523319,-0.0610888)" id="shape41-106">
+          <svg:title id="title4525">Feuille.41</svg:title>
+          <svg:path d="m 0,585.13 v 3.43 a 35.496,33.1485 -180 0 0 13.08,6.72 v -3.43 A 36.6577,34.2334 0 0 1 0,585.13 Z" id="path4527" style="fill:url(#grad35-109);stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0.523319,-1.95484)" id="shape42-114">
+          <svg:title id="title4530">Feuille.42</svg:title>
+          <svg:path d="m 0,588.56 a 32.1279,30.0032 -180 0 0 13.08,6.72 v -0.86 A 35.5103,33.1619 0 0 1 0,587.7 Z" id="path4532" style="fill:#000000;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0.523319,-0.122178)" id="shape43-116">
+          <svg:title id="title4535">Feuille.43</svg:title>
+          <svg:path d="m 0,585.13 v 3.43 a 35.496,33.1485 -180 0 0 13.08,6.72" id="path4537" style="stroke:#ffffff;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0.523319)" id="shape44-119">
+          <svg:title id="title4540">Feuille.44</svg:title>
+          <svg:path d="m 13.08,595.28 v -3.43 A 36.6577,34.2334 0 0 1 0,585.13" id="path4542" style="stroke:#000000;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+    </svg:g>
+    <svg:g transform="matrix(1.2499982,0,0,1.2499982,499.50759,-315.06835)" id="group45-123" style="font-size:12px;fill:none;stroke-linecap:square;stroke-miterlimit:3">
+      <svg:title id="title4545">Serveur.45</svg:title>
+      <svg:g id="shape46-124">
+        <svg:title id="title4548">Feuille.46</svg:title>
+        <svg:path d="M 51.02,534.92 31.4,524.41 0,541.52 0.01,585.45 a 33.0369,30.8521 -180 0 0 19.36,9.83 L 51.02,578.17 Z M 8.71,548.36 a 34.0948,31.84 -180 0 0 10.66,3.79 33.7139,31.4843 0 0 1 -10.66,-3.79 z" id="path4550" style="fill:#ff00ff;fill-opacity:0;stroke:#000000;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(0,-43.1295)" id="shape47-126">
+        <svg:title id="title4553">Feuille.47</svg:title>
+        <svg:path d="M 19.36,595.27 51.02,578.05 31.4,567.54 0,584.65 a 34.0948,31.84 -180 0 0 19.37,10.63 z" id="path4555" style="fill:url(#linearGradient5635)" inkscape:connector-curvature="0"/>
+        <svg:path d="M 19.36,595.27 51.02,578.05 31.4,567.54 0,584.65 a 34.0948,31.84 -180 0 0 19.37,10.63" id="path4557" style="stroke:#ffffff;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(0.0115937)" id="shape48-130">
+        <svg:title id="title4560">Feuille.48</svg:title>
+        <svg:path d="M 19.36,552.15 A 33.7139,31.4843 0 0 1 0,541.47 v 43.98 a 33.0369,30.8521 -180 0 0 19.36,9.83 l -0.01,-43.13 z" id="path4562" style="fill:url(#grad32-72)" inkscape:connector-curvature="0"/>
+        <svg:path d="M 19.36,552.15 A 33.7139,31.4843 0 0 1 0,541.47 v 43.98 a 33.0369,30.8521 -180 0 0 19.36,9.83 l -0.01,-43.13" id="path4564" style="stroke:#ffffff;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(19.3628,-0.0487457)" id="shape49-134">
+        <svg:title id="title4567">Feuille.49</svg:title>
+        <svg:path d="m 0,552.19 v 43.09 l 31.66,-17.06 v -43.25 z" id="path4569" style="fill:url(#grad31-79);stroke:#ffffff;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(0,-0.00156214)" id="shape50-137">
+        <svg:title id="title4572">Feuille.50</svg:title>
+        <svg:path d="M 51.02,534.92 31.4,524.41 0,541.52 0.01,585.45 a 33.0369,30.8521 -180 0 0 19.36,9.83 l 31.65,-17.11 v -43.25" id="path4574" style="stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="rotate(-20,-60.495715,560.6122)" id="shape51-140">
+        <svg:title id="title4577">Feuille.51</svg:title>
+        <svg:ellipse cx="1.4821" cy="593.25702" rx="1.4821" ry="2.0181601" id="ellipse4579" style="fill:url(#grad31-88);stroke:#000000;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round"/>
+      </svg:g>
+      <svg:g transform="translate(3.13992,-6.23262)" id="shape52-143">
+        <svg:title id="title4582">Feuille.52</svg:title>
+        <svg:path d="m 0,583.3 a 37.8205,34.5426 -96.44 0 0 13.08,6.72" id="path4584" style="stroke:#000000;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        <svg:path d="m 0,585.93 a 37.8205,34.5426 -96.44 0 0 13.08,6.72" id="path4586" style="stroke:#000000;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        <svg:path d="m 0,588.56 a 37.8205,34.5426 -96.44 0 0 13.08,6.72" id="path4588" style="stroke:#000000;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(2.6166,-30.546)" id="group53-149">
+        <svg:title id="title4591">Feuille.53</svg:title>
+        <svg:g transform="translate(0,-7.06961)" id="shape54-150">
+          <svg:title id="title4594">Feuille.54</svg:title>
+          <svg:path d="m 0.47,588.56 a 32.9981,30.8159 -180 0 0 13.08,6.72 0.670503,0.62616 -180 0 0 0,-1.22178 32.1003,29.9774 0 0 1 -12.82,-6.52822 0.434387,0.40566 -180 0 0 -0.725202,0.34486 0.946727,0.884117 -180 0 0 0.463543,0.68143 z" id="path4596" style="fill:#000000;stroke:#000000;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(4.16081,-8.60965)" id="shape55-152">
+          <svg:title id="title4599">Feuille.55</svg:title>
+          <svg:path d="m 4.02,595.23 a 4.90309,2.98481 -90.9 0 0 -3.92,-1.96 3.22599,1.60837 -180 0 0 3.92,1.96 z" id="path4601" style="fill:url(#grad34-104);stroke:#ffffff;stroke-width:0.12;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0.523319,-0.0610888)" id="shape56-155">
+          <svg:title id="title4604">Feuille.56</svg:title>
+          <svg:path d="m 0,585.13 v 3.43 a 35.496,33.1485 -180 0 0 13.08,6.72 v -3.43 A 36.6577,34.2334 0 0 1 0,585.13 Z" id="path4606" style="fill:url(#grad35-109);stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0.523319,-1.95484)" id="shape57-158">
+          <svg:title id="title4609">Feuille.57</svg:title>
+          <svg:path d="m 0,588.56 a 32.1279,30.0032 -180 0 0 13.08,6.72 v -0.86 A 35.5103,33.1619 0 0 1 0,587.7 Z" id="path4611" style="fill:#000000;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0.523319,-0.122178)" id="shape58-160">
+          <svg:title id="title4614">Feuille.58</svg:title>
+          <svg:path d="m 0,585.13 v 3.43 a 35.496,33.1485 -180 0 0 13.08,6.72" id="path4616" style="stroke:#ffffff;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0.523319)" id="shape59-163">
+          <svg:title id="title4619">Feuille.59</svg:title>
+          <svg:path d="m 13.08,595.28 v -3.43 A 36.6577,34.2334 0 0 1 0,585.13" id="path4621" style="stroke:#000000;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+    </svg:g>
+    <svg:g transform="matrix(1.2499982,0,0,1.2499982,501.50759,-89.37313)" id="group60-167" style="font-size:12px;fill:none;stroke-linecap:square;stroke-miterlimit:3">
+      <svg:title id="title4624">Serveur d'impression</svg:title>
+      <svg:g transform="translate(0,12.7559)" id="shape61-168">
+        <svg:title id="title4627">Feuille.61</svg:title>
+        <svg:path d="m 39.36,594.92 h 10.85 a 2.64229,2.5689 -180 0 0 0,-3.54 H 39.36 a 3.17075,3.08268 -180 0 0 -0.3,-0.36 h -7.21 a 3.17075,3.08268 -180 0 0 -0.3,0.36 H 20.69 a 2.64229,2.5689 -180 0 0 0,3.54 h 10.86 a 3.17075,3.08268 -180 0 0 0.3,0.36 h 7.21 a 3.17075,3.08268 -180 0 0 0.3,-0.36 z m 8.71,-13.01 -10.91,6.1 10.9,-6.12 z m -20.63,3.04 a 585.52,504.747 136.11 0 1 1.69,-0.57 l -1.69,0.58 a 23.6677,22.8282 -94.17 0 0 9.72,4.65 l 10.91,-6.11 v -1.59 l 0.6,-0.37 v -10.82 l -2.55,-1.43 a 23.278,17.5209 161.71 0 1 1.33,-1.95 l 3.57,-1.93 V 522.16 L 31.4,511.66 0,528.76 0.01,572.7 a 33.0369,30.8521 -180 0 0 19.36,9.82 l 1.48,-0.85 6.14,3.43 z m 1.69,-0.57 0.07,0.05 z m 3.17,-8.88 a 19.1866,14.4904 -173.85 0 0 4.86,1.76 18.34,13.8505 6.06 0 1 -4.88,-1.72 z m -0.02,0.04 -0.03,-0.01 z M 8.71,535.6 a 34.0948,31.84 -180 0 0 10.66,3.79 33.7139,31.4843 0 0 1 -10.66,-3.79 z" id="path4629" style="fill:#ff00ff;fill-opacity:0" inkscape:connector-curvature="0"/>
+        <svg:path d="m 39.36,594.92 h 10.85 a 2.64229,2.5689 -180 0 0 0,-3.54 H 39.36 a 3.17075,3.08268 -180 0 0 -0.3,-0.36 h -7.21 a 3.17075,3.08268 -180 0 0 -0.3,0.36 H 20.69 a 2.64229,2.5689 -180 0 0 0,3.54 h 10.86 a 3.17075,3.08268 -180 0 0 0.3,0.36 h 7.21 a 3.17075,3.08268 -180 0 0 0.3,-0.36 m 8.71,-13.01 -10.91,6.1 10.9,-6.12 m -20.62,3.06 a 585.52,504.747 136.11 0 1 1.69,-0.57 l -1.69,0.58 a 23.6677,22.8282 -94.17 0 0 9.72,4.65 l 10.91,-6.11 v -1.59 l 0.6,-0.37 v -10.82 l -2.55,-1.43 a 23.278,17.5209 161.71 0 1 1.33,-1.95 l 3.57,-1.93 V 522.16 L 31.4,511.66 0,528.76 0.01,572.7 a 33.0369,30.8521 -180 0 0 19.36,9.82 l 1.48,-0.85 6.14,3.43 0.45,-0.15 m 1.69,-0.57 0.07,0.05 m 3.1,-8.93 a 19.1866,14.4904 -173.85 0 0 4.86,1.76 18.34,13.8505 6.06 0 1 -4.88,-1.72 m 0,0 -0.03,-0.01 M 8.71,535.6 a 34.0948,31.84 -180 0 0 10.66,3.79 33.7139,31.4843 0 0 1 -10.66,-3.79" id="path4631" style="stroke:#000000;stroke-width:0.72;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(0,-43.1295)" id="shape62-171">
+        <svg:title id="title4634">Feuille.62</svg:title>
+        <svg:path d="M 19.36,595.27 51.02,578.05 31.4,567.54 0,584.65 a 34.0948,31.84 -180 0 0 19.37,10.63 z" id="path4636" style="fill:url(#linearGradient5637)" inkscape:connector-curvature="0"/>
+        <svg:path d="M 19.36,595.27 51.02,578.05 31.4,567.54 0,584.65 a 34.0948,31.84 -180 0 0 19.37,10.63" id="path4638" style="stroke:#ffffff;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(0.0115937)" id="shape63-175">
+        <svg:title id="title4641">Feuille.63</svg:title>
+        <svg:path d="M 19.36,552.15 A 33.7139,31.4843 0 0 1 0,541.47 v 43.98 a 33.0369,30.8521 -180 0 0 19.36,9.83 l -0.01,-43.13 z" id="path4643" style="fill:url(#grad32-72)" inkscape:connector-curvature="0"/>
+        <svg:path d="M 19.36,552.15 A 33.7139,31.4843 0 0 1 0,541.47 v 43.98 a 33.0369,30.8521 -180 0 0 19.36,9.83 l -0.01,-43.13" id="path4645" style="stroke:#ffffff;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(19.3628,-0.0487457)" id="shape64-179">
+        <svg:title id="title4648">Feuille.64</svg:title>
+        <svg:path d="m 0,552.19 v 43.09 l 31.66,-17.06 v -43.25 z" id="path4650" style="fill:url(#grad31-79);stroke:#ffffff;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(0,-0.00156214)" id="shape65-182">
+        <svg:title id="title4653">Feuille.65</svg:title>
+        <svg:path d="M 51.02,534.92 31.4,524.41 0,541.52 0.01,585.45 a 33.0369,30.8521 -180 0 0 19.36,9.83 l 31.65,-17.11 v -43.25" id="path4655" style="stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="rotate(-20,-60.495715,560.6122)" id="shape66-185">
+        <svg:title id="title4658">Feuille.66</svg:title>
+        <svg:ellipse cx="1.4821" cy="593.25702" rx="1.4821" ry="2.0181601" id="ellipse4660" style="fill:url(#grad31-88);stroke:#000000;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round"/>
+      </svg:g>
+      <svg:g transform="translate(3.13992,-6.23262)" id="shape67-188">
+        <svg:title id="title4663">Feuille.67</svg:title>
+        <svg:path d="m 0,583.3 a 37.8205,34.5426 -96.44 0 0 13.08,6.72" id="path4665" style="stroke:#000000;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        <svg:path d="m 0,585.93 a 37.8205,34.5426 -96.44 0 0 13.08,6.72" id="path4667" style="stroke:#000000;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        <svg:path d="m 0,588.56 a 37.8205,34.5426 -96.44 0 0 13.08,6.72" id="path4669" style="stroke:#000000;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g transform="translate(2.6166,-30.546)" id="group68-194">
+        <svg:title id="title4672">Feuille.68</svg:title>
+        <svg:g transform="translate(0,-7.06961)" id="shape69-195">
+          <svg:title id="title4675">Feuille.69</svg:title>
+          <svg:path d="m 0.47,588.56 a 32.9981,30.8159 -180 0 0 13.08,6.72 0.670503,0.62616 -180 0 0 0,-1.22178 32.1003,29.9774 0 0 1 -12.82,-6.52822 0.434387,0.40566 -180 0 0 -0.725202,0.34486 0.946727,0.884117 -180 0 0 0.463543,0.68143 z" id="path4677" style="fill:#000000;stroke:#000000;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(4.16081,-8.60965)" id="shape70-197">
+          <svg:title id="title4680">Feuille.70</svg:title>
+          <svg:path d="m 4.02,595.23 a 4.90309,2.98481 -90.9 0 0 -3.92,-1.96 3.22599,1.60837 -180 0 0 3.92,1.96 z" id="path4682" style="fill:url(#grad34-104);stroke:#ffffff;stroke-width:0.12;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0.523319,-0.0610888)" id="shape71-200">
+          <svg:title id="title4685">Feuille.71</svg:title>
+          <svg:path d="m 0,585.13 v 3.43 a 35.496,33.1485 -180 0 0 13.08,6.72 v -3.43 A 36.6577,34.2334 0 0 1 0,585.13 Z" id="path4687" style="fill:url(#grad35-109);stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0.523319,-1.95484)" id="shape72-203">
+          <svg:title id="title4690">Feuille.72</svg:title>
+          <svg:path d="m 0,588.56 a 32.1279,30.0032 -180 0 0 13.08,6.72 v -0.86 A 35.5103,33.1619 0 0 1 0,587.7 Z" id="path4692" style="fill:#000000;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0.523319,-0.122178)" id="shape73-205">
+          <svg:title id="title4695">Feuille.73</svg:title>
+          <svg:path d="m 0,585.13 v 3.43 a 35.496,33.1485 -180 0 0 13.08,6.72" id="path4697" style="stroke:#ffffff;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0.523319)" id="shape74-208">
+          <svg:title id="title4700">Feuille.74</svg:title>
+          <svg:path d="m 13.08,595.28 v -3.43 A 36.6577,34.2334 0 0 1 0,585.13" id="path4702" style="stroke:#000000;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+      <svg:g transform="translate(19.9648,12.7559)" id="group75-212">
+        <svg:title id="title4705">Feuille.75</svg:title>
+        <svg:g transform="translate(17.1934,-5.66929)" id="shape76-213">
+          <svg:title id="title4708">Feuille.76</svg:title>
+          <svg:path d="m 0,593.68 v 1.6 l 10.91,-6.11 v -1.59 z" id="path4710" style="fill:url(#grad31-7);stroke:#ffffff;stroke-width:0.24;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(7.47539,-5.66929)" id="shape77-216">
+          <svg:title id="title4713">Feuille.77</svg:title>
+          <svg:path d="M 9.72,593.68 A 31.5914,30.4748 88.06 0 1 1.79,590.05 L 0,590.63 a 23.6677,22.8282 -94.17 0 0 9.72,4.65 z" id="path4715" style="fill:url(#grad32-17);stroke:#000000;stroke-width:0.24;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(17.1934,-7.26732)" id="shape78-219">
+          <svg:title id="title4718">Feuille.78</svg:title>
+          <svg:path d="m 0,584.53 v 10.75 l 11.51,-6.47 v -10.82 z" id="path4720" style="fill:url(#grad31-7);stroke:#ffffff;stroke-width:0.24;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(6.72785,-18.0177)" id="shape79-222">
+          <svg:title id="title4723">Feuille.79</svg:title>
+          <svg:path d="M 10.47,595.28 21.98,588.74 11.66,582.93 0,589.46 a 19.1866,14.4904 -173.85 0 0 10.47,5.82 z" id="path4725" style="fill:url(#linearGradient5639);stroke:#ffffff;stroke-width:0.24;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(6.72785,-7.26732)" id="shape80-225">
+          <svg:title id="title4728">Feuille.80</svg:title>
+          <svg:path d="M 10.47,584.53 A 18.34,13.8505 6.06 0 1 0,578.71 l 0.06,10.87 a 18.6442,14.0797 -172.56 0 0 10.41,5.7 z" id="path4730" style="fill:url(#grad32-17);stroke:#000000;stroke-width:0.24;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="rotate(-163.5,7.2322952,583.9465)" id="shape81-228">
+          <svg:title id="title4733">Feuille.81</svg:title>
+          <svg:ellipse cx="1.3195" cy="594.56598" rx="1.31897" ry="0.70560598" id="ellipse4735" style="fill:url(#grad34-231);stroke:#000000;stroke-width:0.12;stroke-linecap:round;stroke-linejoin:round"/>
+        </svg:g>
+        <svg:g transform="translate(13.1567,-21.5043)" id="shape82-234">
+          <svg:title id="title4738">Feuille.82</svg:title>
+          <svg:path d="m 12.41,591.93 1.05,0.59 -4.94,2.76 -8.52,-4.8 6.28,-3.49 -1.2,2.33 -1.49,0.87 6.73,3.78 1.49,-0.87 z" id="path4740" style="fill:#e0e0e0;stroke:#000000;stroke-width:0.24;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(18.2399,-23.6835)" id="shape83-236">
+          <svg:title id="title4743">Feuille.83</svg:title>
+          <svg:path d="m 6.73,595.28 a 23.278,17.5209 161.71 0 1 4.81,-6.83 109.664,82.101 24.24 0 1 -6.91,-4.21 29.0132,21.9606 -2.8 0 0 -4.63,7.26 92.018,66.4575 -128.04 0 0 6.73,3.78 z" id="path4745" style="fill:#ffffff;stroke:#000000;stroke-width:0.24;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(7.469,-18.4535)" id="shape84-238">
+          <svg:title id="title4748">Feuille.84</svg:title>
+          <svg:path d="m 3,595.28 a 12.9865,10.6101 -57.98 0 0 0,-1.46 7.40174,3.20575 33.75 0 1 -2.99,-2.18 22.7625,3.64237 -100.57 0 0 0,1.46 12.2888,4.68425 -163.91 0 0 2.99,2.18 z" id="path4750" style="fill:url(#grad32-17);stroke:#000000;stroke-width:0.24;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(2.99015,-10.7539)" id="shape85-241">
+          <svg:title id="title4753">Feuille.85</svg:title>
+          <svg:path d="m 12.86,590.92 -4.49,2.47 v 1.89 h 4.49 z M 0,590.7 v -1.53 l 4.19,-2.32 v 1.45 A 23.5267,22.8607 0 0 1 0,590.7 Z m 8.37,4.58 v -0.88 l -0.97,0.37 z" id="path4755" style="fill:url(#grad32-17);stroke:#000000;stroke-width:0.24;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0,-10.1728)" id="shape86-244">
+          <svg:title id="title4758">Feuille.86</svg:title>
+          <svg:path d="m 0,591.35 7.03,3.93 a 585.52,504.747 136.11 0 1 4.33,-1.46 v -1.01 l 3.59,-1.97 -6.84,-3.67 A 26.6295,25.6858 86.26 0 1 0,591.35 Z" id="path4760" style="fill:#ffffff;stroke:#000000;stroke-width:0.24;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0,-5.66929)" id="shape87-246">
+          <svg:title id="title4763">Feuille.87</svg:title>
+          <svg:path d="m 28.71,576.39 -2.34,-1.38 a 12.2192,11.8618 89.96 0 1 3.52,-4.52 l -7.1,-4.27 a 17.0118,16.5104 -94.01 0 0 -3.65,4.79 l -0.75,-0.43 -11.66,6.54 v 4.94 l -3.74,2.03 v 1.52 A 38.3726,37.2864 0 0 1 0,586.85 l 7.03,3.92 0.45,-0.14 a 19.5777,14.71 -175.86 0 0 9.71,4.65 l 10.92,-6.11 v -1.59 l 0.6,-0.37 v -10.82" id="path4765" style="stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(0,-0.354331)" id="shape88-249">
+          <svg:title id="title4768">Feuille.88</svg:title>
+          <svg:path d="m 0.73,591.73 a 2.64229,2.5689 -180 0 0 0,3.55 h 29.52 a 2.64229,2.5689 -180 0 0 0,-3.55 z" id="path4770" style="fill:url(#linearGradient5641);stroke:#000000;stroke-width:0.24;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(11.0065)" id="shape89-253">
+          <svg:title id="title4773">Feuille.89</svg:title>
+          <svg:path d="m 0.87,591.02 a 3.17075,3.08268 -180 0 0 0,4.26 h 7.22 a 3.17075,3.08268 -180 0 0 0,-4.26 z" id="path4775" style="fill:url(#linearGradient5643);stroke:#000000;stroke-width:0.24;stroke-linecap:round;stroke-linejoin:round" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+    </svg:g>
+    <svg:text x="51.192585" y="265.46594" id="text4789" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan x="51.192585" y="265.46594" id="tspan8835">Client (C)</svg:tspan></svg:text>
+    <svg:text x="537.56201" y="236.36612" id="text4807" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" x="537.56201" y="236.36612" id="tspan5079">Authentication</svg:tspan><svg:tspan sodipodi:role="line" x="537.56201" y="251.36612" id="tspan5083">Server (AS)</svg:tspan></svg:text>
+    <svg:path d="m 144.71095,144.56151 323.26409,-0.15123 17.32567,9.97996 -17.32567,11.22137 -323.26409,0.15121 z" id="rect10720" style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.04495;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" inkscape:connector-curvature="0"/>
+    <svg:text x="303.20499" y="158.26233" id="text4825" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan11720">User ID + requested service</svg:tspan></svg:text>
+    <svg:text x="531.49463" y="452.36176" id="text4834" style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:middle;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"><svg:tspan sodipodi:role="line" id="tspan7308" x="531.49463" y="452.36176">Ticket-granting</svg:tspan><svg:tspan sodipodi:role="line" x="531.49463" y="467.36176" id="tspan6507">Server (TGS)</svg:tspan></svg:text>
+    <svg:text x="532.33069" y="81.110512" id="text4807-7" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan7298" x="532.33069" y="81.110512">Key Distribution</svg:tspan><svg:tspan sodipodi:role="line" x="532.33069" y="96.110512" id="tspan6401">Center (KDC)</svg:tspan></svg:text>
+    <svg:g transform="matrix(0,-1.2499996,1.2499996,0,561.86824,166.04521)" id="group102-8-1-0" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+      <svg:title id="title9021-0-2">Feuille.102</svg:title>
+      <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-3-8" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9024-73-6">Feuille.103</svg:title>
+        <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-9-7" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g id="shape104-11-59-0" style="fill:#41e700;fill-opacity:1;stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9029-7-8">Feuille.104</svg:title>
+        <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-2-1" style="fill:#41e700;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+      </svg:g>
+    </svg:g>
+    <svg:path d="m 480.1046,509.96277 -324.18002,0.68289 -17.37476,-45.06813 17.37476,-50.67419 324.18002,-0.68281 z" id="rect10720-4-2" style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.05046;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" inkscape:connector-curvature="0"/>
+    <svg:g transform="translate(25.89737,224.00835)" id="g11432-0">
+      <svg:g style="stroke:#000000;stroke-width:0.6;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="g5641-8" transform="translate(1174.2379,47.682488)">
+        <svg:path id="rect5520-5-9" style="color:#000000;font-variation-settings:'wght' 400;overflow:visible;fill:#ffaaaa;fill-opacity:1;stroke:#000000;stroke-width:0.6;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="m -984.65309,149.91028 a 5.2223277,5.2223277 0 0 1 0.0156,0.3789 5.2223277,5.2223277 0 0 1 -5.22266,5.22266 5.2223277,5.2223277 0 0 1 -0.45703,-0.0195 v 4.06836 a 1.8812089,1.8812089 0 0 1 0.16406,-0.008 1.8812089,1.8812089 0 0 1 1.88086,1.88086 1.8812089,1.8812089 0 0 1 -1.88086,1.88282 1.8812089,1.8812089 0 0 1 -0.16406,-0.01 v 2.25392 a 1.8812089,1.8812089 0 0 1 0.16406,-0.008 1.8812089,1.8812089 0 0 1 1.88086,1.88087 1.8812089,1.8812089 0 0 1 -1.88086,1.8828 1.8812089,1.8812089 0 0 1 -0.16406,-0.01 v 4.22852 a 5.2223277,5.2223277 0 0 1 0.50586,-0.0254 5.2223277,5.2223277 0 0 1 5.22265,5.22265 5.2223277,5.2223277 0 0 1 -0.004,0.17774 h 210.8164 a 5.2223277,5.2223277 0 0 1 -0.004,-0.17774 5.2223277,5.2223277 0 0 1 5.22265,-5.22265 5.2223277,5.2223277 0 0 1 0.24024,0.008 v -4.20313 a 1.8812089,1.8812089 0 0 1 -1.83985,-1.88085 1.8812089,1.8812089 0 0 1 1.83985,-1.8789 v -2.24024 a 1.8812089,1.8812089 0 0 1 -1.83985,-1.88086 1.8812089,1.8812089 0 0 1 1.83985,-1.87891 v -4.05078 a 5.2223277,5.2223277 0 0 1 -0.28906,0.008 5.2223277,5.2223277 0 0 1 -5.22266,-5.22266 5.2223277,5.2223277 0 0 1 0.0137,-0.3789 z"/>
+        <svg:rect style="color:#000000;font-variation-settings:'wght' 400;overflow:visible;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.6;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect5586-9-2" width="205.89659" height="23.679592" x="-982.26544" y="152.5705"/>
+      </svg:g>
+      <svg:g transform="matrix(0,-1.2499996,1.2499996,0,190.17221,223.38232)" id="group102-8-7" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9021-6">Feuille.102</svg:title>
+        <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-4" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title9024-2">Feuille.103</svg:title>
+          <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-1" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g id="shape104-11-9" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title9029-1">Feuille.104</svg:title>
+          <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-6" style="fill:#0179ff;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+      <svg:g transform="matrix(1.2499982,0,0,1.2499982,392.84898,-500.71476)" id="group114-281-03" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title4839-3">Feuille.114</svg:title>
+        <svg:g transform="rotate(-90,6.9095,588.3665)" id="group111-282-6" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title4842-2">Feuille.111</svg:title>
+          <svg:g transform="translate(0.920397,-3.68504)" id="shape112-283-21" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4845-4">Feuille.112</svg:title>
+            <svg:path d="m 1.24,595.28 c 0.69,0 1.24,-0.91 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.11 0.56,2.02 1.24,2.02 z" id="path4847-3" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+          <svg:g id="shape113-285-2" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4850-6">Feuille.113</svg:title>
+            <svg:path d="m 3.42,583.94 c -1.89,0 -3.42,2.54 -3.42,5.67 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.85 h 2.8 l 0.95,-1.36 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.84 v -0.54 l -0.35,-0.11 -0.93,-1.09 H 6.64 C 6.16,585.49 4.9,583.94 3.42,583.94 Z m -1.31,3.65 c 0.61,0 1.1,0.91 1.1,2.02 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.02 1.1,-2.02 z" id="path4852-05" style="fill:#000000;stroke:#000000;stroke-width:0.800001;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+          </svg:g>
+        </svg:g>
+        <svg:g transform="translate(0,-13.1289)" id="group106-287-4" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title4855-9">Cadenas</svg:title>
+          <svg:g id="shape108-288-6" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4858-0">Feuille.108</svg:title>
+            <svg:path d="m 4.22,582.34 v -2.98 a 2.51222,2.51222 0 0 1 2.51,-2.51 h 2.84 a 2.51222,2.51222 0 0 1 2.51,2.51 v 2.98 z m 9.24,12.94 a 2.83467,2.83467 -180 0 0 2.84,-2.84 v -7.26 a 2.83467,2.83467 -180 0 0 -2.48,-2.82 v -3.74 a 3.54333,3.54333 -180 0 0 -3.54,-3.54 H 6.02 a 3.54333,3.54333 -180 0 0 -3.54,3.54 v 3.74 A 2.83467,2.83467 -180 0 0 0,585.18 v 7.26 a 2.83467,2.83467 -180 0 0 2.83,2.84 z" id="path4860-82" style="fill:#ffffff;stroke:#000000;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+          <svg:g transform="translate(6.83184,-2.48031)" id="shape110-290-7" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4863-4">Feuille.110</svg:title>
+            <svg:path d="m 2.64,591.4 -0.02,-0.27 -0.09,-0.23 -0.13,-0.22 -0.14,-0.19 -0.2,-0.16 -0.24,-0.11 -0.23,-0.09 -0.27,-0.02 -0.27,0.02 -0.24,0.09 -0.23,0.11 -0.18,0.16 -0.17,0.19 -0.12,0.22 -0.09,0.23 -0.02,0.27 0.02,0.18 0.03,0.18 0.06,0.16 0.09,0.16 0.09,0.13 0.13,0.12 0.12,0.13 0.15,0.09 -0.56,2.73 h 2.38 l -0.56,-2.73 0.14,-0.09 0.15,-0.13 0.11,-0.12 0.11,-0.13 0.07,-0.16 0.05,-0.16 0.04,-0.18 z" id="path4865-0" style="fill:#000000;stroke:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+        </svg:g>
+      </svg:g>
+      <svg:text x="224.94073" y="216.36891" id="text4825-4-7" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan7304" x="224.94073" y="216.36891">+ client + address + validity</svg:tspan></svg:text>
+    </svg:g>
+    <svg:g transform="translate(173.18251,16.050487)" id="g13210">
+      <svg:g transform="translate(-12.123315,116.53929)" id="g13136">
+        <svg:rect width="84.315056" height="28.346491" x="48.212708" y="328.43283" id="rect9011-1-5-2-1" style="font-size:12px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.562117;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"/>
+        <svg:g transform="matrix(0,-1.2499996,1.2499996,0,108.04292,375.00767)" id="group102-8-5-1-2-4-2" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title9021-5-2-6-9-9">Feuille.102</svg:title>
+          <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-5-7-4-1-3" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title9024-6-7-7-5-8">Feuille.103</svg:title>
+            <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-0-9-1-7-5" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+          <svg:g id="shape104-11-5-5-3-3-1" style="fill:#ff0000;stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title9029-9-5-2-3-5">Feuille.104</svg:title>
+            <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-4-4-1-4-6" style="fill:#ff0000;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+          </svg:g>
+        </svg:g>
+        <svg:g transform="matrix(1.2499982,0,0,1.2499982,120.85501,-386.3182)" id="group106-287-8-7-2-6" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title4855-8-8-2-8">Cadenas</svg:title>
+          <svg:g id="shape108-288-1-5-0-8" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4858-8-8-1-9">Feuille.108</svg:title>
+            <svg:path d="m 4.22,582.34 v -2.98 a 2.51222,2.51222 0 0 1 2.51,-2.51 h 2.84 a 2.51222,2.51222 0 0 1 2.51,2.51 v 2.98 z m 9.24,12.94 a 2.83467,2.83467 -180 0 0 2.84,-2.84 v -7.26 a 2.83467,2.83467 -180 0 0 -2.48,-2.82 v -3.74 a 3.54333,3.54333 -180 0 0 -3.54,-3.54 H 6.02 a 3.54333,3.54333 -180 0 0 -3.54,3.54 v 3.74 A 2.83467,2.83467 -180 0 0 0,585.18 v 7.26 a 2.83467,2.83467 -180 0 0 2.83,2.84 z" id="path4860-6-3-2-8" style="fill:#ffffff;stroke:#000000;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+          <svg:g transform="translate(6.83184,-2.48031)" id="shape110-290-0-9-7-7" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4863-2-4-7-0">Feuille.110</svg:title>
+            <svg:path d="m 2.64,591.4 -0.02,-0.27 -0.09,-0.23 -0.13,-0.22 -0.14,-0.19 -0.2,-0.16 -0.24,-0.11 -0.23,-0.09 -0.27,-0.02 -0.27,0.02 -0.24,0.09 -0.23,0.11 -0.18,0.16 -0.17,0.19 -0.12,0.22 -0.09,0.23 -0.02,0.27 0.02,0.18 0.03,0.18 0.06,0.16 0.09,0.16 0.09,0.13 0.13,0.12 0.12,0.13 0.15,0.09 -0.56,2.73 h 2.38 l -0.56,-2.73 0.14,-0.09 0.15,-0.13 0.11,-0.12 0.11,-0.13 0.07,-0.16 0.05,-0.16 0.04,-0.18 z" id="path4865-4-4-0-7" style="fill:#000000;stroke:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+        </svg:g>
+        <svg:g transform="matrix(1.2499982,0,0,1.2499982,120.85501,-386.3182)" id="g11331-9" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title11333-1">Cadenas</svg:title>
+          <svg:g id="g11335-5" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title11337-8">Feuille.108</svg:title>
+            <svg:path d="m 4.22,582.34 v -2.98 a 2.51222,2.51222 0 0 1 2.51,-2.51 h 2.84 a 2.51222,2.51222 0 0 1 2.51,2.51 v 2.98 z m 9.24,12.94 a 2.83467,2.83467 -180 0 0 2.84,-2.84 v -7.26 a 2.83467,2.83467 -180 0 0 -2.48,-2.82 v -3.74 a 3.54333,3.54333 -180 0 0 -3.54,-3.54 H 6.02 a 3.54333,3.54333 -180 0 0 -3.54,3.54 v 3.74 A 2.83467,2.83467 -180 0 0 0,585.18 v 7.26 a 2.83467,2.83467 -180 0 0 2.83,2.84 z" id="path11339-6" style="fill:#ffffff;stroke:#000000;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+          <svg:g transform="translate(6.83184,-2.48031)" id="g11341-3" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title11343-9">Feuille.110</svg:title>
+            <svg:path d="m 2.64,591.4 -0.02,-0.27 -0.09,-0.23 -0.13,-0.22 -0.14,-0.19 -0.2,-0.16 -0.24,-0.11 -0.23,-0.09 -0.27,-0.02 -0.27,0.02 -0.24,0.09 -0.23,0.11 -0.18,0.16 -0.17,0.19 -0.12,0.22 -0.09,0.23 -0.02,0.27 0.02,0.18 0.03,0.18 0.06,0.16 0.09,0.16 0.09,0.13 0.13,0.12 0.12,0.13 0.15,0.09 -0.56,2.73 h 2.38 l -0.56,-2.73 0.14,-0.09 0.15,-0.13 0.11,-0.12 0.11,-0.13 0.07,-0.16 0.05,-0.16 0.04,-0.18 z" id="path11345-4" style="fill:#000000;stroke:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+        </svg:g>
+        <svg:g transform="matrix(0,-1.2499996,1.2499996,0,66.183402,354.53313)" id="g11347-5" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title11349-3">Feuille.102</svg:title>
+          <svg:g transform="translate(0.920397,-3.68504)" id="g11351-8" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title11353-2">Feuille.103</svg:title>
+            <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path11355-3" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+          <svg:g id="g11357-9" style="fill:#0000ff;fill-opacity:1;stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title11359-4">Feuille.104</svg:title>
+            <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path11361-8" style="fill:#0179ff;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+          </svg:g>
+        </svg:g>
+      </svg:g>
+    </svg:g>
+    <svg:path d="m 146.55832,545.22175 313.82794,-0.68277 16.81994,45.05993 -16.81994,50.66497 -313.82794,0.68269 z" id="rect10720-4-0-1" style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.01727;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" inkscape:connector-curvature="0"/>
+    <svg:g transform="translate(-6.807101,3.01016)" id="g11621-6">
+      <svg:rect width="152.77692" height="28.346491" x="216.37326" y="586.76862" id="rect9011-1-5-4" style="font-size:12px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.756663;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"/>
+      <svg:g transform="matrix(0,-1.2499996,1.2499996,0,344.66532,633.34343)" id="group102-8-5-1-2-6" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9021-5-2-6-7">Feuille.102</svg:title>
+        <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-5-7-4-7" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title9024-6-7-7-9">Feuille.103</svg:title>
+          <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-0-9-1-6" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g id="shape104-11-5-5-3-4" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title9029-9-5-2-1">Feuille.104</svg:title>
+          <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-4-4-1-9" style="fill:#0179ff;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+      <svg:g transform="matrix(1.2499982,0,0,1.2499982,357.47741,-127.98244)" id="group106-287-8-7-26" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title4855-8-8-3">Cadenas</svg:title>
+        <svg:g id="shape108-288-1-5-1" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title4858-8-8-5">Feuille.108</svg:title>
+          <svg:path d="m 4.22,582.34 v -2.98 a 2.51222,2.51222 0 0 1 2.51,-2.51 h 2.84 a 2.51222,2.51222 0 0 1 2.51,2.51 v 2.98 z m 9.24,12.94 a 2.83467,2.83467 -180 0 0 2.84,-2.84 v -7.26 a 2.83467,2.83467 -180 0 0 -2.48,-2.82 v -3.74 a 3.54333,3.54333 -180 0 0 -3.54,-3.54 H 6.02 a 3.54333,3.54333 -180 0 0 -3.54,3.54 v 3.74 A 2.83467,2.83467 -180 0 0 0,585.18 v 7.26 a 2.83467,2.83467 -180 0 0 2.83,2.84 z" id="path4860-6-3-9" style="fill:#ffffff;stroke:#000000;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(6.83184,-2.48031)" id="shape110-290-0-9-70" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title4863-2-4-2">Feuille.110</svg:title>
+          <svg:path d="m 2.64,591.4 -0.02,-0.27 -0.09,-0.23 -0.13,-0.22 -0.14,-0.19 -0.2,-0.16 -0.24,-0.11 -0.23,-0.09 -0.27,-0.02 -0.27,0.02 -0.24,0.09 -0.23,0.11 -0.18,0.16 -0.17,0.19 -0.12,0.22 -0.09,0.23 -0.02,0.27 0.02,0.18 0.03,0.18 0.06,0.16 0.09,0.16 0.09,0.13 0.13,0.12 0.12,0.13 0.15,0.09 -0.56,2.73 h 2.38 l -0.56,-2.73 0.14,-0.09 0.15,-0.13 0.11,-0.12 0.11,-0.13 0.07,-0.16 0.05,-0.16 0.04,-0.18 z" id="path4865-4-4-6" style="fill:#000000;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+      <svg:text x="231.02602" y="604.5022" id="text4825-4-9-6-1" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed,';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan x="231.02602" y="604.5022" id="tspan9681-7">client + timestamp</svg:tspan></svg:text>
+    </svg:g>
+    <svg:text x="533.39795" y="695.14014" id="text4834-1" style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:middle;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"><svg:tspan sodipodi:role="line" id="tspan7336" x="533.39795" y="695.14014">Service Server (SS)</svg:tspan></svg:text>
+    <svg:g transform="matrix(0,-1.2499996,1.2499996,0,561.86824,197.47378)" id="group102-8-1-0-4" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+      <svg:title id="title9021-0-2-8">Feuille.102</svg:title>
+      <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-3-8-5" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9024-73-6-6">Feuille.103</svg:title>
+        <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-9-7-4" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g id="shape104-11-59-0-9" style="fill:#56ff41;fill-opacity:1;stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9029-7-8-8">Feuille.104</svg:title>
+        <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-2-1-4" style="fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+      </svg:g>
+    </svg:g>
+    <svg:g transform="matrix(0,-1.2499996,1.2499996,0,-6.9000519,166.60866)" id="group102-8-1-0-3" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+      <svg:title id="title9021-0-2-2">Feuille.102</svg:title>
+      <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-3-8-53" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9024-73-6-8">Feuille.103</svg:title>
+        <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-9-7-3" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g id="shape104-11-59-0-2" style="fill:#48ff00;fill-opacity:1;stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9029-7-8-7">Feuille.104</svg:title>
+        <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-2-1-0" style="fill:#41e700;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+      </svg:g>
+    </svg:g>
+    <svg:g transform="matrix(0,-1.2499996,1.2499996,0,561.86824,373.61664)" id="group102-8-1-0-4-4" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+      <svg:title id="title9021-0-2-8-5">Feuille.102</svg:title>
+      <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-3-8-5-5" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9024-73-6-6-1">Feuille.103</svg:title>
+        <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-9-7-4-7" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g id="shape104-11-59-0-9-1" style="fill:#56ff41;fill-opacity:1;stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9029-7-8-8-1">Feuille.104</svg:title>
+        <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-2-1-4-5" style="fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+      </svg:g>
+    </svg:g>
+    <svg:g transform="matrix(0,-1.2499996,1.2499996,0,561.86824,407.90236)" id="group102-8-1-0-4-4-2" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+      <svg:title id="title9021-0-2-8-5-7">Feuille.102</svg:title>
+      <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-3-8-5-5-6" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9024-73-6-6-1-1">Feuille.103</svg:title>
+        <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-9-7-4-7-4" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g id="shape104-11-59-0-9-1-2" style="fill:#000000;fill-opacity:1;stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9029-7-8-8-1-3">Feuille.104</svg:title>
+        <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-2-1-4-5-2" style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+      </svg:g>
+    </svg:g>
+    <svg:text x="598.17511" y="157.8721" id="text8734" xml:space="preserve" style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><svg:tspan x="598.17511" y="157.8721" id="tspan8736" style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans'">K<svg:tspan id="tspan8768" style="font-size:10px;baseline-shift:sub">C</svg:tspan></svg:tspan></svg:text>
+    <svg:text x="598.17511" y="192.28566" id="text8734-2" xml:space="preserve" style="font-style:normal;font-weight:normal;font-size:14px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><svg:tspan x="598.17511" y="192.28566" id="tspan8736-1" style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans'">K<svg:tspan id="tspan8766" style="font-size:10px;baseline-shift:sub">TGS</svg:tspan></svg:tspan></svg:text>
+    <svg:g transform="matrix(0,-1.2499996,1.2499996,0,-6.9000519,309.74698)" id="group102-8-1-0-3-8" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+      <svg:title id="title9021-0-2-2-5">Feuille.102</svg:title>
+      <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-3-8-53-7" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9024-73-6-8-6">Feuille.103</svg:title>
+        <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-9-7-3-1" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g id="shape104-11-59-0-2-8" style="fill:#ff0000;fill-opacity:1;stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9029-7-8-7-9">Feuille.104</svg:title>
+        <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-2-1-0-2" style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+      </svg:g>
+    </svg:g>
+    <svg:text x="30.611502" y="299.39655" id="text8734-2-7" xml:space="preserve" style="font-style:normal;font-weight:normal;font-size:14px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><svg:tspan x="30.611502" y="299.39655" id="tspan8736-1-9" style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans'">K<svg:tspan id="tspan8766-5" style="font-size:10px;baseline-shift:sub">C-TGS</svg:tspan></svg:tspan></svg:text>
+    <svg:text x="29.910662" y="324.5722" id="text8734-2-7-4" xml:space="preserve" style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#2e2e2e;fill-opacity:1;stroke:none"><svg:tspan sodipodi:role="line" id="tspan7344" x="29.910662" y="324.5722">Session key</svg:tspan><svg:tspan sodipodi:role="line" id="tspan7346" x="29.910662" y="339.5722">Signs exchanges</svg:tspan><svg:tspan sodipodi:role="line" id="tspan7348" x="29.910662" y="354.5722">between C and TGS</svg:tspan></svg:text>
+    <svg:text x="598.17511" y="365.05643" id="text8734-2-2" xml:space="preserve" style="font-style:normal;font-weight:normal;font-size:14px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><svg:tspan x="598.17511" y="365.05643" id="tspan8736-1-3" style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans'">K<svg:tspan id="tspan8766-3" style="font-size:10px;baseline-shift:sub">TGS</svg:tspan></svg:tspan></svg:text>
+    <svg:text x="598.17511" y="403.3407" id="text8734-2-2-4" xml:space="preserve" style="font-style:normal;font-weight:normal;font-size:14px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><svg:tspan x="598.17511" y="403.3407" id="tspan8736-1-3-1" style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans'">K<svg:tspan id="tspan8766-3-1" style="font-size:10px;baseline-shift:sub">S</svg:tspan></svg:tspan></svg:text>
+    <svg:g transform="matrix(0,-1.2499996,1.2499996,0,561.86824,616.54908)" id="group102-8-1-0-4-4-2-3" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+      <svg:title id="title9021-0-2-8-5-7-8">Feuille.102</svg:title>
+      <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-3-8-5-5-6-7" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9024-73-6-6-1-1-4">Feuille.103</svg:title>
+        <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-9-7-4-7-4-2" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g id="shape104-11-59-0-9-1-2-7" style="fill:#000000;fill-opacity:1;stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9029-7-8-8-1-3-7">Feuille.104</svg:title>
+        <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-2-1-4-5-2-9" style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+      </svg:g>
+    </svg:g>
+    <svg:text x="598.17511" y="611.98743" id="text8734-2-2-4-3" xml:space="preserve" style="font-style:normal;font-weight:normal;font-size:14px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><svg:tspan x="598.17511" y="611.98743" id="tspan8736-1-3-1-1" style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans'">K<svg:tspan id="tspan8766-3-1-9" style="font-size:10px;baseline-shift:sub">S</svg:tspan></svg:tspan></svg:text>
+    <svg:g transform="matrix(0,-1.2499996,1.2499996,0,-6.9000519,511.29705)" id="group102-8-1-0-3-8-8" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+      <svg:title id="title9021-0-2-2-5-6">Feuille.102</svg:title>
+      <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-3-8-53-7-5" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9024-73-6-8-6-0">Feuille.103</svg:title>
+        <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-9-7-3-1-2" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+      </svg:g>
+      <svg:g id="shape104-11-59-0-2-8-8" style="fill:#ff0000;fill-opacity:1;stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9029-7-8-7-9-6">Feuille.104</svg:title>
+        <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-2-1-0-2-0" style="fill:#0179ff;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+      </svg:g>
+    </svg:g>
+    <svg:text x="31.503223" y="500.94662" id="text8734-2-7-2" xml:space="preserve" style="font-style:normal;font-weight:normal;font-size:14px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"><svg:tspan x="31.503223" y="500.94662" id="tspan8736-1-9-4" style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans'">K<svg:tspan id="tspan8766-5-8" style="font-size:10px;baseline-shift:sub">C-S</svg:tspan></svg:tspan></svg:text>
+    <svg:text x="30.802383" y="526.12225" id="text8734-2-7-4-6" xml:space="preserve" style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#2e2e2e;fill-opacity:1;stroke:none"><svg:tspan y="526.12225" x="30.802383" id="tspan9541" sodipodi:role="line">For exchanges</svg:tspan><svg:tspan id="tspan9545" y="541.12225" x="30.802383" sodipodi:role="line">between C and S</svg:tspan></svg:text>
+    <svg:text style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3" id="text7390" y="441.20157" x="183.83894"><svg:tspan sodipodi:role="line" id="tspan7392" x="183.83894" y="441.20157">Msg E</svg:tspan></svg:text>
+    <svg:text x="184.04346" y="478.75256" id="text7396" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan7398" x="184.04346" y="478.75256">Msg F</svg:tspan></svg:text>
+    <svg:path inkscape:connector-curvature="0" style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.66196;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" id="path7659" d="m 471.21633,716.79937 -315.74389,0.46061 -16.92262,-30.39878 16.92262,-34.18011 315.74389,-0.46056 z"/>
+    <svg:g id="g7843" transform="translate(-6.807101,79.01016)">
+      <svg:rect style="font-size:12px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.756663;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none" id="rect7805" y="586.76862" x="216.37326" height="28.346491" width="152.77692"/>
+      <svg:g style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none" id="g7821" transform="matrix(0,-1.2499996,1.2499996,0,344.66532,633.34343)">
+        <svg:title id="title7807">Feuille.102</svg:title>
+        <svg:g style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none" id="g7813" transform="translate(0.920397,-3.68504)">
+          <svg:title id="title7809">Feuille.103</svg:title>
+          <svg:path inkscape:connector-curvature="0" style="fill:#ffffff;stroke:none" id="path7811" d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z"/>
+        </svg:g>
+        <svg:g style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none" id="g7819">
+          <svg:title id="title7815">Feuille.104</svg:title>
+          <svg:path inkscape:connector-curvature="0" style="fill:#0179ff;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" id="path7817" d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z"/>
+        </svg:g>
+      </svg:g>
+      <svg:g style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none" id="g7837" transform="matrix(1.2499982,0,0,1.2499982,357.47741,-127.98244)">
+        <svg:title id="title7823">Cadenas</svg:title>
+        <svg:g style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none" id="g7829">
+          <svg:title id="title7825">Feuille.108</svg:title>
+          <svg:path inkscape:connector-curvature="0" style="fill:#ffffff;stroke:#000000;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none" id="path7827" d="m 4.22,582.34 v -2.98 a 2.51222,2.51222 0 0 1 2.51,-2.51 h 2.84 a 2.51222,2.51222 0 0 1 2.51,2.51 v 2.98 z m 9.24,12.94 a 2.83467,2.83467 -180 0 0 2.84,-2.84 v -7.26 a 2.83467,2.83467 -180 0 0 -2.48,-2.82 v -3.74 a 3.54333,3.54333 -180 0 0 -3.54,-3.54 H 6.02 a 3.54333,3.54333 -180 0 0 -3.54,3.54 v 3.74 A 2.83467,2.83467 -180 0 0 0,585.18 v 7.26 a 2.83467,2.83467 -180 0 0 2.83,2.84 z"/>
+        </svg:g>
+        <svg:g style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none" id="g7835" transform="translate(6.83184,-2.48031)">
+          <svg:title id="title7831">Feuille.110</svg:title>
+          <svg:path inkscape:connector-curvature="0" style="fill:#000000;stroke:none" id="path7833" d="m 2.64,591.4 -0.02,-0.27 -0.09,-0.23 -0.13,-0.22 -0.14,-0.19 -0.2,-0.16 -0.24,-0.11 -0.23,-0.09 -0.27,-0.02 -0.27,0.02 -0.24,0.09 -0.23,0.11 -0.18,0.16 -0.17,0.19 -0.12,0.22 -0.09,0.23 -0.02,0.27 0.02,0.18 0.03,0.18 0.06,0.16 0.09,0.16 0.09,0.13 0.13,0.12 0.12,0.13 0.15,0.09 -0.56,2.73 h 2.38 l -0.56,-2.73 0.14,-0.09 0.15,-0.13 0.11,-0.12 0.11,-0.13 0.07,-0.16 0.05,-0.16 0.04,-0.18 z"/>
+        </svg:g>
+      </svg:g>
+      <svg:text style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed,';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-linecap:square;stroke-miterlimit:3" id="text7841" y="604.5022" x="265.026"><svg:tspan id="tspan7839" y="604.5022" x="265.026">timestamp</svg:tspan></svg:text>
+    </svg:g>
+    <svg:text x="185.2692" y="684.30359" id="text7847" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan7849" x="185.2692" y="684.30359">Msg H</svg:tspan></svg:text>
+    <svg:text style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3;" id="text4825-7" y="131.48761" x="237.30841"><svg:tspan sodipodi:role="line" id="tspan7881">Client Authentication to the AS</svg:tspan></svg:text>
+    <svg:text x="228.32013" y="299.48761" id="text7871" style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan7873" x="228.32013" y="299.48761">Client Service Authorization</svg:tspan></svg:text>
+    <svg:text style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3" id="text7877" y="537.48761" x="211.867"><svg:tspan sodipodi:role="line" id="tspan7879" x="211.867" y="537.48761">Client Service Request</svg:tspan></svg:text>
+    <svg:path d="m 485.13646,276.14759 -328.81959,0.72066 -17.62343,-47.56071 17.62343,-53.47682 328.81959,-0.72057 z" id="rect10720-4" style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.12141;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" inkscape:connector-curvature="0"/>
+    <svg:g id="g11432" transform="translate(30.636112,28.952436)">
+      <svg:g style="stroke:#000000;stroke-width:0.6;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="g5598" transform="translate(530.01256,-88.78117)">
+        <svg:path transform="translate(-1.675057,61.993324)" d="m -339.31836,223.83594 a 5.2223277,5.2223277 0 0 1 0.0156,0.3789 5.2223277,5.2223277 0 0 1 -5.22266,5.22266 5.2223277,5.2223277 0 0 1 -0.45703,-0.0195 v 4.06836 a 1.8812089,1.8812089 0 0 1 0.16406,-0.008 1.8812089,1.8812089 0 0 1 1.88086,1.88086 1.8812089,1.8812089 0 0 1 -1.88086,1.88281 1.8812089,1.8812089 0 0 1 -0.16406,-0.01 v 2.25391 a 1.8812089,1.8812089 0 0 1 0.16406,-0.008 1.8812089,1.8812089 0 0 1 1.88086,1.88086 1.8812089,1.8812089 0 0 1 -1.88086,1.88281 1.8812089,1.8812089 0 0 1 -0.16406,-0.01 v 4.22852 a 5.2223277,5.2223277 0 0 1 0.50586,-0.0254 5.2223277,5.2223277 0 0 1 5.22265,5.22265 5.2223277,5.2223277 0 0 1 -0.004,0.17774 h 210.8164 a 5.2223277,5.2223277 0 0 1 -0.004,-0.17774 5.2223277,5.2223277 0 0 1 5.22265,-5.22265 5.2223277,5.2223277 0 0 1 0.24024,0.008 v -4.20313 a 1.8812089,1.8812089 0 0 1 -1.83985,-1.88085 1.8812089,1.8812089 0 0 1 1.83985,-1.87891 v -2.24024 a 1.8812089,1.8812089 0 0 1 -1.83985,-1.88085 1.8812089,1.8812089 0 0 1 1.83985,-1.87891 v -4.05078 a 5.2223277,5.2223277 0 0 1 -0.28906,0.008 5.2223277,5.2223277 0 0 1 -5.22266,-5.22266 5.2223277,5.2223277 0 0 1 0.0137,-0.3789 z" style="color:#000000;font-variation-settings:'wght' 400;overflow:visible;fill:#fbbf67;fill-opacity:1;stroke:#000000;stroke-width:0.6;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect5520"/>
+        <svg:rect y="288.48947" x="-338.60577" height="23.679592" width="205.89659" id="rect5586" style="color:#000000;font-variation-settings:'wght' 400;overflow:visible;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.6;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
+      </svg:g>
+      <svg:g transform="matrix(0,-1.2499996,1.2499996,0,190.17221,223.38232)" id="group102-8" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9021">Feuille.102</svg:title>
+        <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title9024">Feuille.103</svg:title>
+          <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g id="shape104-11" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title9029">Feuille.104</svg:title>
+          <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031" style="fill:#ff0000;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+      <svg:g transform="matrix(1.2499982,0,0,1.2499982,392.84898,-500.71476)" id="group114-281" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title4839">Feuille.114</svg:title>
+        <svg:g transform="rotate(-90,6.9095,588.3665)" id="group111-282" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title4842">Feuille.111</svg:title>
+          <svg:g transform="translate(0.920397,-3.68504)" id="shape112-283" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4845">Feuille.112</svg:title>
+            <svg:path d="m 1.24,595.28 c 0.69,0 1.24,-0.91 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.11 0.56,2.02 1.24,2.02 z" id="path4847" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+          <svg:g id="shape113-285" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4850">Feuille.113</svg:title>
+            <svg:path d="m 3.42,583.94 c -1.89,0 -3.42,2.54 -3.42,5.67 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.85 h 2.8 l 0.95,-1.36 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.84 v -0.54 l -0.35,-0.11 -0.93,-1.09 H 6.64 C 6.16,585.49 4.9,583.94 3.42,583.94 Z m -1.31,3.65 c 0.61,0 1.1,0.91 1.1,2.02 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.02 1.1,-2.02 z" id="path4852" style="fill:#ffff00;stroke:#000000;stroke-width:0.800001;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+          </svg:g>
+        </svg:g>
+        <svg:g transform="translate(0,-13.1289)" id="group106-287" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title4855">Cadenas</svg:title>
+          <svg:g id="shape108-288" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4858">Feuille.108</svg:title>
+            <svg:path d="m 4.22,582.34 v -2.98 a 2.51222,2.51222 0 0 1 2.51,-2.51 h 2.84 a 2.51222,2.51222 0 0 1 2.51,2.51 v 2.98 z m 9.24,12.94 a 2.83467,2.83467 -180 0 0 2.84,-2.84 v -7.26 a 2.83467,2.83467 -180 0 0 -2.48,-2.82 v -3.74 a 3.54333,3.54333 -180 0 0 -3.54,-3.54 H 6.02 a 3.54333,3.54333 -180 0 0 -3.54,3.54 v 3.74 A 2.83467,2.83467 -180 0 0 0,585.18 v 7.26 a 2.83467,2.83467 -180 0 0 2.83,2.84 z" id="path4860" style="fill:#ffffff;stroke:#000000;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+          <svg:g transform="translate(6.83184,-2.48031)" id="shape110-290" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4863">Feuille.110</svg:title>
+            <svg:path d="m 2.64,591.4 -0.02,-0.27 -0.09,-0.23 -0.13,-0.22 -0.14,-0.19 -0.2,-0.16 -0.24,-0.11 -0.23,-0.09 -0.27,-0.02 -0.27,0.02 -0.24,0.09 -0.23,0.11 -0.18,0.16 -0.17,0.19 -0.12,0.22 -0.09,0.23 -0.02,0.27 0.02,0.18 0.03,0.18 0.06,0.16 0.09,0.16 0.09,0.13 0.13,0.12 0.12,0.13 0.15,0.09 -0.56,2.73 h 2.38 l -0.56,-2.73 0.14,-0.09 0.15,-0.13 0.11,-0.12 0.11,-0.13 0.07,-0.16 0.05,-0.16 0.04,-0.18 z" id="path4865" style="fill:#000000;stroke:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+        </svg:g>
+      </svg:g>
+      <svg:text x="224.94073" y="216.36891" id="text4825-4" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan7300" x="224.94073" y="216.36891">+ client + address + validity</svg:tspan></svg:text>
+    </svg:g>
+    <svg:g transform="matrix(0.91467075,0,0,0.91467075,-66.774563,-156.73443)" id="g11363">
+      <svg:rect width="84.315056" height="28.346491" x="306.49158" y="367.3725" id="rect9011-1-5-2" style="font-size:12px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.562117;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"/>
+      <svg:g transform="matrix(0,-1.2499996,1.2499996,0,366.32179,413.94734)" id="group102-8-5-1-2-4" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title9021-5-2-6-9">Feuille.102</svg:title>
+        <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-5-7-4-1" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title9024-6-7-7-5">Feuille.103</svg:title>
+          <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-0-9-1-7" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g id="shape104-11-5-5-3-3" style="fill:#48ff00;fill-opacity:1;stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title9029-9-5-2-3">Feuille.104</svg:title>
+          <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-4-4-1-4" style="fill:#41e700;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+      <svg:g transform="matrix(1.2499982,0,0,1.2499982,379.13388,-347.37853)" id="group106-287-8-7-2" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title4855-8-8-2">Cadenas</svg:title>
+        <svg:g id="shape108-288-1-5-0" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title4858-8-8-1">Feuille.108</svg:title>
+          <svg:path d="m 4.22,582.34 v -2.98 a 2.51222,2.51222 0 0 1 2.51,-2.51 h 2.84 a 2.51222,2.51222 0 0 1 2.51,2.51 v 2.98 z m 9.24,12.94 a 2.83467,2.83467 -180 0 0 2.84,-2.84 v -7.26 a 2.83467,2.83467 -180 0 0 -2.48,-2.82 v -3.74 a 3.54333,3.54333 -180 0 0 -3.54,-3.54 H 6.02 a 3.54333,3.54333 -180 0 0 -3.54,3.54 v 3.74 A 2.83467,2.83467 -180 0 0 0,585.18 v 7.26 a 2.83467,2.83467 -180 0 0 2.83,2.84 z" id="path4860-6-3-2" style="fill:#ffffff;stroke:#000000;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(6.83184,-2.48031)" id="shape110-290-0-9-7" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title4863-2-4-7">Feuille.110</svg:title>
+          <svg:path d="m 2.64,591.4 -0.02,-0.27 -0.09,-0.23 -0.13,-0.22 -0.14,-0.19 -0.2,-0.16 -0.24,-0.11 -0.23,-0.09 -0.27,-0.02 -0.27,0.02 -0.24,0.09 -0.23,0.11 -0.18,0.16 -0.17,0.19 -0.12,0.22 -0.09,0.23 -0.02,0.27 0.02,0.18 0.03,0.18 0.06,0.16 0.09,0.16 0.09,0.13 0.13,0.12 0.12,0.13 0.15,0.09 -0.56,2.73 h 2.38 l -0.56,-2.73 0.14,-0.09 0.15,-0.13 0.11,-0.12 0.11,-0.13 0.07,-0.16 0.05,-0.16 0.04,-0.18 z" id="path4865-4-4-0" style="fill:#000000;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+      <svg:g transform="matrix(1.2499982,0,0,1.2499982,379.13388,-347.37853)" id="g11331" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title11333">Cadenas</svg:title>
+        <svg:g id="g11335" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title11337">Feuille.108</svg:title>
+          <svg:path d="m 4.22,582.34 v -2.98 a 2.51222,2.51222 0 0 1 2.51,-2.51 h 2.84 a 2.51222,2.51222 0 0 1 2.51,2.51 v 2.98 z m 9.24,12.94 a 2.83467,2.83467 -180 0 0 2.84,-2.84 v -7.26 a 2.83467,2.83467 -180 0 0 -2.48,-2.82 v -3.74 a 3.54333,3.54333 -180 0 0 -3.54,-3.54 H 6.02 a 3.54333,3.54333 -180 0 0 -3.54,3.54 v 3.74 A 2.83467,2.83467 -180 0 0 0,585.18 v 7.26 a 2.83467,2.83467 -180 0 0 2.83,2.84 z" id="path11339" style="fill:#ffffff;stroke:#000000;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g transform="translate(6.83184,-2.48031)" id="g11341" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title11343">Feuille.110</svg:title>
+          <svg:path d="m 2.64,591.4 -0.02,-0.27 -0.09,-0.23 -0.13,-0.22 -0.14,-0.19 -0.2,-0.16 -0.24,-0.11 -0.23,-0.09 -0.27,-0.02 -0.27,0.02 -0.24,0.09 -0.23,0.11 -0.18,0.16 -0.17,0.19 -0.12,0.22 -0.09,0.23 -0.02,0.27 0.02,0.18 0.03,0.18 0.06,0.16 0.09,0.16 0.09,0.13 0.13,0.12 0.12,0.13 0.15,0.09 -0.56,2.73 h 2.38 l -0.56,-2.73 0.14,-0.09 0.15,-0.13 0.11,-0.12 0.11,-0.13 0.07,-0.16 0.05,-0.16 0.04,-0.18 z" id="path11345" style="fill:#000000;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+      <svg:g transform="matrix(0,-1.2499996,1.2499996,0,324.46227,393.4728)" id="g11347" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title11349">Feuille.102</svg:title>
+        <svg:g transform="translate(0.920397,-3.68504)" id="g11351" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title11353">Feuille.103</svg:title>
+          <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path11355" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g id="g11357" style="fill:#ff0000;fill-opacity:1;stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title11359">Feuille.104</svg:title>
+          <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path11361" style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+    </svg:g>
+    <svg:text x="184.92888" y="242.7162" id="text7372" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan7374" x="184.92888" y="242.7162">Msg B</svg:tspan></svg:text>
+    <svg:text x="184.91716" y="198.55777" id="text7372-5" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan7374-8" x="184.91716" y="198.55777">Msg A</svg:tspan></svg:text>
+    <svg:text x="286.92889" y="268.71619" id="text21780" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#fbbf67;fill-opacity:1;stroke-width:0.4;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none"><svg:tspan sodipodi:role="line" id="tspan21800" x="286.92889" y="268.71619" style="fill:#fbbf67;fill-opacity:1;stroke:#404040;stroke-width:0.4;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1">Ticket granting ticket (TGT)</svg:tspan></svg:text>
+    <svg:g id="g69476">
+      <svg:path d="m 141.11979,308.85699 325.91261,-0.68261 17.46762,45.04956 -17.46762,50.6533 -325.91261,0.68253 z" id="rect10720-4-0" style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.05551;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" inkscape:connector-curvature="0"/>
+      <svg:g transform="matrix(0.95269201,0,0,0.95269201,-19.448192,-201.62459)" id="g11621">
+        <svg:rect width="152.77692" height="28.346491" x="216.37326" y="586.76862" id="rect9011-1-5" style="font-size:12px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.756663;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"/>
+        <svg:g transform="matrix(0,-1.2499996,1.2499996,0,344.66532,633.34343)" id="group102-8-5-1-2" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title9021-5-2-6">Feuille.102</svg:title>
+          <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-5-7-4" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title9024-6-7-7">Feuille.103</svg:title>
+            <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-0-9-1" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+          <svg:g id="shape104-11-5-5-3" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title9029-9-5-2">Feuille.104</svg:title>
+            <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-4-4-1" style="fill:#ff0000;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+          </svg:g>
+        </svg:g>
+        <svg:g transform="matrix(1.2499982,0,0,1.2499982,357.47741,-127.98244)" id="group106-287-8-7" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title4855-8-8">Cadenas</svg:title>
+          <svg:g id="shape108-288-1-5" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4858-8-8">Feuille.108</svg:title>
+            <svg:path d="m 4.22,582.34 v -2.98 a 2.51222,2.51222 0 0 1 2.51,-2.51 h 2.84 a 2.51222,2.51222 0 0 1 2.51,2.51 v 2.98 z m 9.24,12.94 a 2.83467,2.83467 -180 0 0 2.84,-2.84 v -7.26 a 2.83467,2.83467 -180 0 0 -2.48,-2.82 v -3.74 a 3.54333,3.54333 -180 0 0 -3.54,-3.54 H 6.02 a 3.54333,3.54333 -180 0 0 -3.54,3.54 v 3.74 A 2.83467,2.83467 -180 0 0 0,585.18 v 7.26 a 2.83467,2.83467 -180 0 0 2.83,2.84 z" id="path4860-6-3" style="fill:#ffffff;stroke:#000000;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+          <svg:g transform="translate(6.83184,-2.48031)" id="shape110-290-0-9" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4863-2-4">Feuille.110</svg:title>
+            <svg:path d="m 2.64,591.4 -0.02,-0.27 -0.09,-0.23 -0.13,-0.22 -0.14,-0.19 -0.2,-0.16 -0.24,-0.11 -0.23,-0.09 -0.27,-0.02 -0.27,0.02 -0.24,0.09 -0.23,0.11 -0.18,0.16 -0.17,0.19 -0.12,0.22 -0.09,0.23 -0.02,0.27 0.02,0.18 0.03,0.18 0.06,0.16 0.09,0.16 0.09,0.13 0.13,0.12 0.12,0.13 0.15,0.09 -0.56,2.73 h 2.38 l -0.56,-2.73 0.14,-0.09 0.15,-0.13 0.11,-0.12 0.11,-0.13 0.07,-0.16 0.05,-0.16 0.04,-0.18 z" id="path4865-4-4" style="fill:#000000;stroke:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+        </svg:g>
+        <svg:text x="229.02602" y="604.5022" id="text4825-4-9-6" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan7312" x="229.02602" y="604.5022">client + timestamp</svg:tspan></svg:text>
+      </svg:g>
+      <svg:g transform="translate(58.152392,116.29447)" id="g11432-4">
+        <svg:g style="stroke:#000000;stroke-width:0.6;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="g5641-0" transform="translate(1169.1695,48.093935)">
+          <svg:path id="rect5520-5-1" style="color:#000000;font-variation-settings:'wght' 400;overflow:visible;fill:#fbbf67;fill-opacity:1;stroke:#000000;stroke-width:0.6;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="m -984.65309,149.91028 a 5.2223277,5.2223277 0 0 1 0.0156,0.3789 5.2223277,5.2223277 0 0 1 -5.22266,5.22266 5.2223277,5.2223277 0 0 1 -0.45703,-0.0195 v 4.06836 a 1.8812089,1.8812089 0 0 1 0.16406,-0.008 1.8812089,1.8812089 0 0 1 1.88086,1.88086 1.8812089,1.8812089 0 0 1 -1.88086,1.88282 1.8812089,1.8812089 0 0 1 -0.16406,-0.01 v 2.25392 a 1.8812089,1.8812089 0 0 1 0.16406,-0.008 1.8812089,1.8812089 0 0 1 1.88086,1.88087 1.8812089,1.8812089 0 0 1 -1.88086,1.8828 1.8812089,1.8812089 0 0 1 -0.16406,-0.01 v 4.22852 a 5.2223277,5.2223277 0 0 1 0.50586,-0.0254 5.2223277,5.2223277 0 0 1 5.22265,5.22265 5.2223277,5.2223277 0 0 1 -0.004,0.17774 h 210.8164 a 5.2223277,5.2223277 0 0 1 -0.004,-0.17774 5.2223277,5.2223277 0 0 1 5.22265,-5.22265 5.2223277,5.2223277 0 0 1 0.24024,0.008 v -4.20313 a 1.8812089,1.8812089 0 0 1 -1.83985,-1.88085 1.8812089,1.8812089 0 0 1 1.83985,-1.8789 v -2.24024 a 1.8812089,1.8812089 0 0 1 -1.83985,-1.88086 1.8812089,1.8812089 0 0 1 1.83985,-1.87891 v -4.05078 a 5.2223277,5.2223277 0 0 1 -0.28906,0.008 5.2223277,5.2223277 0 0 1 -5.22266,-5.22266 5.2223277,5.2223277 0 0 1 0.0137,-0.3789 z"/>
+          <svg:rect style="color:#000000;font-variation-settings:'wght' 400;overflow:visible;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.6;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect5586-9-7" width="205.89659" height="23.679592" x="-982.26544" y="152.5705"/>
+        </svg:g>
+        <svg:g transform="matrix(0,-1.2499996,1.2499996,0,184.17221,223.38232)" id="group102-8-6" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title9021-7">Feuille.102</svg:title>
+          <svg:g transform="translate(0.920397,-3.68504)" id="shape103-9-8" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title9024-9">Feuille.103</svg:title>
+            <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path9026-5" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+          <svg:g id="shape104-11-55" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title9029-6">Feuille.104</svg:title>
+            <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path9031-63" style="fill:#ff0000;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+          </svg:g>
+        </svg:g>
+        <svg:g transform="matrix(1.2499982,0,0,1.2499982,392.84898,-500.71476)" id="group114-281-0" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title4839-0">Feuille.114</svg:title>
+          <svg:g transform="rotate(-90,6.9095,588.3665)" id="group111-282-8" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4842-8">Feuille.111</svg:title>
+            <svg:g transform="translate(0.920397,-3.68504)" id="shape112-283-2" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+              <svg:title id="title4845-3">Feuille.112</svg:title>
+              <svg:path d="m 1.24,595.28 c 0.69,0 1.24,-0.91 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.11 0.56,2.02 1.24,2.02 z" id="path4847-0" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+            </svg:g>
+            <svg:g id="shape113-285-6" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+              <svg:title id="title4850-5">Feuille.113</svg:title>
+              <svg:path d="m 3.42,583.94 c -1.89,0 -3.42,2.54 -3.42,5.67 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.85 h 2.8 l 0.95,-1.36 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.84 v -0.54 l -0.35,-0.11 -0.93,-1.09 H 6.64 C 6.16,585.49 4.9,583.94 3.42,583.94 Z m -1.31,3.65 c 0.61,0 1.1,0.91 1.1,2.02 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.02 1.1,-2.02 z" id="path4852-0" style="fill:#ffff00;stroke:#000000;stroke-width:0.800001;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+            </svg:g>
+          </svg:g>
+          <svg:g transform="translate(0,-13.1289)" id="group106-287-9" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title4855-7">Cadenas</svg:title>
+            <svg:g id="shape108-288-2" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+              <svg:title id="title4858-2">Feuille.108</svg:title>
+              <svg:path d="m 4.22,582.34 v -2.98 a 2.51222,2.51222 0 0 1 2.51,-2.51 h 2.84 a 2.51222,2.51222 0 0 1 2.51,2.51 v 2.98 z m 9.24,12.94 a 2.83467,2.83467 -180 0 0 2.84,-2.84 v -7.26 a 2.83467,2.83467 -180 0 0 -2.48,-2.82 v -3.74 a 3.54333,3.54333 -180 0 0 -3.54,-3.54 H 6.02 a 3.54333,3.54333 -180 0 0 -3.54,3.54 v 3.74 A 2.83467,2.83467 -180 0 0 0,585.18 v 7.26 a 2.83467,2.83467 -180 0 0 2.83,2.84 z" id="path4860-8" style="fill:#ffffff;stroke:#000000;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none" inkscape:connector-curvature="0"/>
+            </svg:g>
+            <svg:g transform="translate(6.83184,-2.48031)" id="shape110-290-2" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+              <svg:title id="title4863-9">Feuille.110</svg:title>
+              <svg:path d="m 2.64,591.4 -0.02,-0.27 -0.09,-0.23 -0.13,-0.22 -0.14,-0.19 -0.2,-0.16 -0.24,-0.11 -0.23,-0.09 -0.27,-0.02 -0.27,0.02 -0.24,0.09 -0.23,0.11 -0.18,0.16 -0.17,0.19 -0.12,0.22 -0.09,0.23 -0.02,0.27 0.02,0.18 0.03,0.18 0.06,0.16 0.09,0.16 0.09,0.13 0.13,0.12 0.12,0.13 0.15,0.09 -0.56,2.73 h 2.38 l -0.56,-2.73 0.14,-0.09 0.15,-0.13 0.11,-0.12 0.11,-0.13 0.07,-0.16 0.05,-0.16 0.04,-0.18 z" id="path4865-44" style="fill:#000000;stroke:none" inkscape:connector-curvature="0"/>
+            </svg:g>
+          </svg:g>
+        </svg:g>
+        <svg:text x="218.94073" y="216.36891" id="text4825-4-82" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan7302" x="218.94073" y="216.36891">+ client + address + validity</svg:tspan></svg:text>
+      </svg:g>
+      <svg:text style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3" id="text7378" y="336.52594" x="166.45992"><svg:tspan sodipodi:role="line" id="tspan7380" x="166.45992" y="336.52594">Msg C</svg:tspan></svg:text>
+      <svg:text x="166.13383" y="376.55725" id="text7384" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan7386" x="166.13383" y="376.55725">Msg D</svg:tspan></svg:text>
+      <svg:rect width="47.091843" height="43.755917" x="186.71301" y="311.64093" id="rect55365" style="font-size:12px;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.521934;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none"/>
+      <svg:text x="189.50323" y="324.97302" id="text55401" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.33333px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan55892" x="189.50323" y="324.97302">ID of</svg:tspan><svg:tspan sodipodi:role="line" x="189.50323" y="336.63968" id="tspan62063">service</svg:tspan><svg:tspan sodipodi:role="line" id="tspan61071" x="189.50323" y="348.30634">requested</svg:tspan></svg:text>
+    </svg:g>
+    <svg:g transform="translate(25.89737,354.00835)" id="g73912">
+      <svg:g style="stroke:#000000;stroke-width:0.6;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="g73854" transform="translate(1174.2379,47.682488)">
+        <svg:path id="path73850" style="color:#000000;font-variation-settings:'wght' 400;overflow:visible;fill:#ffaaaa;fill-opacity:1;stroke:#000000;stroke-width:0.6;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" d="m -984.65309,149.91028 a 5.2223277,5.2223277 0 0 1 0.0156,0.3789 5.2223277,5.2223277 0 0 1 -5.22266,5.22266 5.2223277,5.2223277 0 0 1 -0.45703,-0.0195 v 4.06836 a 1.8812089,1.8812089 0 0 1 0.16406,-0.008 1.8812089,1.8812089 0 0 1 1.88086,1.88086 1.8812089,1.8812089 0 0 1 -1.88086,1.88282 1.8812089,1.8812089 0 0 1 -0.16406,-0.01 v 2.25392 a 1.8812089,1.8812089 0 0 1 0.16406,-0.008 1.8812089,1.8812089 0 0 1 1.88086,1.88087 1.8812089,1.8812089 0 0 1 -1.88086,1.8828 1.8812089,1.8812089 0 0 1 -0.16406,-0.01 v 4.22852 a 5.2223277,5.2223277 0 0 1 0.50586,-0.0254 5.2223277,5.2223277 0 0 1 5.22265,5.22265 5.2223277,5.2223277 0 0 1 -0.004,0.17774 h 210.8164 a 5.2223277,5.2223277 0 0 1 -0.004,-0.17774 5.2223277,5.2223277 0 0 1 5.22265,-5.22265 5.2223277,5.2223277 0 0 1 0.24024,0.008 v -4.20313 a 1.8812089,1.8812089 0 0 1 -1.83985,-1.88085 1.8812089,1.8812089 0 0 1 1.83985,-1.8789 v -2.24024 a 1.8812089,1.8812089 0 0 1 -1.83985,-1.88086 1.8812089,1.8812089 0 0 1 1.83985,-1.87891 v -4.05078 a 5.2223277,5.2223277 0 0 1 -0.28906,0.008 5.2223277,5.2223277 0 0 1 -5.22266,-5.22266 5.2223277,5.2223277 0 0 1 0.0137,-0.3789 z"/>
+        <svg:rect style="color:#000000;font-variation-settings:'wght' 400;overflow:visible;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.6;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect73852" width="205.89659" height="23.679592" x="-982.26544" y="152.5705"/>
+      </svg:g>
+      <svg:g transform="matrix(0,-1.2499996,1.2499996,0,190.17221,223.38232)" id="g73870" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title73856">Feuille.102</svg:title>
+        <svg:g transform="translate(0.920397,-3.68504)" id="g73862" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title73858">Feuille.103</svg:title>
+          <svg:path d="m 1.24,24.12 c 0.69,0 1.24,-0.9 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.12 0.56,2.02 1.24,2.02 z" id="path73860" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+        </svg:g>
+        <svg:g id="g73868" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title73864">Feuille.104</svg:title>
+          <svg:path d="M 3.42,12.78 C 1.53,12.78 0,15.32 0,18.45 c 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.84 h 2.8 l 0.95,-1.37 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.83 V 17.72 L 18.8,17.61 17.87,16.51 H 6.64 C 6.16,14.33 4.9,12.78 3.42,12.78 Z m -1.31,3.66 c 0.61,0 1.1,0.9 1.1,2.01 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.01 1.1,-2.01 z" id="path73866" style="fill:#0179ff;fill-opacity:1;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+        </svg:g>
+      </svg:g>
+      <svg:g transform="matrix(1.2499982,0,0,1.2499982,392.84898,-500.71476)" id="g73906" style="font-size:12px;fill:none;stroke-width:1.2;stroke-linecap:square;stroke-miterlimit:3;stroke-dasharray:none">
+        <svg:title id="title73872">Feuille.114</svg:title>
+        <svg:g transform="rotate(-90,6.9095,588.3665)" id="g73888" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title73874">Feuille.111</svg:title>
+          <svg:g transform="translate(0.920397,-3.68504)" id="g73880" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title73876">Feuille.112</svg:title>
+            <svg:path d="m 1.24,595.28 c 0.69,0 1.24,-0.91 1.24,-2.02 0,-1.11 -0.55,-2.01 -1.24,-2.01 -0.68,0 -1.24,0.9 -1.24,2.01 0,1.11 0.56,2.02 1.24,2.02 z" id="path73878" style="fill:#ffffff;stroke:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+          <svg:g id="g73886" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title73882">Feuille.113</svg:title>
+            <svg:path d="m 3.42,583.94 c -1.89,0 -3.42,2.54 -3.42,5.67 0,3.13 1.53,5.67 3.42,5.67 1.51,0 2.79,-1.61 3.25,-3.85 h 2.8 l 0.95,-1.36 h 0.64 l 0.42,0.5 h 1.02 l 0.17,-0.34 h 0.98 l 0.46,0.92 h 0.83 l 0.54,-0.63 h 0.71 l 0.62,0.73 h 0.78 l 1.56,-1.84 v -0.54 l -0.35,-0.11 -0.93,-1.09 H 6.64 C 6.16,585.49 4.9,583.94 3.42,583.94 Z m -1.31,3.65 c 0.61,0 1.1,0.91 1.1,2.02 0,1.11 -0.49,2.01 -1.1,2.01 -0.6,0 -1.1,-0.9 -1.1,-2.01 0,-1.11 0.5,-2.02 1.1,-2.02 z" id="path73884" style="fill:#000000;stroke:#000000;stroke-width:0.800001;stroke-linecap:butt;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1" inkscape:connector-curvature="0"/>
+          </svg:g>
+        </svg:g>
+        <svg:g transform="translate(0,-13.1289)" id="g73904" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+          <svg:title id="title73890">Cadenas</svg:title>
+          <svg:g id="g73896" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title73892">Feuille.108</svg:title>
+            <svg:path d="m 4.22,582.34 v -2.98 a 2.51222,2.51222 0 0 1 2.51,-2.51 h 2.84 a 2.51222,2.51222 0 0 1 2.51,2.51 v 2.98 z m 9.24,12.94 a 2.83467,2.83467 -180 0 0 2.84,-2.84 v -7.26 a 2.83467,2.83467 -180 0 0 -2.48,-2.82 v -3.74 a 3.54333,3.54333 -180 0 0 -3.54,-3.54 H 6.02 a 3.54333,3.54333 -180 0 0 -3.54,3.54 v 3.74 A 2.83467,2.83467 -180 0 0 0,585.18 v 7.26 a 2.83467,2.83467 -180 0 0 2.83,2.84 z" id="path73894" style="fill:#ffffff;stroke:#000000;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3;stroke-dasharray:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+          <svg:g transform="translate(6.83184,-2.48031)" id="g73902" style="stroke-width:1.2;stroke-miterlimit:3;stroke-dasharray:none">
+            <svg:title id="title73898">Feuille.110</svg:title>
+            <svg:path d="m 2.64,591.4 -0.02,-0.27 -0.09,-0.23 -0.13,-0.22 -0.14,-0.19 -0.2,-0.16 -0.24,-0.11 -0.23,-0.09 -0.27,-0.02 -0.27,0.02 -0.24,0.09 -0.23,0.11 -0.18,0.16 -0.17,0.19 -0.12,0.22 -0.09,0.23 -0.02,0.27 0.02,0.18 0.03,0.18 0.06,0.16 0.09,0.16 0.09,0.13 0.13,0.12 0.12,0.13 0.15,0.09 -0.56,2.73 h 2.38 l -0.56,-2.73 0.14,-0.09 0.15,-0.13 0.11,-0.12 0.11,-0.13 0.07,-0.16 0.05,-0.16 0.04,-0.18 z" id="path73900" style="fill:#000000;stroke:none" inkscape:connector-curvature="0"/>
+          </svg:g>
+        </svg:g>
+      </svg:g>
+      <svg:text x="224.94073" y="216.36891" id="text73910" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-linecap:square;stroke-miterlimit:3"><svg:tspan sodipodi:role="line" id="tspan73908" x="224.94073" y="216.36891">+ client + address + validity</svg:tspan></svg:text>
+    </svg:g>
+    <svg:text style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3" id="text73916" y="571.20154" x="183.06551"><svg:tspan sodipodi:role="line" id="tspan73914" x="183.06551" y="571.20154">Msg E</svg:tspan></svg:text>
+    <svg:text style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;line-height:125%;font-family:'DejaVu Sans Condensed';-inkscape-font-specification:'DejaVu Sans Condensed, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000;stroke-linecap:square;stroke-miterlimit:3" id="text75636" y="607.20154" x="183.83894"><svg:tspan sodipodi:role="line" id="tspan75634" x="183.83894" y="607.20154">Msg G</svg:tspan></svg:text>
+  </svg:g>
+  <svg:style type="text/css" id="style4182"/>
+  <svg:style type="text/css" id="style8994"/>
+  <style id="autoconsent-prehide"/>
+</svg:svg>
