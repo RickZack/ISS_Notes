@@ -961,7 +961,7 @@ This feature, known as \texttt{PKINIT} (Public Key Initialization), modifies the
 
 \subsubsection*{SSO (Single Sign-On)}
 
-Kerberos is an example of a more general concept of \textit{SSO} (Single Sign-On), where users possess a single "credential" to authenticate themselves and gain access to various services in the system. 
+Kerberos is an example of a more general concept of \textit{SSO} (Single Sign-On), where users possess a single "credential" to authenticate themselves and gain access to various services in the system.
 
 \begin{itemize}
   \item \textbf{Fictitious SSO:}
@@ -979,22 +979,211 @@ Kerberos is an example of a more general concept of \textit{SSO} (Single Sign-On
 
 
 
-\subsection{Authentication interoperability}
+\subsection{Authentication interoperability: OATH}
 
 \begin{figure}[h]
   \centering
   \includegraphics[page = 72,trim = 1cm 2.5cm 1cm 10cm, clip, width = 0.55\textwidth]{\slides}
+  \caption{OATH}
 \end{figure}
 
 As mentioned, companies that manage numerous servers aim to implement a unified authentication system for all their relying parties, namely the application servers. However, this implies the ability to purchase a verifier and use it with devices created by different companies. In the past, achieving such interoperability was challenging. For instance, when acquiring RSA SecurID devices, it was necessary to also procure the ACE client and ACE server from RSA. Moreover, RSA did not disclose the hash algorithm used in generating the token code.
 
 To address this challenge, an initiative called \href{http://www.openauthentication.org/}{OATH} was introduced. The primary goal of OATH is to establish \ul{interoperability among authentication systems based on One-Time Passwords (OTPs) and symmetric or asymmetric challenges}. This is achieved through the development of standards for the client-server protocol and the data format on the client, aiming to realize universal strong authentication.
 
-So far, OATH has provided the following specifications:
+So far, OATH has provided the following \href{http://www.openauthentication.org/specifications}{specifications}:
 \begin{itemize}
-    \item HOTP (HMAC OTP, RFC-4226)
-    \item TOTP (Time-based OTP, RFC-6238)
-    \item OATH Challenge-Response Protocol (OCRA, RFC-6287)
-    \item Portable Symmetric Key Container (PSKC, RFC-6030): When using OTP, the shared secret must be protected. This solution offers an XML-based key container for transporting symmetric keys and key-related metadata.
-    \item Dynamic Symmetric Key Provisioning Protocol (DSKPP, RFC-6063): It is a client-server protocol for provisioning symmetric keys to a crypto-engine by a key-provisioning server.
+  \item \textbf{HOTP} (HMAC OTP, RFC-4226)
+  \item \textbf{TOTP} (Time-based OTP, RFC-6238)
+  \item \textbf{OATH Challenge-Response Protocol} (OCRA, RFC-6287)
+  \item \textbf{Portable Symmetric Key Container} (PSKC, RFC-6030): When using OTP, the shared secret must be protected. This solution offers an XML-based key container for transporting symmetric keys and key-related metadata.
+  \item \textbf{Dynamic Symmetric Key Provisioning Protocol} (DSKPP, RFC-6063): It is a client-server protocol for provisioning symmetric keys to a crypto-engine by a key-provisioning server.
+\end{itemize}
+
+\subsubsection*{HOTP}
+
+Let us define:
+\begin{itemize}
+  \item \(K\): shared secret key (between Verifier and Subscriber);
+  \item \(C\): counter (monotonic positive integer number);
+  \item \(h\): cryptographic hash function (by default is SHA1);
+  \item \(\text{sel}\): function to select 4 bytes out of a long byte string.
+\end{itemize}
+
+The HMAC-based OTP is computed in the following way:
+\[
+  \text{HOTP}(K, C) = \text{sel}(\text{HMAC}-h(K, C)) \ \&\& \ \mathtt{0x7FFFFFFF}
+\]
+where the mask \(\mathtt{0x7FFFFFFF}\) is used to set \(MSB=0\) (to avoid problems if the result is interpreted as a signed integer). Then to generate an \(N\)-digit (6-8) access code:
+\[
+  \text{HOTP code} = \text{HOTP}(K, C) \mod 10^N
+\]
+
+In this way, we implement an event-based OTP.
+
+
+\subsubsection{TOTP}
+To create a Time-based OTP (TOTP), the process is similar to HOTP, but the counter \(C\) is the number of intervals \(TS\) elapsed since a fixed origin \(T_0\). In formulas:
+\[ C = \frac{(T - T_0)}{TS} \]
+Where, in the default (RFC-6238), \(T_0\) is the Unix epoch (1/1/1970), \(T\) is \texttt{unixtime(now)} seconds elapsed since the Unix epoch, \(TS\) is equal to 30 seconds, \(h\) is \texttt{SHA1} (but may use SHA-256 or SHA-512), and \(N\) is equal to 6.
+
+The crucial point is that with the same base functions, \textit{it is possible to implement both TOTP and EOTP}.
+
+Moreover, this standard is essential because Google provides free open-source implementations of both HOTP and TOTP, for both the client and the server. In \textbf{Google authenticator}, \(K\) is provided base-32 encoded (most often as a QR code), \(C\) is provided as \texttt{uint\_64}, \(TS\) is equal to 30 seconds, \(N\) is equal to 6, and the function \(\texttt{sel}(X)\) is such that: an offset with the 4 least-significant-bits of \(X\) is considered, then it returns \(X[\texttt{offset}...\texttt{offset + 3}]\). If the generated code contains less than 6 digits, then it is left padded with zeroes (e.g., 123 → 000123).
+The availability of this code from Google has significantly contributed to the widespread usage of this standard.
+
+
+\subsubsection{FIDO}
+One of the most recent attempts to increase the security of authentication is the standard named \textbf{FIDO} (\textit{Fast IDentity Online}). It is an industry standard of the FIDO Alliance for:
+\begin{itemize}
+  \item biometric authentication (referred to as \textit{passwordless user experience} in FIDO terminology);
+  \item 2-factor authentication (referred to as \textit{2nd factor user experience} in FIDO terminology).
+\end{itemize}
+
+So, the focus of FIDO is \ul{to simplify the user experience in authentication}, allowing them to use a biometric system and more than one factor. The main concept of FIDO is not to invent another device but to let the user exploit any personal device capable of asymmetric cryptography (e.g., laptop or smartphone). Inside FIDO, it will be used:
+\begin{itemize}
+  \item for responding to an asymmetric challenge;
+  \item for the digital signature of texts.
+\end{itemize}
+
+The FIDO protocols are designed from the ground up to protect user privacy. The protocols do not provide information that can be used by different online services to collaborate and track a user across services. Biometric information, if used, never leaves the user's device.
+
+
+% \begin{figure}[h]
+%   \centering
+%   \begin{subfigure}{0.65\textwidth}
+%     \includegraphics[page=78, trim=5cm 2.2cm 5cm 4cm, clip, width=\textwidth]{\slides}
+%     \caption{FIDO registration}
+%     \label{fig:fido-registration}
+%   \end{subfigure}
+%   \hfill
+%   \begin{subfigure}{0.65\textwidth}
+%     \includegraphics[page=79, trim=5cm 2.2cm 5cm 4cm, clip, width=\textwidth]{\slides}
+%     \caption{FIDO login}
+%     \label{fig:fido-login}
+%   \end{subfigure}
+%   \caption{FIDO}
+% \end{figure}
+
+
+\paragraph*{FIDO registration}
+Differently from other systems, in which registration is usually performed by a new classical username and password creation, or by reusing the user's Facebook or Google identity, FIDO uses the user's device with asymmetric cryptography. When registering with FIDO:
+
+
+
+\noindent
+\begin{minipage}{0.4\textwidth}
+  \begin{enumerate}
+    \item User is prompted to choose an available FIDO authenticator that matches the online service's acceptance policy.
+    \item User unlocks the FIDO authenticator using a fingerprint reader, a button on a second-factor device, securely-entered PIN or other method.
+    \item User's device creates a new public/private key pair \ul{unique for the local device, online service, and user's account}.
+    \item Public key is sent to the online service and associated with the user's account. The private key and any information about the local authentication method (such as biometric measurements or templates) never leave the local device.
+  \end{enumerate}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.5\textwidth}
+  \centering
+  \includegraphics[page=78, trim=6cm 2.1cm 6cm 4cm, clip, width=\textwidth]{\slides}
+\end{minipage}
+
+\vspace*{5mm}
+Please note that the real user's identity can be fictitious! However, the real identity of the user is not important, only the key is: the private key is stored inside the device and the public key is sent to the web server and associated with the name decided for authentication. \ul{There is the use of asymmetric cryptography but no X509 certificates (it is not needed)}, because the public key is stored at the server, associated with a name.
+
+
+
+\paragraph{FIDO login}
+
+After signing up, there are four steps to be performed to log in:
+
+\noindent
+\begin{minipage}{0.4\textwidth}
+  \begin{enumerate}
+    \item Online service challenges the user to log in with a previously registered device that matches the service's acceptance policy: in this phase, the username and (reusable) password are provided by the user;
+    \item User unlocks the FIDO authenticator using the same method as at Registration time.
+    \item \underline{Device uses the user's account identifier provided by the service} to select the correct key and sign the service's challenge: this identifier is retrieved by considering the pair username-password;
+    \item Client device sends the signed challenge back to the service, which verifies it with the stored public key and logs in the user.
+  \end{enumerate}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.5\textwidth}
+  \centering
+  \includegraphics[page=79, trim=6cm 2.07cm 6cm 4cm, clip, width=\textwidth]{\slides}
+\end{minipage}
+
+
+\paragraph*{FIDO U2F registration}
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 80,trim = 3.3cm 2.2cm 3.3cm 3.7cm, clip, width = 0.55\textwidth]{\slides}
+  \caption{FIDO U2F registration}
+\end{figure}
+In the registration phase, typically, the work starts with the browser or with an application that typically communicates with the server. The user registration phase means that the website on which the users try to sign up \textbf{must} have a FIDO U2F backend, which is something that can manage the FIDO protocol.
+
+When a registration request arrives, \ul{the backend will send a registration request to the device, including a hash} (like a nonce, to protect the integrity of transmission). The browser/app will pass it to the FIDO U2F device (which can be software or hardware). Then the user must explicitly activate the device, authorize the keypair generation and the handle generation, which is an identifier for this specific key (typically the hash of the public key).
+
+The registration response is then sent along with the public key and the key handle. These items are validated in the final step (5), and the key-handle pair is stored.
+
+
+\paragraph*{FIDO U2F authentication}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 81,trim = 3.3cm 2.2cm 3.3cm 3.7cm, clip, width = 0.55\textwidth]{\slides}
+  \caption{FIDO U2F authentication}
+\end{figure}
+Authentication typically begins with the submission of the username and reusable password to the FIDO U2F backend. The backend initiates a challenge that must be addressed using the key associated with the provided username. Upon receiving the challenge, the user activates the device once again, selects the key (based on the key handle submitted by the server), and resolves the challenge. Subsequently, the solved challenge is sent to the server for verification.
+
+
+\paragraph*{FIDO: Other Characteristics \& Security Analysis}
+
+FIDO uses:
+\begin{itemize}
+  \item \textbf{Biometric techniques}: local authentication method to enable the FIDO keys stored only on the user device;
+  \item \textbf{Secure transactions}: digital signature of a transaction text (in addition to the response to the challenge) with the same key used for authentication. This is done to avoid MITM attacks;
+  \item FIDO backend (or server): to enable the use of FIDO on an application server;
+  \item FIDO client: to create and manage credentials FIDO on a user device.
+\end{itemize}
+
+About security and privacy, FIDO provides:
+\begin{itemize}
+  \item \textbf{Strong authentication} (asymmetric cryptography);
+  \item \textbf{No 3rd party in the protocol:} since there is no use of X509 certificates. It's a sort of direct trust between user and web server;
+  \item \textbf{No secrets on the server side}: not exposed to any confidentiality attack. Of course, since it stores public keys and identifiers of the users, authentication and integrity for those data is needed;
+  \item \textbf{Biometric data} (if used) \textbf{never leave user device};
+  \item \textbf{No phishing because authN response cannot be reused}: it is a signature over the transaction text, including the RP identity (which means that the same response cannot be used on another server);
+  \item Since one new keypair is generated at every registration, we obtain \textbf{no link-ability among}: different services used by the same user; different accounts owned by the same user.
+  \item There is no limit in private key generated, because \textbf{private keys are not stored in the authenticator but recomputed} (generated on-the-fly) as needed based on an \textbf{internal secret} and \textbf{RP identity}. Using a proper internal function with the secret, it can be possible to use RP identity to compute private key.
+\end{itemize}
+
+\paragraph{FIDO Evolution}
+
+The evolution of FIDO is as follows:
+\begin{itemize}
+  \item Feb 2013: FIDO alliance launched;
+  \item Dec 2014: FIDO v1.0;
+  \item Jun 2015: Bluetooth and NFC as transport for U2F;
+  \item Nov 2015: submission to W3C of the Web API for accessing FIDO credentials;
+  \item Feb 2016: W3C creates the Web Authentication WG to define a client-side API that provides strong authentication functionality to Web Applications, based on the FIDO Web API;
+  \item Nov 2017: FIDO v2.0.
+\end{itemize}
+
+\paragraph*{FIDO 2.0}
+
+With FIDO 2.0, a new protocol, the \textbf{CTAP} (\textit{Client To Authenticator Protocol}), is defined for connecting an external authenticator to the platform. During authentication initiation, the RP application can utilize the \texttt{web authN JS API} to access FIDO. The API operates within the browser, on top of a platform (such as Linux, iOS, Android). Two choices are available: \textbf{a local authenticator} (e.g., a private key stored in a file on Windows) or an \textbf{external device paired with the device using the CTAP protocol}. This protocol operates through USB, BT, NFC, etc., and keys are always present. This represents a kind of \textit{roaming authenticator} as the device can be used with multiple application devices.
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 85,trim = 1cm 1.3cm 1cm 3.32cm, clip, width = 0.55\textwidth]{\slides}
+  \caption*{FIDO 2.0}
+\end{figure}
+
+In case of using an internal authenticator, there are cryptographic elements (more or less secure) capable of storing and using asymmetric keys.
+For example:
+\begin{itemize}
+  \item \textbf{Packed attestation}: an authenticator with limited resources (e.g., a Secure Element in Android);
+  \item \textbf{TPM attestation}: a special chip providing robust security features, capable of generating and using asymmetric keys;
+  \item \textbf{Android Key attestation}: an authenticator available from Android Nougat onward;
+  \item \textbf{Android SafetyNet attestation}: an authenticator for Android via the SafetyNet API;
+  \item \textbf{FIDO U2F attestation}: an authenticator for FIDO U2F using the FIDO-U2F Message Format.
 \end{itemize}

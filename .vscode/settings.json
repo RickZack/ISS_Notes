@@ -23,7 +23,8 @@
         "RIJNDAEL",
         "Stuxnet",
         "TDES",
-        "tilded"
+        "tilded",
+        "Unlinkability"
     ],
     "cSpell.language": "it,en-US,it-IT,lorem,en-GB"
 }
