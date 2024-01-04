@@ -28,9 +28,10 @@ See the COPYING file for details.
 - [ ] All the other chapters
 
 ### In Progress 
-- [ ] Chapter 3
+- [ ] Chapter 4
 
 ### Done ✓
 
 - [x] Chapter 1
 - [x] Chapter 2
+- [x] Chapter 3
