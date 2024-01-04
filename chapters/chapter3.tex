@@ -580,8 +580,8 @@ passwords at the Verifier, which also offers \underline{channel binding} and \un
 It is also possible to employ an asymmetric challenge-response mechanism. In this scenario, the user does not transmit their identity directly but rather provides their X.509 certificate, which declares both their identity and public key (the claimant possesses the corresponding private key, $ID.PK$). The Verifier initiates the process by generating a challenge, employing a random nonce \(R\) encrypted with the public key. The claimant decrypts the challenge using their private key and returns the decrypted value to the Verifier. If the response matches the \(R\) value specified in the challenge, it confirms possession of the private key. The only necessary verification involves checking if a valid ID is registered in the Verifier's database.
 
 \paragraph{Asymmetric CRA: analysis}
-Asymmetric Challenge-Response Authentication (CRA) is \ul{the strongest usable mechanism}, eliminating the need for storing any secrets at the Verifier. It is consistently implemented for \textit{peer authentication} (client and server) in protocols such as IPsec, SSH, and TLS. Additionally, it serves as a fundamental component for user authentication in a new authentication system named FIDO (Chapter \href{chap:fido}).
-% TODO: cross-reference FIDO
+Asymmetric Challenge-Response Authentication (CRA) is \ul{the strongest usable mechanism}, eliminating the need for storing any secrets at the Verifier. It is consistently implemented for \textit{peer authentication} (client and server) in protocols such as IPsec, SSH, and TLS.
+Additionally, it serves as a fundamental component for user authentication in a new authentication system named FIDO (Chapter \ref{chap:fido}).
 
 However, it comes with certain downsides:
 \begin{itemize}
@@ -1033,7 +1033,7 @@ Moreover, this standard is essential because Google provides free open-source im
 The availability of this code from Google has significantly contributed to the widespread usage of this standard.
 
 
-\subsubsection{FIDO}
+\subsubsection{FIDO}\label{chap:fido}
 One of the most recent attempts to increase the security of authentication is the standard named \textbf{FIDO} (\textit{Fast IDentity Online}). It is an industry standard of the FIDO Alliance for:
 \begin{itemize}
   \item biometric authentication (referred to as \textit{passwordless user experience} in FIDO terminology);
@@ -1187,5 +1187,3 @@ For example:
   \item \textbf{Android SafetyNet attestation}: an authenticator for Android via the SafetyNet API;
   \item \textbf{FIDO U2F attestation}: an authenticator for FIDO U2F using the FIDO-U2F Message Format.
 \end{itemize}
-
-% TODO: rivedi struttura del cap3, forse migliorabile
