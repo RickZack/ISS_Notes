@@ -1,3 +1,34 @@
 \chapter{Security of IP networks}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 2,trim = 0.7cm 2.2cm 0.7cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Remote access via dial-up lines}
+\end{figure}
 
+%\paragraph*{Remote access via dial-up lines}
+The first point regarding the security of IP networks involves \ul{controlling who can access the networks}. 
+In the past, it was primarily used for residential users who utilized a modem to connect to a telephone line (switched network). 
+This process involved transforming bits into sound and having equivalent equipment on the ISP side, which would accept the telephone call and convert it into network packets. 
+To facilitate this, devices known as \textbf{NAS} (\textit{Network Access Server}) were employed. 
+NAS had the responsibility of \underline{authenticating users}, \underline{performing access control}, and subsequently \underline{providing users with access} to the IP network - typically the internet, but in some cases also allowing access to a company's internal network from home. 
+Nowadays, this system is no longer widely used, at least in Western countries, although some countries still rely on it.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 3,trim = 0.7cm 2.2cm 0.7cm 3.7cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Network access (modern way)}
+\end{figure}
+
+%\paragraph*{Network access (modern way)}
+Today, it is possible to access the Internet in different ways, which basically depends on the device. 
+For example, a smartphone typically uses technologies such as 3G, 4G, or 5G to connect to the base station, which runs an \textbf{authentication protocol} with the \textbf{AAA server} to check if the user is authorized for an internet connection. 
+It is also possible to use Wi-Fi to connect to access points, which provide the translation from a wireless to a wired network and can again verify access. 
+Alternatively, there could be a home gateway, which provides access to the Internet using both Ethernet and Wi-Fi (only if properly authenticated). 
+In all these scenarios, authentication is always required before permitting traffic from a specific user. 
+Therefore, there is a difference between the \textit{local branch} / \textit{last mile}, \textit{border element}, and \textit{the core network}.
+
+
+
+\section{Authentication of PPP channels}
