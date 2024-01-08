@@ -91,7 +91,7 @@ If the Protocol Configuration Option in LCP Authentication exists, it includes s
 
 % NOTE: PAP and CHAP sections were added in 2023/24
 \subsubsection{PAP}
-\textbf{PAP}, or \textit{Password Authentication Protocol}, is defined in RFC-1334 "PPP Authentication Protocols" (Oct 1992). This RFC also introduces the initial version of CHAP. 
+\textbf{PAP}, or \textit{Password Authentication Protocol}, is defined in RFC-1334 "PPP Authentication Protocols" (Oct 1992). This RFC also introduces the initial version of CHAP.
 
 In PAP, the user-id and password are transmitted in clear text between the Peer and the Authenticator, posing a significant security risk. Authentication occurs only once when the channel is created, making it a potentially vulnerable method. Due to the clear transmission of sensitive information, PAP is considered very dangerous and is not recommended for secure network communication.
 
@@ -100,17 +100,17 @@ PAP employs a 2-way handshake protocol involving communication between the Peer 
 
 \begin{itemize}
     \item ($Peer \rightarrow Authenticator$) \texttt{Authenticate-Request} ($code=1$)
-    \begin{itemize}
-        \item Code (8-bit) + Identifier (8-bit) + Length (16-bit)
-        \item Peer-ID Length (8-bit) + Peer-ID (0-255B)
-        \item Passwd-Length (8-bit) + Password (0-255B)
-    \end{itemize}
+          \begin{itemize}
+              \item Code (8-bit) + Identifier (8-bit) + Length (16-bit)
+              \item Peer-ID Length (8-bit) + Peer-ID (0-255B)
+              \item Passwd-Length (8-bit) + Password (0-255B)
+          \end{itemize}
     \item ($Authenticator \rightarrow Peer$) \texttt{Authenticate-Response} ($code= 2, 3$)
-    \begin{itemize}
-        \item Code (8-bit) + Identifier (8-bit) + Length (16-bit)
-        \item Msg-Length (8-bit) + Message (0-255B)
-        \item Code=2 (ACK), Code=3 (NAK)
-    \end{itemize}
+          \begin{itemize}
+              \item Code (8-bit) + Identifier (8-bit) + Length (16-bit)
+              \item Msg-Length (8-bit) + Message (0-255B)
+              \item Code=2 (ACK), Code=3 (NAK)
+          \end{itemize}
 \end{itemize}
 
 An identifier is essential for correlating the \texttt{Authenticate-Request} with its corresponding \texttt{Authenticate-Response}. Given the potential loss of either loss of either request or response, it becomes imperative for the Authenticator to accommodate multiple requests. Therefore, to mitigate the risk of lost messages, the Authenticator \textbf{MUST} allow for the submission of multiple \texttt{Authenticate-Request} or \texttt{Authenticate-Response} messages.
@@ -119,7 +119,7 @@ This identifier is also pivotal in preventing replay attacks. Without it, an adv
 
 
 \subsubsection{CHAP}
-\textbf{CHAP}, or \textit{Challenge Handshake Authentication Protocol}, is defined in RFC-1994 "PPP Challenge Handshake Authentication Protocol (CHAP)" (Aug 1996). It introduces a symmetric challenge (password-based) authentication mechanism. 
+\textbf{CHAP}, or \textit{Challenge Handshake Authentication Protocol}, is defined in RFC-1994 "PPP Challenge Handshake Authentication Protocol (CHAP)" (Aug 1996). It introduces a symmetric challenge (password-based) authentication mechanism.
 
 In CHAP, the initial challenge is compulsory and occurs at channel creation. The authentication request can optionally be repeated, with a different challenge, during transmission. The decision to repeat the authentication request is taken by the Network Access Server (NAS). It's important to note that the challenge MUST be a nonce.
 
@@ -131,19 +131,19 @@ CHAP employs a 3-way handshake protocol involving communication between the Auth
 
 \begin{itemize}
     \item ($Authenticator \rightarrow Peer$) \texttt{Challenge} ($code=1$)
-    \begin{itemize}
-        \item Code (8-bit) + Identifier (8-bit) + Length (16-bit)
-        \item Challenge-Size (8-bit) + Challenge-Value (0-255B)
-    \end{itemize}
+          \begin{itemize}
+              \item Code (8-bit) + Identifier (8-bit) + Length (16-bit)
+              \item Challenge-Size (8-bit) + Challenge-Value (0-255B)
+          \end{itemize}
     \item ($Peer \rightarrow Authenticator$) \texttt{Response} ($code=2$)
-    \begin{itemize}
-        \item Code (8-bit) + Identifier (8-bit) + Length (16-bit)
-        \item Response-Size (8-bit) + Response-Value (0-255B)
-    \end{itemize}
+          \begin{itemize}
+              \item Code (8-bit) + Identifier (8-bit) + Length (16-bit)
+              \item Response-Size (8-bit) + Response-Value (0-255B)
+          \end{itemize}
     \item ($Authenticator \rightarrow Peer$) \texttt{Result} ($code= 3$ Success, $4$ Failure)
-    \begin{itemize}
-        \item Code (8-bit) + Identifier (8-bit) + Length (16-bit)
-    \end{itemize}
+          \begin{itemize}
+              \item Code (8-bit) + Identifier (8-bit) + Length (16-bit)
+          \end{itemize}
 \end{itemize}
 
 \textit{Response-Value} is calculated using \texttt{md5(Identifier || pwd || Challenge-Value)} (in the version specified in 1996). The server checks the response by comparing it with its own calculation of the expected hash value. If the values match, the authentication is acknowledged; otherwise, the connection is usually terminated.
@@ -166,16 +166,16 @@ MS-CHAP, or Microsoft PPP CHAP Extensions, is a set of protocols developed by Mi
 
 \begin{itemize}
     \item \textbf{MS-CHAPv1:}
-    \begin{itemize}
-        \item RFC 2433 "Microsoft PPP CHAP Extensions" (October 1998).
-        \item Initially included but later discontinued by Microsoft starting with Windows Vista.
-    \end{itemize}
-    
+          \begin{itemize}
+              \item RFC 2433 "Microsoft PPP CHAP Extensions" (October 1998).
+              \item Initially included but later discontinued by Microsoft starting with Windows Vista.
+          \end{itemize}
+
     \item \textbf{MS-CHAPv2:}
-    \begin{itemize}
-        \item RFC 2759 "Microsoft PPP CHAP Extensions, v2" (January 2000).
-        \item Continued the evolution of MS-CHAP, dropped by Microsoft starting with Windows 11 22H2.
-    \end{itemize}
+          \begin{itemize}
+              \item RFC 2759 "Microsoft PPP CHAP Extensions, v2" (January 2000).
+              \item Continued the evolution of MS-CHAP, dropped by Microsoft starting with Windows 11 22H2.
+          \end{itemize}
 \end{itemize}
 
 LCP negotiates the CHAP algorithm, with \texttt{0x80} for MS-CHAPv1 and \texttt{0x81} for MS-CHAPv2, using option 3 (Authentication Protocol).
@@ -189,17 +189,17 @@ MS-CHAP extends the principles of CHAP but operates as a distinct protocol with 
 
 \begin{itemize}
     \item \textbf{Common Features (v1 and v2):}
-    \begin{itemize}
-        \item Authenticator-controlled password change.
-        \item Authenticator-controlled authentication retry.
-        \item Specific failure codes.
-    \end{itemize}
+          \begin{itemize}
+              \item Authenticator-controlled password change.
+              \item Authenticator-controlled authentication retry.
+              \item Specific failure codes.
+          \end{itemize}
 
     \item \textbf{MS-CHAPv2 Mutual Authentication:}
-    \begin{itemize}
-        \item Achieved by piggybacking a peer challenge on the Response packet.
-        \item Includes an authenticator response on the Success packet.
-    \end{itemize}
+          \begin{itemize}
+              \item Achieved by piggybacking a peer challenge on the Response packet.
+              \item Includes an authenticator response on the Success packet.
+          \end{itemize}
 \end{itemize}
 
 In order to implement this protocol, each peer must know the plaintext password or an MD4 hash of the password. Note: This approach is not compatible with most password storage formats.
@@ -214,8 +214,8 @@ In order to implement this protocol, each peer must know the plaintext password 
 \begin{figure}[H]
     \centering
     \includegraphics[width = .70\textwidth]{chapter4/MS-CHAPv2.png}
-    \caption{MS-CHAPv2 - Another frame of reference. Please consider the professor's slide. Taken from\\ 
-    \url{https://web.archive.org/web/20160316174007/https://www.cloudcracker.com/blog/2012/07/29/cracking-ms-chap-v2/}}
+    \caption{MS-CHAPv2 - Another frame of reference. Please consider the professor's slide. Taken from\\
+        \url{https://web.archive.org/web/20160316174007/https://www.cloudcracker.com/blog/2012/07/29/cracking-ms-chap-v2/}}
 \end{figure}
 
 
@@ -231,3 +231,91 @@ However, it's crucial to note that \(K\) is only 128 bits (MD4 output), i.e., 16
 \end{figure}
 
 In conclusion, MS-CHAPv2 should NEVER be used anymore and has been officially deprecated, including its removal in Windows 11 22H2.
+
+
+\subsubsection{EAP}
+EAP (\textit{Extensible Authentication Protocol}) is the PPP authentication mechanism  defined in RFC-3748, providing a \textbf{flexible Layer 2 (L2) authentication framework}. This L2 authentication occurs before accessing the internet, which operates at Layer 3 (L3). EAP supports various predefined authentication mechanisms, such as \textit{MD5-challenge} (symmetric and akin to CHAP), \textit{generic OTP}, and \textit{generic token card}.
+Additional mechanisms, such as RFC-2716 "PPP EAP TLS authentication protocol" and RFC-3579 "RADIUS support for EAP," have been incorporated.
+
+As EAP performs authentication before reaching L3, it requires its encapsulation protocol for transporting data, including usernames, challenges, or responses, over L2.
+
+\begin{itemize}
+    \item EAP introduces a small L3 protocol exclusively for its use, offering \textbf{independence from IP} and compatibility with diverse link layers (e.g., old PPP and 802.x).
+    \item Due to the absence of L3, EAP \textbf{provides ACK/NAK} for packets but lacks windowing (as seen in TCP). EAP assumes that packets won't be reordered, a guarantee provided by PPP, but if EAP is utilized over virtual channels like UDP and raw IP, datagrams may arrive out of order, potentially disrupting EAP functionality.
+    \item \textbf{Retransmission} is essential to ensure packet delivery, with a typical limit of 3 to 5 retransmission attempts; authentication fails if this limit is exceeded.
+    \item EAP \textbf{does not handle fragmentation}, dependent on the MTU of the underlying L2 network. EAP methods must manage payloads exceeding the minimum EAP MTU.
+\end{itemize}
+
+
+When authentication fails in EAP, it does not necessarily indicate a failure in the authentication process; rather, it could be attributed to a network problem. When troubleshooting EAP, the expertise of a network specialist may be required to identify and address any issues causing the failure.
+
+In EAP, the assumption is that \underline{the link is not inherently physically secure}, requiring each authentication method to ensure its security. Some EAP methods include:
+\begin{itemize}
+    \item \textbf{EAP-TLS (RFC-5216):}
+    \item \textbf{EAP-MD5 (RFC-3748):} Symmetric challenge-response providing only EAP peer authentication without mutual authentication.
+    \item \textbf{EAP-TTLS:} TLS tunneling that allows the operation of any method protected inside a secure TLS channel.
+    \item \textbf{EAP-SRP (Secure Remote Password)}
+    \item \textbf{GSS-API (includes Kerberos)}
+    \item \textbf{AKA-SIM (RFC-4186, RFC-4187):} Subscriber Identity Module, the system used in mobile networks.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 18,trim = 1cm 2.2cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{EAP - architecture}
+    \label{fig:eap-architecture}
+\end{figure}
+
+In Figure \ref*{fig:eap-architecture}, the general architecture of EAP is depicted. The lower part represents various L2 channels supported by EAP, including PPP, 802.3 (Ethernet), 802.5 (Token Ring), and 802.11 (Wi-Fi). EAP extends its authentication methods, such as TLS, AKA-SIM, and SRP authentication, to these specific networks independently of the L2 layer.
+
+\section{Authentication for network access}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 19,trim = .5cm 3cm .5cm 5cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Authentication for network access}
+    \label{fig:eap-authentication}
+\end{figure}
+
+Authentication for network access operates as illustrated in the architecture in Figure \ref{fig:eap-authentication}. On the left, various communication links (modems, access points, or ADSL/Fiber) terminate at a device hosted by the ISP. These devices, designed to connect multiple users, are controlled by a NAS (Network Access Server), which receives requests from clients and determines the validity of the user. The NAS employs a protocol on the backend IP network local to the NAS and subsequently communicates with the centralized authentication server. This approach is necessary as ISPs have multiple points of presence with numerous NAS devices that must share consistent user information.
+
+The authentication server possesses access to a database containing user credentials and configuration details for each user, based on the contract between the user and the ISP. The Authentication Server responds to the NAS with the user's authentication status (valid/invalid) and the configuration that the NAS must enforce on the user's traffic.
+
+\paragraph{AAA}
+NAS manufacturers claim that security needs three functions briefly named as AAA:
+\begin{itemize}
+    \item \textbf{Authentication:} entity's identity is authenticated based on credentials (e.g., password, OTP);
+    \item \textbf{Authorization:} determining whether an entity is authorized to perform a given activity or gain access to the resources or services;
+    \item \textbf{Accounting:} tracking network resource usage for audit support, capacity analysis, or cost billing.
+\end{itemize}
+
+The AS performs exactly these three functions talking with one or more NAS via one or more protocols.
+
+\subparagraph{Network Authentication Protocols}
+Basically, there are three protocols that AS and NAS can use to communicate:
+\begin{itemize}
+    \item \textbf{RADIUS:} It is the de-facto standard and the most widely used one, with a feature that allows it to act as a \underline{proxy towards other authentication systems}. It can serve as both an authentication system and use external AS.
+    \item \textbf{DIAMETER:} This protocol is the evolution of RADIUS, emphasizing roaming among different ISPs. Since it is more modern, it pays better attention to security.
+    \item \textbf{TACACS+ (TACACS, XTACACS):} A competitor of RADIUS, technically superior, but achieved lower acceptance due to being a \underline{proprietary solution} implemented only by Cisco with no public specification.
+\end{itemize}
+
+
+\subsection{RADIUS}
+RADIUS stands for \textbf{Remote Authentication Dial-In User Service}. It is a legacy protocol developed nearly 30 years ago, initially designed for Dial-In scenarios when users connected to an ISP using modems. Over time, RADIUS has evolved and \textbf{now supports authentication, authorization, and accounting (AAA)} to control network access for various types of ports:
+
+\begin{itemize}
+    \item \textbf{Physical ports} (analogical, ISDN, IEEE 802): RADIUS can be utilized for access control on Ethernet networks as well.
+    \item \textbf{Virtual ports} (tunnel, wireless access): It enables centralized management of a network of access points.
+\end{itemize}
+
+RADIUS, as a concept, implements \textbf{centralized administration and accounting} to store information about resource usage. It operates as a \textbf{client-server protocol} \textit{between the NAS and AS}, utilizing \texttt{port 1812/UDP} for \textit{authentication} and \texttt{port 1813/UDP} for \textit{accounting}. 
+Since UDP is unreliable, each transmission of a RADIUS packet is subject to timeout. If no ACK is received after the \textit{timeout}, the same packet is \textit{retransmitted}, with a maximum number of attempts before declaring communication impossible. 
+RADIUS supports architectures with a main server and numerous \textit{secondary servers}, enhancing system performance, and resilience (also against DoS attacks).
+
+\begin{itemize}
+    \item RFC-2865 (Protocol): Specifies the RADIUS protocol for remote authentication and accounting.
+    \item RFC-2866 (Accounting): Defines additional attributes and guidelines for RADIUS accounting.
+    \item RFC-2867/2868 (Tunnel Accounting and Attributes): Describes extensions for handling tunnel attributes and accounting in RADIUS.
+    \item RFC-2869 (Extensions): Provides extensions to RADIUS to support additional attributes.
+    \item RFC-3579 (RADIUS Support for EAP): Outlines RADIUS support for the Extensible Authentication Protocol (EAP).
+    \item RFC-3580 (Guidelines for 802.1X with RADIUS): Presents guidelines for using RADIUS with the IEEE 802.1X standard.
+\end{itemize}
