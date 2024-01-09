@@ -1,1 +1,88 @@
 \chapter{Security of network applications}
+
+\section{What is a firewall}
+A firewall is a \textbf{"wall to protect against fire propagation"}: this concept originates from regulations common in countries where houses are primarily constructed with wood. According to these regulations, a brick wall must be inserted between two houses under specific conditions to prevent the spread of fire. Similarly, in the realm of information systems security, a firewall is positioned to prevent the easy propagation of an attack from one network to another in the event of a network being compromised (akin to being "on fire"). This is particularly relevant when two networks have varying security levels, with one considered untrusted, and an attack on it could potentially spread to a more secure network.
+
+Therefore, in addition to \ul{placing firewalls at the boundaries of networks with different security levels}, it is crucial to consider the \textbf{directionality} of the \textbf{controlled flow}.
+
+
+important aspect to consider is the directionality of the flow being controlled:
+\begin{itemize}
+    \item \textbf{Ingress Firewall}:
+    \begin{itemize}
+        \item It is a filter that checks \textbf{incoming connections} from the untrusted network.
+        \item The purpose is typically to select (public) services offered; it limits which internal services are offered to the external network.
+        \item The problem is that sometimes the request to open a connection is part of an application exchange initiated by internal users.
+    \end{itemize}
+    \item \textbf{Egress Firewall}:
+    \begin{itemize}
+        \item It is a filter that checks \textbf{outgoing connections}.
+        \item The purpose is typically to check the activity of the personnel. This can include control of websites visited, verifying that confidential documents are not sent outside the network, or ensuring that a user is not downloading potentially dangerous files.
+    \end{itemize}
+\end{itemize}
+
+
+
+This classification is straightforward for channel-based services (e.g., TCP applications) but challenging for message-based services (e.g., ICMP, UDP applications). In such cases, the firewall is typically bidirectional, as a clear distinction between ingress and egress would be meaningless.
+
+
+\section{Firewall design}
+
+
+\subsection{The Three Commandments of Firewall}
+When designing a firewall, the primary consideration is the desired security level. However, there exists an inverse relationship between the level of protection and the functionalities offered. \textbf{The higher the protection level, the fewer functionalities can be provided}.
+Consequently, all solutions are compromises between these two objectives.
+
+Moreover, when designing a firewall, one should adhere to the principles articulated by the pioneers of the firewall (D. Cheswick and S. Bellovin):
+
+
+\begin{itemize}
+    \item [I.] \textbf{The firewall must be the only contact point of the internal network with the external one}.
+    \item [II.] \textbf{Only the "authorized" traffic can traverse the firewall}. This implies having a precise list of the allowed traffic, including protocols, ports, or external nodes. Failure to do so may result in either blocking valid traffic (thus limiting functionalities) or being too permissive and exposing the network to potential attacks.
+    \item [III.] \textbf{The firewall must be a highly secure system itself}. Many companies use a powerful general-purpose computer for the firewall and gradually load additional components (e.g., web server, database server) onto it. This practice should be avoided, as adding more software increases the likelihood of introducing bugs that could be exploited in an attack.
+\end{itemize}
+
+\subsubsection{Authorization policies}
+For the second principle, when designing a firewall, authorized traffic must be identified. In expressing the authorization policy, there are two possible strategies:
+\begin{itemize}
+    \item \textbf{Whitelisting: "All that is not explicitly permitted is forbidden"}
+        \begin{itemize}
+            \item The firewall opens only a few kinds of communication, leading to \underline{higher security}.
+            \item \underline{More difficult to manage}, especially if users were accustomed to free connectivity. This could require providing explanations about things that are no longer permitted.
+            \item \underline{This is the recommended strategy}.
+        \end{itemize}
+    \item \textbf{Blacklisting: "All that is not explicitly forbidden is permitted"}
+        \begin{itemize}
+            \item Implies studying what can be a security problem and forbidding that kind of traffic, typically leading to \underline{lower security} (open gates). It is like saying that the vulnerability is kept until it is discovered.
+            \item \underline{Easier to manage}.
+        \end{itemize}
+\end{itemize}
+
+
+
+\section{Basic components of a firewall}
+As mentioned earlier, a firewall comprises several components:
+\begin{itemize}
+    \item \textbf{Screening router (choke):} A router that filters traffic at the network level.
+    \item \textbf{Bastion host:} A secure system that undergoes periodic auditing. It serves as the first line of defense against attacks.
+    \item \textbf{Application gateway (proxy):} A service that operates on behalf of an application, facilitating communication outside the network with access control.
+    \item \textbf{Dual-homed gateway:} A system with two network cards, acting as a bridge between two different networks. Normal routing is disabled, and components on top decide whether to forward or block traffic.
+\end{itemize}
+
+Depending on the network stack layer considered by a firewall, different terms are used to refer to it:
+\begin{itemize}
+    \item \textbf{Packet filter:} Analyzing traffic at the network level, exploiting information contained in that level.
+    \item \textbf{Circuit gateway:} Operating at layer 4, considering TCP streams or UDP datagrams as units for filtering.
+    \item \textbf{Application gateway:} Examining application data in detail.
+\end{itemize}
+
+Usually, the higher we go in the stack, the more accurate the detection of attacks becomes, but the slower the process.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 7,trim = .5cm 2.5cm .5cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{A which level the controls are made?}
+\end{figure}
+
+
+\subsection{title}
