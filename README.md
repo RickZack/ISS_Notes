@@ -25,13 +25,16 @@ See the COPYING file for details.
 
 ### Todo
 
-- [ ] All the other chapters
+- [ ] Chapter 6
+- [ ] Chapter 7
+- [ ] Chapter 8
 
 ### In Progress 
-- [ ] Chapter 4
+- [ ] Chapter 5: firewall
 
 ### Done ✓
 
 - [x] Chapter 1
 - [x] Chapter 2
 - [x] Chapter 3
+- [x] Chapter 4
