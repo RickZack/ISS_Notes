@@ -291,7 +291,7 @@ NAS manufacturers claim that security needs three functions briefly named as AAA
 The AS performs exactly these three functions talking with one or more NAS via one or more protocols.
 
 \subparagraph{Network Authentication Protocols}
-Basically, there are three protocols that AS and NAS can use to communicate:
+Basically, there are three protocols that AS (Authentication Server) and NAS can use to communicate:
 \begin{itemize}
     \item \textbf{RADIUS:} It is the de-facto standard and the most widely used one, with a feature that allows it to act as a \underline{proxy towards other authentication systems}. It can serve as both an authentication system and use external AS.
     \item \textbf{DIAMETER:} This protocol is the evolution of RADIUS, emphasizing roaming among different ISPs. Since it is more modern, it pays better attention to security.
@@ -299,7 +299,7 @@ Basically, there are three protocols that AS and NAS can use to communicate:
 \end{itemize}
 
 
-\subsection{RADIUS}
+\subsection{RADIUS}\label{chap:radius}
 RADIUS stands for \textbf{Remote Authentication Dial-In User Service}. It is a legacy protocol developed nearly 30 years ago, initially designed for Dial-In scenarios when users connected to an ISP using modems. Over time, RADIUS has evolved and \textbf{now supports authentication, authorization, and accounting (AAA)} to control network access for various types of ports:
 
 \begin{itemize}
@@ -307,8 +307,8 @@ RADIUS stands for \textbf{Remote Authentication Dial-In User Service}. It is a l
     \item \textbf{Virtual ports} (tunnel, wireless access): It enables centralized management of a network of access points.
 \end{itemize}
 
-RADIUS, as a concept, implements \textbf{centralized administration and accounting} to store information about resource usage. It operates as a \textbf{client-server protocol} \textit{between the NAS and AS}, utilizing \texttt{port 1812/UDP} for \textit{authentication} and \texttt{port 1813/UDP} for \textit{accounting}. 
-Since UDP is unreliable, each transmission of a RADIUS packet is subject to timeout. If no ACK is received after the \textit{timeout}, the same packet is \textit{retransmitted}, with a maximum number of attempts before declaring communication impossible. 
+RADIUS, as a concept, implements \textbf{centralized administration and accounting} to store information about resource usage. It operates as a \textbf{client-server protocol} \textit{between the NAS and AS}, utilizing \texttt{port 1812/UDP} for \textit{authentication} and \texttt{port 1813/UDP} for \textit{accounting}.
+Since UDP is unreliable, each transmission of a RADIUS packet is subject to timeout. If no ACK is received after the \textit{timeout}, the same packet is \textit{retransmitted}, with a maximum number of attempts before declaring communication impossible.
 RADIUS supports architectures with a main server and numerous \textit{secondary servers}, enhancing system performance, and resilience (also against DoS attacks).
 
 \begin{itemize}
@@ -319,3 +319,199 @@ RADIUS supports architectures with a main server and numerous \textit{secondary 
     \item RFC-3579 (RADIUS Support for EAP): Outlines RADIUS support for the Extensible Authentication Protocol (EAP).
     \item RFC-3580 (Guidelines for 802.1X with RADIUS): Presents guidelines for using RADIUS with the IEEE 802.1X standard.
 \end{itemize}
+
+From the list above it is possible to see that from the basic protocol there have been a lot of extensions (also
+the EAP support) and in particular it supports also 802.1X (Chapter \ref{chap:802.1x}) which is a network access control security
+architecture.
+
+
+\subsubsection{RADIUS proxy}
+The \textbf{RADIUS server} may act as a \textbf{proxy} towards other authentication servers. In the depicted scenario (Figure \ref{fig:radius-proxy}), there are two NAS on the left, each sending an access request from users. RADIUS consults its \textit{local RADIUS DB} on the right and checks if, for example, "Barbara" is a valid registered user. If it receives an access request, perhaps from another NAS, in the form of an email address (although it is not an email address), such as alice@WIN.polito.it, it indicates that the user Alice is not registered in the local RADIUS DB. Instead, Alice is a user defined in the security domain WIN.polito.it to which the RADIUS server is associated somehow.
+
+This implies that \textbf{RADIUS will act as a proxy for the \underline{authentication part}} and redirect the request to the Windows domain controller. The authorization/accounting could then be managed locally by the RADIUS server. RADIUS can also be associated with another domain, such as a UNIX NIS server.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 24,trim = 1cm 2.3cm 1cm 7cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Radius proxy}
+    \label{fig:radius-proxy}
+\end{figure}
+
+
+\subsubsection{RADIUS security functionalities}
+RADIUS requires security functionalities due to various potential threats:
+
+\begin{itemize}
+    \item \textbf{Sniffing NAS Requests (if contains passwords):}\\
+          This poses a \textit{confidentiality} problem, as sniffing a request containing a password in clear text could lead to unauthorized access. Even in scenarios where passwords are not sent in clear text (e.g., OTP systems), a privacy concern arises, as sniffing the traffic could reveal user actions without revealing the actual password. There are no issues with sniffing the response, as it only indicates the validity of the request.
+
+    \item \textbf{Fake AS Response (to block valid or allow invalid user):}\\
+          Attackers could exploit the UDP nature of RADIUS to provide faster responses than the legitimate server. The first received response is considered valid, allowing for potential denial-of-service (DoS) attacks to block valid users or provide positive responses to invalid ones. Authentication of responses is crucial in such cases.
+
+    \item \textbf{Changing AS Response (Y → N or N → Y):} Unauthorized modification of responses from valid to invalid or vice versa is a possibility. Authentication and integrity checks for responses are necessary to mitigate this type of attack.
+
+    \item \textbf{Replay of AS Response (if not properly tied to NAS req):}\\
+          Replay attacks could occur if responses are not properly tied to specific requests. If a response is generic (e.g., only "valid" or "invalid"), attackers could replay a valid response to another user. To prevent this, responses should contain user identification (e.g., "Antonio Lioy, who connected at XX:XX time, is valid").
+
+    \item \textbf{Passwords Enumeration (from fake NAS):}\\
+          If an attacker gains access to the back-end network between the NAS and RADIUS server, they might create a fake NAS and send requests to the RADIUS server to enumerate passwords. Authentication from NAS requests is required to mitigate this risk.
+
+    \item \textbf{DoS (many NAS requests from fake NAS):} \\
+    An attacker with access to the back-end network could flood the RADIUS server with numerous requests, rendering it unavailable. \ul{NAS are configured with a list of various RADIUS servers}, and if a response delay occurs, the NAS assumes the server is busy and switches to the next one. The system's resistance to this attack is proportional to the number of secondary servers configured.
+\end{itemize}
+
+
+\subsubsection{RADIUS characteristics}
+For \textbf{data protection}, RADIUS employs packet integrity and authentication via \textbf{keyed-MD5}:
+
+\begin{itemize}
+    \item The key is a shared secret between the NAS and the RADIUS Server, ensuring that inserting a fake NAS server into the network will result in the rejection of its requests.
+    \item In cases where packets contain a password (e.g., if a user decides to use PAP and the password is sent in clear), the password is transmitted in an "encrypted" manner (not true encryption, but rather obfuscated using MD5, which is a digest algorithm, not an encryption algorithm): \( \text{{password}} \oplus \text{{md5}}(\text{{key}} + \text{{authenticator}}) \). This is padded with NULL bytes until a multiple of 128 bits is reached.
+\end{itemize}
+
+RADIUS supports various authentication methods (PAP, CHAP, token-card, and EAP). Cisco provides a free server for CryptoCard, and others also support SecurID. Importantly, RADIUS is an \textbf{extensible protocol} because each packet carries attributes described in TLV form \texttt{(attribute type - length - value)}. This allows the introduction of new types without breaking compatibility.
+
+
+\vspace*{5mm}
+\noindent
+\begin{minipage}{0.5\textwidth}
+  \centering
+  \includegraphics[page = 28,trim = 3cm 3cm 3cm 2cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.4\textwidth}
+
+    The format of a RADIUS packet includes the following components:
+    \begin{itemize}
+        \item \texttt{Code} (8 bits)
+        \item \texttt{Identifier} (8 bits)
+        \item \texttt{Length} (16 bits)
+        \item \texttt{Authenticator} (128 bits)
+        \item \texttt{TLV} (Type-Length-Value) list of attributes
+    \end{itemize}  
+\end{minipage}
+
+\vspace*{7mm}    
+RADIUS supports various packet types, and some of them include:
+
+\begin{itemize}
+    \item \texttt{ACCESS-REQUEST:} Contains access credentials (e.g., username and password).
+    \item \texttt{ACCESS-REJECT:} Access is denied (e.g., due to bad username/password).
+    \item \texttt{ACCESS-CHALLENGE:} Requests additional information from the user (e.g., PIN, token code, secondary password).
+    \item \texttt{ACCESS-ACCEPT (parameters):} Access is granted, and some network parameters are given (e.g., IP address, netmask, MTU, host, port, ...).
+\end{itemize}
+
+
+\paragraph*{RADIUS - authenticator}
+Inside packets, the \texttt{authenticator} serves a \underline{dual purpose}: 
+\begin{enumerate}
+    \item in the \textit{server reply}, it provides \textit{authentication} and \textit{protection from replay};
+    \item while also \textit{masking the password}.
+\end{enumerate}
+
+In \texttt{Access-Request}, it is named Request Authenticator and is 16 bytes randomly generated by the NAS. In \texttt{Server Responses}, besides being named Response Authenticator, it is not random but computed via a keyed digest:
+\[
+\texttt{MD5(code || ID || length || RequestAuth || attributes || secret)} 
+\]
+
+Note that the presence of \texttt{RequestAuth} in the computation links a response to a request, preventing replay attacks.
+
+
+
+\paragraph{Attributes in RADIUS Packets}
+Attributes in RADIUS packets follow the TLV (Type-Length-Value) form, and some of them are:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[page = 31,trim = 2cm 13cm 2cm 5cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Type = 1 (User-Name):}\\ The value could be a text \textit{string}, \textit{network access identifier} (NAI), or \textit{Distinguished Name} (DN).
+    \item \textbf{Type = 2 (User-Password):}\\ 
+    The value is the \( \texttt{password} \oplus \texttt{md5(key || RequestAuth)} \).
+    \item \textbf{Type = 3 (Chap-Password):}\\
+    The value is the user CHAP response (128 bits).
+    \item \textbf{Type = 60 (CHAP-Challenge):}\\
+    The value is the challenge from the NAS to the user.
+\end{itemize}
+
+\subparagraph*{NAI in Radius}
+The \textit{Network Access Identifier} (\textbf{NAI}) serves to distinguish whether the request is from a local user or belongs to a different security domain. The NAI takes the form of a username and is optionally followed by a security realm [@realm]. According to rules, all devices must support NAIs up to 72 bytes long. The exact syntax for the username and realm is detailed in the RFC, allowing only ASCII characters < 128. All ASCII characters are permitted, including non-printable characters. The username corresponds to the one used in the PPP authentication phase, which may differ from the application username used when opening the connection to the layer.
+
+
+\subsubsection{Example - CHAP + RADIUS}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 33,trim = 1cm 2.5cm 1cm 4cm, clip, width = 0.70\textwidth]{\slides}
+    \caption{CHAP + RADIUS}
+    \label{fig:chap-radius}
+\end{figure}
+
+
+CHAP is utilized for authentication, and RADIUS is employed to verify the authentication. In the scenario, a \textit{user} is on the left, the \textit{NAS} is in the middle, and the \textit{RADIUS} server is on the right.
+
+When a user connects to the system, the NAS sends a CHAP packet containing a \texttt{challenge request}. The client enters the password and provides the \texttt{challenge response}. It is important to note that \underline{the NAS does not possess the password and cannot verify if the response is valid}. Consequently, the NAS creates a \texttt{RADIUS Access Request} packet with all relevant information: \texttt{CHAP-Username} is the one provided by the user, \texttt{CHAP-Challenge} is the challenge that the NAS sent to the user, and \texttt{CHAP-Password} is the response to the challenge. With this information, the RADIUS Server can verify if the response to the challenge is valid. Assuming the response is valid, the RADIUS Server sends a response, \texttt{RADIUS Access Accept}, with network parameters for the specific user. This acceptance is then translated to CHAP in the form of a \texttt{CHAP Success} packet, enabling Layer 3 (e.g., IPCP).
+The NAS engages in a dialogue with the user seeking access to the network, transforming information from one protocol to another.
+
+RADIUS assumes that the system operates within the network access infrastructure of a single provider.
+
+
+\subsection{IEEE 802.1x}\label{chap:802.1x}
+Radius (Chapter \ref{chap:radius}) and Diameter (Chapter \ref{chap:diameter}) have been employed in defining \texttt{IEEE 802.1x}, 
+which constitutes a more comprehensive architecture known as \textbf{Port-Based Network Access Control}. 
+This authentication architecture operates at \textit{Layer 2}, verifying the identity and authorization of users before permitting communication. While it could prove useful in a wired network to prevent unauthorized access, its significance becomes paramount in \textbf{wireless networks}.
+Initial implementations were promptly introduced by Windows XP and Cisco wireless access points.
+
+IEEE 802.1x functions as a framework, signifying that it does not enforce a specific authentication solution but supports multiple alternatives. Notably, it serves as a framework for executing \textbf{authentication} and \textbf{key management}. The latter is crucial for wireless networks, where the radio component of communication is susceptible to eavesdropping. With key management, a shared symmetric key can be established for encrypting traffic and deriving session keys for packet authentication, ensuring integrity and confidentiality. It employs standard algorithms for key derivation (e.g., TLS, SRP, ...) and offers optional security services, including authentication or a combination of authentication and encryption.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 36,trim = .5cm 3cm .5cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{802.1x - architecture}
+    \label{fig:802.1x-architecture}
+\end{figure}
+
+\subsubsection{802.1x - architecture}
+On the left, Figure \ref{fig:802.1x-architecture} illustrates the \textbf{semi-public network}, also known as the enterprise edge, housing devices seeking network access—referred to as supplicants. The element situated at the interface between the core network and the edge, called an \textbf{authenticator or etherNAS} (which can be an \textit{access point} or a \textit{switch}), allows supplicants to connect in various ways.
+
+802.1x uses EAP for authentication, named EAP Over Wireless\textit{} (\textbf{EAPO}W) for wireless or \textit{EAP over LAN} (\textbf{EAPOL}) for wired networks. When the authenticator receives the EAP request from a supplicant, it verifies its validity by performing packet decapsulation and re-encapsulation in another protocol (Radius). On the backend, \textit{EAP Over Radius} (\textbf{EAPOR}) checks the user's validity.
+
+
+\subsubsection{802.1x - advantages}
+
+802.1x leverages the application level for the actual implementation of security mechanisms. It facilitates a direct dialogue between the supplicant and the Authentication Server (AS), allowing user devices to communicate directly with the Radius Server. The network card (NIC) and Network Access Server (NAS) function as \textbf{"pass-through devices}", limiting themselves to encapsulation and decapsulation. This is crucial as no changes are required at the NIC and NAS to implement new authentication mechanisms. The responsibility for implementing these mechanisms lies solely with the Radius Server and the supplicant.
+
+This aspect is significant because it ensures that the security architecture remains unchanged even if there are future advancements in authentication techniques. Additionally, the system seamlessly integrates with AAA architectures, providing accounting functionalities.
+
+
+\subsubsection{802.1x - messages}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 38,trim = 1cm 1.5cm .5cm 4cm, clip, width = 0.90\textwidth]{\slides}
+    \caption{802.1x - messages}
+    \label{fig:802.1x-messages}
+\end{figure}
+
+
+In the provided example in Figure \ref*{fig:802.1x-messages}, a laptop is connected via Ethernet to a switch, where, by default, all Ethernet ports are locked.
+In 802.1X architecture, the switch acts as a pass-through device, translating EAP messages to and from RADIUS. The authentication process maintains an \textit{end-to-end connection}.
+
+The supplicant initiates the negotiation using \texttt{EAPOL-Start}. The switch responds with \texttt{EAP-Request/Identity}, and the supplicant, in turn, provides his identity with \texttt{EAP-Response/Identity}. This information is relayed to the Radius Server via a \texttt{Radius-Access-Request}, with the switch acting as a pass-through element.
+
+Subsequently, the Radius Server responds with a challenge through a \texttt{Radius-Access-Challenge} packet, which is translated into an \texttt{EAP-Request} packet by the switch.
+The supplicant, once again, responds to the challenge with a \texttt{EAP-Response (credentials)} packet, leading to another \texttt{Radius Access Request}. The Radius Server then authenticates the user with a \texttt{Radius-Access-Accept} to the switch, and the exchange concludes with an \texttt{EAP-Success} packet sent to the user. 
+The user is now granted access to communicate with Layer 3 and above.
+
+
+\paragraph{Eduroam example}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 39,trim = 1cm 2.3cm 1cm 4cm, clip, width = 0.60\textwidth]{\slides}
+    \caption{Eduroam}
+    \label{fig:eduroam}
+\end{figure}
+
+A major example of the usage of Radius is the \textbf{Eduroam} network. It is a worldwide network access control network that involves all universities and many research centers around the world. Nearly one year ago, 101 countries were connected, and 18 other countries were under test. Eduroam uses 802.1x plus the Radius federation.
+
+The supplicant can identify an access point in a university named Eduroam and connect to it. The access point is related to the local AS, known as the \textbf{visit AS}. Using the Network Access Identifier (NAI) syntax, the supplicant provides its identifier (e.g., \texttt{s123456@studenti.polito.it}), and the local Radius Server determines that it must go through the \textbf{Eduroam hierarchy} (national, international, etc.) until it reaches the Radius AS where the supplicant has created their credentials (e.g., the PoliTO Radius Server), known as the \textbf{Home AS}. Once found, a \ul{direct connection is established through an End-to-End (E2E) virtual secure channel (e.g., EAP-TTLS) between the supplicant and the Home AS to perform authentication. The Home AS then provides the answer to the access point, allowing the user to access the network}.
