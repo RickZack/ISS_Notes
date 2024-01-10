@@ -1,4 +1,4 @@
-\chapter{Security of network applications}
+\chapter{Firewall}
 
 \section{What is a firewall}
 A firewall is a \textbf{"wall to protect against fire propagation"}: this concept originates from regulations common in countries where houses are primarily constructed with wood. According to these regulations, a brick wall must be inserted between two houses under specific conditions to prevent the spread of fire. Similarly, in the realm of information systems security, a firewall is positioned to prevent the easy propagation of an attack from one network to another in the event of a network being compromised (akin to being "on fire"). This is particularly relevant when two networks have varying security levels, with one considered untrusted, and an attack on it could potentially spread to a more secure network.
@@ -6,7 +6,7 @@ A firewall is a \textbf{"wall to protect against fire propagation"}: this concep
 Therefore, in addition to \ul{placing firewalls at the boundaries of networks with different security levels}, it is crucial to consider the \textbf{directionality} of the \textbf{controlled flow}.
 
 
-important aspect to consider is the directionality of the flow being controlled:
+An important aspect to consider is the directionality of the flow being controlled:
 \begin{itemize}
     \item \textbf{Ingress Firewall}:
           \begin{itemize}
@@ -257,6 +257,34 @@ Benefits of this proxy include:
 \end{figure}
 
 
-There are two possible configurations for a reverse proxy (Figure \ref{fig:reverse-proxy}). The best solution is that, if conceptually a three-legged firewall is used, the reverse proxy should be placed on the DMZ because it will be the public interface. Behind it, the equivalent servers (which are the application servers being accessed by external users) can be placed. The problem arises when the application server needs access to data located inside the internal network. In this case, the server should pass back through the proxy, traverse the firewall, and finally enter the internal network.
+There are two possible configurations for a reverse proxy (Figure \ref{fig:reverse-proxy}). 
+\begin{itemize}
+    \item [left.] The best solution is that, if conceptually a three-legged firewall is used, \textbf{the reverse proxy should be placed on the DMZ because it will be the public interface}. Behind it, the equivalent servers (which are the application servers being accessed by external users) can be placed. The problem arises when the application server needs access to data located inside the internal network. In this case, the server should pass back through the proxy, traverse the firewall, and finally enter the internal network.
+    \item [right.] To handle this case and avoid the issues just explained, an alternative solution is also possible: \textbf{the reverse proxy is on the DMZ, and then a VPN connection is established between the reverse proxy and the servers, which are in the internal network}. This approach should limit the risks because there is no direct access to those servers, only through the reverse proxy. However, the first solution is the suggested one, as in that case, an attack against the (public) servers is confined to the DMZ.
+\end{itemize}
 
-To handle this case and avoid the issues just explained, an alternative solution is also possible: the reverse proxy is on the DMZ, and then a VPN connection is established between the reverse proxy and the servers, which are in the internal network. This approach should limit the risks because there is no direct access to those servers, only through the reverse proxy. However, the first solution is the suggested one, as in that case, an attack against the (public) servers is confined to the DMZ.
+
+\subsubsection{WAF (Web Application Firewall)}
+
+Since web applications are widely used nowadays, there is an increasing number of threats. WAF is a module installed at a proxy (forward and/or reverse) to \textbf{filter the application traffic}. It checks:
+
+\begin{itemize}
+    \item HTTP commands
+    \item Header of HTTP request/response
+    \item Content of HTTP request/response
+\end{itemize}
+
+The most widely known and used WAF is \textbf{ModSecurity} (opensource project), which is a plugin for Apache and NGINX (representing 5\% and 30\% of worldwide HTTP servers). ModSecurity is so popular that OWASP (Open Web Application Security Project) has developed a specific \textbf{ModSecurity Core Rule Set} \textbf{(CRS)}. This means that \ul{OWASP studied the most frequent and well-known attacks and wrote a set of rules that permit ModSecurity to detect and drop those attacks}.
+
+
+% TODO: consider renaming/removing this section, or place it somewhere else
+\section{Architectures}
+
+\subsection{"Packet filter" architecture}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 20,trim = 1cm 2.5cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{"Packet filter" architecture}
+\end{figure}
+The core concept is to equip the switching element with filtering capabilities. Typically, since this is a Layer 3 (L3) network device, the kind of filtering it can perform is at the IP and upper levels, implementing a packet filter. The advantage of this architecture is that there is no need for dedicated hardware. Moreover, since this filter does not address the application level in any way, there is no need for a proxy, and hence, there is no need to modify the applications. It is a simple, easy, cheap, and... insecure solution since the kind of controls it can make are very trivial, usually based on protocols, ports, and addresses. One final drawback is that the router is a single point of failure, meaning that a bug could allow the attacker to bypass the control and access the internal network.
