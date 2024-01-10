@@ -9,16 +9,16 @@ Therefore, in addition to \ul{placing firewalls at the boundaries of networks wi
 important aspect to consider is the directionality of the flow being controlled:
 \begin{itemize}
     \item \textbf{Ingress Firewall}:
-    \begin{itemize}
-        \item It is a filter that checks \textbf{incoming connections} from the untrusted network.
-        \item The purpose is typically to select (public) services offered; it limits which internal services are offered to the external network.
-        \item The problem is that sometimes the request to open a connection is part of an application exchange initiated by internal users.
-    \end{itemize}
+          \begin{itemize}
+              \item It is a filter that checks \textbf{incoming connections} from the untrusted network.
+              \item The purpose is typically to select (public) services offered; it limits which internal services are offered to the external network.
+              \item The problem is that sometimes the request to open a connection is part of an application exchange initiated by internal users.
+          \end{itemize}
     \item \textbf{Egress Firewall}:
-    \begin{itemize}
-        \item It is a filter that checks \textbf{outgoing connections}.
-        \item The purpose is typically to check the activity of the personnel. This can include control of websites visited, verifying that confidential documents are not sent outside the network, or ensuring that a user is not downloading potentially dangerous files.
-    \end{itemize}
+          \begin{itemize}
+              \item It is a filter that checks \textbf{outgoing connections}.
+              \item The purpose is typically to check the activity of the personnel. This can include control of websites visited, verifying that confidential documents are not sent outside the network, or ensuring that a user is not downloading potentially dangerous files.
+          \end{itemize}
 \end{itemize}
 
 
@@ -46,16 +46,16 @@ Moreover, when designing a firewall, one should adhere to the principles articul
 For the second principle, when designing a firewall, authorized traffic must be identified. In expressing the authorization policy, there are two possible strategies:
 \begin{itemize}
     \item \textbf{Whitelisting: "All that is not explicitly permitted is forbidden"}
-        \begin{itemize}
-            \item The firewall opens only a few kinds of communication, leading to \underline{higher security}.
-            \item \underline{More difficult to manage}, especially if users were accustomed to free connectivity. This could require providing explanations about things that are no longer permitted.
-            \item \underline{This is the recommended strategy}.
-        \end{itemize}
+          \begin{itemize}
+              \item The firewall opens only a few kinds of communication, leading to \underline{higher security}.
+              \item \underline{More difficult to manage}, especially if users were accustomed to free connectivity. This could require providing explanations about things that are no longer permitted.
+              \item \underline{This is the recommended strategy}.
+          \end{itemize}
     \item \textbf{Blacklisting: "All that is not explicitly forbidden is permitted"}
-        \begin{itemize}
-            \item Implies studying what can be a security problem and forbidding that kind of traffic, typically leading to \underline{lower security} (open gates). It is like saying that the vulnerability is kept until it is discovered.
-            \item \underline{Easier to manage}.
-        \end{itemize}
+          \begin{itemize}
+              \item Implies studying what can be a security problem and forbidding that kind of traffic, typically leading to \underline{lower security} (open gates). It is like saying that the vulnerability is kept until it is discovered.
+              \item \underline{Easier to manage}.
+          \end{itemize}
 \end{itemize}
 
 
@@ -80,9 +80,183 @@ Usually, the higher we go in the stack, the more accurate the detection of attac
 
 \begin{figure}[h]
     \centering
-    \includegraphics[page = 7,trim = .5cm 2.5cm .5cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \includegraphics[page = 7,trim = .5cm 2.5cm .5cm 4cm, clip, width = 0.70\textwidth]{\slides}
     \caption{A which level the controls are made?}
 \end{figure}
 
 
-\subsection{title}
+\subsection{Firewall technologies}
+Firewall Technologies
+Depending on the network level at which controls are performed, different terms are used:
+
+\begin{itemize}
+    \item (Static) packet filter
+    \item Stateful (dynamic) packet filter
+    \item Cut-off proxy
+    \item Circuit-level gateway/proxy
+    \item Application-level gateway/proxy
+    \item Stateful inspection
+\end{itemize}
+Differences are observed in terms of:
+\begin{itemize}
+    \item Controls to be performed (= threats detected):
+          \begin{itemize}
+              \item They are related to the threats that can be detected.
+          \end{itemize}
+    \item Performance:
+          \begin{itemize}
+              \item Understanding the different performance levels provided by various technologies is important, typically because security comes with a price.
+          \end{itemize}
+    \item Protection of the firewall O.S.:
+          \begin{itemize}
+              \item Various solutions offer different levels of protection for the firewall itself.
+          \end{itemize}
+    \item Keeping or breaking the \textit{client-server model}:
+          \begin{itemize}
+              \item The discussed firewalls are placed between the client and the server. It could be transparent, meaning that if the traffic is permitted, the client can directly communicate with the end server. Alternatively, the firewall can act as a proxy, allowing the client to communicate with the firewall, which then communicates with the server. The second model, where the firewall acts as a proxy, is more secure, but the firewall itself becomes an element prone to attacks.
+          \end{itemize}
+\end{itemize}
+
+
+\subsubsection{(Static) Packet filter}
+Originally, it was available on routers and performed packet inspection at the network level by checking just the IP header and, when available, also the transport header. The reason for this is that once a packet is received, it should be forwarded or discarded in the minimum possible time.
+
+This kind of solution has pros and cons:
+
+\begin{itemize}
+    \item \textbf{It is independent of the kind of applications}
+          \begin{itemize}
+              \item Good scalability (if throughput increases).
+              \item Approximate controls: easy to "fool" (e.g., IP spoofing, fragmented packets).
+          \end{itemize}
+    \item \textbf{Good performance}
+    \item \textbf{Low cost} (available on routers and in many OS).
+    \item \textbf{Difficult to support services with dynamically allocated ports} (e.g., FTP).
+    \item \textbf{Complex to configure}: all the rules are expressed in terms of IPs, port, and protocols.
+    \item \textbf{Difficult to perform user authentication}: it comes from the fact that it uses only information available at L3.
+\end{itemize}
+
+
+% TODO: remove this, seems like it's no longer in the slides
+\subsubsection*{Stateful (dynamic) packet filter [REMOVED?]}
+
+\begin{itemize}
+    \item \textbf{Conceptually similar to packet filter but "state-aware":} it means that it remembers the previous packets in order to be faster in processing the new ones. It can look inside packets for commands that define the ports that will be used (e.g., FTP PORT command).
+    \item \textbf{It can distinguish new connections from those already open:}
+          \begin{itemize}
+              \item Keeps state tables for open connections;
+              \item Packets matching one row in the table are forwarded without any further control (fast transmission).
+          \end{itemize}
+    \item \textbf{Better performance than a packet filter:}
+          \begin{itemize}
+              \item SMP (Symmetrical Multi-Processing) support can be enabled, thanks to the use of state tables.
+          \end{itemize}
+    \item \textbf{Still has many of the static packet filter limitations}.
+\end{itemize}
+
+\subsubsection{Application-level gateway}
+It is composed of a set of proxies that inspect the packet payload at the application level. The gateway often \textbf{requires modifications to the client application} and may optionally \textbf{mask/renumber the internal IP addresses}. When used as part of a firewall, it usually also performs \textbf{peer authentication} (typically for egress firewall). Since the proxy understands the application-level commands, it can provide \textbf{top security}, for example, against buffer overflow attacks on the target application. There are differences between forward-proxy (egress) and reverse-proxy (ingress).
+
+In general, when working at the application level, there may be rules that are \textbf{more fine-grained and simpler} than those of a packet filter because it is possible to express rules in terms of application-level commands and data. However, every application needs a specific proxy because it will have its own commands and data. This implies:
+
+\begin{itemize}
+    \item Delay in supporting new applications.
+    \item Heavy reliance on computational resources: a separate process is needed for each connection, typically running in user mode.
+    \item Low performance (because they are user-mode processes).
+\end{itemize}
+
+It is possible to use SMP that may improve performance. However, this completely breaks the client/server model, which means:
+
+\begin{itemize}
+    \item More protection for the server.
+    \item Ability to authenticate the client.
+    \item Not transparent to the client: the application needs to be configured to use the proxy.
+\end{itemize}
+
+Since it is not transparent, the OS of the firewall may be exposed to attacks because it needs to process all the packets. Additionally, there is also a problem with application-level security techniques (e.g., SSL) that will not allow inspecting the traffic. For this reason, there are some variants:
+
+\begin{itemize}
+    \item \textbf{Transparent Proxy:}
+          \begin{itemize}
+              \item Less intrusive for the client.
+              \item Requires more effort (packet rerouting + destination extraction).
+          \end{itemize}
+
+    \item \textbf{Strong Application Proxy} (checking semantics, not just syntax):
+          \begin{itemize}
+              \item Only some commands/data are forwarded. For example, in the case of the HTTP protocol, this could allow only GET and POST commands to be allowed.
+              \item This is the only correct configuration for a proxy\footnote{according to Lioy.}.
+          \end{itemize}
+\end{itemize}
+
+
+
+\subsubsection{Circuit-level Gateway}
+
+Between the packet filter and the application-level gateway, there is also the \textbf{circuit-level gateway}. It is a generic proxy (which is not "application-aware") that \textbf{creates a transport-level circuit} between the client and server, but it does not understand or manipulate the payload data in any way. It simply copies TCP segments or UDP datagrams (if they match the access control rules), but in doing this, it \ul{re-assembles the IP packets, providing protection against some L3/L4 attacks}.
+
+For the server, all attacks related to the TCP handshake are no longer possible because there is no TCP handshake between the client and server. \ul{The client performs the TCP handshake with the gateway, and then the gateway performs a correct handshake with the server}.
+
+In conclusion, it breaks the TCP/UDP-level client/server model during the connection and provides:
+
+\begin{itemize}
+    \item \textbf{More Protection for the Server:}
+          \begin{itemize}
+              \item Isolated from all attacks related to the TCP handshake.
+              \item Isolated from all attacks related to IP fragmentation; an attacker could fragment a packet with which they perform the attack, and such an attack will not be detected by a simple packet filter.
+          \end{itemize}
+    \item \textbf{May Authenticate the Client:}
+          \begin{itemize}
+              \item But this requires modification to the application.
+          \end{itemize}
+\end{itemize}
+
+However, it still exhibits many limitations of the packet filter. A well-known example is \textbf{SOCKS}.
+
+
+
+\subsubsection{HTTP (forward) proxy}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 16,trim = 1cm 3.5cm 1cm 15cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+
+A forward proxy, typically HTTP, acts as an HTTP server, functioning as a front-end and passing requests to the real external server. In addition to network \textit{Access Control Lists} (\textbf{ACL}), the benefits include:
+
+\begin{itemize}
+    \item Shared cache of external pages for all internal users.
+    \item Authentication and authorization of internal users.
+    \item Various controls (e.g., allowed sites, transfer direction, data types, …).
+\end{itemize}
+
+It is a typical component of the \textbf{egress} firewall. By contrast, the \textit{reverse proxy} is used for the \textbf{ingress firewall}.
+
+\subsubsection{HTTP reverse proxy}
+
+An HTTP server acts as a front-end for the real server(s) to which the requests are passed. It can implement ACL again in case it is possible to limit clients, but typically, an ingress firewall does not limit clients that can contact the server. It is possible to perform \textbf{content inspection}.
+Benefits of this proxy include:
+
+\begin{itemize}
+    \item \textbf{Obfuscation} (no info about the real server):
+          Since the server proxy is responding to the client, it can declare that it is a generic proxy without providing any information to the real software that implements the final server.
+    \item \textbf{SSL accelerator} (with unprotected back-end connections …):\\
+          Reverse proxy can be the \underline{endpoint for SSL/TLS}. In that sense, it is an SSL accelerator because if the channel is terminated here, it is possible to place an HSM and then get the additional benefit that the traffic comes in clear after the TLS channel is terminated. This permits performing content inspection.
+    \item \textbf{Load balancer}
+    \item \textbf{Web accelerator} (=cache for static content)
+    \item \textbf{Compression}
+    \item \textbf{Spoon feeding}:\\
+          Gets from the server a whole dynamic page and feeds it to the client according to its speed, thus unloading the application server.
+\end{itemize}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 18,trim = 1cm 3cm .5cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Reverse proxy: possible configurations}
+    \label{fig:reverse-proxy}
+\end{figure}
+
+
+There are two possible configurations for a reverse proxy (Figure \ref{fig:reverse-proxy}). The best solution is that, if conceptually a three-legged firewall is used, the reverse proxy should be placed on the DMZ because it will be the public interface. Behind it, the equivalent servers (which are the application servers being accessed by external users) can be placed. The problem arises when the application server needs access to data located inside the internal network. In this case, the server should pass back through the proxy, traverse the firewall, and finally enter the internal network.
+
+To handle this case and avoid the issues just explained, an alternative solution is also possible: the reverse proxy is on the DMZ, and then a VPN connection is established between the reverse proxy and the servers, which are in the internal network. This approach should limit the risks because there is no direct access to those servers, only through the reverse proxy. However, the first solution is the suggested one, as in that case, an attack against the (public) servers is confined to the DMZ.
