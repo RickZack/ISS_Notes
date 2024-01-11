@@ -400,7 +400,7 @@ The analogy presented here illustrates that in the areas of the wall where brick
 \end{itemize}
 
 
-\subsection{Intrusion Detection System (IDS)}
+\section{Intrusion Detection System (IDS)}
 
 \textbf{IDS} is another critical component of contemporary security solutions; it is a \textbf{system designed to identify actors using a computer or a network without authorization}.
 Depending on the features, it can be extended to \textbf{identify authorized actors violating their privileges}.
@@ -429,6 +429,7 @@ An IDS can base its behavior on two strategies.
 An Active IDS always has someone who looks at IDS statistics. This is necessary because statistics may not be accurate. An attack is detected if it significantly diverges from the statistics related to the behavior of the system, so \ul{there is a chance to have undetected attacks but also false positives}. This means that human intervention is often needed to check the alarms raised by the IDS, carefully analyze the problem, and understand if there is an attack or if it is just a false positive, given the strict threshold. Typically, IDS have both an active and passive part.
 
 \paragraph{Topological features of IDS:}
+
 \begin{itemize}
     \item \textbf{HIDS (host-based IDS)}, looks for statistics inside a single node:
         \begin{itemize}
@@ -440,3 +441,75 @@ An Active IDS always has someone who looks at IDS statistics. This is necessary 
             \item Network traffic monitoring tools.
         \end{itemize}
 \end{itemize}
+
+\subsection{NIDS}
+
+\subsubsection{NIDS components}
+\begin{itemize}
+    \item \textbf{Sensor (host/network based):}
+        \begin{itemize}
+            \item Checks traffic and logs looking for suspect patterns;
+            \item Then generates the relevant security events;
+            \item Could also interact with the system (modifying ACLs, performing TCP reset, …);
+        \end{itemize}
+    
+    \item \textbf{Director:}
+        \begin{itemize}
+            \item Coordinates the work of all sensors;
+            \item Manages the security database (e.g., statistics, attack signatures);
+        \end{itemize}
+    
+    \item \textbf{IDS message system (to make director and sensors communicate):}
+        \begin{itemize}
+            \item Provides secure (authentication and integrity) and reliable (nobody should be able to drop a message that was sent by sensors or vice versa) communication among the IDS components.
+        \end{itemize}
+\end{itemize}
+
+To achieve reliability in communication, if possible, it is performed on a separate physical network. If it is not possible, a VLAN or VPN is used.
+
+
+\subsubsection{NIDS architecture}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 35,trim = 1cm 2.2cm 1cm 4cm, clip, width = 0.64\textwidth]{\slides}
+    \caption{NIDS architecture}
+    \label{fig:nids-architecture}
+\end{figure}
+
+The schema (Figure \ref{fig:nids-architecture}) shows how IDS should be configured. Conceptually, there is always the three-legged firewall with a connection to the external, one to the internal, and one to the DMZ. In the internal network, \textbf{sensors} on the most critical hosts are inserted (e.g., databases, application servers). \textbf{Net sensors} are also needed to check if some malicious traffic succeeds in passing the network, but it is also necessary to check the behavior of users in the internal network.
+
+On the DMZ, there is the server reachable from the outside and those are easily attackable. Therefore, a \textbf{host sensor} on each server placed on the DMZ should be inserted. The last sensor is the \textbf{net sensor} on the external interface of the firewall. Some think that it is not needed because it is outside, but placing it outside of the firewall permits the analysis of \underline{which attempts are made}, to gather statistics (e.g., the firewall blocks 98\% of attacks).
+
+On the top right, the IDS director collects all the information from sensors.
+
+\subsection{IPS - Intrusion Prevention System}
+
+\textbf{IPS} is a system used to \textbf{accelerate and automate responses to intrusions}. It combines an \textit{IDS} with a \textit{ distributed dynamic firewall}. The IDS sends alarms related to a specific type of traffic; then, when the distributed dynamic firewall receives an alarm, it can block all traffic of that particular kind or isolate a node. This approach is effective when the intrusion detection system's detection is 100\% certain. However, if it is not, IPS can be risky because \textbf{it may make incorrect decisions and block innocent traffic}. It is a technology, not a product, with a significant impact on many elements of the protection system. 
+It is often integrated into a single product called \textit{IDPS}.
+
+
+
+\subsection{Next-Generation Firewall (NGFW)}
+NGFW is a kind of firewall that attempts to \textbf{identify applications independently of the network port used}.
+Consider a scenario where users are only allowed to use \texttt{HTTPS (443/TCP)}, and all other traffic is blocked. There might be someone using port 443 to send traffic other than HTTPS. \textbf{With a packet filter, it is not possible to detect that}. In contrast, with NGFW, it is possible to inspect traffic on any port and try to understand the actual application being carried out on that port. If possible, NGFW tries to decipher/re-cipher the traffic.
+
+NGFW offers integration with authentication systems such as captive portal, 802.1x, or endpoint authentication (Kerberos, Active Directory, LDAP, ...). This integration allows the firewall to write policies based on user identities rather than IP addresses. By associating IP addresses with specific users through integration, it becomes possible to create \textbf{per-user policies}. Similarly, the ability to identify applications independent of the port used allows the application of \textbf{per-application policies}. Additionally, NGFW can perform filtering based on known vulnerabilities, threats, and malware.
+
+
+\subsection{Unified Threat Management (UTM)}
+It is an \textbf{integration of several products into a single device} that simplifies management. The device provided is named \textit{UTM appliance/Security} appliance and can contain firewall, VPN, anti-malware, content-inspection, IDPS, and other features. 
+
+The actual capabilities depend on the manufacturer. UTM is mainly targeted to reduce the number of different systems, thus reducing management complexity and cost.
+
+\subsection{Honey Pot / Honey Net}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 39,trim = .5cm 1.5cm 1.3cm 3.8cm, clip, width = 0.65\textwidth]{\slides}
+    \label{Honey Pot / Honey Net}
+\end{figure}
+
+A Honey Pot is a method to \textbf{attract attackers}. The external network is protected with a firewall, which contains the real DMZ. Additionally, there is a second DMZ called the \textbf{decoy DMZ} where there is a \textbf{honey pot} — \textit{an easily attackable machine}. The purpose is to attract attackers and then have an inspection system that monitors what the attacker is doing to \textbf{understand their behavior} and new types of attacks or to collect malware. Honey pots are placed worldwide by antimalware manufacturers just to collect new malware.
+
+
+The honey pot can also be placed inside the internal network to detect if there are internal users attempting to attack the system. For example, it is possible to create a fake duplicate salary server just to check if someone is trying to increase their own salary or to access someone else’s salary.
