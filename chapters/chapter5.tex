@@ -257,9 +257,9 @@ Benefits of this proxy include:
 \end{figure}
 
 
-There are two possible configurations for a reverse proxy (Figure \ref{fig:reverse-proxy}). 
+There are two possible configurations for a reverse proxy (Figure \ref{fig:reverse-proxy}).
 \begin{itemize}
-    \item [left.] The best solution is that, if conceptually a three-legged firewall is used, \textbf{the reverse proxy should be placed on the DMZ because it will be the public interface}. Behind it, the equivalent servers (which are the application servers being accessed by external users) can be placed. The problem arises when the application server needs access to data located inside the internal network. In this case, the server should pass back through the proxy, traverse the firewall, and finally enter the internal network.
+    \item [left.] The best solution is that, if conceptually a \textit{three-legged firewall} (see Chapter \ref{chap:screened-subnet-v2}) is used, \textbf{the reverse proxy should be placed on the DMZ because it will be the public interface}. Behind it, the equivalent servers (which are the application servers being accessed by external users) can be placed. The problem arises when the application server needs access to data located inside the internal network. In this case, the server should pass back through the proxy, traverse the firewall, and finally enter the internal network.
     \item [right.] To handle this case and avoid the issues just explained, an alternative solution is also possible: \textbf{the reverse proxy is on the DMZ, and then a VPN connection is established between the reverse proxy and the servers, which are in the internal network}. This approach should limit the risks because there is no direct access to those servers, only through the reverse proxy. However, the first solution is the suggested one, as in that case, an attack against the (public) servers is confined to the DMZ.
 \end{itemize}
 
@@ -287,4 +287,156 @@ The most widely known and used WAF is \textbf{ModSecurity} (opensource project),
     \includegraphics[page = 20,trim = 1cm 2.5cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
     \caption{"Packet filter" architecture}
 \end{figure}
-The core concept is to equip the switching element with filtering capabilities. Typically, since this is a Layer 3 (L3) network device, the kind of filtering it can perform is at the IP and upper levels, implementing a packet filter. The advantage of this architecture is that there is no need for dedicated hardware. Moreover, since this filter does not address the application level in any way, there is no need for a proxy, and hence, there is no need to modify the applications. It is a simple, easy, cheap, and... insecure solution since the kind of controls it can make are very trivial, usually based on protocols, ports, and addresses. One final drawback is that the router is a single point of failure, meaning that a bug could allow the attacker to bypass the control and access the internal network.
+
+The core concept is to equip the switching element with filtering capabilities. Typically, since this is a Layer 3 (L3) network device, the kind of filtering it can perform is at the IP and upper levels, implementing a packet filter. The advantage of this architecture is that there is no need for dedicated hardware. Moreover, since this filter does not address the application level in any way, there is no need for a proxy, and hence, there is no need to modify the applications. It is a simple, easy, cheap, and... \textit{insecure} solution since the kind of controls it can make are very trivial, usually based on protocols, ports, and addresses. One final drawback is that the router is a single point of failure, meaning that a bug could allow the attacker to bypass the control and access the internal network.
+
+\subsection{"Dual-homed gateway" architecture}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 22,trim = 1cm 2.5cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{"Dual-homed gateway" architecture}
+\end{figure}
+
+Because relying solely on filtering at the network layer does not provide high security, another element is needed to improve the architecture, performing inspections at higher levels. In this architecture, the traffic permitted by the packet filter will not directly enter the internal network. Instead, it will be further checked by a second element, generally referred to as a "gateway". This gateway is actually "dual-homed" because it has two network cards, with routing disabled. A packet coming from one interface goes to the other if it respects the imposed rules.
+
+This architecture is still easy to implement because two different components deal with separated aspects. It requires small additional hardware requirements; just a general-purpose machine with the proper gateway software installed will suffice. Moreover, \ul{since the gateway is the frontend for the entire internal network, it can masquerade the internal addresses}, even without using NAT.
+
+The big problem with this solution is its rather \underline{inflexibility}. Even if traffic is permitted in the packet filter, it must also pass the check at the gateway. Taking electronic mail as an example, typically, in incoming mail, it is difficult to limit the sender (other than forbidding well-known sites that send spam). Therefore, it is checked at the mail server, which is internal to the network. The gateway would reconstruct the application-level packet just to see that it is an email, and it is not its job to inspect it. Consequently, it will send it to the internal network. \ul{The inflexibility lies in the fact that a packet is double-checked even if the second check is useless because nothing can be decided with the information that the gateway has}. The actions performed by the gateway lead to a large work overhead. One thing to note is that this solution implements a \textbf{double line of defense}, applying the "\textit{defense in depth}" principle.
+
+
+\subsection{"Screened host" architecture}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 24,trim = 1cm 2.5cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{"Screened host" architecture}
+\end{figure}
+
+
+Improving the "dual-homed gateway" architecture means avoiding the bottleneck at the gateway. In the "screened host" architecture, the packet filter is also connected to the internal network, but there is also the gateway, which is connected to the packet filter. This arrangement allows packets that do not need a double-check to be directly forwarded to the internal network. However, it reintroduces the problem of a \underline{single point of failure} in the packet filter, and a \ul{double line of defense is implemented only for those packets that need to be processed more in-depth}.
+
+To summarize:
+\begin{itemize}
+    \item The \textit{router}:
+          \begin{itemize}
+              \item Blocks traffic from internal to external unless it comes from the bastion.
+              \item Blocks traffic from external to internal unless it goes to the bastion.
+              \item Exception: directly enabled services.
+          \end{itemize}
+    \item The \textit{bastion host} runs a circuit/application gateway to control authorized services.
+    \item This architecture is more expensive and complex to manage because the work of the two systems must be synchronized.
+    \item It is more flexible (skip control over some services/hosts).
+    \item Only the hosts/protocols passing through the bastion can be masked (unless the Packet Filter (PF) uses NAT).
+\end{itemize}
+
+
+\subsection{"Screened Subnet" Architecture}\label{chap:screened-subnet}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 26,trim = 1cm 2.5cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{"Screened subnet" architecture}
+    \label{fig:screened-subnet}
+\end{figure}
+
+The main problem introduced with the "screened host" architecture is the single point of failure in the packet filter. In the "screened subnet" architecture, the packet filter is split because it conceptually performs two different operations:
+
+\begin{itemize}
+    \item Deciding if incoming traffic should be permitted or denied.
+    \item Deciding if traffic should be forwarded to the internal network.
+\end{itemize}
+
+In this solution, one packet filter is connected to the external network, while the other one acts like a bridge from the "intermediate" network to the internal one. First, an incoming packet is checked. If it is permitted, it is forwarded to the second packet filter that will still verify if the rule is valid and then forward it to the internal network. This way, there is a \ul{double defense, even for packets that will be directly transmitted to the internal network}. For packets that need further inspections, there will be three defense lines, as the second packet filter will send them to the bastion. Please note that, to have a proper double line of defense implemented by the two routers, they should be sourced from different vendors. If they are equal, the same bugs may affect security.
+
+In this scheme (Figure \ref{fig:screened-subnet}), there is \textbf{a network that is completely decoupled from both the external and the internal network} (highlighted in red in the figure): this is called the \textbf{DMZ} (\textit{De-Militarized Zone}).
+Typically, the DMZ is not only home to the gateway but also to other hosts, such as public servers (e.g., web servers or remote access systems). This implies that public servers should be placed in the DMZ. This solution is more expensive than the others because it is more complex.
+
+\subsubsection{"Screened Subnet" Architecture (Version 2)}\label{chap:screened-subnet-v2}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 28,trim = 1cm 2.5cm 1cm 9cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{"Screened subnet" architecture v2}
+    \label{fig:screened-subnet-v2}
+\end{figure}
+
+To reduce costs and simplify management, often the routers are omitted, and their function is incorporated into the gateway: this solution is also called the "\textbf{three-legged firewall}". In this solution, the firewall is a single element, typically a general-purpose computer, equipped with \textbf{three network cards}: one connects to the \underline{external network}, one to the \underline{internal}, and the third one implements the \underline{DMZ}.
+
+The components of the previous solution are software modules inside a single element. From a functional point of view, there are the same functionalities, but the solution is intrinsically less secure because:
+
+\begin{itemize}
+    \item There is again a \textit{single point} of failure, the single machine hosting all the processes.
+    \item The \textit{complexity} of this node makes room for attacks due to implementation or configuration errors.
+\end{itemize}
+
+Despite these considerations, many companies tend to implement this solution because it provides numerous functionalities while keeping costs limited, and the management is simple due to having only one interface for overseeing everything. Some companies claim to have implemented a \textit{"four-legged firewall"} or a \textit{"five-legged firewall"}: the number of legs comes from having multiple interfaces toward the internal network or from deploying multiple DMZs. Each one can be assigned to a different department of the company, mostly for administrative decisions.
+
+
+\section{Local/personal firewall}
+
+Until now, we discussed the network firewall, which is a filter situated between two networks (internal and external). However, this kind of firewall faces a problem with HTTPS, as channels are encrypted, making it difficult to inspect packets.
+
+This has led to moving the firewall to a location where traffic can be inspected. In HTTPS, traffic is encrypted on the client and server sides. This implies that the firewall should be moved to the client or server: a \textbf{local firewall} if installed on the server or a \textbf{personal firewall} if installed on the client. It is \textbf{directly installed at the node to be protected}, safeguarding a single node instead of a whole network. It is \textbf{typically a packet filter} but, concerning a normal network firewall, it may \textbf{limit the processes} that are allowed to:
+\begin{itemize}
+    \item Open network channels towards other nodes (i.e., act as a client)
+    \item Answer network requests (i.e., act as a server)
+\end{itemize}
+
+For example, this firewall can limit traffic going to an unknown process because it might be malware on the client attempting to gather information.
+
+It is crucial to limit the spread of malware and trojans or detect plain configuration mistakes (for example, some services installed by default on the operating system that send or receive data). Firewall management must be separated from system management; otherwise, the people installing a service may also activate the firewall to permit that kind of traffic (a decision that should be made by the security manager).
+
+
+
+\section{Protection offered by a firewall}
+
+The analogy presented here illustrates that in the areas of the wall where bricks are removed to allow traffic, that is the part where fire can enter the system. For all channels enabled through the firewall, additional protections are necessary:
+
+\begin{itemize}
+    \item VPN
+    \item "Semantic" firewall / IDS (Intrusion Detection System)
+    \item Application-level security
+\end{itemize}
+
+
+\subsection{Intrusion Detection System (IDS)}
+
+\textbf{IDS} is another critical component of contemporary security solutions; it is a \textbf{system designed to identify actors using a computer or a network without authorization}.
+Depending on the features, it can be extended to \textbf{identify authorized actors violating their privileges}.
+
+IDS is based on a crucial hypothesis: \textbf{the behavioral "pattern" of non-authorized users differs from that of authorized ones}.
+
+An IDS can base its behavior on two strategies.
+
+\begin{itemize}
+    \item \textbf{Passive IDS}:\\
+          Tries to identify visible signs of an attack, using:
+          \begin{itemize}
+              \item Cryptographic checksum (e.g., tripwire) checking for modified files on the server that should not be modified;
+              \item Pattern matching (“attack signature”) looking for specific packets which are typical of an attack;
+          \end{itemize}
+
+    \item \textbf{Active IDS}:\\
+          Tries to identify unknown attacks or known attacks but before they produce their negative result. It goes through three steps:
+          \begin{itemize}
+              \item “Learning” = accurate statistical analysis of the system behavior;
+              \item “Monitoring” = active statistical info collection of traffic, data, sequences, actions;
+              \item “Reaction” = comparison against statistical parameters (reaction when a threshold is exceeded).
+          \end{itemize}
+\end{itemize}
+
+An Active IDS always has someone who looks at IDS statistics. This is necessary because statistics may not be accurate. An attack is detected if it significantly diverges from the statistics related to the behavior of the system, so \ul{there is a chance to have undetected attacks but also false positives}. This means that human intervention is often needed to check the alarms raised by the IDS, carefully analyze the problem, and understand if there is an attack or if it is just a false positive, given the strict threshold. Typically, IDS have both an active and passive part.
+
+\paragraph{Topological features of IDS:}
+\begin{itemize}
+    \item \textbf{HIDS (host-based IDS)}, looks for statistics inside a single node:
+        \begin{itemize}
+            \item Log analysis (OS, service, or application);
+            \item Internal OS monitoring tools;
+        \end{itemize}
+    \item \textbf{NIDS (network-based IDS)}, looks at the network traffic:
+        \begin{itemize}
+            \item Network traffic monitoring tools.
+        \end{itemize}
+\end{itemize}
