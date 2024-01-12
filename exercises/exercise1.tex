@@ -35,14 +35,18 @@ has to perform data authentication. What does it mean?:}
     \item[E.] Alice and Bob must identify themselves, e.g. by exchanging their identity cards
 \end{enumerate}
 
+\textcolor{Comment}{The mutual authentication requirement is not met by B, C and D. We don't care about Bob so exclude E}
+
 \textbf{Q4 - Assume Alice is entering a password (or a PIN) to access her smartphone. Which security property is implemented by her smartphone for this operation?}
 \begin{enumerate}
     \item[A.] confidentiality
     \item[B.] integrity
-    \item[C.] authentication
-    \textbf{\item[D.] availability}
+    \textbf{\item[C.] authentication}
+    \item[D.] availability
     \item[E.] authorization
 \end{enumerate}
+
+\textcolor{Comment}{The Purpose of Password, pin and secret key is authentication}
 
 \textbf{Q5 - In Windows OS there are two types of users: normal and administrator. Assume a normal user tries to install a program and this operation is denied by the OS. Which security property the OS has implemented for software installation operation? (we assume the user has already logged in successfully with his credentials):}
 \begin{enumerate}
@@ -51,6 +55,8 @@ has to perform data authentication. What does it mean?:}
     \item[C.] traceability
     \item[D.] availability
 \end{enumerate}
+
+
 
 \textbf{Q6 - Alice writes some data on her disk. The disk is placed in a secure place. After some time she wants to check whether the data has been modified. Which security property does she have to implement?}
 \begin{enumerate}
@@ -68,6 +74,7 @@ has to perform data authentication. What does it mean?:}
     \item[C.] non-repudiation
     \item[D.] integrity
 \end{enumerate}
+\textcolor{Comment}{First authentication and after authorization}
 
 \section*{Basic Security Attacks}
 
@@ -79,12 +86,16 @@ has to perform data authentication. What does it mean?:}
     \item[C.] an attack in which an attacker intercepts the data, then sends it to another attacker who will send it to the destination
 \end{enumerate}
 
+\textcolor{Comment}{We can exclude option C. Although it may be annoying it's not an attack.\\
+B - The example provided by Professor Lioy (Pay 1,000 EURO to Antonio Lioy) is perfect. A cyphertext can also cause problems.}
+
 \textbf{Q9 - What is a sniffing attack?}
 \begin{enumerate}
     \textbf{\item[A.] an attack in which data (in clear or protected) is intercepted while in transmission}
     \item[B.] an attack in which only data in clear can be intercepted
     \item[C.] an attack in which an attacker intercepts the data, then modifies it, then finally sends it to the destination
 \end{enumerate}
+\textcolor{Comment}{Sniffing is a passive attack, the C option describes a MITM attack. B no because we 'could' decrypt the text}
 
 \textbf{Q10 - What is an IP spoofing attack?}
 \begin{enumerate}
@@ -93,6 +104,7 @@ has to perform data authentication. What does it mean?:}
     \item[C.] an attack in which an attacker modifies the IP destination address and sends it to the destination
     \item[D.] an attack in which an attacker modifies both the source and the destination addresses in an IP packet
 \end{enumerate}
+\textcolor{Comment}{A -> MITM/data spoofing; B -> IP spoofing is needed to hide our identity. }
 
 \textbf{Q11 - What kind of countermeasures are applicable for an IP spoofing attack aimed to gain unauthorized access to a remote resource?}
 \begin{enumerate}
@@ -101,6 +113,9 @@ has to perform data authentication. What does it mean?:}
     \textbf{\item[C.] avoid the use of the IP address as "credential" to authenticate and get access to any remote resources}
     \item[D.] install (and regularly update) an anti-malware application on each device
 \end{enumerate}
+\textcolor{Comment}{A -> It's not about the destination; \\B -> we can have IP spoofing in a client-server communication(with different subnets);
+D -> wtf}
+
 
 \textbf{Q12 - What is a Denial of Service attack?}
 \begin{enumerate}
@@ -109,6 +124,8 @@ has to perform data authentication. What does it mean?:}
     \textbf{\item[C.] an attack in which an attacker keeps a host busy by exhausting its resources (e.g. by injecting malware that makes continuous calculations) so that to block the use of the host}
     \item[D.] an attack in which an attacker denies the use of a host to a user because he/she is not authorized
 \end{enumerate}
+
+
 
 \textbf{Q13 - What is Distributed Denial of Service (DoS) attack?}
 \begin{enumerate}
