@@ -1,0 +1,215 @@
+\chapter*{Exercises 2}
+
+\section*{symmetric crypto}
+
+\textbf{Q1 - DES is an algorithm that allows:}
+\begin{enumerate}
+    \item[A.] symmetric encryption of data by splitting data in blocks
+    \textbf{\item[B.] symmetric encryption of data by processing the data flow}
+    \item[C.] creation of digital signatures with asymmetric keys
+    \item[D.] creation of digital signature and encryption of data with asymmetric keys
+\end{enumerate}
+
+\textbf{Q2 - The key length to defend from brute force attacks has increased because}
+\begin{enumerate}
+    \item[A.] the use of permutations and transpositions in algorithms has increased
+    \item[B.] as algorithms get stronger, they get less complex, and thus more susceptible to attacks
+    \textbf{\item[C.] processor speed and power have increased}
+    \item[D.] key length reduces over time
+\end{enumerate}
+
+\textbf{Q3 - What of the following properties should a secure AES key have?}
+\begin{enumerate}
+    \textbf{\item[A.] confidentiality}
+    \item[B.] non-repudiation
+    \item[C.] traceability
+    \textbf{\item[D.] randomness}
+\end{enumerate}
+
+\textbf{Q4 - The advantages of the ECB mode are:}
+\begin{enumerate}
+    \textbf{\item[A.] parallel encryption}
+    \textbf{\item[B.] parallel decryption}
+    \textbf{\item[C.] random access to blocks (you can decrypt a block independently from the others)}
+    \textbf{\item[D.] simple implementation}
+    \item[E.] difficult to perform cryptanalysis because identical blocks encrypt differently
+    \item[F.] it’s not possible to swap blocks
+    \item[G.] it’s not possible to delete blocks
+    \item[H.] is resistant to known-plaintext attacks
+\end{enumerate}
+
+\textbf{Q5 - if a tool uses AES-256-ECB, you can assume that}
+\begin{enumerate}
+    \item[A.] the tool can accept as a possible input either a private key or a public key
+    \item[B.] the tool will have a negligible padding size
+    \item[C.] the tool will operate on an Initialization Vector of 128 bit
+    \textbf{\item[D.] the tool adopts a symmetric algorithm, with a 256-bit key, and where each block of ciphertext is related to only one block of plaintext}
+\end{enumerate}
+
+
+\textbf{Q6 - Which of the following statements are true for the CBC mode?}
+\begin{enumerate}
+    \textbf{\item[A.] parallel decryption}
+    \item[B.] parallel encryption
+    \textbf{\item[C.] protection on order of blocks}
+    \item[D.] if one ciphertext block is lost/deleted, the error propagates to the decryption of all the blocks from that point on
+    \textbf{\item[E.] an IV is used to randomize the first ciphertext block}
+    \textbf{\item[F.] it’s resistant to known-plaintext attacks}
+    \item[G.] random access to blocks (you can decrypt a block independently from the others)
+\end{enumerate}
+
+\textbf{Q7a - If you encrypt 50B of plaintext with AES-128-CBC, how long is the ciphertext?}
+\begin{enumerate}
+    \item[A.] 50B
+    \textbf{\item[B.] 64B}
+    \item[C.] 80B
+\end{enumerate}
+
+\textbf{Q7b - In the above case, let’s assume the ciphertext is a secret message to be sent by Alice to Bob. Indicate the size of data transmitted so that Bob can recover the plaintext}
+\begin{enumerate}
+    \item[A.] 50B
+    \item[B.] 64B
+    \textbf{\item[C.] 80B}
+\end{enumerate}
+
+\textbf{Q8a - If you encrypt 50B of plaintext with AES-256-CBC, how long is the ciphertext?}
+\begin{enumerate}
+    \item[A.] 50B
+    \textbf{\item[B.] 64B}
+    \item[C.] 80B
+\end{enumerate}
+
+\textbf{Q8b - In the above case, let’s assume the ciphertext is a secret message to be sent by Alice to Bob. Indicate the size of data transmitted so that Bob can recover the plaintext}
+\begin{enumerate}
+    \item[A.] 50B
+    \item[B.] 64B
+    \textbf{\item[C.] 80B}
+    \item[D.] 96B
+\end{enumerate}
+
+\textbf{Q9a - If you encrypt 32B of plaintext with AES-128-CBC, how long is the ciphertext?}
+\begin{enumerate}
+    \item[A.] 32B
+    \textbf{\item[B.] 48B}
+    \item[C.] 64B
+\end{enumerate}
+
+\textbf{Q9b - If you encrypt 32B of plaintext with AES-128-CTR, how long is the ciphertext?}
+\begin{enumerate}
+    \textbf{\item[A.] 32B}
+    \item[B.] 48B
+    \item[C.] 64B
+\end{enumerate}
+
+\textbf{Q10 - Assume Alice wants to protect her data (1 TB) on disk, but she does not want to increase the space occupied on disk. Moreover, she would like to perform the encryption very fast and to keep her data protected for 10 years. Which algorithm should she use?}
+\begin{enumerate}
+    \item[A.] AES-128-CBC
+    \item[B.] AES-128-ECB
+    \textbf{\item[C.] AES-256-CTS-CBC}
+    \item[D.] 3DES-168-CTS-CBC
+    \item[E.] AES-512-CTS-CBC
+\end{enumerate}
+
+\textbf{Q11 - Assume Alice wants to protect her data (1 TB) on disk, she has more space, but she would like to perform the encryption very fast. Which algorithm should she use?}
+\begin{enumerate}
+    \item[A.] AES-128-CBC
+    \item[B.] AES-128-ECB
+    \item[C.] AES-256-CTR
+    \item[D.] 3DES-168-CTR
+    \item[E.] AES-512-CTS-CBC
+    \textbf{\item[F.] Chacha20-256}
+    \item[G.] Chacha20-512
+    \item[H.] RC4-128
+\end{enumerate}
+
+\textbf{Q12 - Which of the following statements are true for the CTR mode:}
+\begin{enumerate}
+    \textbf{\item[A.] allows parallel encryption of plaintext}
+    \textbf{\item[B.] allows parallel decryption of plaintext}
+    \textbf{\item[C.] allows random access to groups}
+    \textbf{\item[D.] if a ciphertext block is modified, then (only) that group is erroneously decrypted (but not the successive ones)}
+    \textbf{\item[E.] it is difficult to perform cryptanalysis because identical plaintext groups encrypt differently}
+    \item[F.] it’s possible to rearrange/swap ciphertext groups
+    \textbf{\item[G.] if a ciphertext group is deleted, all successive ciphertext groups will be decrypted erroneously}
+\end{enumerate}
+
+
+\subsection*{Exercise}
+\textbf{Alice wants to send a confidential message P to Bob … and}
+\begin{itemize}
+    \item Alice and Bob have 64 bit platforms
+    \item P is large, e.g. 10 GB
+    \item P must be protected for 2 months    
+\end{itemize}    
+
+\textbf{Alice and Bob have agreed OOB about an algorithm (AES128-CBC) and a key (K)}
+\textbf{write the formulas and the steps}
+
+
+
+\section*{asymmetric crypto}
+
+\textbf{Q13 - Which of the following algorithms is based on the fact that it is hard to factor large numbers into two prime numbers?}
+\begin{enumerate}
+    \item[A.] ECC
+    \textbf{\item[B.] RSA}
+    \item[C.] Diffie-Hellman
+    \item[D.] DES
+\end{enumerate}
+
+\textbf{Q14 - Assume Alice wants to communicate to Bob her public key. She decides to send the key over an unprotected channel, because the public key is public. Assume Eve can control the communication channel between Alice and Bob. What kind of security attacks could Eve do to damage the secure communication between Alice and Bob?}
+\begin{enumerate}
+    \item[A.] replay attack – Eve sends the public key of Alice 10 times
+    \item[B.] sniffing attack – Eve reads the public key of Alice
+    \textbf{\item[C.] man in the middle – Eve modifies the public key of Alice by changing some bits}
+    \textbf{\item[D.] man in the middle – Eve replaces the public key of Alice with her own}
+    \textbf{\item[E.] filtering – Eve deletes the public key of Alice}
+\end{enumerate}
+
+\textbf{Q15 - A sender (Alice) wants to send a digitally signed message to a receiver (Bob). Which key is used to create a digital signature?}
+\begin{enumerate}
+    \item[A.] The receiver’s private key
+    \item[B.] The sender’s public key
+    \textbf{\item[C.] The sender’s private key}
+    \item[D.] The receiver’s public key
+\end{enumerate}
+
+\textbf{Q16 - What is the advantage of RSA over DSA?}
+\begin{enumerate}
+    \textbf{\item[A.] It can provide digital signature and encryption functionality.}
+    \item[B.] It uses fewer resources and encrypts faster because it uses symmetric keys.
+    \item[C.] It is a block cipher rather than a stream cipher.
+    \item[D.] It employs a one-time encryption pad.
+\end{enumerate}
+
+\textbf{Q17 - Which of the following best describes a digital signature?}
+\begin{enumerate}
+    \item[A.] A method of transferring a handwritten signature to an electronic document
+    \item[B.] A method to encrypt confidential information
+    \item[C.] A method to provide an electronic signature and encryption
+    \textbf{\item[D.] A method to let the receiver of the message verify the source (data origin) and integrity of a message}
+\end{enumerate}
+
+\textbf{Q18a - Diffie-Hellman is a:}
+\begin{enumerate}
+    \item[A.] symmetric algorithm
+    \textbf{\item[B.] asymmetric algorithm}
+    \item[C.] hash algorithm
+    \item[D.] keyed-digest algorithm
+\end{enumerate}
+
+\textbf{Q18b - ... that is frequently used for:}
+\begin{enumerate}
+    \item[A.] creating digital signatures
+    \textbf{\item[B.] agreeing on a secret key}
+    \item[C.] creating an HMAC
+\end{enumerate}
+
+\textbf{Q19 - Alice wants to send a secret key K to Bob by using asymmetric cryptography. Which operation must Alice do?}
+\begin{enumerate}
+    \textbf{\item[A.] encrypt the key K with the public key of Bob, by using RSA}
+    \item[B.] encrypt the key K with the public key of Bob, by using DSA
+    \item[C.] encrypt the key K with her own public key, by using RSA
+    \item[D.] encrypt the key K with the private key of Bob, by using DSA
+\end{enumerate}
+
