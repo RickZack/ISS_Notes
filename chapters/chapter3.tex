@@ -367,16 +367,6 @@ Recently, there has been a growing emphasis on the requirement to move away from
 According to the European Central Bank (ECB), \ul{strong customer authentication (authN) is a procedure based on the use of two or more of knowledge, ownership, and inherence.} The selected elements must be \ul{mutually independent}, ensuring that the breach of one does not compromise the others. At least one element should be non-reusable and non-replicable (except for inherence), and not capable of being surreptitiously stolen via the Internet. The strong authentication procedure should be designed to protect the confidentiality of the authentication data; for example, if a password is used, it cannot be sent in clear text.
 
 
-
-\subsection{PCI-DSS definition for payment with credit cards}
-According to PCI-DSS definition, which is for payment with credit cards, starting from v3.2 it requires multi-
-factor authentication (MFA) for access into the cardholder data environment (CDE): it does not matter if it
-a trusted or untrusted network, and it is also used when the access is performed by administrators. The only
-exception is with direct console access (physical security), which means that you enter the room where the server is placed. For remote access it is always required from untrusted network and by users and third-parties (such as maintenance).
-This was the best practise until Jan '18 and it has been made compulsory afterwards.
-\textbf{Remember}: MFA is \textbf{not} twice the same factor (e.g., two passwords).
-
-
 \subsection{PCI-DSS Definition for Payment with Credit Cards}
 According to the PCI-DSS definition, which applies to payment with credit cards, starting from v3.2, multi-factor authentication (MFA) is required for access into the cardholder data environment (CDE). This requirement is applicable regardless of whether the network is trusted or untrusted, and it is also mandatory for administrators accessing the CDE.
 
