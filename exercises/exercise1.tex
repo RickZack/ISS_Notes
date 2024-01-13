@@ -114,7 +114,7 @@ B - The example provided by Professor Lioy (Pay 1,000 EURO to Antonio Lioy) is p
     \item[D.] install (and regularly update) an anti-malware application on each device
 \end{enumerate}
 \textcolor{Comment}{A -> It's not about the destination; \\B -> we can have IP spoofing in a client-server communication(with different subnets);
-D -> wtf}
+\\D -> wtf}
 
 
 \textbf{Q12 - What is a Denial of Service attack?}
@@ -124,7 +124,7 @@ D -> wtf}
     \textbf{\item[C.] an attack in which an attacker keeps a host busy by exhausting its resources (e.g. by injecting malware that makes continuous calculations) so that to block the use of the host}
     \item[D.] an attack in which an attacker denies the use of a host to a user because he/she is not authorized
 \end{enumerate}
-
+\textcolor{Comment}{Denial-of-service refers to keep a host busy so that it cannot provide its services.\\ A single user (D) without service does not define a DOS attack.}
 
 
 \textbf{Q13 - What is Distributed Denial of Service (DoS) attack?}
@@ -133,6 +133,9 @@ D -> wtf}
     \item[B.] attack in which an attacker (master) distributes the DoS software to multiple nodes that run independently the attack against different victims
     \item[C.] attack in which attackers (masters) collaborate and decide along with the zombies which type of DoS attack to run
 \end{enumerate}
+\textcolor{Comment}{A is pretty much the perfect definition (but i would also consider the case of multiple victims); \\
+B the daemons must perform the attack at the same time.\\
+C zombies, daemons, malbot are compromised, they do not collaborate and they may also be considered victims.}
 
 \textbf{Q14 - Bob is an attacker who decides to activate a shadow server to attack Alice. What kind of attacks can he perform against Alice (to provoke damage)?}
 \begin{enumerate}
@@ -141,15 +144,22 @@ D -> wtf}
     \textbf{\item[C.] redirect Alice to fake web sites}
     \item[D.] packet sniffing
 \end{enumerate}
+\textcolor{Comment}{The purpose of a shadow server is impersonate itself as service provider (not be just a MITM)\\
+D probability no because packet sniffing does not provoke damage directly and maybe because is MITM type of attack  \\
+%B is correct but-> I assume that a shadow server could lead to a denial-of-service attack on a service provider. 
+%However, I do not understand how it could cause a denial-of-service attack on Alice. 
+ B -> wip
+}
+
 
 \textbf{Q15 - Alice wants to communicate securely with Bob (server). What kind of security properties must she implement to protect from Man in the Middle attack? Note: we assume Alice and Bob have trusted devices and software}
 \begin{enumerate}
     \item[A.] server authentication, data authentication, confidentiality of the data exchanged, integrity of the data exchanged
     \item[B.] server authentication, confidentiality of the data exchanged, integrity of the data exchanged, serialization of each packet
-    \item[C.] server authentication, data authentication, confidentiality of the data exchanged, integrity of the data exchanged, and serialization of each packet
+    \textbf{\item[C.] server authentication, data authentication, confidentiality of the data exchanged, integrity of the data exchanged, and serialization of each packet}
     \item[D.] privacy of the data exchanged, server authentication, data authentication, integrity of the data exchanged, serialization of each packet
 \end{enumerate}
-
+\textcolor{Comment}{A - miss serialization\\ B - miss data authentication\\ D - privacy has a different meaning from confidentiality, has a more legal nounce(I don't know how to explain it clearly)}
 
 \section*{Risk Management}
 
@@ -161,6 +171,7 @@ D -> wtf}
     \item[C.] the ICT resources, data, people, and location used in providing a specific service
     \textbf{\item[D.] the ICT resources, data, people, and location used in providing the services offered by the company}
 \end{enumerate}
+\textcolor{Comment}{For each services -> ICT resources, data, people and location}
 
 \textbf{Q17 - In risk analysis, vulnerabilities are:}
 \begin{enumerate}
@@ -169,6 +180,7 @@ D -> wtf}
     \item[C.] actions an attacker performs to damage an asset
     \textbf{\item[D.] weaknesses in the design, implementation, configuration, and management that could harm assets if exploited by an attacker or by occurrence of unintentional events (natural disasters, mistakes performed by individuals)}
 \end{enumerate}
+\textcolor{Comment}{no action but weaknesses, not only of software but of every aspect, vulnerable to unintentional events as well }
 
 \textbf{Q18 - In risk analysis, a security control is:}
 \begin{enumerate}
@@ -176,6 +188,7 @@ D -> wtf}
     \item[B.] functional and non-functional requirements that need to be satisfied in order to achieve security
     \textbf{\item[C.] a set of operational and management processes, and security mechanisms (including software techniques, algorithms, and protocols) adopted to reduce risks}
 \end{enumerate}
+\textcolor{Comment}{Figure of chapter 1.8; B is security requirements}
 
 \textbf{Q19 - In risk analysis, a risk is:}
 \begin{enumerate}

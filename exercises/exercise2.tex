@@ -4,8 +4,8 @@
 
 \textbf{Q1 - DES is an algorithm that allows:}
 \begin{enumerate}
-    \item[A.] symmetric encryption of data by splitting data in blocks
-    \textbf{\item[B.] symmetric encryption of data by processing the data flow}
+    \textbf{\item[A.] symmetric encryption of data by splitting data in blocks}
+    \item[B.] symmetric encryption of data by processing the data flow
     \item[C.] creation of digital signatures with asymmetric keys
     \item[D.] creation of digital signature and encryption of data with asymmetric keys
 \end{enumerate}
@@ -37,6 +37,10 @@
     \item[G.] it’s not possible to delete blocks
     \item[H.] is resistant to known-plaintext attacks
 \end{enumerate}
+\textcolor{Comment}{A -> $C_{i} = enc(K,P_{i})$ \\ B -> $P_{i} = enc^{-1}(K,C_{i})$, \\ E,H -> identical block encrypt equally, 
+\\ F,G -> can't detect blocks swap and deleted block
+}
+
 
 \textbf{Q5 - if a tool uses AES-256-ECB, you can assume that}
 \begin{enumerate}
@@ -57,6 +61,14 @@
     \textbf{\item[F.] it’s resistant to known-plaintext attacks}
     \item[G.] random access to blocks (you can decrypt a block independently from the others)
 \end{enumerate}
+\textcolor{Comment}{
+    A -> $P_{i} = enc^{-1}(K,C_{i})\oplus C_{i-1}$ and we already have all Ctext\\ 
+    B -> $C_{i} = enc(K,P_{i}\oplus C_{i-1})$ so C_{i} need C_{i-1} and ect  \\
+    C -> if two blocks get swapped we can detect it since the decryption will fail \\
+    D -> the error only propagates to the next block
+    F -> since there is a random IV at the beginning, which chain-changes the various ciphers, so all repeated blocks will have different ciphertexts 
+    G -> random access only in decryption (wip) but not in encryption
+}
 
 \textbf{Q7a - If you encrypt 50B of plaintext with AES-128-CBC, how long is the ciphertext?}
 \begin{enumerate}
@@ -64,6 +76,7 @@
     \textbf{\item[B.] 64B}
     \item[C.] 80B
 \end{enumerate}
+\textcolor{Comment}{(we are using padding) 50B = 400bit -> 512 (multiple of 128) = 64B size of plaintext+padding, and the ciphertext has the same length }
 
 \textbf{Q7b - In the above case, let’s assume the ciphertext is a secret message to be sent by Alice to Bob. Indicate the size of data transmitted so that Bob can recover the plaintext}
 \begin{enumerate}
@@ -71,6 +84,7 @@
     \item[B.] 64B
     \textbf{\item[C.] 80B}
 \end{enumerate}
+\textcolor{Comment}{Bob receives 64B of text encrypted, for decryption he needs IV, same length of a blocks so 16B --> 64+16 = 80B of total data received}
 
 \textbf{Q8a - If you encrypt 50B of plaintext with AES-256-CBC, how long is the ciphertext?}
 \begin{enumerate}
@@ -78,6 +92,8 @@
     \textbf{\item[B.] 64B}
     \item[C.] 80B
 \end{enumerate}
+\textcolor{Comment}{the 256 in AES-256-CBC indicate the key length, the block data size is the same of Q7a (128)}
+
 
 \textbf{Q8b - In the above case, let’s assume the ciphertext is a secret message to be sent by Alice to Bob. Indicate the size of data transmitted so that Bob can recover the plaintext}
 \begin{enumerate}
@@ -86,6 +102,7 @@
     \textbf{\item[C.] 80B}
     \item[D.] 96B
 \end{enumerate}
+\textcolor{Comment}{the IV block is again 128bit}
 
 \textbf{Q9a - If you encrypt 32B of plaintext with AES-128-CBC, how long is the ciphertext?}
 \begin{enumerate}
@@ -100,6 +117,8 @@
     \item[B.] 48B
     \item[C.] 64B
 \end{enumerate}
+\textcolor{Comment}{32B = 256bit an exact multiple of 128, but 'Even if the plaintext is an exact multiple of the block, padding must be added anyhow to avoid
+errors in the interpretation of the last block. The biggest padding is required when there is no padding to add.' So 48B, 32B + 16B of only padding }
 
 \textbf{Q10 - Assume Alice wants to protect her data (1 TB) on disk, but she does not want to increase the space occupied on disk. Moreover, she would like to perform the encryption very fast and to keep her data protected for 10 years. Which algorithm should she use?}
 \begin{enumerate}
@@ -109,6 +128,12 @@
     \item[D.] 3DES-168-CTS-CBC
     \item[E.] AES-512-CTS-CBC
 \end{enumerate}
+\textcolor{Comment}{
+    A -> padding = increasethe space occupied disk\\
+    B -> never use ECB\\
+    D -> AES is faster and more secure than 3DES\\
+    E -> Does AES 512 exist? probably yes, however it will be slower than aes256 
+}
 
 \textbf{Q11 - Assume Alice wants to protect her data (1 TB) on disk, she has more space, but she would like to perform the encryption very fast. Which algorithm should she use?}
 \begin{enumerate}
@@ -121,6 +146,7 @@
     \item[G.] Chacha20-512
     \item[H.] RC4-128
 \end{enumerate}
+\textcolor{Comment}{Chacha20 is faster}
 
 \textbf{Q12 - Which of the following statements are true for the CTR mode:}
 \begin{enumerate}
@@ -132,7 +158,12 @@
     \item[F.] it’s possible to rearrange/swap ciphertext groups
     \textbf{\item[G.] if a ciphertext group is deleted, all successive ciphertext groups will be decrypted erroneously}
 \end{enumerate}
-
+\textcolor{Comment}{
+    A, B, C, D -> i-input and i-output are independent from others i-block\\
+    E -> thanks to a nounce and a counter\\
+    F -> the counter ensures serialization of blocks
+    G -> since the counter value will be different from the one in input (wip)
+}
 
 \subsection*{Exercise}
 \textbf{Alice wants to send a confidential message P to Bob … and}
@@ -144,7 +175,20 @@
 
 \textbf{Alice and Bob have agreed OOB about an algorithm (AES128-CBC) and a key (K)}
 \textbf{write the formulas and the steps}
-
+\textbf(Solution, in red optional points)
+Alice: 
+\begin{itemize}
+    \item generates IV = random(128)
+    \item computes C = AES-128-CBC-enc(K,P,IV)
+    \item \textcolor{Comment}{IV' = AES-128-ECB-enc(K,IV)}
+    \item send to Bob (IV,C) \textcolor{Comment}{(IV',C)}
+\end{itemize}
+Bob: 
+\begin{itemize}
+    \item receives (IV,C) \textcolor{Comment}{(IV',C)}
+    \item \textcolor{Comment}{computes IV = AES-128-ECB-dec(K,IV')} 
+    \item computes P' = AES-128-CBC-dec(K,C,IV)
+\end{itemize}
 
 
 \section*{asymmetric crypto}
