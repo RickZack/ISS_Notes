@@ -30,7 +30,7 @@ See the COPYING file for details.
 - [ ] Chapter 8
 
 ### In Progress 
-- [ ] Chapter 5: firewall
+- [ ] Chapter 6: Network security part 2, included in chapter4
 
 ### Done ✓
 
@@ -38,3 +38,4 @@ See the COPYING file for details.
 - [x] Chapter 2
 - [x] Chapter 3
 - [x] Chapter 4
+- [x] Chapter 5

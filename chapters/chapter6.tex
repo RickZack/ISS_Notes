@@ -1,1 +1,42 @@
-\chapter{Security of network applications}
+\section{Security implementation in OSI levels}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 6,trim = 1cm 2.1cm 1cm 7cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+
+The main question is, “\textit{Which is the best OSI level to implement security?}” with many possibilities and answers. Typically, the “Presentation” layer is the only one in which security measures are not useful.
+
+Unfortunately, \underline{there is not a single optimal level}. \textbf{The higher we go in the stack, the more specific our security functions can be}. For example, at the application level, it is possible to identify the user, commands, and data. Security functions are also independent of the underlying network, but if the functions are placed at the application level only, attacks at lower levels are possible (in particular, DoS attacks are available).
+
+\textbf{The lower we go in the stack, the more quickly we can "expel" the intruders}, but the fewer data are available for the decision (e.g., only the MAC or IP addresses, no user identification, no commands).
+
+In short, there is not an optimal level. You can decide whether to take one of these two risks or make a mixture by placing some security features at lower levels and then focus most of the security at the application level.
+
+
+\subsection{DHCP (in)security}
+
+When Layer 3 is reached, one of the first things activated is \textit{DHCP} because access to the network is given, and now the user needs to know the network parameters. DHCP is the protocol by which a device can ask to be assigned a valid network address. Unfortunately, the protocol is \textbf{non-authenticated} and a \textbf{broadcast protocol} that provides a response carrying \textit{IP address, netmask, default gateway, local nameserver,} and \textit{local DNS suffix}.
+
+For this reason, the activation of a fake DHCP server is trivial because the DHCP request is a Layer 2 broadcast frame, and the only thing an attacker needs to do is to stay in the same broadcast domain as the victim and sniff the DHCP request.
+
+
+Possible attacks from the fake DHCP are:
+
+\begin{itemize}
+    \item \textbf{Denial-of-service}:
+        \begin{itemize}
+            \item This can be done by providing a wrong network configuration.
+        \end{itemize}
+        
+    \item \textbf{(Logical) Man-in-the-Middle (MITM)}:
+        \begin{itemize}
+            \item A valid IP address is provided to the victim, but it will be assigned a subnet with only the last two bits equal to zero. Therefore, only two addresses are valid: one of them is given to the user, and the other to the attacker as his default gateway. In that way, the attacked machine is isolated in a subnet of its own (logically, not physically). To communicate with all the nodes in the world, the victim has to send everything through the attacker.
+            \item The replies could reach the original node without passing through the attacker. For this reason, it is possible to activate NAT, and it is possible to also intercept the replies.
+        \end{itemize}
+        
+    \item \textbf{Malicious name-address translation}:
+        \begin{itemize}
+            \item The attacker declares himself as the local name server. Then, whenever the user needs to perform a name-to-address translation, the attacker will provide the wrong address. This is used, for example, for phishing and pharming.
+        \end{itemize}
+\end{itemize}
