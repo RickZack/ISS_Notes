@@ -71,15 +71,15 @@ After one year, Alice wants to check if F has been illegally modified, so she ta
 \end{enumerate}
 
 \textbf{Q7 - Alice wants to protect some messages m1, m2, … mN for data authentication and integrity. She constructs for each message a MAC in the following manner:}
-\textbf{\[for (i=1; i<=N; i++) \quad mac(i) = HMAC-SHA256( i, m_{i} );\]}
-\textbf{She sends each message m_{i} and the corresponding mac(i)
+\textbf{\[for (i=1; i<=N; i++) \quad mac(i) = HMAC-SHA256( i, mi );\]}
+\textbf{She sends each message mi and the corresponding mac(i)
 to Bob over an unprotected channel.
-Is data authentication and integrity achieved for all messages m_{i}? (justify your answer)}
+Is data authentication and integrity achieved for all messages
+mi? (justify your answer)}
 \begin{enumerate}
     \item[A.] yes  
     \textbf{\item[B.] no}
 \end{enumerate}
-\textcolor{Comment}{Look at Q2}
 
 \textbf{Q8 - Alice wants to send Bob a plaintext P protected for confidentiality, authentication, and integrity \\
 Alice and Bobs share two symmetric keys K1 and K2 \\
@@ -90,22 +90,7 @@ Alice and Bob agreed on two algorithms, A1 (for MAC) and A2 (for symmetric encry
     and verify its integrity and authenticity?
     \item explain the advantages and disadvantages of your solution 
 \end{itemize}
-\textbf{Solution}
-Alice:
-\begin{itemize}
-    \item compute mac = A1(K1,P)
-    \item compute C = A2-enc(K2,P)
-    \item send to Bob (mac,C)
-\end{itemize}
-Advantages
-\begin{itemize}
-    \item full protection (P cannot be read/modified in transit)
-\end{itemize}
-Disadvantages
-\begin{itemize}
-    \item possible DoS (if data large and modified in transit) because decrypt needed before MAC verification
-    \item MAC may leak information about P
-\end{itemize}
+
 
 \textbf{Q10  - Authenticated Encryption provides:}
 \begin{enumerate}
@@ -153,10 +138,8 @@ Disadvantages
     \item[C.] OCSP is a protocol to query a server about the validity of a single specific certificate at a specified time
     \textbf{\item[D.] OCSP is a protocol to query a server about the validity of a single specific certificate at the current time}
 \end{enumerate}
-\textcolor{Comment}{B -> is not necessary root CA\\C -> used for real-time checks }
 
-\textbf{Q6 - Alice sends a digitally signed message to Bob and attaches her X.509v3 certificate (and a certificate chain up to a trusted root CA).
- Which steps must Bob perform to verify the signature on the message? (you can select multiple responses from the ones below)}
+\textbf{Q6 - Alice sends a digitally signed message to Bob and attaches her X.509v3 certificate (and a certificate chain up to a trusted root CA). Which steps must Bob perform to verify the signature on the message? (you can select multiple responses from the ones below)}
 \begin{itemize}
     \textbf{\item[A.] verify the signature on the message by using the certificate of Alice}
     \textbf{\item[B.] verify that the certificate of Alice is authentic by constructing the chain up to a trusted root and verifying the signatures on each certificate in the chain}
@@ -172,18 +155,6 @@ Disadvantages
     \item Alice and Bob agreed about using HMAC-SHA1
 \end{itemize}
 \textbf{what information should Alice send to Bob? (write the corresponding formulas)\\}
-\textbf{Solution}
-Alice
-\begin{itemize}
-    \item mac = HMAC-SHA1(K,P)
-    \item Alice send Bob (mac,P) \textcolor{Comment}{Mac sent first because fixed length}
-\end{itemize}
-Bob
-\begin{itemize}
-    \item receive (mac,P)
-    \item mac' = HMAC-SHA1(K,P)
-    \item if(mac!=mac') then FAIL; else OK
-\end{itemize}
 
 \textbf{E1b - Alice wants to send to Bob a message P protected for integrity and (data) authentication}
 \begin{itemize}
@@ -191,23 +162,6 @@ Bob
     \item Alice and Bob agreed about using HMAC
 \end{itemize}
 \textbf{what information should Alice send to Bob? (write the corresponding formulas)\\}
-\textbf{Solution}
-Alice
-\begin{itemize}
-    \item select one hash algorithm (SHA256)
-    \item mac = HMAC-SHA256(K, P||"SHA256")
-    \item send Bob ("SHA256",mac,P)
-\end{itemize}
-Bob
-\begin{itemize}
-    \item receive(algorithm,mac,P)
-    \item mac' = HMAC-algorithm(K,P||algorithm) \textcolor{Comment}{How does it knows he must concanate? WIP}
-    \item if(mac!=mac') then FAIL; else OK
-\end{itemize}
-\textcolor{Comment}{"if an attacker changes the algorithm Bob can't verify it". (WIP) i don't like this, 
-if an attacker changes everything everytime Bob will never be able to verify anything,  so wtf are we talking about?}
-
-
 
 \textbf{E2 - Alice wants to send a confidential message P to Bob … and}
 \begin{itemize}
@@ -216,21 +170,6 @@ if an attacker changes everything everytime Bob will never be able to verify any
 \end{itemize}
 \textbf{Alice and Bob have agreed about an asymmetric encryption algorithm (RSA), and a symmetric one (AES-128-CBC) and exchanged OOB their respective public keys
 \\ write the formulas and the steps\\}
-Alice
-\begin{itemize}
-    \item generate a secret key K = random(128bit) 
-    \item generate IV = random(128) \textcolor{Comment}{equal to block length, and must be random/never reused under the same key}
-    \item compute EK = RSA-enc(Bob.PK, K) \textcolor{Comment}{encrypted shared key, with Bob public key} 
-    \item compute C = AES-128-CBC-enc(K,IV,P)
-    \item send Bob (IV,EK,C)
-\end{itemize}
-Bob
-\begin{itemize}
-    \item receive (IV,EK,C)
-    \item compute K = RSA-dec(Bob.SK, EK) \textcolor{Comment}{decrypt the shared key, with his (Bob) private/\underline{\textbf{s}ecret key}}
-    \item compute P = AES-128-CBC-dec(K,IV,C)
-\end{itemize}
-
 
 \textbf{E3 - Alice wants to send to Bob a digitally signed message P}
 \textbf{assumptions:}
@@ -239,20 +178,6 @@ Bob
     \item Bob knows Alice.PK (may be it was exchanged OOB)
 \end{itemize}
 \textbf{write down the formulas}
-Alice 
-\begin{itemize}
-    \item H =  SHA-256(P||"RSA"||"SHA-256")
-    \item sig = RSA-2048(Alice.SK, H)
-    \item send Bob ("RSA","SHA-256",sig,P)
-\end{itemize}
-Bob
-\begin{itemize}
-    \item receive ("RSA","SHA-256",sig,P)
-    \item H = RSA-2048(Alice.PK, sig)
-    \item H' = SHA-256(P||"RSA"||"SHA-256")
-    \item if H==H' OK else fail
-\end{itemize}
-\textcolor{Comment}{Often algorithm for hash and signature creation are specified together, "sha256WithRSAEncryption"}
 
 \textbf{Problem - Two companies in business wish to protect their messages
 (exchanged via an unprotected TCP/IP network) by
@@ -264,43 +189,6 @@ symmetric encryption, hash algorithms, and auxiliary
 mathematical functions (but not asymmetric encryption),
 suggest a possible solution for protecting a message M and
 write the formula to generate the protected message P.\\}
-
-ideas
-\begin{itemize}
-    \item generate a shared key from the password with the PBKDF
-    \item use HMAC for data authentication and integrity (SHA256)
-    \item use symmetric encryption (AES-128-CBC) for confidentiality
-    \item choose Encrypt-then-authenticate (EtA) (so two keys are needed!!!)-> enc(K1,P)||mac(K2,enc(K1,P))
-\end{itemize}
-formulas
-\begin{itemize}
-    \item salt1 = random(16bit)
-    \item salt2 = random(16bit)
-    \item K1 = PBKDF2(HMAC-SHA256, pwd, salt1, 4096, 128) \textcolor{Comment}{4096 n iterations, 128 desired length}
-    \item K2 = PBKDF2(HMAC-SHA256, pwd, salt2, 4096, 128)
-    \item IV = random(128bit)
-    \item C = AES-128-CBC-enc(K1, IV, M)
-    \item mac = HMAC-SHA256(K2,C)
-    \item P = IV || C || mac
-\end{itemize}
-\textcolor{Comment}{We have tu send the salt in order for the other company to regenerate the same keys\\
-we should protect the IV, it's integrity is not covered by the mac, and could lead to a DoS attack. If an attacker changes it,  
-Bob compute the mac with no errors, but i will not decrypt it correctly. REMEMBER an hash function is faster than a enc/dec function. We 'cannot' afford
-to waste time\\ 
-we should have attached the algorithm used in C too, and we have to protect its integrity.}
-formulas
-\begin{itemize}
-    \item salt1 = random(128bit)
-    \item salt2 = random(128bit)
-    \item K1 = PBKDF2(HMAC-SHA256, pwd, salt1, 4096, 128) \textcolor{Comment}{4096 n iterations, 128 desired length}
-    \item K2 = PBKDF2(HMAC-SHA256, pwd, salt2, 4096, 128)
-    \item IV = random(128bit)
-    \item C = AES-128-CBC-enc(K1, IV, M)
-    \item C' = "AES-128-CBC"||"HMAC-SHA256"||C||IV||salt1||salt2
-    \item mac = HMAC-SHA256(K2,C')
-    \item P = C' || mac
-\end{itemize}
-\textcolor{Comment}{If the MAC fails to recompute, decryption is unnecessary.}
 
 
 \section*{Authentication}
@@ -333,8 +221,6 @@ formulas
     \item[B.] the attacker pre-computes several hashes (for several iterations) starting from a word in the Dictionary; the hashes are then compared with a hashed password (sniffed from the communication channel or leaked from a server)
     \item[C.] the attacker uses a Dictionary of common words (e.g. English language dictionary) to pre-compute a big list of their hashes; the hashes are then compared with a hashed password (sniffed from the communication channel or leaked from a server)
 \end{enumerate}
-\textcolor{Comment}{B -> we assume an attacker knows the hash algorithm (H) and a pwd hash value, than apply H to all the words in his dictionary\\
-use more Dictionary}
 
 \textbf{Q5 - A salt is used to protect from dictionary attack. A salt is ..}
 \begin{enumerate}
@@ -342,7 +228,6 @@ use more Dictionary}
     \textbf{\item[B.] a random number, unpredictable}
     \item[C.] a number that must be known only by the user to generate a more secure password
 \end{enumerate}
-\textcolor{Comment}{To avoid dictionary we append a salt to the pwd, so the hash will never be in a pre-computes list}
 
 \textbf{Q6 - The advantages of static passwords are (you can choose more than one option):}
 \begin{enumerate}
@@ -352,17 +237,15 @@ use more Dictionary}
     \textbf{\item[D.] require no trust in a third party (in contrast, public key certificates require trust in the CA)}
     \item[E.] are immune to MITM attacks
 \end{enumerate}
-\textcolor{Comment}{B,C,E -> one sniffed i can reuse it (without decrypt it) for access the victim account }
 
 \textbf{Q7 - The advantages of OTPs are (you can choose more than one option):}
 \begin{enumerate}
     \item[A.] are simple, "free", and require no extra device to carry
     \textbf{\item[B.] sniffing attacks are not efficient}
     \textbf{\item[C.] are immune to replay attacks}
-    \item[D.] require no trust in a third party (in contrast, public key certificates require trust in the CA) 
+    \textbf{\item[D.] require no trust in a third party (in contrast, public key certificates require trust in the CA)} (Correct if formulated differently)
     \item[E.] are immune to MITM attacks
 \end{enumerate}
-\textcolor{Comment}{a MITM can still manipulates the packets, \\ D -> Correct if formulated differently, we have to trust the producer of the device}
 
 \textbf{Q8 - A claimant must authenticate to a Verifier by using a symmetric CRA protocol. The advantages in this case are (you can choose multiple options):}
 \begin{enumerate}
@@ -383,9 +266,3 @@ use more Dictionary}
     \item[E.] is fast
     \item[F.] is immune to involuntary signing or relay attacks (does not require Verifier authentication)
 \end{enumerate}
-\textcolor{Comment}{
-    A -> since the claimant sand is public key and certificate\\
-    B,C -> encryption and authentication\\
-    D -> CA certificate, PKI\\
-    E -> asymmetric cryptography is slower\\
-    F -> in relay attack a MITM start the comunication sending the Verifier the 'claimant' ID and PB.K }
