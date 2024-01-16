@@ -1,6 +1,57 @@
 \chapter*{Exercises 4}
 \section*{Short problems}
 
+\textbf{Problem 2 \\
+Assume Alice has two databases: a trusted storage (that an
+attacker cannot read and modify), and an \textcolor{Red}{untrusted storage}
+(that an attacker can read and modify). Assume Alice can
+use:
+\begin{itemize}
+    \item H : a secure cryptographic hash function, like SHA256
+    \item || : the concatenation function 
+\end{itemize}
+Alice creates and stores four files, F1, F2, F3, F4 in the
+\textcolor{Red}{untrusted storage}. Alice also computes and stores a hash of
+each file (content) in the \textcolor{Red}{untrusted storage}:
+h1 = H(F1), h2 = H(F2), h3 = H(F3), h4 = H(F4)
+Then, Alice calculates hchain and stores it in the \textcolor{Blue}{trusted storage}:
+hchain = H( h1 || h2 || h3 || h4 )
+Let’s assume Bob modifies F3.}
+
+\textbf{P2Q - Can Alice detect the modification done by Bob?}
+\begin{itemize}
+    \item[A.] Yes, Alice recomputes \(h_3 = H(F_3)\) and sees that it doesn’t
+match with the stored \(h_3\)
+    \item[B.] Yes, Alice recomputes \(h_{\text{chain}}\) and sees that it doesn’t match
+with the stored \(h_{\text{chain}}\)
+    \item[C.] No, Alice cannot detect the modification because the
+attacker can change both \(F_3\) and \(H(F_3)\)
+\end{itemize}
+
+\textbf{Problem 3 \\
+Assume Alice has one \textcolor{Blue}{trusted storage} (that an attacker cannot
+read and modify), and an \textcolor{Red}{untrusted storage} (that an attacker
+can read and modify). Assume Alice can use two functions:
+\begin{itemize}
+    \item H, a secure cryptographic hash function, like SHA256
+    \item || , the concatenation function
+\end{itemize}
+Alice creates and stores four files (F1, F2, F3, F4) in the
+\textcolor{Red}{untrusted storage}. Alice also computes a hash on each file
+(content):
+h1 = H(F1), h2 = H(F2), h3 = H(F3), h4 = H(F4)
+Then, Alice calculates h_{root} and stores it the \textcolor{Blue}{trusted storage}:
+h_{root} = H(H(h1||h2)||H(h3||h4))
+Let’s assume Bob modifies F3.}
+
+\textbf{P3Q - Can Alice detect the modification done by Bob?}
+\begin{itemize}
+    \item[A.] Yes, Alice recomputes (h3 = H(F3)) and sees that it doesn’t match with the stored (h3)
+    \item[B.] Yes, Alice recomputes (h_{root}) and sees that it doesn’t match with the stored (h_{root})
+    \item[C.] No, Alice cannot detect the modification because the attacker can change both (F3) and (H(F3))
+\end{itemize}
+
+
 \section*{Security of IP networks}
 \textbf{Q1 - Which protocol can be exploited for user authentication in dial-up, wireless, or virtual links (you can select multiple choices)?}
 \begin{itemize}
