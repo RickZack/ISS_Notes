@@ -139,7 +139,7 @@ The IP tunnel also presents a performance challenge: \textbf{fragmentation}. If 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[page = 17,trim = .3cm 4cm .5cm 6cm, clip, width = 0.55\textwidth]{\slides}
+    \includegraphics[page = 17,trim = .4cm 4cm .5cm 5.5cm, clip, width = 0.55\textwidth]{\slides}
     \caption{VPN via secure IP tunnel}
     \label{fig:vpn-secure-ip}
 \end{figure}
@@ -155,3 +155,164 @@ No digital signature is employed due to its slowness, which would not align with
 
 In Figure \ref*{fig:vpn-secure-ip}, there is a router and a \textbf{TAP} (\textit{Tunnel Access Point}). Responsibilities are divided: the router oversees encapsulation/decapsulation, while the TAP is responsible for cryptographic protection. If this solution is implemented, and the TAP is managed by an external network provider, the security is compromised. Ideally, two separate devices should be in place: \ul{the client manages the TAP, and the ISP manages the router}.
 
+\subsection{IPsec}
+
+IPsec is the IETF architecture for Layer 3 security in IPv4/IPv6 designed to \textbf{create a Secure VPN (S-VPN) over untrusted networks} and \textbf{create end-to-end secure packet flows}. This is achieved through the definition of two specific packet types:
+
+\begin{itemize}
+    \item \textbf{AH (Authentication Header):}
+          Provides integrity, authentication, and protection against replay attacks.
+    \item \textbf{ESP (Encapsulating Security Payload):}
+          Offers functions similar to AH, with the addition of payload confidentiality.
+\end{itemize}
+
+It is crucial to emphasize that \textbf{confidentiality can only be provided for the payload}; it is never possible to encrypt the header. Otherwise, intermediate systems would be unable to process the packets.
+
+There is also a dedicated protocol for key exchange, named \textbf{IKE (Internet Key Exchange)}, to create and distribute keys in IP networks.
+
+The IPsec security services include:
+
+\begin{itemize}
+    \item \textbf{Authentication of IP packets:}
+          \begin{itemize}
+              \item \textit{Data integrity}: The receiver can \textit{detect} if the packet has been manipulated. It is \underline{not} designed to prevent manipulation.
+              \item \textit{Sender authentication}: A formal proof of the sender's identity. Note that this does not correspond to an IP address; IP addresses must not be trusted, as they can be completely fake (IP spoofing).
+              \item \textit{(Partial) protection against "replay" attacks}: Challenges arise due to working at Layer 3, where packets can be lost or duplicated.
+          \end{itemize}
+    \item \textbf{Confidentiality of IP packets:}
+          \begin{itemize}
+              \item Data encryption (for the payload only).
+          \end{itemize}
+\end{itemize}
+
+
+\subsubsection{IPsec Security Association (SA)}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 20,trim = 2cm 3cm 2cm 10cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{IPsec Security Association (SA)}
+    \label{fig:ipsec-sa}
+\end{figure}
+
+\subsection{Security Associations (SA)}
+
+These security features are associated with the concept of \textbf{Security Association (SA)}, which is a \textbf{unidirectional logical connection between two IPsec systems}. Each SA is associated with different security services. To achieve full protection for a bidirectional packet flow between two nodes, \textbf{two SAs are needed} (one from A to B and one for the packets from B to A).
+
+In theory, it is possible to have different security features and different algorithms for the two directions, but normally, even if there are two distinct SAs, the same kind of protection/algorithms are used.
+Imagine that the sender (node A) is transmitting data (which may require confidentiality), but the response from B is a very simple thing (e.g., "received" or "bad") that does not need confidentiality. In this case, it is possible to avoid the encryption of the returning packet.
+
+Security Associations are managed through two local databases, \textbf{which are not real databases}
+(i.e., no implementation of servers like SQL, Oracle; it means that it is just \ul{a collection of data}):
+
+
+\begin{itemize}
+    \item \textbf{SPD (Security Policy Database):}
+          \begin{itemize}
+              \item It contains a list of security policies to apply to different packet flows.
+              \item A-priori configured (e.g., manually) or connected to an automatic system (e.g., ISPS, which stands for Internet Security Policy System).
+          \end{itemize}
+    \item \textbf{SAD (SA Database):}
+          \begin{itemize}
+              \item It is a runtime database that contains the list of active SAs and their characteristics (e.g., algorithms, keys, parameters) to create protected traffic for that specific SA.
+          \end{itemize}
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 22,trim = 3cm 2.5cm 2cm 4.5cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Local operations performed by a IPsec module when sending a packet}
+\end{figure}
+
+Suppose to be at a sending node within the TCP/IP stack. An IP packet has been created to be sent at L2, but on this node there's IPsec. When the packet is ready to be sent, the IPsec module starts working. The first question is: \textit{which policy should be applied for this packet?}
+
+The answer is provided by the \textbf{SPD}. It can be \textit{"you should apply these security rules"} or \textit{"you don't need any kind of protection for this packet; go straight to L2"}.
+If protection is needed and this is the first packet of this specific network flow, IPsec proceeds in creating a Security Association. Otherwise, there is already an existing SA, and it proceeds in reading the parameters associated with that SA by consulting the \textbf{SAD}. This will provide it with the algorithms and parameters to enrich the packet, and finally, the IP packet will be protected with IPsec and sent to L2 for the actual transmission.
+
+
+
+\subsubsection{Transport mode IPsec}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 23,trim = 1cm 3cm 3cm 11cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{IPsec used for end-to-end security in transport mode}
+\end{figure}
+
+Transport Mode IPsec is used for \textbf{end-to-end security}, primarily employed by hosts rather than gateways (with the exception of traffic for the gateway itself, e.g., SNMP, ICMP). The original packet is split into two parts, and a new header is inserted between the IPv4 header and the TCP/UDP header. Thus, the IPv4 header will indicate that it is transporting IPsec (instead of TCP/UDP). Inside the IPsec header, there will be another field specifying the actual payload being transported.
+\begin{itemize}
+    \item \textbf{Pro:} It is computationally light.
+    \item \textbf{Con:} No protection of header variable fields.
+\end{itemize}
+
+
+\subsubsection{Tunnel mode IPsec}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 24,trim = 1cm 3cm 2cm 9cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{IPsec used for end-to-end security in transport mode}
+\end{figure}
+
+Tunnel Mode IPsec is utilized to \textbf{create a VPN}, typically among \underline{gateways}. It is not created among routers; the correct term is gateway, which serves as a contact point between a network assumed to be secure and a network that is not secure. The gateway enhances protection by establishing the secure IPsec tunnel. It takes the original packet with the end-to-end header and encapsulates it inside a tunnel. This tunnel is initiated by the sending gateway and has the destination gateway protecting the network where the destination is located. The sending gateway applies IPsec to this IP in IP packet.
+
+\begin{itemize}
+    \item \textbf{Pro:} Complete protection of the packet, including header variable fields.
+    \item \textbf{Con:} Computationally heavy.
+\end{itemize}
+
+Although not as common, IPsec in tunnel mode can also be used for end-to-end communication, even though it is typically adopted between border elements of larger networks. This setup is also known as a \textbf{site-to-site VPN} since the entities involved are typically entire networks.
+
+
+\subsubsection{Authentication Header (AH)}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 26,trim = 1cm 6cm 1cm 5cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{IPsec AH header format according to RFC-4302}
+\end{figure}
+
+AH stands for \textbf{Authentication Header}. There have been three major versions of IPsec.
+
+\subparagraph{Mechanism of the \textbf{first version} (RFC-1826):}
+\begin{itemize}
+    \item Data integrity and sender authentication
+    \item Compulsory support of keyed-MD5 (RFC-1828)
+    \item Optional support of keyed-SHA-1 (RFC-1852)
+\end{itemize}
+
+\subparagraph{Mechanism of the \textbf{second version} (RFC-2402):}
+\begin{itemize}
+    \item Data integrity, sender authentication, and (partial) protection from replay attacks
+    \item HMAC-MD5-96
+    \item HMAC-SHA-1-96
+\end{itemize}
+
+\subparagraph{Header format of the third version (RFC-4302)}
+The format of the header added to the IPsec packet includes:
+\begin{itemize}
+    \item \texttt{Next header} field because this is a pseudo-protocol. In the IP header, it will indicate that it is transporting AH. Inside the AH, there is the real transporting packet field.
+    \item \texttt{Length} parameter of 1 byte to describe the length of the packet.
+    \item \texttt{Reserved} bytes for future uses.
+    \item \texttt{Security Parameters Index (SPI)}: 32 bits to refer in a quick and easy way to all the parameters needed to verify in the packet.
+    \item \texttt{Sequence number} to avoid replay attacks.
+    \item \texttt{Integrity Check Value (ICV)}: Variable number of 4-byte words to provide authentication data (digest).
+\end{itemize}
+
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 27,trim = 1cm 2.1cm 1cm 2cm, clip, width = 0.90\textwidth]{\slides}
+    \caption{The processing of a received IPsec packet}
+    \label{fig:IPsec-receiving-packet}
+\end{figure}
+
+\paragraph{Receiving IPsec packet}
+As shown in Figure \ref*{fig:IPsec-receiving-packet}, when an IPsec packet is received, it is protected with AH. The process begins with the \textbf{extraction} of the \texttt{AH}, and from it, the  \texttt{ICV} is extracted — the \texttt{received authentication value} (the digest computed by the sender).
+Subsequently, the received packet undergoes \textbf{normalization}, which involves putting the packet in the same condition as it was at the sender to compute the same kind of hash.
+
+Once the \texttt{normalized IP packet} is available, it is necessary to \textbf{compute the authentication value (ICV)}. For this purpose, the \textit{Security Parameter Index (SPI)} is used inside the \textit{Database of the Security Association (SAD)}. It serves as a pointer indicating the algorithm and parameters to be used. These parameters are employed to compute the authentication value, and then it is checked whether the two values (the one computed and the one received from the sender) are the same.
+
+If the two values are equal, then the sender is authenticated, and the packet is integral. However, if the two values are not equal, there could be a fake sender and/or manipulated packet.
+
+
+
+\subparagraph{Normalization for AH}
