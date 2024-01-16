@@ -25,18 +25,133 @@ Possible attacks from the fake DHCP are:
 
 \begin{itemize}
     \item \textbf{Denial-of-service}:
-        \begin{itemize}
-            \item This can be done by providing a wrong network configuration.
-        \end{itemize}
-        
+          \begin{itemize}
+              \item This can be done by providing a wrong network configuration.
+          \end{itemize}
+
     \item \textbf{(Logical) Man-in-the-Middle (MITM)}:
-        \begin{itemize}
-            \item A valid IP address is provided to the victim, but it will be assigned a subnet with only the last two bits equal to zero. Therefore, only two addresses are valid: one of them is given to the user, and the other to the attacker as his default gateway. In that way, the attacked machine is isolated in a subnet of its own (logically, not physically). To communicate with all the nodes in the world, the victim has to send everything through the attacker.
-            \item The replies could reach the original node without passing through the attacker. For this reason, it is possible to activate NAT, and it is possible to also intercept the replies.
-        \end{itemize}
-        
+          \begin{itemize}
+              \item A valid IP address is provided to the victim, but it will be assigned a subnet with only the last two bits equal to zero. Therefore, only two addresses are valid: one of them is given to the user, and the other to the attacker as his default gateway. In that way, the attacked machine is isolated in a subnet of its own (logically, not physically). To communicate with all the nodes in the world, the victim has to send everything through the attacker.
+              \item The replies could reach the original node without passing through the attacker. For this reason, it is possible to activate NAT, and it is possible to also intercept the replies.
+          \end{itemize}
+
     \item \textbf{Malicious name-address translation}:
-        \begin{itemize}
-            \item The attacker declares himself as the local name server. Then, whenever the user needs to perform a name-to-address translation, the attacker will provide the wrong address. This is used, for example, for phishing and pharming.
-        \end{itemize}
+          \begin{itemize}
+              \item The attacker declares himself as the local name server. Then, whenever the user needs to perform a name-to-address translation, the attacker will provide the wrong address. This is used, for example, for phishing and pharming.
+          \end{itemize}
 \end{itemize}
+
+Various manufacturers have tried to provide some security improvement, such as switches (e.g., Cisco) that offer:
+
+\begin{itemize}
+    \item \textbf{DHCP Snooping}:
+          \begin{itemize}
+              \item Accepts only replies from "trusted ports."
+          \end{itemize}
+
+    \item \textbf{IP Guard}:
+          \begin{itemize}
+              \item Provides room only for IP addresses obtained from a valid DHCP server (but there is a limit on the number of recognized addresses).
+          \end{itemize}
+\end{itemize}
+
+There is also RFC-3118 "Authentication for DHCP messages," which uses HMAC-MD5 to authenticate the messages, but it is rarely adopted because it is hardly configurable. Since HMAC is a symmetric protocol, it is needed to install a key on all the machines that need to use DHCP. This leads to the problem of key distribution. Furthermore, there is a problem of key management because if a key is captured, then it will be reusable, and since it is symmetric, any DHCP client could work as a DHCP server too.
+
+
+\subsection{VPN}
+\subsubsection{Security at Network Level (Layer 3)}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 10,trim = 2cm 2.2cm 2cm 10.5cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+
+Layer 3, which, given today's widespread use of the Internet, is predominantly IP, provides a crucial layer where meaningful security features can be implemented in a general sense. This is because it is the first layer that offers end-to-end connectivity. It allows for the creation of both \textbf{end-to-end protection} for Layer 3 homogeneous networks, such as IP networks, and \textbf{Virtual Private Networks (VPNs)}.
+
+If it is possible to provide Layer 3 end-to-end protection, ensuring that data are secured as soon as they exit the server/client, it becomes irrelevant whether routers are properly managed or if the network being traversed is insecure. This is because the data are protected from the moment they exit the network interface until they reach the final network interface. Therefore, \ul{the only potential attacks are those originating from within the client/server}. Hence, security at Layer 3 allows us to disregard other attacks at the network level (except for Denial of Service - DoS).
+
+
+\subsubsection{What is a VPN?}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 11,trim = 2cm 2.3cm 2cm 10cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+
+
+A \textit{Virtual Private Network} (VPN) is a technique, employing both hardware and/or software, that allows the creation of a private network while utilizing shared (or otherwise untrusted) channels and transmission devices. Instead of laying down their own cables and managing dedicated infrastructure, companies may prefer to establish a virtual segment of the network.
+
+For instance, one could designate FIAT packets as "blue", allowing them to be exchanged only between blue endpoints. Similarly, packets from ENI could be labeled as "red" and permitted to be exchanged exclusively through red endpoints. While this conceptualization is beneficial, the devil lies in the details. Since it is impossible to visualize packets as blue or red, and the exact mechanism of their switching is uncertain, implementation details become crucial.
+
+There are three techniques for creating a VPN:
+\begin{itemize}
+    \item \textbf{Private addressing}
+    \item \textbf{Protected routing (IP tunnel)}
+    \item \textbf{Cryptographic protection of network packets (secure IP tunnel)}
+\end{itemize}
+
+
+\paragraph*{VPN via Private Addresses}
+
+In this basic VPN implementation, the networks included in the VPN use non-public addresses, making them unreachable from other networks (e.g., private IANA networks as listed in RFC-1918). Consequently, these networks are considered private, as they do not require authorization, and the packets in this case are not globally routable.
+
+For example, a telecom provider wishing to share its infrastructure with various customers might allocate a distinct class of addresses to each customer. Access control lists (ACLs) on routers could then be implemented to ensure that packets are directed only to the allowed destinations.
+
+However, this protection can be compromised under several circumstances:
+\begin{itemize}
+    \item \textbf{Guesses or discovers the addresses:} If the addresses are guessed or discovered, there is a risk of unauthorized access. If a class of addresses from another customer is found, an attacker could switch its own address to infiltrate that network.
+    \item \textbf{Sniffing packets during transmission:} Since packets lack intrinsic protection, if network traffic can be sniffed, it may be possible to read the content of the packets.
+    \item \textbf{Access to communication devices:} If someone gains access to the communication devices, they can read, change, or inject any type of packet.
+\end{itemize}
+
+There is minimal protection for packets, customers, and even for the infrastructure maintainer in this scenario. Consequently, the actual level of security is close to zero, despite the commercial availability of such services.
+
+
+\paragraph{VPN via Tunnel}
+
+
+This solution represents an improvement over the previous one. In this approach, routers encapsulate the entire Layer 3 packet as a payload within another packet, which can be \textbf{IP in IP}, \textbf{IP over MPLS}, or other techniques. Before encapsulation, border routers implement access control to the VPN via \textit{Access Control Lists} (\textbf{ACL}s). For instance, if a network belongs to the 10.1 address range, the destination can only be another network within the 10.1 range.
+
+With this solution, providers gain protection against malicious end-users, as it prevents customers from changing the subnet to which they belong.
+However, this protection can be circumvented by anyone managing a router or capable of sniffing packets during transmission. For instance, it does not provide protection to customers against attacks originating from within the geographical network (→ \ul{protection for providers but not for customers}).
+
+If robust protection is desired, alternative techniques need to be considered.
+
+
+\subparagraph{VPN via IP Tunnel}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 15,trim = 2cm 2.3cm 2cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{VPN via IP tunnel}
+\end{figure}
+
+Network 1 and Network 2 are depicted in the same color because they belong to the same subnet. When utilizing an IP tunnel, as the packets traverse from node A in subnet 1 to node B in subnet 2, they reach the border routers of subnet 1, which are responsible for encapsulation.
+
+Router R1 identifies that B is in subnet 2, reachable through the border router R2. R1 then creates another packet that travels from R1 to R2, containing the original packet as its payload. The external IPv4 header of the tunnel is illustrated in the diagram. Upon receipt at router R2, the packet is decapsulated and forwarded to the final destination.
+
+\textbf{Throughout transmission, the packet remains susceptible to being readable, manipulated, or injected}, signifying a lack of real security for the end user of the VPN.
+
+The IP tunnel also presents a performance challenge: \textbf{fragmentation}. If the packet size equals the Maximum Transmission Unit (MTU), encapsulation will require fragmentation. In such instances, the maximum performance loss is 50\%, as two packets are generated instead of one. This impact is more pronounced for applications with large packets, typically non-interactive applications like file transfers. Consequently, this solution can also be a performance killer.
+
+
+\paragraph{VPN via secure IP tunnel}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 17,trim = .3cm 4cm .5cm 6cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{VPN via secure IP tunnel}
+    \label{fig:vpn-secure-ip}
+\end{figure}
+
+While the performance issue remains unresolved, the final solution offers enhanced security for end users. Prior to encapsulation, packets are protected with the following measures:
+\begin{itemize}
+    \item \textbf{MAC (Message Authentication Code):} Provides integrity and authentication.
+    \item \textbf{Encryption:} Ensures confidentiality.
+    \item \textbf{Numbering:} Guards against replay attacks.
+\end{itemize}
+
+No digital signature is employed due to its slowness, which would not align with the speed of current networks. If robust cryptographic algorithms are selected, the only viable attack is to disrupt communications (Denial of Service - DoS). This type of VPN is often referred to as \textbf{S-VPN} (\textit{Secure VPN}), representing the only VPN that can be considered secure (→ caution with VPNs promoted online).
+
+In Figure \ref*{fig:vpn-secure-ip}, there is a router and a \textbf{TAP} (\textit{Tunnel Access Point}). Responsibilities are divided: the router oversees encapsulation/decapsulation, while the TAP is responsible for cryptographic protection. If this solution is implemented, and the TAP is managed by an external network provider, the security is compromised. Ideally, two separate devices should be in place: \ul{the client manages the TAP, and the ISP manages the router}.
+
