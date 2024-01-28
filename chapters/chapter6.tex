@@ -155,7 +155,7 @@ No digital signature is employed due to its slowness, which would not align with
 
 In Figure \ref*{fig:vpn-secure-ip}, there is a router and a \textbf{TAP} (\textit{Tunnel Access Point}). Responsibilities are divided: the router oversees encapsulation/decapsulation, while the TAP is responsible for cryptographic protection. If this solution is implemented, and the TAP is managed by an external network provider, the security is compromised. Ideally, two separate devices should be in place: \ul{the client manages the TAP, and the ISP manages the router}.
 
-\subsection{IPsec}
+\section{IPsec}
 
 IPsec is the IETF architecture for Layer 3 security in IPv4/IPv6 designed to \textbf{create a Secure VPN (S-VPN) over untrusted networks} and \textbf{create end-to-end secure packet flows}. This is achieved through the definition of two specific packet types:
 
@@ -186,7 +186,6 @@ The IPsec security services include:
 \end{itemize}
 
 
-\subsubsection{IPsec Security Association (SA)}
 
 \begin{figure}[h]
     \centering
@@ -231,7 +230,7 @@ If protection is needed and this is the first packet of this specific network fl
 
 
 
-\subsubsection{Transport mode IPsec}
+\subsection{Transport mode IPsec}
 \begin{figure}[h]
     \centering
     \includegraphics[page = 23,trim = 1cm 3cm 3cm 11cm, clip, width = 0.55\textwidth]{\slides}
@@ -245,7 +244,7 @@ Transport Mode IPsec is used for \textbf{end-to-end security}, primarily employe
 \end{itemize}
 
 
-\subsubsection{Tunnel mode IPsec}
+\subsection{Tunnel mode IPsec}
 \begin{figure}[h]
     \centering
     \includegraphics[page = 24,trim = 1cm 3cm 2cm 9cm, clip, width = 0.55\textwidth]{\slides}
@@ -262,7 +261,7 @@ Tunnel Mode IPsec is utilized to \textbf{create a VPN}, typically among \underli
 Although not as common, IPsec in tunnel mode can also be used for end-to-end communication, even though it is typically adopted between border elements of larger networks. This setup is also known as a \textbf{site-to-site VPN} since the entities involved are typically entire networks.
 
 
-\subsubsection{Authentication Header (AH)}
+\subsection{Authentication Header (AH)}
 \begin{figure}[h]
     \centering
     \includegraphics[page = 26,trim = 1cm 6cm 1cm 5cm, clip, width = 0.55\textwidth]{\slides}
@@ -313,6 +312,317 @@ Once the \texttt{normalized IP packet} is available, it is necessary to \textbf{
 
 If the two values are equal, then the sender is authenticated, and the packet is integral. However, if the two values are not equal, there could be a fake sender and/or manipulated packet.
 
+An authentic sender is identified in the previous picture, but there is no explicit mention of where the sender is authenticated. So, who is the sender authenticated here? The answer lies in the fact that a specific entry in the Security Association Database (SAD) is being utilized. This entry is negotiated with a specific node. For this reason, authentication is implicit in the process. The actual authentication comes into play when we create the Security Association: this is the point at which the sender must prove its identity. The Security Association (SA) ensures this form of authentication through the use of the correct algorithm/parameters.
 
 
-\subparagraph{Normalization for AH}
+\paragraph{HMAC-SHA1-96}
+The key digest is based on HMAC, which includes an additional parameter '96' at the end. The HMAC-SHA1-96 is generated in the following way:
+
+\begin{enumerate}
+    \item Given $M$, normalize it to generate $M'$.
+    \item Pad $M'$ to a multiple of 160 bits (by adding 0x00 bytes) to generate $M'p$.
+    \item Compute the authentication base: $B = \texttt{HMAC-SHA1}(K, M'p)$ (where $K$ is the key agreed upon with the sender).
+    \item $\text{ICV} = $ \textbf{the leftmost 96 bits of $B$}.
+\end{enumerate}
+
+Although we mentioned that a longer digest is needed to avoid various types of attacks, the decision to use only 96 bits may seem reckless. The reason behind this is a conflict of interest between security and network managers. Network managers prefer a header with a \textbf{fixed size}. If different algorithms are used for the digest, they may produce digests of varying lengths, posing a problem for router manufacturers dealing with variable-size headers. This approach might make it nearly impossible to process the header, resulting in lower resistance to replay attacks. In IPsec version 3, this aspect is further addressed.
+
+\subsection{Encapsulating Security Payload (ESP)}
+If confidentiality is desired, \textit{Encapsulating Security Payload} (\textit{ESP}) is required.
+The first version (RFC-1827) provided only confidentiality. The basic mechanism operates on DES-CBC (RFC-1829), but other mechanisms are also possible. The second version also provided authentication, but not for the IP header, so the coverage is not equivalent to that of AH. The advantage is that the packet dimension is reduced, and one Security Association (SA) is saved.
+
+\textbf{REMINDER:} IPsec is an architecture that is implemented with two kinds of packets: AH or ESP, \underline{and they may be used simultaneously}.
+
+\paragraph*{}
+ESP can be used in transport mode and tunnel mode as well.
+
+\vspace*{5mm}
+\noindent
+\begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[page = 30,trim = 2cm 3cm 2cm 9cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.4\textwidth}
+    \paragraph{ESP in transport mode}
+    If used in transport mode, ESP is inserted between the header and the payload. After a brief clear part, all the subsequent content will be encrypted, up to a \textbf{trailer} that concludes it.
+    \begin{itemize}
+        \item \textbf{Pro:} The payload is hidden, including information needed for Quality of Service (QoS), filtering, or intrusion detection.
+        \item \textbf{Con:} The header remains in clear.
+    \end{itemize}
+\end{minipage}
+
+
+\vspace*{5mm}
+\noindent
+\begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[page = 31,trim = 1cm 2.3cm 1cm 8cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.4\textwidth}
+    \paragraph{ESP in tunnel mode}
+    If used in tunnel mode, the tunnel is first created, and then protection is applied to the tunnel payload. In this case, everything from the original packet is encrypted, including the end-to-end header.
+\end{minipage}
+
+
+
+\subsection{IPsec implementation details}
+
+Since there are many algorithms that can be used, RFC-4308 defines two crypto-suites that anybody should implement for interoperability:
+
+\begin{itemize}
+    \item \textbf{VPN-A:} Uses ESP with 3DES-CBC and HMAC-SHA1-96. This is a legacy VPN for compatibility with old systems.
+    \item \textbf{VPN-B:} Uses ESP with AES-128-CBC and AES-XCBC-MAC-96. This is the one used nowadays.
+\end{itemize}
+
+It is also possible to use \textbf{NULL algorithms} for ESP. You can specify \texttt{NULL} for one of the two parts: authentication or privacy, but not simultaneously. This allows for some kind of \textit{'protection against performance'} trade-off. Regarding the sequence number, it provides partial protection against replay attacks and works on a minimum window of 32 packets (64 suggested).
+
+
+\subsection{IPsec Replay (partial) Protection}
+
+When the sender is transmitting packets sequentially, they are numbered. However, since the network uses IP, these packets can be lost, duplicated, or arrive out-of-order, posing significant challenges. For instance, if the receiver has received packets 0-1-2 and then 4, can it declare that packet 3 was canceled by an attacker? The answer is uncertain due to the possibility of packet loss. Similarly, when the receiver has already received packet 53 and then receives packet 3, can it confidently claim that packet 3 is duplicated? No, as it could be an out-of-order packet.
+
+To determine if a packet preceding the last received one is a duplicate, the only viable method is to maintain a list of received packets and check if the packet has already been received or not. However, maintaining a list of all received packets is impractical due to the potentially large number.
+
+\begin{wrapfigure}{r}{0.50\textwidth}
+    \centering
+    \includegraphics[width = 0.50\textwidth]{./chapter6/IPsec_replay_protection.png}
+\end{wrapfigure}
+
+Hence, a sliding window is employed, consisting of a \textbf{fixed window of size W}. In this window, received packets are marked, while unmarked packets remain unreceived. When an old packet is received, it is accepted if it belongs to an unreceived slot (indicating an out-of-order packet) and discarded if it was already received (indicating duplication from the network or an attacker).
+
+
+If an old packet (outside the window) is received, there is no way to check its validity. This poses a significant risk because accepting it could result in a replay attack, while discarding it could lead to communication issues. If the protected traffic is \underline{TCP}, accepting an old packet is \underline{less risky}, as it will be discarded at the upper level if already received. However, for \underline{UDP} packets, \underline{accepting old packets is not allowed}, and the sender is usually requested to resend with a fresher sequence number.
+
+The window progresses: when all packets up to 20 are received and packet 21 arrives, the window shifts one packet to the right. \textbf{Whenever a new packet with a sequence number greater than the current one is received, the window slides}. \textbf{Waiting for unreceived} packets is \textbf{not feasible}, as they could be lost (and IP does not handle retransmission).
+
+\subsection{IPsec v3}
+
+IPsec v3 changes the paradigm by providing equal support to the two headers. In fact, ESP is mandatory, and AH is optional. This means that it is possible to find implementations of IPsec that do not support AH, i.e., integrity and authentication for the payload only, not for the header. IPsec v3 has also added support for single-source multicast.
+
+Moreover, since IPsec has been mainly used to create site-to-site VPNs, which involve channels with a lot of traffic, to avoid overflow of the sequence numbers, IPsec v3 has introduced \textbf{ESN} (Extended Sequence Number). ESN consists of 64 bits, even though inside packets there are still only 32 bits transmitted; the 32 least significant bits are the ones transmitted, and this is the default when using \textbf{IKEv2}.
+
+Additionally, rather than having the separate encryption of the payload plus the \textbf{MIC} (Message Integrity Code), support for authenticated encryption (\textbf{AEAD}) has been introduced. Some clarifications about SA (Security Association) and SPI (Security Parameter Index) have been added to achieve faster lookup.
+
+The algorithms used in IPsec are the following:
+\begin{itemize}
+    \item For integrity and authentication:
+          \begin{itemize}
+              \item (MAY) HMAC-MD5-96;
+              \item (MUST) HMAC-SHA-1-96;
+              \item (SHOULD+) AES-XCBC-MAC-96;
+              \item (MUST) NULL (only for ESP).
+          \end{itemize}
+
+    \item For privacy:
+          \begin{itemize}
+              \item (MUST) NULL;
+              \item (MUST- i.e., discouraged) TripleDES-CBC;
+              \item (SHOULD+) AES-128-CBC;
+              \item (SHOULD) AES-CTR;
+              \item (SHOULD NOT) DES-CBC.
+          \end{itemize}
+
+    \item For authenticated encryption (AEAD mode):
+          \begin{itemize}
+              \item AES-CCM;
+              \item AES-CMAC;
+              \item ChaCha20 with Poly1305.
+          \end{itemize}
+
+    \item For authentication and integrity, it is possible to support longer digest:
+          \begin{itemize}
+              \item HMAC-SHA-256-128;
+              \item HMAC-SHA-384-192;
+              \item HMAC-SHA-512-256.
+          \end{itemize}
+\end{itemize}
+
+
+\subsubsection{TFC (Traffic Flow Confidentiality) in IPsec v3}
+\ul{TFC is padding in ESP that is added after the payload and before the normal padding: this is necessary to avoid disclosing the real size of the payload in the packet}. The receiver must be able to compute the original size of the payload, which is possible with IP, UDP, and ICMP payloads thanks to the "length" field.
+
+For the same confidentiality reasons, IPsec v3 introduces support for "\textbf{dummy packets}". This is in the form of a \underline{nested pseudo-protocol} (next header 59), and it is \ul{needed so that it is possible to keep transmitting even in the absence of real data to send}. Obviously, it makes sense to use dummy packets only if they are encrypted.
+
+The reasoning behind having dummy packets is that sometimes just the fact that peers are communicating can be valuable information. For instance, imagine a scenario where a general wants to give an attack command, and there are various squadrons. If the enemy could see that the general is communicating with a specific site, they might suppose that an action will be taken in that site. Sending dummy packets to the other squadrons will make the messages indistinguishable for the enemy.
+
+Of course, this reduces global performance by increasing the data sent over the network, but it is a price that needs to be paid to achieve this level of confidentiality.
+
+
+\subsection{Ways to use IPsec}
+\subsubsection*{End-to-End security}
+\begin{wrapfigure}{r}{0.55\textwidth}
+    \centering
+    \includegraphics[page = 38,trim = 1cm 2.5cm 1cm 2cm, clip, width = 0.55\textwidth]{\slides}
+\end{wrapfigure}
+It involves activating the IPsec module on the end nodes that are communicating. These nodes require a secure virtual channel, so they create a transport mode Security Association (SA) between them. This ensures that packets are protected with the selected security level as soon as they leave the network interface of the sender. This approach eliminates concerns about the LAN being insecure, the gateway being managed by an untrusted party, or the WAN being untrusted.
+
+The significant \textbf{advantage} is that security is implemented independently of the rest of the network, with the only possible attack being a Denial of Service (DoS). The \textbf{drawback} is the requirement to \ul{install IPsec on both communicating machines}. While most operating systems support IPsec natively, some devices, such as mobile devices (Android and iOS) and embedded systems, may lack the module. Therefore, the choice of devices needs consideration, not only in terms of the availability of the IPsec software module but also in relation to the computational power required for its use.\\
+Another critical aspect is security management. If IPsec is used to protect all computers in a large LAN, an efficient system for managing IPsec configurations on all those nodes is necessary. Finally, if ESP with a non-null encryption algorithm is adopted for the secure virtual channel, the traffic cannot be sniffed even from inside the LAN. For example, adopting an Intrusion Detection System (IDS) within either of the two LANs becomes impossible, as one would not see the real content of the transported data. In this case, the IDS needs to be placed directly onto the nodes rather than in the network.
+
+\subsubsection{Basic VPN}
+\begin{wrapfigure}{r}{0.55\textwidth}
+    \centering
+    \includegraphics[page = 39,trim = .5cm 2.5cm .5cm 2cm, clip, width = 0.55\textwidth]{\slides}
+\end{wrapfigure}
+The IPsec modules are placed directly on the gateways that protect the internal network from the external one. In this case, since the channel must protect all the traffic between the two networks, it must be a tunnel-mode SA because packets coming from one network to another need to be encapsulated.
+
+The main assumption in this architecture is that the internal network is secure and trusted, so the only concern comes from attacks over the WAN. It means leaving an open door for internal attacks, and it is not possible to perform authentication of the real endpoints of the communication; only the intermediate elements, which are the gateways, are authenticated. This model is also called a \textbf{site-to-site VPN}.
+
+In this scenario, gateways usually do not suffer from the problem of lacking IPsec capabilities, but there is still a computational capacity issue. Since the gateways must handle tunneling for all communications, they could be overloaded. Typically, in this case, the gateways are equipped with powerful CPUs or hardware accelerators, such as an HSM. On the other hand, management is greatly simplified because there is no need to manage configurations for all end nodes, but only for the gateways. Since there is no end-to-end security among peers, there is also the possibility to inspect internal traffic.
+
+
+
+\subsubsection{End-to-end security with basic VPN}
+\begin{wrapfigure}{r}{0.55\textwidth}
+    \centering
+    \includegraphics[page = 40,trim = .5cm 2.5cm .5cm 2cm, clip, width = 0.55\textwidth]{\slides}
+\end{wrapfigure}
+This is an example of the principle of "\textit{defense in depth}", creating more than one line of defense. In this scenario, IPsec is activated both between end nodes and between the gateways. This setup allows for two lines of defense or the option to balance security. For instance, \ul{the end-to-end connection, represented by the transport mode SA, could be utilized for authentication and integrity only} (e.g., to clearly identify the sender), \ul{while encryption might be activated solely between the gateways to protect against sniffing in the WAN, maintaining the ability to inspect traffic on the LAN}.
+
+The challenge lies in managing the entire structure, which involves handling the maximum number of systems (as in the first architecture) and all the gateways (as in the second one).
+
+
+
+
+\subsubsection{Secure gateway}
+\begin{wrapfigure}{r}{0.55\textwidth}
+    \centering
+    \includegraphics[page = 41,trim = .5cm 2.5cm .5cm 2cm, clip, width = 0.55\textwidth]{\slides}
+\end{wrapfigure}
+The concept of a secure gateway involves mobile users, such as employees who travel and require connection to the internal company network. In this scenario, IPsec can be deployed on the user's mobile device to establish a secure virtual channel using tunnel mode SA between the device and the company gateway. This setup allows all traffic from the user to any internal server in the company network to be protected. Moreover, it enables the gateway to perform authentication and authorization.
+
+
+\subsubsection{Secure remote access}
+\begin{wrapfigure}{r}{0.55\textwidth}
+    \centering
+    \includegraphics[page = 42,trim = .5cm 2.5cm .5cm 2cm, clip, width = 0.55\textwidth]{\slides}
+\end{wrapfigure}
+In this scenario, there is again the possibility of a double defense line: there is tunnel mode between the mobile node and the gateway, plus an end-to-end virtual channel between the mobile node and the final destination. Typically, the tunnel mode is used only for authentication and authorization (to grant access to the internal network), while the transport mode SA is typically employed for end-to-end protection, depending on the required level of protection.
+
+
+\subsection{IPsec key management}
+It is an important component that provides symmetric keys used for packet authentication and, if necessary, encryption to all the parties involved. To distribute these keys, it is possible to use an OOB (out-of-band) approach, such as passing the keys \underline{manually}. This is physically possible when there is a limited number of nodes, and there is the ability to directly inject the keys into those nodes. However, with many nodes, some \textbf{automatic in-band key distribution} is needed, and this, in turn, requires a protocol.
+
+
+\subsubsection{ISAKMP, OAKLEY, and IKE}
+An integral part of the IPsec architecture is the \textbf{ISAKMP} protocol (\textit{Internet Security Association and Key Management Protocol}). Described in RFC-2408, it contains the procedures needed to \ul{negotiate, set up, modify, and delete an SA}.
+Unfortunately, there is no information about the key: \underline{the key exchange method is not fixed}, and it can be an OOB one (and ISAKMP is used just to select the proper key) or an in-band method by using OAKLEY, a protocol for authenticated exchange of symmetric keys.
+
+The combination of ISAKMP and OAKLEY, widely adopted, has been renamed \textbf{IKE} (\textit{Internet Key Exchange}). It is one of the most complex security protocols because it works in the following way:
+
+\begin{enumerate}
+    \item First, there is the creation of an SA to protect the ISAKMP exchange.
+    \item The created SA is used to protect the negotiation of the SA needed by IPsec traffic.
+\end{enumerate}
+The same ISAKMP SA may be reused several times to negotiate other IPsec SAs.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 45,trim = 2cm 2.3cm 2cm 5cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{IKE: operations}
+    \label{IKE-operations}
+\end{figure}
+
+In Figure \ref{IKE-operations}, a potential schema of IKE operations is presented. During phase one, there is a node referred to as the \textbf{initiator}, as it takes the initiative to establish the IPsec channel with another machine known as the \textbf{responder}. In IKE phase 1, bidirectional ISAKMP SA negotiation is possible to protect traffic in both directions, and a choice can be made between main mode and aggressive mode.
+
+Once the SA is established, either of the two nodes can take on the role of the initiator to create an IPsec SA. Phase two negotiation can employ quick mode since all traffic is already protected by the SA.
+
+The main modes of operation are:
+
+\begin{itemize}
+    \item \textbf{Main Mode}
+          \begin{itemize}
+              \item It requires the exchange of 6 messages (→ quite slow)
+              \item Protects the parties' identities: IP addresses are, of course, always visible to an attacker, but remember that in IPsec, the authentication is given by what has been used during the authentication phase to create the key. Those "cryptographic" identities are not disclosed.
+          \end{itemize}
+
+    \item \textbf{Aggressive Mode}
+          \begin{itemize}
+              \item 3 messages (but does not protect the parties' identities)
+          \end{itemize}
+
+    \item \textbf{Quick Mode}
+          \begin{itemize}
+              \item 3 messages
+              \item Negotiation only of the IPsec SA
+          \end{itemize}
+
+    \item \textbf{New Group Mode}: used to communicate with the other peer to inform it about a change in the algorithm or the key that is being used to protect the traffic.
+          \begin{itemize}
+              \item 2 messages only
+          \end{itemize}
+\end{itemize}
+
+When an SA is opened, authentication is needed, and there are four ways to perform authentication:
+
+\begin{itemize}
+    \item \textbf{Digital Signature}
+          \begin{itemize}
+              \item Non-repudiation of the IKE negotiation, which means it is not possible to deny the request to open the secure channel.
+          \end{itemize}
+
+    \item \textbf{Public Key Encryption}
+          \begin{itemize}
+              \item Identity protection provided in the aggressive mode
+          \end{itemize}
+
+    \item \textbf{Revised Public Key Encryption}
+          \begin{itemize}
+              \item Less computationally expensive, only 2 public-key operations
+          \end{itemize}
+
+    \item \textbf{Pre-Shared Key}
+          \begin{itemize}
+              \item The party ID may only be its own IP address (which creates problems with mobile users)
+          \end{itemize}
+\end{itemize}
+
+
+
+\subsubsection{VPN concentrator}
+IPsec is mostly used today to create site-to-site VPNs, posing a problem in terms of gateway performance. To address this concern, the concept of a \textbf{VPN concentrator} has been proposed. A VPN concentrator is a \textbf{special-purpose hardware appliance that acts as a terminator of IPsec tunnels}. It serves either for \textit{remote access by individual clients} or to \textit{establish site-to-site VPNs}. Implementing this functionality in hardware provides high performance at relatively low costs. It is particularly suitable for scenarios such as company or campuses, where substantial traffic is exchanged and numerous individuals work remotely.
+
+\subsubsection{Applicability of IPsec}
+IPsec can \textbf{only be applied to unicast packets}, (\textit{no broadcast, no multicast, no anycast}) as the identification of the peer and key exchange are necessary. Although IPsec v3 introduces support for single-source multicast, this is an exception. Reciprocal authentication is required for IPsec, applying between parties that have activated a Security Association (SA) using shared keys or X.509 certificates. IPsec is well-suited for \textbf{"closed" groups}, making it unsuitable for scenarios like e-commerce services, where users are unknown, and there is no information about keys or certificates.
+
+In essence, IPsec provides security for upper-layer traffic carried within IP packets. However, many protocols transported over IP inherit its inherent insecurity, as \textbf{IP addresses are not authenticated}, and \textbf{packets are unprotected} without IPsec. For these reasons, all protocols using IP as a carrier can be susceptible to attacks. Attackers often target neglected protocols, the so-called \textit{"service" protocols} (e.g., ICMP, IGMP, DNS, RIP), taking advantage of the lack of protection.
+
+
+\section{"Service" protocols security}
+\subsection{ICMP Security}
+
+ICMP, or the Internet Control and Management Protocol, plays a crucial role in network management, yet \textbf{it lacks authentication}, making it vulnerable to various attacks. Examining ICMP functions reveals several potential security issues:
+
+\begin{itemize}
+    \item \textbf{ICMP echo request/reply:}
+    \begin{itemize}
+        \item Ping flooding or Ping bombing attacks can be conducted.
+    \end{itemize}
+
+    \item \textbf{Destination unreachable (network/host/protocol/port unreachable):}
+    \begin{itemize}
+        \item As packets lack authentication, fake nodes may send destination unreachable messages to the sender, leading the sender to terminate the communication, assuming the destination is genuinely unreachable, resulting in a Denial of Service (DoS) attack.
+    \end{itemize}
+
+    \item \textbf{Source quench (deprecated with RFC-6633, year 2012):}
+    \begin{itemize}
+        \item Originally intended for congestion control, Source Quench messages required senders to slow down transmission in response. As these ICMP Source Quench messages lack authentication, attackers could send fake packets to deliberately slow down the destination, causing a DoS.
+    \end{itemize}
+
+    \item \textbf{Redirect:}
+    \begin{itemize}
+        \item An intermediate node can send an ICMP Redirect message when it detects that the packet has taken a wrong path, allowing attackers to create a logical Man-in-the-Middle (MITM) scenario. An attacker can redirect the sender to a malicious node under its control, facilitating a MITM attack.
+    \end{itemize}
+
+    \item \textbf{Time exceeded for a datagram:}
+    \begin{itemize}
+        \item Sent by an intermediate node when processing a packet with \texttt{TTL=0}, usually indicating routing plan loops. Receiving this message suggests potential network issues, and faking this message could lead to a DoS for the sender.
+    \end{itemize}
+\end{itemize}
+
+\ul{It is not possible to protect ICMP with IPsec}, and these types of problems remain possible. The recommended approach is to collaborate with the network manager and monitor all ICMP packets passing through the network.
+
+\subsection{Smurfing attack}
