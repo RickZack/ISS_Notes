@@ -523,10 +523,10 @@ The same ISAKMP SA may be reused several times to negotiate other IPsec SAs.
     \centering
     \includegraphics[page = 45,trim = 2cm 2.3cm 2cm 5cm, clip, width = 0.55\textwidth]{\slides}
     \caption{IKE: operations}
-    \label{IKE-operations}
+    \label{fig:IKE-operations}
 \end{figure}
 
-In Figure \ref{IKE-operations}, a potential schema of IKE operations is presented. During phase one, there is a node referred to as the \textbf{initiator}, as it takes the initiative to establish the IPsec channel with another machine known as the \textbf{responder}. In IKE phase 1, bidirectional ISAKMP SA negotiation is possible to protect traffic in both directions, and a choice can be made between main mode and aggressive mode.
+In Figure \ref{fig:IKE-operations}, a potential schema of IKE operations is presented. During phase one, there is a node referred to as the \textbf{initiator}, as it takes the initiative to establish the IPsec channel with another machine known as the \textbf{responder}. In IKE phase 1, bidirectional ISAKMP SA negotiation is possible to protect traffic in both directions, and a choice can be made between main mode and aggressive mode.
 
 Once the SA is established, either of the two nodes can take on the role of the initiator to create an IPsec SA. Phase two negotiation can employ quick mode since all traffic is already protected by the SA.
 
@@ -598,29 +598,29 @@ ICMP, or the Internet Control and Management Protocol, plays a crucial role in n
 
 \begin{itemize}
     \item \textbf{ICMP echo request/reply:}
-    \begin{itemize}
-        \item Ping flooding or Ping bombing attacks can be conducted.
-    \end{itemize}
+          \begin{itemize}
+              \item Ping flooding or Ping bombing attacks can be conducted.
+          \end{itemize}
 
     \item \textbf{Destination unreachable (network/host/protocol/port unreachable):}
-    \begin{itemize}
-        \item As packets lack authentication, fake nodes may send destination unreachable messages to the sender, leading the sender to terminate the communication, assuming the destination is genuinely unreachable, resulting in a Denial of Service (DoS) attack.
-    \end{itemize}
+          \begin{itemize}
+              \item As packets lack authentication, fake nodes may send destination unreachable messages to the sender, leading the sender to terminate the communication, assuming the destination is genuinely unreachable, resulting in a Denial of Service (DoS) attack.
+          \end{itemize}
 
     \item \textbf{Source quench (deprecated with RFC-6633, year 2012):}
-    \begin{itemize}
-        \item Originally intended for congestion control, Source Quench messages required senders to slow down transmission in response. As these ICMP Source Quench messages lack authentication, attackers could send fake packets to deliberately slow down the destination, causing a DoS.
-    \end{itemize}
+          \begin{itemize}
+              \item Originally intended for congestion control, Source Quench messages required senders to slow down transmission in response. As these ICMP Source Quench messages lack authentication, attackers could send fake packets to deliberately slow down the destination, causing a DoS.
+          \end{itemize}
 
     \item \textbf{Redirect:}
-    \begin{itemize}
-        \item An intermediate node can send an ICMP Redirect message when it detects that the packet has taken a wrong path, allowing attackers to create a logical Man-in-the-Middle (MITM) scenario. An attacker can redirect the sender to a malicious node under its control, facilitating a MITM attack.
-    \end{itemize}
+          \begin{itemize}
+              \item An intermediate node can send an ICMP Redirect message when it detects that the packet has taken a wrong path, allowing attackers to create a logical Man-in-the-Middle (MITM) scenario. An attacker can redirect the sender to a malicious node under its control, facilitating a MITM attack.
+          \end{itemize}
 
     \item \textbf{Time exceeded for a datagram:}
-    \begin{itemize}
-        \item Sent by an intermediate node when processing a packet with \texttt{TTL=0}, usually indicating routing plan loops. Receiving this message suggests potential network issues, and faking this message could lead to a DoS for the sender.
-    \end{itemize}
+          \begin{itemize}
+              \item Sent by an intermediate node when processing a packet with \texttt{TTL=0}, usually indicating routing plan loops. Receiving this message suggests potential network issues, and faking this message could lead to a DoS for the sender.
+          \end{itemize}
 \end{itemize}
 
 \ul{It is not possible to protect ICMP with IPsec}, and these types of problems remain possible. The recommended approach is to collaborate with the network manager and monitor all ICMP packets passing through the network.
@@ -644,8 +644,128 @@ This configuration ensures the discard of all broadcasted IP packets. However, t
 
 
 \subsection{Fraggle attack}
-\begin{wrapfigure}{r}{0.45\textwidth}
+% \begin{wrapfigure}{R}{0.45\textwidth}
+%     \centering
+%     \includegraphics[page = 54,trim = 1cm 2.5cm 2cm 4cm, clip, width = 0.45\textwidth]{\slides}
+% \end{wrapfigure}
+% The Fraggle attack is quite similar to smurfing, but it is executed using UDP instead of ICMP. The underlying philosophy remains the same: a malicious node sends a \texttt{UDP echo request}.
+
+% Currently, these UDP echo requests are disabled by default. As a result, the success of this type of attack depends on the number of clients within the reflector network that still have the UDP echo request functionality enabled.
+
+
+\noindent
+\begin{minipage}{0.4\textwidth}
+    The Fraggle attack is quite similar to smurfing, but it is executed using UDP instead of ICMP. The underlying philosophy remains the same: a malicious node sends a \texttt{UDP echo request}.
+
+    Currently, these UDP echo requests are disabled by default. As a result, the success of this type of attack depends on the number of clients within the reflector network that still have the UDP echo request functionality enabled.
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.5\textwidth}
     \centering
-    \includegraphics[page = 54,trim = 1cm 2.5cm 2cm 4cm, clip, width = 0.45\textwidth]{\slides}
-\end{wrapfigure}
+    \includegraphics[page = 54,trim = 1cm 2.5cm 2cm 4cm, clip, width = \textwidth]{\slides}
+\end{minipage}
+
+\subsection{ARP poisoning}
+ARP (Address Resolution Protocol) is used to \ul{discover the Level-2 address by exploiting the Level-3 address knowledge}. The result is then cached inside the ARP table. ARP poisoning is executed as follows:
+\begin{itemize}
+    \item Nodes accept \texttt{ARP reply} even if they did not send an \texttt{ARP request}, as it could avoid the need to send an ARP request in the future when contacting that node.
+    \item Thus, it is possible to send unsolicited incorrect ARP replies to nodes.
+    \item Nodes will overwrite static ARP entries with the dynamic ones obtained from ARP replies.
+          \begin{itemize}
+              \item Most stacks do not check that the source hardware address inside the ARP field coincides with the source field in the 802.3 packet.
+          \end{itemize}
+\end{itemize}
+This technique is exploited by many attack tools, such as \texttt{Ettercap}.
+
+
+\subsection{TCP SYN flooding}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 56,trim = 2cm 8cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+Remembering the three-way handshake to open a TCP connection, a first packet is sent containing the \texttt{SYN} flag. The receiver will answer back with a segment with both ACK and SYN  (\texttt{SYN/ACK}) flags. Normally, the client would close/open the channel with a final \texttt{ACK}.
+
+However, a malicious client can send a SYN but never send the final ACK back. The server proceeds to another line on its table of connections, and the client goes back to the first step and sends another SYN. At some point, the \textbf{table of connections will be full} (maximum size reached), and it will not be able to open new connections for real users. This results in a Denial of Service (DoS) for clients attempting to connect to the server.
+
+It's important to note that the absence of the final ACK can also be due to a network problem. TCP/IP documents state that after a specific duration (typically 75 seconds), the server will check its connection table, and if half of the connections are open, those will be reset.
+
+
+To protect against SYN flooding, it is possible to:
+\begin{itemize}
+    \item \textbf{Decrease the timeout}
+          \begin{itemize}
+              \item there is a risk of deleting requests from valid but slow clients.
+          \end{itemize}
+    \item \textbf{Increase the table size }
+          \begin{itemize}
+              \item which can be circumvented by sending more requests.
+          \end{itemize}
+    \item \textbf{Use a router in front of the server as a "\emph{SYN interceptor}"}:
+          \begin{itemize}
+              \item It substitutes the server in the first phase.
+              \item If the handshake completes successfully, it then transfers the channel to the server.
+              \item Implement an "aggressive" timeout (risky!).
+          \end{itemize}
+    \item \textbf{Use a router as a "\emph{SYN monitor}"}:
+          \begin{itemize}
+              \item It kills the pending connection requests (RST).
+          \end{itemize}
+\end{itemize}
+
+If the network manager notices a huge quantity of SYN requests (more than the usual amount), that should be the right time to start investigating.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{0.49\textwidth}
+        \includegraphics[page=58, trim=2cm 3.8cm 1cm 4cm, clip, width=\textwidth]{\slides}
+        \caption{SYN interceptor (or firewall relay)}
+        \label{fig:SYN-interceptor}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\textwidth}
+        \includegraphics[page=59, trim=2cm 3.8cm 1cm 4cm, clip, width=\textwidth]{\slides}
+        \caption{SYN monitor (or firewall gateway)}
+        \label{fig:SYN-monitor}
+    \end{subfigure}
+    \caption{Protection against SYN flooding}
+\end{figure}
+
+
+\subsubsection{SYN cookie}
+Currently, \textit{SYN cookie} is considered the most effective solution against SYN flooding. Proposed by D. J. Bernstein, it addresses the vulnerability in which the server stores information about a client upon receiving a SYN. Instead of maintaining the connection state on the server, SYN cookie places this responsibility on the client side. The concept employs the TCP sequence number of the SYN-ACK packet to transmit a cookie (keyed-digest) to the client, allowing the server to recognize clients that have already sent a SYN without storing any information about them.
+
+This process is feasible because the client responds with an ACK containing the \texttt{sequence number + 1} (indicating the \texttt{keyed-digest + 1}). The server then checks if the keyed-digest is a valid one generated earlier. In more detail, the server's initial sequence number is constructed as follows:
+
+\begin{itemize}
+    \item Let $t$ be a slowly incrementing timestamp; $t \mod 32$ yields the top 5 bits of the sequence number.
+    \item Let $m$ be the \textit{Maximum Segment Size} (MSS) value stored in the SYN queue entry.
+    \item Let $s$ be the result of a cryptographic hash function computed over the server IP address and port number, the client IP address and port number, and the value $t$. The returned value $s$ must be a 24-bit value.
+\end{itemize}
+
+Upon receiving the ACK and retrieving the keyed digest, the server:
+
+\begin{itemize}
+    \item Checks the value of $t$ against the current time to determine if the connection has expired.
+    \item Recomputes $s$ to validate the SYN cookie.
+    \item Decodes the value of $m$ from the 3-bit encoding in the SYN cookie, enabling the reconstruction of the SYN queue entry.
+\end{itemize}
+
+
+\subsection{DNS security}
+The \textit{Domain Name System} (\textbf{DNS}) is a crucial service that provides the translation of names to addresses and vice versa. It plays a vital role as users commonly utilize names rather than IP addresses to access websites. DNS operates through \textbf{queries}, executed over port \texttt{53/UDP}, and \textbf{zone transfers} (information transfers between servers) over port \texttt{53/TCP}. As of now, DNS \textbf{lacks intrinsic security}, and while \textit{DNS-SEC} is in development, it has not been fully implemented.
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 62,trim = .5cm 2.5cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+
+The DNS architecture follows a \textbf{hierarchical structure of servers}, beginning with the local DNS server (within the client's network). When a user intends to access a website, the local DNS server checks its caches. In the event of a \texttt{cache miss}, the local DNS server queries the root \textit{Name Server} (\textbf{NS}). Typically, the root NS does not have the answer, as it manages only top-level domains represented by dots ("."). The query is then redirected from the root NS to the appropriate domain server (first to it., then, for example, to \texttt{polito.it}) to obtain the answer.
+
+The diagram in Figure \ref*{fig:DNS-server} illustrates the logical path for retrieving the IP address. However, in reality, the name server always responds to the local DNS, which usually caches the newly answered queries.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 0.70\textwidth]{./chapter6/DNS_server.jpg}
+    \caption{DNS name resolution with iterated query}
+    \label{fig:DNS-server}
+\end{figure}
 
