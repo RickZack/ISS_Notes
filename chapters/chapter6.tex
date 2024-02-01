@@ -764,8 +764,102 @@ The diagram in Figure \ref*{fig:DNS-server} illustrates the logical path for ret
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width = 0.70\textwidth]{./chapter6/DNS_server.jpg}
+    \includegraphics[width = 0.50\textwidth]{./chapter6/DNS_server.jpg}
     \caption{DNS name resolution with iterated query}
     \label{fig:DNS-server}
 \end{figure}
 
+
+\subsubsection{DNS shadow server}
+
+\noindent
+\begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[page = 63,trim = 1cm 2.25cm 2cm 8.5cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.5\textwidth}
+    One form of attack is a \textit{shadow/fake DNS server}.
+    If an attacker can intercept and sniff the request sent to the local DNS, it may be possible to provide a fake response. This can result in the victim receiving a false IP address.
+
+    Conversely, if an attacker can intercept the request from the Local DNS to the Root DNS, they can provide a fake response to the local DNS. Consequently, all clients in that network making the DNS query will receive the fake IP address from the local DNS.
+
+    Microsoft has implemented a DNS cache on Windows, which deviates from the general DNS rules. In this scenario, an attack of this nature is more effective because the cache on the client is not frequently updated.
+\end{minipage}
+
+
+
+\subsubsection{DNS cache poisoning}
+\noindent
+\begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[page = 64,trim = 1cm 2cm 1cm 9cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.5\textwidth}
+    DNS employs caching to avoid redundant queries. In this type of attack, a domain (e.g., \underline{www.lioy.net}) is created, and a corresponding \textit{nameserver} is set up.
+    However, in this case, the nameserver is a rogue or pirate nameserver. Whenever a request is made for the nameserver (e.g., the address of \underline{www.lioy.net}), the pirate nameserver responds with the correct information along with additional incorrect data. \ul{If the victim nameserver is not correctly programmed or configured, it may accept the additional answers, potentially overwriting the information stored in its cache}.
+
+    One limitation of this attack is that the victim must specifically request the pirate address resolution. To overcome this limitation, attackers can exploit another version of cache poisoning.
+\end{minipage}
+
+
+\subsubsection{DNS cache poisoning (2nd version)}
+\noindent
+\begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[page = 65,trim = 1cm 2cm 1cm 7.5cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.5\textwidth}
+    In this attack scenario, the attacker employs a pirate DNS client to request address resolution from the victim's recursive nameserver. Knowing that the resolution process takes time, the attacker preemptively self-provides the answer with a fake source address, making it appear as if the address originates from the authoritative Name Server (NS).
+
+    This form of attack is notably more effective, as it does not require the victim to be deceived into initiating the resolution for the pirate's nameserver.
+\end{minipage}
+
+
+
+\subsubsection{(DNS) flash crowd}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 66,trim = 1cm 3.5cm 1cm 5.5cm, clip, width = 0.4\textwidth]{\slides}
+\end{figure}
+
+The primary method for executing a Denial-of-Service (DoS) attack on DNS involves overwhelming a nameserver with a significant volume of client queries. DNS is a common target for such attacks, as incapacitating the nameserver renders all associated domains unreachable.
+
+\subsubsection{Name-address translation}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 67,trim = .3cm 1cm .7cm 3.5cm, clip, width = 0.65\textwidth]{\slides}
+    \caption{Name-address translation}
+\end{figure}
+The process of translating names to addresses typically initiates from a device running an operating system. Within the OS, various applications require name resolution to obtain the corresponding address. To accomplish this, the OS utilizes a component known as the \textbf{name switch}, which determines the service responsible for translating a name into the corresponding address. For instance, the \texttt{/etc/hosts} file is a local data source. If an individual manages to add a name-address pair to this file, they can potentially redirect applications to connect to a fraudulent server.
+
+The name switch typically determines the priority between the internal file and external services. The most common external service is accessed by the \textbf{resolver}, a component that implements the DNS client and communicates with the DNS infrastructure.
+
+If the name is not found in the local data, the resolver will reach out to an external service, often a \textbf{caching server}. The caching server may be recursive, meaning it independently handles all the queries. It contacts various servers in accordance with the hierarchy described earlier, which is organized into specific zones. Each zone is overseen by a \textbf{zone master} (primary name server) and several \textbf{zone slaves} (secondary name servers) that maintain a database named \textbf{zone file}. This file contains the mappings between names and addresses. The caching server may interact with either the primary or secondary servers, depending on the availability or load of the primary server.
+
+
+Typically, the zone master is manually updated by the administrator. Unfortunately, Microsoft introduced the capability for dynamic updates directly by clients. When a Microsoft network is joined, and an address is assigned, clients can inform the DNS master about the received IP address. This poses a significant risk as it allows uncontrolled modifications to DNS data.
+
+Potential attacks on this infrastructure include:
+
+\begin{itemize}
+    \item 
+\end{itemize}
+
+- \textbf{Data Corruption to Local Data:} If an attacker gains access to a client (e.g., through a keyboard or malware), they can attempt to insert incorrect information into its local data to create a false mapping.
+
+- \textbf{Unauthorized Configuration of Name Switch/Resolver:} Instead of pointing to the actual external name server, an attacker can redirect the name switch/resolver to a fake one, providing incorrect answers.
+
+- \textbf{Server Impersonation in Communication:} In the communication between the resolver and server, as well as between the caching server and zone server, server impersonation (someone posing as the real server) can occur because DNS lacks any form of authentication.
+
+- \textbf{Cache Poisoning:} Whenever there is a cache, there is a risk of cache poisoning.
+
+- \textbf{Data Corruption on Zone File:} An attacker penetrating the zone master could corrupt data on the zone file.
+
+- \textbf{Unauthorized Dynamic Updates:} Dynamic updates could be performed by unauthorized nodes.
+
+- \textbf{Server Impersonation in Zone File Transfer:} Since the master sends a copy of the zone file to secondary servers, there could be server impersonation, where a fake master sends a wrong copy to the secondary servers.
+
+As evident, there are numerous potential local attacks, such as data corruption, and some are network attacks primarily due to the lack of authentication.
