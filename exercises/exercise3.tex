@@ -201,11 +201,10 @@ Alice
 Bob
 \begin{itemize}
     \item receive(algorithm,mac,P)
-    \item mac' = HMAC-algorithm(K,P||algorithm) \textcolor{Comment}{How does it knows he must concanate? WIP}
+    \item mac' = HMAC-algorithm(K,P||algorithm) %\textcolor{Comment}{How does it knows he must concanate? WIP}
     \item if(mac!=mac') then FAIL; else OK
 \end{itemize}
-\textcolor{Comment}{"if an attacker changes the algorithm Bob can't verify it". (WIP) i don't like this, 
-if an attacker changes everything everytime Bob will never be able to verify anything,  so wtf are we talking about?}
+%\textcolor{Comment}{"if an attacker changes the algorithm Bob can't verify it". (WIP) i don't like this, if an attacker changes everything everytime Bob will never be able to verify anything,  so wtf are we talking about?}
 
 
 
@@ -334,7 +333,7 @@ formulas
     \item[C.] the attacker uses a Dictionary of common words (e.g. English language dictionary) to pre-compute a big list of their hashes; the hashes are then compared with a hashed password (sniffed from the communication channel or leaked from a server)
 \end{enumerate}
 \textcolor{Comment}{B -> we assume an attacker knows the hash algorithm (H) and a pwd hash value, than apply H to all the words in his dictionary\\
-use more Dictionary}
+C -> use more Dictionary}
 
 \textbf{Q5 - A salt is used to protect from dictionary attack. A salt is ..}
 \begin{enumerate}

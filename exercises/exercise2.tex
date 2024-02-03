@@ -162,7 +162,8 @@ errors in the interpretation of the last block. The biggest padding is required 
     A, B, C, D -> i-input and i-output are independent from others i-block\\
     E -> thanks to a nounce and a counter\\
     F -> the counter ensures serialization of blocks
-    G -> since the counter value will be different from the one in input (wip)
+    G -> since the counter value will be different from the one in input,  1 2 3 4 5 -> if we remove 3 it becames 1 2 4 5, but the receiver will do 
+    anyway 1 2 3 4 5, so from 3 onwards it  will decrypt using the wrong counter-value (wip)
 }
 
 \subsection*{Exercise}
