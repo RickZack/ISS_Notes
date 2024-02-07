@@ -1,4 +1,5 @@
-\chapter*{Exercises 4}
+\chapter{Exercises 4}
+
 \section*{Short problems}
 
 \textbf{Problem 2 \\
@@ -16,12 +17,12 @@ each file (content) in the \textcolor{Red}{untrusted storage}:
 h1 = H(F1), h2 = H(F2), h3 = H(F3), h4 = H(F4)
 Then, Alice calculates hchain and stores it in the \textcolor{Blue}{trusted storage}:
 hchain = H( h1 || h2 || h3 || h4 )
-Let’s assume Bob modifies F3.}
+Let's assume Bob modifies F3.}
 
 \textbf{P2Q - Can Alice detect the modification done by Bob?}
 \begin{itemize}
-    \item[A.] Yes, Alice recomputes h3 = H(F3) and sees that it doesn’t match with the stored h3
-    \textbf{\item[B.] Yes, Alice recomputes h_{chain} and sees that it doesn’t match with the stored h_{chain}}
+    \item[A.] Yes, Alice recomputes h3 = H(F3) and sees that it doesn't match with the stored h3
+    \textbf{\item[B.] Yes, Alice recomputes h_{chain} and sees that it doesn't match with the stored h_{chain}}
     \item[C.] No, Alice cannot detect the modification because the attacker can change both F3 and H(F3)
 \end{itemize}
 \textcolor{Comment}{
@@ -42,12 +43,12 @@ Alice creates and stores four files (F1, F2, F3, F4) in the
 h1 = H(F1), h2 = H(F2), h3 = H(F3), h4 = H(F4)
 Then, Alice calculates h_{root} and stores it the \textcolor{Blue}{trusted storage}:
 $h_{root} = H(H(h1||h2)||H(h3||h4))$
-Let’s assume Bob modifies F3.}
+Let's assume Bob modifies F3.}
 
 \textbf{P3Q - Can Alice detect the modification done by Bob?}
 \begin{itemize}
-    \item[A.] Yes, Alice recomputes h3 = H(F3) and sees that it doesn’t match with the stored h3
-    \textbf{\item[B.] Yes, Alice recomputes h_{root} and sees that it doesn’t match with the stored h_{root}}
+    \item[A.] Yes, Alice recomputes h3 = H(F3) and sees that it doesn't match with the stored h3
+    \textbf{\item[B.] Yes, Alice recomputes h_{root} and sees that it doesn't match with the stored h_{root}}
     \item[C.] No, Alice cannot detect the modification because the attacker can change both F3 and H(F3)
 \end{itemize}
 \textcolor{Comment}{the change propagetes through all the tree}

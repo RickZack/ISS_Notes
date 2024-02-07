@@ -30,6 +30,18 @@
 % Framed box for "Case history"
 \newtcolorbox{casehistory}[1]{colback=yellow!5!white,colframe=yellow!75!black,fonttitle=\bfseries,title={Case history: #1}}
 
+
+\newboolean{showSolution}
+\setboolean{showSolution}{true}
+
+\newcommand{\sol}[1]{%
+    \ifthenelse{\boolean{showSolution}}%
+    {\textbf{#1}}%
+    {#1}%
+}
+
+
+
 \setmarginsrb{2.5 cm}{2.5 cm}{2.5 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
 \graphicspath{{./images/}}
 
@@ -127,9 +139,26 @@
 \def\slides{slides/05_firewall.pdf}
 \include{chapters/chapter5}
 
-
+\setcounter{chapter}{7} % Skipping chapter 6 as it is included in 4 
 \include{chapters/chapter7}
 
+\setcounter{chapter}{15}% Equivalent to "letter O"
+
+
+
+
+\appendix
+%\setboolean{showSolution}{true}
+%\sol{Prova con \texttt{showSolution = true}}
+
+%\setboolean{showSolution}{false}
+%\sol{Prova con \texttt{showSolution = false}}
+
+%\include{exercises/exercise1}
+%\include{exercises/exercise2}
+%\include{exercises/exercise3}
+%\include{exercises/exercise4}
+%\include{exercises/exercise5}
 
 
 \appendix
