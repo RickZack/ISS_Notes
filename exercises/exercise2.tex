@@ -1,10 +1,10 @@
 \chapter{Exercises 2}
 
-\section*{symmetric crypto}
+\section{symmetric crypto}
 
 \textbf{Q1 - DES is an algorithm that allows:}
 \begin{enumerate}
-    \textbf{\item[A.] symmetric encryption of data by splitting data in blocks}
+    \item[A.] \sol{symmetric encryption of data by splitting data in blocks}
     \item[B.] symmetric encryption of data by processing the data flow
     \item[C.] creation of digital signatures with asymmetric keys
     \item[D.] creation of digital signature and encryption of data with asymmetric keys
@@ -14,30 +14,30 @@
 \begin{enumerate}
     \item[A.] the use of permutations and transpositions in algorithms has increased
     \item[B.] as algorithms get stronger, they get less complex, and thus more susceptible to attacks
-    \textbf{\item[C.] processor speed and power have increased}
+    \item[C.] \sol{processor speed and power have increased}
     \item[D.] key length reduces over time
 \end{enumerate}
 
 \textbf{Q3 - What of the following properties should a secure AES key have?}
 \begin{enumerate}
-    \textbf{\item[A.] confidentiality}
+    \item[A.] \sol{confidentiality}
     \item[B.] non-repudiation
     \item[C.] traceability
-    \textbf{\item[D.] randomness}
+    \item[D.] \sol{randomness}
 \end{enumerate}
 
 \textbf{Q4 - The advantages of the ECB mode are:}
 \begin{enumerate}
-    \textbf{\item[A.] parallel encryption}
-    \textbf{\item[B.] parallel decryption}
-    \textbf{\item[C.] random access to blocks (you can decrypt a block independently from the others)}
-    \textbf{\item[D.] simple implementation}
+    \item[A.] \sol{parallel encryption}
+    \item[B.] \sol{parallel decryption}
+    \item[C.] \sol{random access to blocks (you can decrypt a block independently from the others)}
+    \item[D.] \sol{simple implementation}
     \item[E.] difficult to perform cryptanalysis because identical blocks encrypt differently
     \item[F.] it’s not possible to swap blocks
     \item[G.] it’s not possible to delete blocks
     \item[H.] is resistant to known-plaintext attacks
 \end{enumerate}
-\textcolor{Comment}{A -> $C_{i} = enc(K,P_{i})$ \\ B -> $P_{i} = enc^{-1}(K,C_{i})$, \\ E,H -> identical block encrypt equally, 
+\com{A -> $C_{i} = enc(K,P_{i})$ \\ B -> $P_{i} = enc^{-1}(K,C_{i})$, \\ E,H -> identical block encrypt equally, 
 \\ F,G -> can't detect blocks swap and deleted block
 }
 
@@ -47,21 +47,21 @@
     \item[A.] the tool can accept as a possible input either a private key or a public key
     \item[B.] the tool will have a negligible padding size
     \item[C.] the tool will operate on an Initialization Vector of 128 bit
-    \textbf{\item[D.] the tool adopts a symmetric algorithm, with a 256-bit key, and where each block of ciphertext is related to only one block of plaintext}
+    \item[D.] \sol{the tool adopts a symmetric algorithm, with a 256-bit key, and where each block of ciphertext is related to only one block of plaintext}
 \end{enumerate}
 
 
 \textbf{Q6 - Which of the following statements are true for the CBC mode?}
 \begin{enumerate}
-    \textbf{\item[A.] parallel decryption}
+    \item[A.] \sol{parallel decryption}
     \item[B.] parallel encryption
-    \textbf{\item[C.] protection on order of blocks}
+    \item[C.] \sol{protection on order of blocks}
     \item[D.] if one ciphertext block is lost/deleted, the error propagates to the decryption of all the blocks from that point on
-    \textbf{\item[E.] an IV is used to randomize the first ciphertext block}
-    \textbf{\item[F.] it’s resistant to known-plaintext attacks}
+    \item[E.] \sol{an IV is used to randomize the first ciphertext block}
+    \item[F.] \sol{it’s resistant to known-plaintext attacks}
     \item[G.] random access to blocks (you can decrypt a block independently from the others)
 \end{enumerate}
-\textcolor{Comment}{
+\com{
     A -> $P_{i} = enc^{-1}(K,C_{i})\oplus C_{i-1}$ and we already have all Ctext\\ 
     B -> $C_{i} = enc(K,P_{i}\oplus C_{i-1})$ so C_{i} need C_{i-1} and ect  \\
     C -> if two blocks get swapped we can detect it since the decryption will fail \\
@@ -73,62 +73,62 @@
 \textbf{Q7a - If you encrypt 50B of plaintext with AES-128-CBC, how long is the ciphertext?}
 \begin{enumerate}
     \item[A.] 50B
-    \textbf{\item[B.] 64B}
+    \item[B.] \sol{64B}
     \item[C.] 80B
 \end{enumerate}
-\textcolor{Comment}{(we are using padding) 50B = 400bit -> 512 (multiple of 128) = 64B size of plaintext+padding, and the ciphertext has the same length }
+\com{(we are using padding) 50B = 400bit -> 512 (multiple of 128) = 64B size of plaintext+padding, and the ciphertext has the same length }
 
 \textbf{Q7b - In the above case, let’s assume the ciphertext is a secret message to be sent by Alice to Bob. Indicate the size of data transmitted so that Bob can recover the plaintext}
 \begin{enumerate}
     \item[A.] 50B
     \item[B.] 64B
-    \textbf{\item[C.] 80B}
+    \item[C.] \sol{80B}
 \end{enumerate}
-\textcolor{Comment}{Bob receives 64B of text encrypted, for decryption he needs IV, same length of a blocks so 16B --> 64+16 = 80B of total data received}
+\com{Bob receives 64B of text encrypted, for decryption he needs IV, same length of a blocks so 16B --> 64+16 = 80B of total data received}
 
 \textbf{Q8a - If you encrypt 50B of plaintext with AES-256-CBC, how long is the ciphertext?}
 \begin{enumerate}
     \item[A.] 50B
-    \textbf{\item[B.] 64B}
+    \item[B.] \sol{64B}
     \item[C.] 80B
 \end{enumerate}
-\textcolor{Comment}{the 256 in AES-256-CBC indicate the key length, the block data size is the same of Q7a (128)}
+\com{the 256 in AES-256-CBC indicate the key length, the block data size is the same of Q7a (128)}
 
 
 \textbf{Q8b - In the above case, let’s assume the ciphertext is a secret message to be sent by Alice to Bob. Indicate the size of data transmitted so that Bob can recover the plaintext}
 \begin{enumerate}
     \item[A.] 50B
     \item[B.] 64B
-    \textbf{\item[C.] 80B}
+    \item[C.] \sol{80B}
     \item[D.] 96B
 \end{enumerate}
-\textcolor{Comment}{the IV block is again 128bit}
+\com{the IV block is again 128bit}
 
 \textbf{Q9a - If you encrypt 32B of plaintext with AES-128-CBC, how long is the ciphertext?}
 \begin{enumerate}
     \item[A.] 32B
-    \textbf{\item[B.] 48B}
+    \item[B.] \sol{48B}
     \item[C.] 64B
 \end{enumerate}
 
 \textbf{Q9b - If you encrypt 32B of plaintext with AES-128-CTR, how long is the ciphertext?}
 \begin{enumerate}
-    \textbf{\item[A.] 32B}
+    \item[A.] \sol{32B}
     \item[B.] 48B
     \item[C.] 64B
 \end{enumerate}
-\textcolor{Comment}{32B = 256bit an exact multiple of 128, but 'Even if the plaintext is an exact multiple of the block, padding must be added anyhow to avoid
+\com{32B = 256bit an exact multiple of 128, but 'Even if the plaintext is an exact multiple of the block, padding must be added anyhow to avoid
 errors in the interpretation of the last block. The biggest padding is required when there is no padding to add.' So 48B, 32B + 16B of only padding }
 
 \textbf{Q10 - Assume Alice wants to protect her data (1 TB) on disk, but she does not want to increase the space occupied on disk. Moreover, she would like to perform the encryption very fast and to keep her data protected for 10 years. Which algorithm should she use?}
 \begin{enumerate}
     \item[A.] AES-128-CBC
     \item[B.] AES-128-ECB
-    \textbf{\item[C.] AES-256-CTS-CBC}
+    \item[C.] \sol{AES-256-CTS-CBC}
     \item[D.] 3DES-168-CTS-CBC
     \item[E.] AES-512-CTS-CBC
 \end{enumerate}
-\textcolor{Comment}{
+\com{
     A -> padding = increasethe space occupied disk\\
     B -> never use ECB\\
     D -> AES is faster and more secure than 3DES\\
@@ -142,23 +142,23 @@ errors in the interpretation of the last block. The biggest padding is required 
     \item[C.] AES-256-CTR
     \item[D.] 3DES-168-CTR
     \item[E.] AES-512-CTS-CBC
-    \textbf{\item[F.] Chacha20-256}
+    \item[F.] \sol{Chacha20-256}
     \item[G.] Chacha20-512
     \item[H.] RC4-128
 \end{enumerate}
-\textcolor{Comment}{Chacha20 is faster}
+\com{Chacha20 is faster}
 
 \textbf{Q12 - Which of the following statements are true for the CTR mode:}
 \begin{enumerate}
-    \textbf{\item[A.] allows parallel encryption of plaintext}
-    \textbf{\item[B.] allows parallel decryption of plaintext}
-    \textbf{\item[C.] allows random access to groups}
-    \textbf{\item[D.] if a ciphertext block is modified, then (only) that group is erroneously decrypted (but not the successive ones)}
-    \textbf{\item[E.] it is difficult to perform cryptanalysis because identical plaintext groups encrypt differently}
+    \item[A.] \sol{allows parallel encryption of plaintext}
+    \item[B.] \sol{allows parallel decryption of plaintext}
+    \item[C.] \sol{allows random access to groups}
+    \item[D.] \sol{if a ciphertext block is modified, then (only) that group is erroneously decrypted (but not the successive ones)}
+    \item[E.] \sol{it is difficult to perform cryptanalysis because identical plaintext groups encrypt differently}
     \item[F.] it’s possible to rearrange/swap ciphertext groups
-    \textbf{\item[G.] if a ciphertext group is deleted, all successive ciphertext groups will be decrypted erroneously}
+    \item[G.] \sol{if a ciphertext group is deleted, all successive ciphertext groups will be decrypted erroneously}
 \end{enumerate}
-\textcolor{Comment}{
+\com{
     A, B, C, D -> i-input and i-output are independent from others i-block\\
     E -> thanks to a nounce and a counter\\
     F -> the counter ensures serialization of blocks
@@ -166,7 +166,7 @@ errors in the interpretation of the last block. The biggest padding is required 
     anyway 1 2 3 4 5, so from 3 onwards it  will decrypt using the wrong counter-value (wip)
 }
 
-\subsection*{Exercise}
+\subsection{Exercise}
 \textbf{Alice wants to send a confidential message P to Bob … and}
 \begin{itemize}
     \item Alice and Bob have 64 bit platforms
@@ -176,6 +176,7 @@ errors in the interpretation of the last block. The biggest padding is required 
 
 \textbf{Alice and Bob have agreed OOB about an algorithm (AES128-CBC) and a key (K)}
 \textbf{write the formulas and the steps}
+\com{
 \textbf(Solution, in red optional points)
 Alice: 
 \begin{itemize}
@@ -190,14 +191,14 @@ Bob:
     \item \textcolor{Comment}{computes IV = AES-128-ECB-dec(K,IV')} 
     \item computes P' = AES-128-CBC-dec(K,C,IV)
 \end{itemize}
+}
 
-
-\section*{asymmetric crypto}
+\section{asymmetric crypto}
 
 \textbf{Q13 - Which of the following algorithms is based on the fact that it is hard to factor large numbers into two prime numbers?}
 \begin{enumerate}
     \item[A.] ECC
-    \textbf{\item[B.] RSA}
+    \item[B.] \sol{RSA}
     \item[C.] Diffie-Hellman
     \item[D.] DES
 \end{enumerate}
@@ -206,24 +207,24 @@ Bob:
 \begin{enumerate}
     \item[A.] replay attack – Eve sends the public key of Alice 10 times
     \item[B.] sniffing attack – Eve reads the public key of Alice
-    \textbf{\item[C.] man in the middle – Eve modifies the public key of Alice by changing some bits}
-    \textbf{\item[D.] man in the middle – Eve replaces the public key of Alice with her own}
-    \textbf{\item[E.] filtering – Eve deletes the public key of Alice}
+    \item[C.] \sol{man in the middle – Eve modifies the public key of Alice by changing some bits}
+    \item[D.] \sol{man in the middle – Eve replaces the public key of Alice with her own}
+    \item[E.] \sol{filtering – Eve deletes the public key of Alice}
 \end{enumerate}
-\textcolor{Comment}{A,B do not damage Alice Bob communication}
+\com{A,B do not damage Alice Bob communication}
 
 \textbf{Q15 - A sender (Alice) wants to send a digitally signed message to a receiver (Bob). Which key is used to create a digital signature?}
 \begin{enumerate}
     \item[A.] The receiver’s private key
     \item[B.] The sender’s public key
-    \textbf{\item[C.] The sender’s private key}
+    \item[C.] \sol{The sender’s private key}
     \item[D.] The receiver’s public key
 \end{enumerate}
-\textcolor{Comment}{figure 2.16}
+\com{figure 2.16}
 
 \textbf{Q16 - What is the advantage of RSA over DSA?}
 \begin{enumerate}
-    \textbf{\item[A.] It can provide digital signature and encryption functionality.}
+    \item[A.] \sol{It can provide digital signature and encryption functionality.}
     \item[B.] It uses fewer resources and encrypts faster because it uses symmetric keys.
     \item[C.] It is a block cipher rather than a stream cipher.
     \item[D.] It employs a one-time encryption pad.
@@ -234,14 +235,14 @@ Bob:
     \item[A.] A method of transferring a handwritten signature to an electronic document
     \item[B.] A method to encrypt confidential information
     \item[C.] A method to provide an electronic signature and encryption
-    \textbf{\item[D.] A method to let the receiver of the message verify the source (data origin) and integrity of a message}
+    \item[D.] \sol{A method to let the receiver of the message verify the source (data origin) and integrity of a message}
 \end{enumerate}
-\textcolor{Comment}{A -> no, B and C no, we don use it for encrypt (since the key for decrypt is public)}
+\com{A -> no, B and C no, we don use it for encrypt (since the key for decrypt is public)}
 
 \textbf{Q18a - Diffie-Hellman is a:}
 \begin{enumerate}
     \item[A.] symmetric algorithm
-    \textbf{\item[B.] asymmetric algorithm}
+    \item[B.] \sol{asymmetric algorithm}
     \item[C.] hash algorithm
     \item[D.] keyed-digest algorithm
 \end{enumerate}
@@ -249,14 +250,14 @@ Bob:
 \textbf{Q18b - ... that is frequently used for:}
 \begin{enumerate}
     \item[A.] creating digital signatures
-    \textbf{\item[B.] agreeing on a secret key}
+    \item[B.] \sol{agreeing on a secret key}
     \item[C.] creating an HMAC
 \end{enumerate}
-\textcolor{Comment}{Cap 2.3.3}
+\com{Cap 2.3.3}
 
 \textbf{Q19 - Alice wants to send a secret key K to Bob by using asymmetric cryptography. Which operation must Alice do?}
 \begin{enumerate}
-    \textbf{\item[A.] encrypt the key K with the public key of Bob, by using RSA}
+    \item[A.] \sol{encrypt the key K with the public key of Bob, by using RSA}
     \item[B.] encrypt the key K with the public key of Bob, by using DSA
     \item[C.] encrypt the key K with her own public key, by using RSA
     \item[D.] encrypt the key K with the private key of Bob, by using DSA
