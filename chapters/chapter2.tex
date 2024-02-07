@@ -498,7 +498,6 @@ For the receiver, if he needs to decipher only bytes no. 30 and 31:
 \begin{verbatim}
         ptext[30] = ctext[30] xor MSB( enc(K, nonce || 30) )
         ptext[31] = ctext[31] xor MSB( enc(K, nonce || 31) )
-    
 \end{verbatim}
 
 \textbf{Note}: the byte-oriented CTR mode of a block algorithm may be considered a stream algorithm (see chapter \ref{chap:symmetricstream}).
