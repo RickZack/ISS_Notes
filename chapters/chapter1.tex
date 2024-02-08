@@ -1,5 +1,5 @@
 \chapter{Introduction to the security of
-ICT systems}
+  ICT systems}
 
 \section{Why is security an important issue?}
 Cybersecurity has become very important in today's world. Since every system relies on computer systems, any kind of damage can result in significant economic losses. Even indirect attacks that do not aim to steal money have economic costs. Cybersecurity is essential because attacks can be performed without the need to physically access the target location.
@@ -36,57 +36,7 @@ To express this idea clearly, we follow the \textbf{KISS rule}: \emph{"Keep it S
 
 
 
-% TMP old only
-\ifthenelse{\boolean{showOld}}{
-  \section{A definition of ICT Security [OLD]}
-  Each of us has a different concept of security: for example, the obligation to use safety belts when driving depends on country to country. Security is a personal concept but in engineering, we need to provide some formal definitions.
-  Cybersecurity is a distributed part of a company, and every employee of a company must have the awareness for cybersecurity.
-  \begin{enumerate}
-    \item[1.] "Cybersecurity is the set of products, services, organization rules, and individual behaviors that protect the ICT system of a company."
-  \end{enumerate}
-  Let us explain the keywords in the definition.
-  \begin{description}
-    \item [Products:] refers to something that people can buy (such as products for firewall and VPN);
-    \item [Services:] these services are implemented by buying products;
-    \item [Organization rules:] they are required because even if, for example, a new system is set up with a password, rules must provide information to employees on how complex the password must be; otherwise, there will be no rules but personal behaviors, which could make the use of technical solutions less effective.
-  \end{description}
-  \begin{enumerate}
-    \item [2.] It is the duty to protect the resources from undesired access, guarantee the privacy of information, ensure the service operation, and availability in case of unpredictable events (\textbf{C.I.A. = Confidentiality, Integrity, Availability}).
-  \end{enumerate}
 
-  More in detail, these three concepts have the following meaning:
-  \begin{itemize}
-    \item \textbf{Confidentiality} covers two related concepts:
-          \begin{description}
-            \item [Data confidentiality:] assures that private or confidential information is not made available or disclosed to unauthorized individuals.
-            \item [Privacy:] assures that individuals control or influence what information related to them may be collected and stored and by whom and to whom that information may be disclosed.
-          \end{description}
-          In terms of requirements and the definition of a loss of security, it means preserving authorized restrictions on information access and disclosure, including means for protecting personal privacy and proprietary information. A loss of confidentiality is the unauthorized disclosure of information.
-
-    \item \textbf{Integrity covers} two related concepts:
-          \begin{description}
-            \item [Data integrity:] assures that information (both stored and in transmitted packets) and programs are changed only in a specified and authorized manner.
-            \item [System integrity:] assures that a system performs its intended function in an unimpaired manner, free from deliberate or inadvertent unauthorized manipulation of the system.
-          \end{description}
-          In terms of requirements and the definition of a loss of security, it means guarding against improper information modification or destruction, including ensuring information non-repudiation and authenticity. A loss of integrity is the unauthorized modification or destruction of information.
-
-    \item \textbf{Availability:} assures that systems work promptly, and service is not denied to authorized users. In terms of requirements and the definition of a loss of security, it means ensuring timely and reliable access to and use of information. A loss of availability is the disruption of access to or use of information or an information system.
-  \end{itemize}
-
-  This definition is a good starting point for cybersecurity, but more than the C.I.A. triad is required; two of the most mentioned are as follows:
-
-  \begin{itemize}
-    \item \textbf{Authenticity:} the property of being genuine and being able to be verified and trusted; confidence in the validity of a transmission, a message, or message originator. This means verifying that users are who they say they are and that each input arriving at the system came from a trusted source.
-
-    \item \textbf{Accountability:} the security goal that generates the requirement for actions of an entity to be traced uniquely to that entity. This supports non-repudiation, deterrence, fault isolation, intrusion detection and prevention, and after-action recovery and legal action.
-  \end{itemize}
-
-  \begin{enumerate}
-    \item[1.] "The objective is to guard the information with the same professionalism and attention as for the jewels and deposit certificates stored in a bank caveau".
-    \item[3.] "The ICT system is the safe of our most valuable information; ICT security is the equivalent of the locks, combinations, and keys required to protect it".
-  \end{enumerate}
-
-}{}
 
 
 
@@ -129,7 +79,7 @@ Recap of terminology:
 
 \section{Risk management}
 To prioritize the risks, we can build a \textbf{risk assessment matrix} (or risk heat map):
-\begin{figure}[h]
+\begin{figure}[H]
   \includegraphics[page = 10,trim = 1cm 3cm 1cm 12cm, clip, width = \textwidth]{\slides}
 \end{figure}
 
@@ -175,7 +125,7 @@ Additionally, threats exploit vulnerabilities, and the existence of vulnerabilit
 \end{wrapfigure}
 On the left, there are the security requirements that we want to implement. Security requirements are indicated by security risks, and security requirements are met by security controls.
 
-The \textbf{security control} is the most important piece of the picture nowadays. It is an element placed in the system to protect against a specific threat and reduce the risks to which the system is exposed. Examples of security controls include firewalls, VPNs, and disk encryption.
+The \textbf{security control} is the most important piece of the picture nowadays. It is an element placed in the system to \textbf{protect against a specific threat} and \textbf{reduce the risks to which the system is exposed}. Examples of security controls include firewalls, VPNs, and disk encryption.
 
 \bigskip
 Some terminology:
@@ -240,11 +190,11 @@ Example:
   \item 12 Sep 18: ZDI confirms its intention to 0-day on 20 Sep 18.
 \end{itemize}
 
-% TMP: new part
+
 
 \section{Cyber threats}
 
-\subsection*{Components}
+\subsection{Components}
 \begin{wrapfigure}{r}{0.30\textwidth}
   \centering
   \includegraphics[page = 20,trim = 8cm 3cm 8cm 11cm, clip, width = 0.30\textwidth]{\slides}
@@ -257,7 +207,7 @@ There are \textbf{three main components} in cyber threats:
 \end{itemize}
 
 
-\subsection*{Motivations: \emph{MICE}}
+\subsection{Motivations: \emph{MICE}}
 What are the motivations behind this?
 \begin{itemize}
   \item \textbf{M is for Money:} direct transfer, blackmail, ... or indirect (e.g. data reselling);
@@ -275,7 +225,7 @@ What are the motivations behind this?
 \end{figure}
 
 \ifthenelse{\boolean{showNew}}{
-  \subsection*{Standardization bodies}
+  \subsection{Standardization bodies}
   Standardization bodies in cybersecurity are organizations that develop and publish standards and guidelines to enhance security and interoperability in computer systems and networks.
   %TODO: might be better to add subfigures here
   \begin{figure}[!h]
@@ -298,7 +248,7 @@ What are the motivations behind this?
 
 
 If we have learned anything from the past couple of years, it is that \textbf{computer security flaws are inevitable}.
-Systems break, vulnerabilities are reported in the press, and still many people put their faith in the next product, or the next upgrade, or the next patch. "This time it's secure," they say. So far, it has not been.
+Systems break, vulnerabilities are reported in the press, and still many people put their faith in the next product, or the next upgrade, or the next patch. "This time it's secure", they say. So far, it has not been.\\
 \textbf{Security is a process, not a product}. Products provide some protection, but the only way to effectively do business in an insecure world is to put processes in place that recognize the inherent insecurity in the products.
 \textbf{The trick is to reduce your risk of exposure regardless of the products or patches}.
 
@@ -316,6 +266,39 @@ To make it possible, it is necessary to follow some security principles:
   \item \textbf{Need-to-know}: this principle emphasizes that access to any component of the system should be granted only for the data required to execute a specific task. For example, in the case of Amazon, several people work within the system. When a customer places an order on Amazon, the first person handling the order can only see the details of what was ordered. They do not have access to information about who placed the order or the destination of the goods.
 \end{itemize}
 
+\section{Security and C.I.A.}
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 27,trim = 1cm 2.3cm 1cm 4cm, clip, width = .5\textwidth]{\slides}
+\end{figure}
+The \textbf{C.I.A. triad}, standing for \textbf{Confidentiality}, \textbf{Integrity}, and \textbf{Availability}, is a foundational concept in information security.
+These three concepts have the following meaning:
+
+\begin{itemize}
+  \item \textbf{Confidentiality} covers two related concepts:
+        \begin{description}
+          \item [Data confidentiality:] assures that private or confidential information is not made available or disclosed to unauthorized individuals.
+          \item [Privacy:] assures that individuals control or influence what information related to them may be collected and stored and by whom and to whom that information may be disclosed.
+        \end{description}
+        In terms of requirements and the definition of a loss of security, it means preserving authorized restrictions on information access and disclosure, including means for protecting personal privacy and proprietary information. A loss of confidentiality is the unauthorized disclosure of information.
+
+  \item \textbf{Integrity covers} two related concepts:
+        \begin{description}
+          \item [Data integrity:] assures that information (both stored and in transmitted packets) and programs are changed only in a specified and authorized manner.
+          \item [System integrity:] assures that a system performs its intended function in an unimpaired manner, free from deliberate or inadvertent unauthorized manipulation of the system.
+        \end{description}
+        In terms of requirements and the definition of a loss of security, it means guarding against improper information modification or destruction, including ensuring information non-repudiation and authenticity. A loss of integrity is the unauthorized modification or destruction of information.
+
+  \item \textbf{Availability:} assures that systems work promptly, and service is not denied to authorized users. In terms of requirements and the definition of a loss of security, it means ensuring timely and reliable access to and use of information. A loss of availability is the disruption of access to or use of information or an information system.
+\end{itemize}
+
+This definition is a good starting point for cybersecurity, but more than the C.I.A. triad is required; two of the most mentioned are as follows:
+
+\begin{itemize}
+  \item \textbf{Authenticity:} the property of being genuine and being able to be verified and trusted; confidence in the validity of a transmission, a message, or message originator. This means verifying that users are who they say they are and that each input arriving at the system came from a trusted source.
+
+  \item \textbf{Accountability:} the security goal that generates the requirement for actions of an entity to be traced uniquely to that entity. This supports non-repudiation, deterrence, fault isolation, intrusion detection and prevention, and after-action recovery and legal action.
+\end{itemize}
 
 \section{Security properties}\label{cap:secprop}
 \begin{center}
@@ -970,7 +953,7 @@ what attack is:
   \centering
   \includegraphics[page = 93,trim = 5cm 3.2cm 5cm 4cm, clip, width = 0.30\textwidth]{\slides}
   \caption[short]{
-   \href{https://www.nist.gov/cyberframework/online-learning/five-functions}{https://www.nist.gov/cyberframework/online-learning/five-functions} }
+    \href{https://www.nist.gov/cyberframework/online-learning/five-functions}{https://www.nist.gov/cyberframework/online-learning/five-functions} }
 \end{figure}
 
 \section{Final slides}
