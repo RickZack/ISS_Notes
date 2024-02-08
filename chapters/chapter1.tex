@@ -225,7 +225,7 @@ What are the motivations behind this?
 \end{figure}
 
 \ifthenelse{\boolean{showNew}}{
-  \subsection{Standardization bodies}
+  \section{Standardization bodies}
   Standardization bodies in cybersecurity are organizations that develop and publish standards and guidelines to enhance security and interoperability in computer systems and networks.
   %TODO: might be better to add subfigures here
   \begin{figure}[!h]
@@ -252,7 +252,13 @@ Systems break, vulnerabilities are reported in the press, and still many people 
 \textbf{Security is a process, not a product}. Products provide some protection, but the only way to effectively do business in an insecure world is to put processes in place that recognize the inherent insecurity in the products.
 \textbf{The trick is to reduce your risk of exposure regardless of the products or patches}.
 
-\subsection*{Security Principles}
+\subsection{Security Principles}
+\begin{figure}[h]
+  \centering
+  \includegraphics[page = 26,trim = 2cm 3cm 2cm 4cm, clip, width = 0.55\textwidth]{\slides}
+  \caption{Security principles}
+\end{figure}
+
 To make it possible, it is necessary to follow some security principles:
 \begin{itemize}
   \item \textbf{Security in depth}: if the enemy can defeat the first line of defense, there must be a second line to stop the attacker. Do not rely on just one defense, as that defense may have a bug or problem. It is better to have multiple levels of defense, so as the attacker breaks through the defenses, it will become increasingly difficult to keep penetrating.
@@ -320,7 +326,7 @@ This definition is a good starting point for cybersecurity, but more than the C.
 
 \subsection{Authentication}
 
-\subsubsection*{Simple peer authentication}
+\subsubsection{Simple peer authentication}
 
 % Using minipage 
 \noindent
@@ -334,7 +340,7 @@ This definition is a good starting point for cybersecurity, but more than the C.
 \end{minipage}
 
 
-\subsubsection*{Mutual peer authentication}
+\subsubsection{Mutual peer authentication}
 \noindent
 \begin{minipage}{0.5\textwidth}
   \centering
@@ -345,7 +351,7 @@ This definition is a good starting point for cybersecurity, but more than the C.
   In mutual peer authentication, we also require a formal proof that we are connected to the real server. A fake server could display the same page as the ordinary bank just to obtain credentials from the user. When we connect to a server, we typically trust the server, but we need proof. Both parties authenticate each other.
 \end{minipage}
 
-\subsubsection*{Data origin authentication}
+\subsubsection{Data origin authentication}
 \noindent
 \begin{minipage}{0.5\textwidth}
   \centering
@@ -363,7 +369,7 @@ There is a difference between authentication and identification. Authentication 
 
 \textbf{Beware!} The concept of "non-repudiation" is typically associated with not only technical aspects but also with specific procedures carried out voluntarily. We rarely achieve non-repudiation with protocols or procedures that automatically perform actions on behalf of the user.
 
-\subsubsection*{Example of non-repudiation}
+\subsubsection{Example of non-repudiation}
 %&& !inSnippetMode
 Let's consider non-repudiation of an electronic signature:
 \begin{itemize}
@@ -390,7 +396,7 @@ and thus depends on access control service and other security services.
 \end{wrapfigure}
 Authentication means identifying the actors in the system. After authentication, we can make decisions. For example, in the figure, Barbara has correctly identified herself and then asks the computer to "open the box of Alice's car" and the computer performs an \textbf{authorization decision (or access control)}. This is because the car in the box does not belong to Barbara. Therefore, a system must also determine if someone is authorized to perform an operation or not.
 
-\subsubsection*{Important difference!}
+\subsubsection{Important difference!}
 \begin{itemize}
   \item \textbf{Authorization} is the process of verifying whether you, who have already been authenticated, are permitted to perform a particular operation.
   \item \textbf{Authentication} is the process of identifying the users of a system.
@@ -398,7 +404,7 @@ Authentication means identifying the actors in the system. After authentication,
 
 
 \subsection{Privacy}
-\subsubsection*{Privacy (communication)}
+\subsubsection{Privacy (communication)}
 Privacy has several meanings.
 Communication privacy, for example, ensures that when two peers are communicating, it should not be possible for a third party to understand the communication.
 Even if someone can intercept the data passing through the network, no one (except the two end users) should be able to comprehend the contents of the communication.
@@ -407,7 +413,7 @@ Even if someone can intercept the data passing through the network, no one (exce
   \includegraphics[page = 34,trim = 1cm 2.15cm 1cm 5cm, clip, width = 0.55\textwidth]{\slides}
 \end{figure}
 
-\subsubsection*{Privacy (data, actions, position)}
+\subsubsection{Privacy (data, actions, position)}
 \begin{itemize}
   \item \textbf{Data privacy:} Even if we have access to the physical location where data is stored, we might not be able to access the data.
   \item \textbf{Privacy of actions:} Companies have the right to monitor the websites visited by users, as do law enforcement agencies, especially in cases related to anti-terrorism laws. In Italy, all data sent over the network are stored for 7 years in case of future investigations.
@@ -418,7 +424,7 @@ Even if someone can intercept the data passing through the network, no one (exce
 
 \subsection{Integrity}
 
-\subsubsection*{Integrity (data modification)}
+\subsubsection{Integrity (data modification)}
 % Using minipage 
 \noindent
 \begin{minipage}{0.5\textwidth}
@@ -430,11 +436,11 @@ Even if someone can intercept the data passing through the network, no one (exce
   It means that if data have been modified, we are able to detect it. It doesn't mean that nobody can change the data; that's impossible. Network managers can always read and potentially modify data. That's why integrity refers to the detection of modified data.
 \end{minipage}
 
-\subsubsection*{Integrity (data cancellation/filtering)}
+\subsubsection{Integrity (data cancellation/filtering)}
 \noindent
 \begin{minipage}{0.5\textwidth}
   \centering
-  \includegraphics[page = 33,trim = 1cm 2.2cm 1cm 4cm, clip, width = \linewidth]{\slides}
+  \includegraphics[page = 37,trim = 1cm 2.2cm 1cm 4cm, clip, width = \linewidth]{\slides}
 \end{minipage}
 \hspace{0.05\textwidth}
 \begin{minipage}{0.4\textwidth}
@@ -461,7 +467,7 @@ During the explanation of security properties, we always talked about protecting
   \item \textbf{Data in use:} when data are in RAM for use by a process.
 \end{itemize}
 
-\subsection*{Where is the enemy?}
+\subsection{Where is the enemy?}
 To defend something, we must know \ul{where the enemy is}. There are a few possibilities:
 
 \begin{itemize}
@@ -479,7 +485,7 @@ Taliban. Still full of classified information, such as names, sites, and weak po
 
 
 \ifthenelse{\boolean{showNew}}{
-  \subsection*{Threat model: where is the enemy? Which actions can it perform?}
+  \subsection{Threat model: where is the enemy? Which actions can it perform?}
   \begin{itemize}
     \item \textbf{\emph{MITM} (Main-In-The-Middle):} Sits between two peers A and B;
     \item \textbf{\emph{MATE} (Main-At-The-End):} Resides inside one peer;
@@ -489,7 +495,7 @@ Taliban. Still full of classified information, such as names, sites, and weak po
   \end{itemize}
 }{}
 
-\subsection*{Basic problems (technological)}
+\subsection{Basic problems (technological)}
 \begin{itemize}
   \item The networks are insecure:
         \begin{itemize}
@@ -505,7 +511,7 @@ Taliban. Still full of classified information, such as names, sites, and weak po
 
 \section{Some classes of attacks}
 
-\subsection*{Passive and attive attacks}
+\subsection{Passive and attive attacks}
 A useful means of classifying security attacks is in terms of \emph{passive attacks and active attacks}.
 
 A \textbf{passive attack} attempts to {learn or make use of information from the system but does not affect system resources}. Examples of passive attacks are:
@@ -576,7 +582,7 @@ Other techniques to improve the attack include using a \textbf{"reflector"}. Thi
 \end{itemize}
 
 
-\subsubsection*{DDOS attack}
+\subsubsection{DDOS attack}
 
 \begin{figure}[h]
   \centering
@@ -679,14 +685,14 @@ The issue stemmed from the fact that at port 135, there was a new Microsoft-only
 \end{itemize}
 
 
-\subsection*{Virus and worm (malware)}
+\subsection{Virus and worm (malware)}
 Virus and worms require some kind of complicity (may be involuntary) from \textbf{the user} (gratis, free, urgent,
 important), the \textbf{system manager} (wrong configuration), \textbf{the producer} (automatic execution, trusted).
 
 Some countermeasures are user awareness, correct configuration/secure software, antivirus (installed and updated).
 
 
-\subsection*{Malware food chain}
+\subsection{Malware food chain}
 \begin{wrapfigure}{r}{0.40\textwidth}
   \centering
   \includegraphics[page = 60,trim = 1cm 2cm 1cm 5cm, clip, width = 0.40\textwidth]{\slides}
@@ -701,7 +707,7 @@ When someone discovers a vulnerability, it can be exploited for the development 
 Payment for these vulnerabilities is often made using cryptocurrency. The buyers of these vulnerabilities are typically the \textbf{malware toolkit makers}, which are used to develop attack programs that incorporate malware; malware distributors, such as spammers and website owners, then employ this type of software for their illicit activities.
 
 
-\subsubsection*{Zeus: Cyber Theft Ring}
+\subsubsection{Zeus: Cyber Theft Ring}
 It often happens to receive an email that asks you to send money outside of the country in exchange for a large sum of money.
 If you accept this request, you will supposedly receive the money.
 They may begin by testing you, sending a small amount of money, for example, \$10,000, and then ask you to send \$7,000 to Nigeria, allowing you to keep \$3,000 for yourself.
@@ -725,19 +731,19 @@ coders/exploiters are typically in the East Europe.
 In the picture there are also numbers about the Law
 Enforcement Response.
 
-\subsection*{Ransomware}
+\subsection{Ransomware}
 Ransomware is a type of malware that is designed to extort a \textbf{ransom}, typically by demanding money in exchange for releasing something. When ransomware infects a computer, it usually encrypts the contents of the disk, rendering them unreadable. This also applies to tablets and smartphones, for example, by changing access passwords to data.
 
 However, paying the requested ransom (usually in bitcoin) does not always guarantee the recovery of your data. This is because the key required to unlock the files is typically stored on a server that could be shut down as a result of a police investigation. As a result, the attacker may no longer have access to the key used for locking the data.
 
-\subsection*{Ransomware-as-a-service}
+\subsection{Ransomware-as-a-service}
 For some time, there was a \emph{ransomware-as-a-service}, in which individuals provided the source code for ransomware; this enabled people to use ransomware even if they had little understanding of how it worked. This service was known as the \textbf{TOX malware} and operated on the \textbf{TOR anonymous network}. TOX would demand a ransom and handle the payment, charging a 20\% service fee.
 The "customer" has the only task to distribute it to the victims (for example by leaving a USB pen in public places).
 TOX saw rapid growth, with around 1,000 customers per week and infecting approximately 100 devices per hour.
 
 Even though TOX was eventually stopped by law enforcement, ransomware threats continue to exist. Technology alone is insufficient for protecting against ransomware. While having a robust anti-malware system installed is helpful, it's important to note that this type of attack targets not only end-users but also servers.
 
-\subsection*{Ransomware: Not only technology but also procedures and organization}
+\subsection{Ransomware: Not only technology but also procedures and organization}
 Ransomware typically \textbf{encrypts data} that can only be restored with the proper decryption key. Regular backups can provide a potential solution, but is that enough?
 \begin{itemize}
   \item \textbf{How old is the backup?} Consider the age of your backups. Even if you create daily backups, ransomware developers are aware of this practice and have developed a stealthy variant known as silent ransomware. \emph{Silent ransomware} infiltrates your system but instead of encrypting your current data, it targets your backup files. This can continue for several days, rendering your backups unreadable, and it may only be discovered later that the backups are corrupted.
@@ -765,7 +771,7 @@ Ransomware typically \textbf{encrypts data} that can only be restored with the p
   \item \textbf{Performance Decrease Due to the Application of Security Measures:} Consider the example of a company that sought Lioy's assistance with antivirus software. Although the company claimed to have the best antivirus, they frequently experienced virus infections that disrupted their system. Lioy visited the company's premises and examined everything, including antivirus installation and updates. While exploring the office to understand the problem, he noticed a desktop with the antivirus icon disabled. Lioy inquired about this, and an employee explained that the antivirus's file scanning process caused delays in accessing files, prompting employees to disable it temporarily for more efficient work. Surprisingly, all employees followed the same practice. Lioy concluded that the company had a non-technological problem.
 \end{itemize}
 
-\subsection*{Social engineering techniques and strategies}
+\subsection{Social engineering techniques and strategies}
 In the context of information security, \textbf{social engineering} is the \ul{psychological manipulation of people to induce them into performing actions or divulging confidential information}. Typically, the targets are \textbf{naive users}, such as those who may be urged to "immediately change their password due to an alleged PC attack". However, even experienced users can be targeted, for instance, by replicating a genuine email but altering its attachment or URL.
 
 These tactics are employed through various channels, including email, phone, fax, and even physical documents; they often relay on \textbf{psychological pressure}. Usually, this is achieved in two ways:
@@ -777,7 +783,7 @@ These tactics are employed through various channels, including email, phone, fax
 In general, those who run these psychological attacks try to show familiarity with the company's procedures, habits, and personnel to gain trust and make the target lower his \textbf{defenses}.
 
 
-\subsubsection*{Phishing(pronounced "fishing")}
+\subsubsection{Phishing(pronounced "fishing")}
 \begin{wrapfigure}{r}{0.30\textwidth}
   \centering
   \includegraphics[page = 71,trim = 3cm 5cm 3cm 6cm, clip, width = 0.30\textwidth]{\slides}
@@ -790,7 +796,7 @@ An example message can look like: "Dear Internet banking user, please fill in th
 \end{itemize}
 
 
-\subsubsection*{Pharming}
+\subsubsection{Pharming}
 It's a term of controversial use and embodies a set of several techniques to redirect a user towards a shadow server by:
 \begin{itemize}
   \item changing the "hosts" file at the client.
@@ -801,7 +807,7 @@ It's a term of controversial use and embodies a set of several techniques to red
 This could happen via a \textbf{direct attack} if there is a vulnerability or misconfiguration, or via an \textbf{indirect attack} with a virus or worm.
 
 
-\subsection*{Fake Mail / IM}
+\subsection{Fake Mail / IM}
 \begin{wrapfigure}{r}{0.30\textwidth}
   \centering
   \includegraphics[page = 72,trim = 5cm 3cm 5cm 14cm, clip, width = 0.30\textwidth]{\slides}
@@ -840,7 +846,7 @@ The first attack discussed is \textbf{Stuxnet}, known for being the first cyber-
 
 \subsection{Against Cyber-Physical Systems}
 
-\subsubsection*{Stuxnet (2010)}
+\subsubsection{Stuxnet (2010)}
 It is important because it is the prototype of a new kind of attack, since it caused physical damage (like a virus) and it attempts to propagate itself to other systems (like a worm): the target were \textbf{SCADA systems} of a specific manufacturer attached to the infected nodes. SCADA stands for Supervisory Control and Data Acquisition, and they are those computer systems that control process plants or machinery, for example production systems for cars, food, and so on. Since SCADA is the interface between computer and physical reality, an attack against it could damage physical system components. Stuxnet was a very sophisticated attack because this worm contained four attack vectors:
 
 \begin{itemize}
@@ -881,14 +887,14 @@ The malware was able to manipulate the speed of the cylinders used for uranium e
 
 \subsection{Against critical infrastructure}
 
-\subsubsection*{Fancy Bear / APT 28}
+\subsubsection{Fancy Bear / APT 28}
 This hacking group is believed to have ties to the Russian military intelligence agency, GRU. Over the years, they have been involved in cyber-attacks and espionage activities against various high-profile targets; some of their notable targets include the German and Norwegian parliaments, the French television network TV5Monde, the White House, NATO, the U.S. Democratic National Committee, and the Organization for Security and Co-operation in Europe (OSCE). \\
 Additionally, during the years 2014-2016, they developed Android malware specifically designed to target the Ukrainian Army's Rocket Forces and Artillery.
 
 
-\subsection*{Against Internet-of-Things, automotive, home}
+\subsection{Against Internet-of-Things, automotive, home}
 
-\subsubsection*{Mirai}
+\subsubsection{Mirai}
 Mirai is the most famous IOT \textbf{cyberworm} discovered around September-November 2016. This kind of attack does not damage directly but simply saturates the resources (like the DoS). Every system infected by Mirai becomes part of a huge botnet for a large-scale DDoS. It was used for disruptive attacks such as:
 \begin{itemize}
   \item Krebs on Security → up to 620 Gbit/s
@@ -902,7 +908,7 @@ Mirai contains a \ul{propagation scan phase} to compromise additional targets (s
 It also \ul{observes the victim system} before contacting the C\&C: when Mirai is installed on a device, it doesn't know if it is a true or fake device (maybe used to study Mirai's behavior) and for this reason, when it starts, it connects to a fake C\&C. \texttt{IF} the communication works, it means that there is a problem (because the connection should not work, which means that someone is giving Mirai full access), and it shuts down automatically. Only after performing this check, it \texttt{THEN} contacts the real C\&C.\\
 The kind of attacks, since it is a DoS network-based, is driven by C\&C that can decide which attack to make and can open many \texttt{TCP} connections, send tons of \texttt{UDP} packets, or use \texttt{GRE} or simple \texttt{SYN flooding}.
 
-\subsection*{BrickerBot}
+\subsection{BrickerBot}
 \begin{wrapfigure}{r}{0.55\textwidth}
   \centering
   \includegraphics[page = 88,trim = 1cm 8cm 0.8cm 4cm, clip, width = 0.55\textwidth]{\slides}
