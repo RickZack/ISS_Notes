@@ -758,7 +758,7 @@ The \textit{Domain Name System} (\textbf{DNS}) is a crucial service that provide
     \includegraphics[page = 62,trim = .5cm 2.5cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
 \end{figure}
 
-The DNS architecture follows a \textbf{hierarchical structure of servers}, beginning with the local DNS server (within the client's network). When a user intends to access a website, the local DNS server checks its caches. In the event of a \texttt{cache miss}, the local DNS server queries the root \textit{Name Server} (\textbf{NS}). Typically, the root NS does not have the answer, as it manages only top-level domains represented by dots ("."). The query is then redirected from the root NS to the appropriate domain server (first to it., then, for example, to \texttt{polito.it}) to obtain the answer.
+The DNS architecture follows a \textbf{hierarchical structure of servers}, beginning with the local DNS server (within the client's network). When a user intends to access a website, the local DNS server checks its caches. In the event of a \texttt{cache miss}, the local DNS server queries the root \textit{Name Server} (\textbf{NS}). Typically, the root NS does not have the answer, as it manages only top-level domains represented by \texttt{dots} ("."). The query is then redirected from the root NS to the appropriate domain server (first to it., then, for example, to \texttt{polito.it}) to obtain the answer.
 
 The diagram in Figure \ref*{fig:DNS-server} illustrates the logical path for retrieving the IP address. However, in reality, the name server always responds to the local DNS, which usually caches the newly answered queries.
 
@@ -843,23 +843,74 @@ If the name is not found in the local data, the resolver will reach out to an ex
 Typically, the zone master is manually updated by the administrator. Unfortunately, Microsoft introduced the capability for dynamic updates directly by clients. When a Microsoft network is joined, and an address is assigned, clients can inform the DNS master about the received IP address. This poses a significant risk as it allows uncontrolled modifications to DNS data.
 
 Potential attacks on this infrastructure include:
-
 \begin{itemize}
-    \item 
+    \item \textbf{Data Corruption to Local Data:} If an attacker gains access to a client (e.g., through a keyboard or malware), they can attempt to insert incorrect information into its local data to create a false mapping.
+    
+    \item \textbf{Unauthorized Configuration of Name Switch/Resolver:} Instead of pointing to the actual external name server, an attacker can redirect the name switch/resolver to a fake one, providing incorrect answers.
+    
+    \item \textbf{Server Impersonation in Communication:} In the communication between the resolver and server, as well as between the caching server and zone server, server impersonation (someone posing as the real server) can occur because DNS lacks any form of authentication.
+    
+    \item \textbf{Cache Poisoning:} Whenever there is a cache, there is a risk of cache poisoning.
+    
+    \item \textbf{Data Corruption on Zone File:} An attacker penetrating the zone master could corrupt data on the zone file.
+    
+    \item \textbf{Unauthorized Dynamic Updates:} Dynamic updates could be performed by unauthorized nodes.
+    
+    \item \textbf{Server Impersonation in Zone File Transfer:} Since the master sends a copy of the zone file to secondary servers, there could be server impersonation, where a fake master sends a wrong copy to the secondary servers.
 \end{itemize}
 
-- \textbf{Data Corruption to Local Data:} If an attacker gains access to a client (e.g., through a keyboard or malware), they can attempt to insert incorrect information into its local data to create a false mapping.
+As evident, there are numerous potential local attacks, such as data corruption, and some are network attacks primarily due to the \underline{lack of authentication}.
 
-- \textbf{Unauthorized Configuration of Name Switch/Resolver:} Instead of pointing to the actual external name server, an attacker can redirect the name switch/resolver to a fake one, providing incorrect answers.
 
-- \textbf{Server Impersonation in Communication:} In the communication between the resolver and server, as well as between the caching server and zone server, server impersonation (someone posing as the real server) can occur because DNS lacks any form of authentication.
 
-- \textbf{Cache Poisoning:} Whenever there is a cache, there is a risk of cache poisoning.
+\subsubsection{DoT and DoH}
+Apart from the attacks against from the DNS server which is providing wrong information, DNS has got another problem for user privacy, because when you are performing a query and there is someone who are sniffing that query, he can see the site that you rare going to visit and that can be read while your query is in transit, but i t can be read in the name server, so the attacker can track your activity. DNS over TLS means that the query and the response between the client and the local NS are encapsulated in a secure TLS channel, so that is protecting information from sniffing, but it still evident that it is a DNS exchange and the NS can still track your activities. 
 
-- \textbf{Data Corruption on Zone File:} An attacker penetrating the zone master could corrupt data on the zone file.
+An alternative is DNS over HTTPs, queries and responses are part in normal HTTPS exchange, so an external observer it looks like that you are visiting a secure webpage, they don't even understand that you are making a DNS request. They are adopted by cloudflare and google. These things protect against sniffing attack but not for the privacy for the server that you are contacting.
 
-- \textbf{Unauthorized Dynamic Updates:} Dynamic updates could be performed by unauthorized nodes.
+\subsubsection{DoT and DoH}
+There is another thing called DNS over TLS or DNS over HTTPS. Apart from the attacks against the DNS server which may provide incorrect information, DNS presents another issue for user privacy. When you perform a query and someone is sniffing that query, they can see the site you are going to visit. This information \textbf{can be intercepted} while your query is \textbf{in transit} or even \textbf{within the name server}, allowing the attacker to track your activity.
 
-- \textbf{Server Impersonation in Zone File Transfer:} Since the master sends a copy of the zone file to secondary servers, there could be server impersonation, where a fake master sends a wrong copy to the secondary servers.
+\textit{DNS over TLS} (\textbf{DoT}) ensures that the query and response between the client and the local name server are encapsulated in a secure TLS channel, protecting the information from sniffing. However, it is still evident that it is a DNS exchange, and the name server can still track your activities.
 
-As evident, there are numerous potential local attacks, such as data corruption, and some are network attacks primarily due to the lack of authentication.
+An alternative is \textit{DNS over HTTPS} (\textbf{DoH}), where queries and responses are part of a normal HTTPS exchange. To an external observer, it appears as if you are visiting a secure webpage, making it indistinguishable from regular HTTPS traffic. 
+
+These protocols are adopted by Cloudflare and Google. While these methods protect against sniffing attacks, they do not guarantee privacy from the server you are contacting.
+
+
+
+\subsubsection{Protection from IP spoofing}
+
+It is not possible to prevent a host from changing its own address, but it is possible to try to limit the spread of IP spoofing. Several RFCs provide guidance to network managers on how to enhance protection from IP spoofing, both to protect a host from external impostors and to protect the external world from impostors internal to the local network. These include:
+
+\begin{itemize}
+    \item RFC 2827 "Network Ingress Filtering: Defeating Denial of Service Attacks Which Employ IP Source Address Spoofing"
+    \item RFC 3704 "Ingress Filtering for Multihomed Networks"
+    \item RFC 3013 "Recommended Internet Service Provider Security Services and Procedures"
+\end{itemize}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 70,trim = .7cm 3cm 1cm 5cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Filters for IP spoofing protection}
+    \label{fig:ip-spoofing-filters}
+\end{figure}
+
+Looking at Figure \ref*{fig:ip-spoofing-filters}, it is possible to notice two networks: \texttt{132.5.1} and \texttt{132.5.2} (they are 2 subnets connected to a border router connected to the internet).
+
+\begin{itemize}
+    \item \textbf{Red Cable (Internet Connection):} In this case, the filter set on incoming packets allows accepting any address coming from the Internet, except for those belonging to the internal subnets. This is important because we do not want to accept packets with internal addresses from external sources, as they could be spoofing attempts.
+    \item \textbf{Blue Cables (Internal Subnet Connections):} Here, the filter configuration is more restrictive. We only accept incoming packets that originate from the corresponding subnets. For example, on the blue cable connection for subnet 1, we only accept packets coming from that same subnet, and the same applies to subnet 2.
+\end{itemize}
+In essence, it involves configuring filters so that incoming packets are allowed only if they meet certain conditions, thereby ensuring that packets with spoofed or unauthorized IP addresses are not accepted.
+By placing filters on the lines, it is possible to protect against both external and internal impostors. If all providers would apply this simple rule, \textbf{it would be possible to avoid IP spoofing globally}.
+
+Possible syntax (CISCO language) in which it is possible to apply filters is the one shown in Figure \ref*{fig:ip-spoofing-example}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 71,trim = 1cm 2.5cm 1cm 4cm, clip, width = 0.40\textwidth]{\slides}
+    \caption{Example of IP spoofing protection}
+    \label{fig:ip-spoofing-example}
+\end{figure}

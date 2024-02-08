@@ -24,18 +24,18 @@ See the COPYING file for details.
 
 
 ### Todo
-
-- [ ] Chapter 6
 - [ ] Chapter 7
 - [ ] Chapter 8
 
+
 ### In Progress 
-- [ ] Chapter 6: Network security part 2, included in chapter4
+- [ ] Chapter 7
+
 
 ### Done ✓
-
 - [x] Chapter 1
 - [x] Chapter 2
 - [x] Chapter 3
 - [x] Chapter 4
 - [x] Chapter 5
+- [x] Chapter 6: Network security part 2, included in chapter4
