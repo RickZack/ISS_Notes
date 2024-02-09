@@ -1,1 +1,61 @@
 \chapter{Security of network applications}
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[page=3, trim=1cm 3cm 1cm 10cm, clip, width=\linewidth]{\slides}
+        \caption{Channel Security}
+        \label{fig:channel-security}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[page=4, trim=1cm 2.4cm 1cm 10cm, clip, width=\linewidth]{\slides}
+        \caption{Message/Data security}
+        \label{fig:message-security}
+    \end{subfigure}
+    \caption{Comparison of security approaches}
+    \label{fig:security_comparison}
+\end{figure}
+
+The default scenario, if no measures are taken, is very vulnerable because most systems rely on \textbf{weak authentication} methods such as username and password (which can be intercepted) or IP address-based authentication (vulnerable to IP spoofing). Even if stronger authentication systems are implemented, such as OTP or challenge-response mechanisms, which address authentication issues, \textbf{there are still vulnerabilities related to \emph{data integrity}}, such as data snooping/forging, shadow server/MITM attacks, replay attacks, and filtering.
+
+
+To mitigate these issues, there are two possible approaches:
+
+\begin{enumerate}
+    \item \textbf{Channel Security:} this approach involves negotiating algorithms, parameters, and keys to establish a secure channel for communication between two nodes. Since these features are negotiated before transmitting data, single or mutual \textbf{authentication}, \textbf{integrity}, and \textbf{privacy} are provided for the data \textbf{only during the transmit inside the communication channel}. However, once the data exits the secure channel, it is no longer protected, hence \textit{non-repudiation} cannot be achieved. Despite this limitation, channel security is widely adopted because it can be implemented at the OS level without requiring significant modifications to applications.
+          Additionally, even additional bits (in Figure \ref*{fig:channel-security}, the two \texttt{1}s in black that are not part of the user message) that do not require security, as shown in the diagram, benefit from the security provided by the channel.
+
+    \item \textbf{Message/Data Security:} in this approach, each piece of data is individually protected by encapsulating it within a secure container (e.g., PK-SSL). In this scenario, the sender establishes protection, and data that do not require security are left unsecured. Consequently, only \textbf{single authentication} is achieved, while \textbf{integrity and privacy are contained within the message itself}. This protection persists even as the data exits the network and is stored at the destination, enabling non-repudiation. However, implementing this approach requires some modification of applications.
+\end{enumerate}
+
+It is possible to \textbf{combine} these approaches to have \textbf{secure data within a secure channel}. However, relying \textbf{only on a secure network channel is often preferred}, especially for networked applications like the Web.
+
+
+\section{Security and applications}
+
+
+\vspace*{5mm}
+\noindent
+\begin{minipage}{0.65\textwidth}
+    Every network application shares a common component, essentially the TCP/IP stack, with the logical interface known as a \textbf{socket}, which allows for sending and receiving TCP or UDP data in a standardized manner. Therefore, when applications require security, they have an inherent capability to implement the security aspect internally. Each application implements security internally, while the common component is limited to managing the communication channels
+    (i.e., the socket). However, there could be potential implementation errors (developing security protocols is complex), and interoperability is not guaranteed due to potential differences in interpretation of specifications. While this approach was once a solution, it is no longer widely used today because, for compatibility reasons, it necessitated purchasing everything from the same vendor.
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[page = 5,trim = 1cm 3cm 17cm 4cm, clip, width = \linewidth]{\slides}
+\end{minipage}
+
+
+\noindent
+\begin{minipage}{0.65\textwidth}
+    The alternative approach is to implement security externally to applications. Ideally, the session level would be utilized to implement many security functions, but since the session level does not exist in TCP/IP, the concept of a "secure logical channel" level was introduced. This approach utilizes the socket to transmit data enriched with additional protection. It simplifies the task for application developers, reduces the risk of implementation errors, and allows applications to choose whether to utilize it or not, eliminating compatibility issues. Today, it is considered a de facto standard.
+\end{minipage}
+\hspace{0.05\textwidth}
+\begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[page = 6,trim = .5cm 3cm 18cm 4cm, clip, width = \linewidth]{\slides}
+\end{minipage}
