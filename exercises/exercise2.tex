@@ -2,7 +2,7 @@
 
 \section{symmetric crypto}
 
-\textbf{Q1 - DES is an algorithm that allows:}
+\textbf{\\Q1 - DES is an algorithm that allows:}
 \begin{enumerate}
     \item[A.] \sol{symmetric encryption of data by splitting data in blocks}
     \item[B.] symmetric encryption of data by processing the data flow
@@ -10,7 +10,7 @@
     \item[D.] creation of digital signature and encryption of data with asymmetric keys
 \end{enumerate}
 
-\textbf{Q2 - The key length to defend from brute force attacks has increased because}
+\textbf{\\Q2 - The key length to defend from brute force attacks has increased because}
 \begin{enumerate}
     \item[A.] the use of permutations and transpositions in algorithms has increased
     \item[B.] as algorithms get stronger, they get less complex, and thus more susceptible to attacks
@@ -18,7 +18,7 @@
     \item[D.] key length reduces over time
 \end{enumerate}
 
-\textbf{Q3 - What of the following properties should a secure AES key have?}
+\textbf{\\Q3 - What of the following properties should a secure AES key have?}
 \begin{enumerate}
     \item[A.] \sol{confidentiality}
     \item[B.] non-repudiation
@@ -26,7 +26,7 @@
     \item[D.] \sol{randomness}
 \end{enumerate}
 
-\textbf{Q4 - The advantages of the ECB mode are:}
+\textbf{\\Q4 - The advantages of the ECB mode are:}
 \begin{enumerate}
     \item[A.] \sol{parallel encryption}
     \item[B.] \sol{parallel decryption}
@@ -42,7 +42,7 @@
 }
 
 
-\textbf{Q5 - if a tool uses AES-256-ECB, you can assume that}
+\textbf{\\Q5 - if a tool uses AES-256-ECB, you can assume that}
 \begin{enumerate}
     \item[A.] the tool can accept as a possible input either a private key or a public key
     \item[B.] the tool will have a negligible padding size
@@ -51,7 +51,7 @@
 \end{enumerate}
 
 
-\textbf{Q6 - Which of the following statements are true for the CBC mode?}
+\textbf{\\Q6 - Which of the following statements are true for the CBC mode?}
 \begin{enumerate}
     \item[A.] \sol{parallel decryption}
     \item[B.] parallel encryption
@@ -63,14 +63,14 @@
 \end{enumerate}
 \com{
     A -> $P_{i} = enc^{-1}(K,C_{i})\oplus C_{i-1}$ and we already have all Ctext\\ 
-    B -> $C_{i} = enc(K,P_{i}\oplus C_{i-1})$ so C_{i} need C_{i-1} and ect  \\
+    B -> $C_{i} = enc(K,P_{i}\oplus C_{i-1})$ so $C_{i}$ need $C_{i-1}$ and ect  \\
     C -> if two blocks get swapped we can detect it since the decryption will fail \\
-    D -> the error only propagates to the next block
-    F -> since there is a random IV at the beginning, which chain-changes the various ciphers, so all repeated blocks will have different ciphertexts 
-    G -> random access only in decryption (wip) but not in encryption
-}
+    D -> the error only propagates to the next block \\
+    F -> since there is a random IV at the beginning, which chain-changes the various ciphers, so all repeated blocks will have different ciphertexts \\
+    G -> random access only in decryption wip but not in encryption
+    }
 
-\textbf{Q7a - If you encrypt 50B of plaintext with AES-128-CBC, how long is the ciphertext?}
+\textbf{\\Q7a - If you encrypt 50B of plaintext with AES-128-CBC, how long is the ciphertext?}
 \begin{enumerate}
     \item[A.] 50B
     \item[B.] \sol{64B}
@@ -78,7 +78,7 @@
 \end{enumerate}
 \com{(we are using padding) 50B = 400bit -> 512 (multiple of 128) = 64B size of plaintext+padding, and the ciphertext has the same length }
 
-\textbf{Q7b - In the above case, let’s assume the ciphertext is a secret message to be sent by Alice to Bob. Indicate the size of data transmitted so that Bob can recover the plaintext}
+\textbf{\\Q7b - In the above case, let’s assume the ciphertext is a secret message to be sent by Alice to Bob. Indicate the size of data transmitted so that Bob can recover the plaintext}
 \begin{enumerate}
     \item[A.] 50B
     \item[B.] 64B
@@ -86,7 +86,7 @@
 \end{enumerate}
 \com{Bob receives 64B of text encrypted, for decryption he needs IV, same length of a blocks so 16B --> 64+16 = 80B of total data received}
 
-\textbf{Q8a - If you encrypt 50B of plaintext with AES-256-CBC, how long is the ciphertext?}
+\textbf{\\Q8a - If you encrypt 50B of plaintext with AES-256-CBC, how long is the ciphertext?}
 \begin{enumerate}
     \item[A.] 50B
     \item[B.] \sol{64B}
@@ -95,7 +95,7 @@
 \com{the 256 in AES-256-CBC indicate the key length, the block data size is the same of Q7a (128)}
 
 
-\textbf{Q8b - In the above case, let’s assume the ciphertext is a secret message to be sent by Alice to Bob. Indicate the size of data transmitted so that Bob can recover the plaintext}
+\textbf{\\Q8b - In the above case, let’s assume the ciphertext is a secret message to be sent by Alice to Bob. Indicate the size of data transmitted so that Bob can recover the plaintext}
 \begin{enumerate}
     \item[A.] 50B
     \item[B.] 64B
@@ -104,14 +104,14 @@
 \end{enumerate}
 \com{the IV block is again 128bit}
 
-\textbf{Q9a - If you encrypt 32B of plaintext with AES-128-CBC, how long is the ciphertext?}
+\textbf{\\Q9a - If you encrypt 32B of plaintext with AES-128-CBC, how long is the ciphertext?}
 \begin{enumerate}
     \item[A.] 32B
     \item[B.] \sol{48B}
     \item[C.] 64B
 \end{enumerate}
 
-\textbf{Q9b - If you encrypt 32B of plaintext with AES-128-CTR, how long is the ciphertext?}
+\textbf{\\Q9b - If you encrypt 32B of plaintext with AES-128-CTR, how long is the ciphertext?}
 \begin{enumerate}
     \item[A.] \sol{32B}
     \item[B.] 48B
@@ -120,7 +120,7 @@
 \com{32B = 256bit an exact multiple of 128, but 'Even if the plaintext is an exact multiple of the block, padding must be added anyhow to avoid
 errors in the interpretation of the last block. The biggest padding is required when there is no padding to add.' So 48B, 32B + 16B of only padding }
 
-\textbf{Q10 - Assume Alice wants to protect her data (1 TB) on disk, but she does not want to increase the space occupied on disk. Moreover, she would like to perform the encryption very fast and to keep her data protected for 10 years. Which algorithm should she use?}
+\textbf{\\Q10 - Assume Alice wants to protect her data (1 TB) on disk, but she does not want to increase the space occupied on disk. Moreover, she would like to perform the encryption very fast and to keep her data protected for 10 years. Which algorithm should she use?}
 \begin{enumerate}
     \item[A.] AES-128-CBC
     \item[B.] AES-128-ECB
@@ -135,7 +135,7 @@ errors in the interpretation of the last block. The biggest padding is required 
     E -> Does AES 512 exist? probably yes, however it will be slower than aes256 
 }
 
-\textbf{Q11 - Assume Alice wants to protect her data (1 TB) on disk, she has more space, but she would like to perform the encryption very fast. Which algorithm should she use?}
+\textbf{\\Q11 - Assume Alice wants to protect her data (1 TB) on disk, she has more space, but she would like to perform the encryption very fast. Which algorithm should she use?}
 \begin{enumerate}
     \item[A.] AES-128-CBC
     \item[B.] AES-128-ECB
@@ -148,7 +148,7 @@ errors in the interpretation of the last block. The biggest padding is required 
 \end{enumerate}
 \com{Chacha20 is faster}
 
-\textbf{Q12 - Which of the following statements are true for the CTR mode:}
+\textbf{\\Q12 - Which of the following statements are true for the CTR mode:}
 \begin{enumerate}
     \item[A.] \sol{allows parallel encryption of plaintext}
     \item[B.] \sol{allows parallel decryption of plaintext}
@@ -195,7 +195,7 @@ Bob:
 
 \section{asymmetric crypto}
 
-\textbf{Q13 - Which of the following algorithms is based on the fact that it is hard to factor large numbers into two prime numbers?}
+\textbf{\\Q13 - Which of the following algorithms is based on the fact that it is hard to factor large numbers into two prime numbers?}
 \begin{enumerate}
     \item[A.] ECC
     \item[B.] \sol{RSA}
@@ -203,7 +203,7 @@ Bob:
     \item[D.] DES
 \end{enumerate}
 
-\textbf{Q14 - Assume Alice wants to communicate to Bob her public key. She decides to send the key over an unprotected channel, because the public key is public. Assume Eve can control the communication channel between Alice and Bob. What kind of security attacks could Eve do to damage the secure communication between Alice and Bob?}
+\textbf{\\Q14 - Assume Alice wants to communicate to Bob her public key. She decides to send the key over an unprotected channel, because the public key is public. Assume Eve can control the communication channel between Alice and Bob. What kind of security attacks could Eve do to damage the secure communication between Alice and Bob?}
 \begin{enumerate}
     \item[A.] replay attack – Eve sends the public key of Alice 10 times
     \item[B.] sniffing attack – Eve reads the public key of Alice
@@ -213,7 +213,7 @@ Bob:
 \end{enumerate}
 \com{A,B do not damage Alice Bob communication}
 
-\textbf{Q15 - A sender (Alice) wants to send a digitally signed message to a receiver (Bob). Which key is used to create a digital signature?}
+\textbf{\\Q15 - A sender (Alice) wants to send a digitally signed message to a receiver (Bob). Which key is used to create a digital signature?}
 \begin{enumerate}
     \item[A.] The receiver’s private key
     \item[B.] The sender’s public key
@@ -222,7 +222,7 @@ Bob:
 \end{enumerate}
 \com{figure 2.16}
 
-\textbf{Q16 - What is the advantage of RSA over DSA?}
+\textbf{\\Q16 - What is the advantage of RSA over DSA?}
 \begin{enumerate}
     \item[A.] \sol{It can provide digital signature and encryption functionality.}
     \item[B.] It uses fewer resources and encrypts faster because it uses symmetric keys.
@@ -230,7 +230,7 @@ Bob:
     \item[D.] It employs a one-time encryption pad.
 \end{enumerate}
 
-\textbf{Q17 - Which of the following best describes a digital signature?}
+\textbf{\\Q17 - Which of the following best describes a digital signature?}
 \begin{enumerate}
     \item[A.] A method of transferring a handwritten signature to an electronic document
     \item[B.] A method to encrypt confidential information
@@ -239,7 +239,7 @@ Bob:
 \end{enumerate}
 \com{A -> no, B and C no, we don use it for encrypt (since the key for decrypt is public)}
 
-\textbf{Q18a - Diffie-Hellman is a:}
+\textbf{\\Q18a - Diffie-Hellman is a:}
 \begin{enumerate}
     \item[A.] symmetric algorithm
     \item[B.] \sol{asymmetric algorithm}
@@ -247,7 +247,7 @@ Bob:
     \item[D.] keyed-digest algorithm
 \end{enumerate}
 
-\textbf{Q18b - ... that is frequently used for:}
+\textbf{\\Q18b - ... that is frequently used for:}
 \begin{enumerate}
     \item[A.] creating digital signatures
     \item[B.] \sol{agreeing on a secret key}
@@ -255,7 +255,7 @@ Bob:
 \end{enumerate}
 \com{Cap 2.3.3}
 
-\textbf{Q19 - Alice wants to send a secret key K to Bob by using asymmetric cryptography. Which operation must Alice do?}
+\textbf{\\Q19 - Alice wants to send a secret key K to Bob by using asymmetric cryptography. Which operation must Alice do?}
 \begin{enumerate}
     \item[A.] \sol{encrypt the key K with the public key of Bob, by using RSA}
     \item[B.] encrypt the key K with the public key of Bob, by using DSA

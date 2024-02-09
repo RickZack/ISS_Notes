@@ -2,7 +2,7 @@
 
 \section{Short problems}
 
-\textbf{Problem 2 \\
+\textbf{\\Problem 2 \\
 Assume Alice has two databases: a trusted storage (that an
 attacker cannot read and modify), and an \textcolor{Red}{untrusted storage}
 (that an attacker can read and modify). Assume Alice can
@@ -19,7 +19,7 @@ Then, Alice calculates hchain and stores it in the \textcolor{Blue}{trusted stor
 hchain = H( h1 || h2 || h3 || h4 )
 Let's assume Bob modifies F3.}
 
-\textbf{P2Q - Can Alice detect the modification done by Bob?}
+\textbf{\\P2Q - Can Alice detect the modification done by Bob?}
 \begin{itemize}
     \item[A.] Yes, Alice recomputes h3 = H(F3) and sees that it doesn't match with the stored h3
     \item[B.] \sol{Yes, Alice recomputes $h_{chain}$ and sees that it doesn't match with the stored $h_{chain}$}
@@ -29,7 +29,7 @@ Let's assume Bob modifies F3.}
     A -> the h3 stored could be manipulated too\\
     C -> if h3 change, $h_{chain}$ will fail the match, so we can  detect it}
 
-\textbf{Problem 3 \\
+\textbf{\\Problem 3 \\
 Assume Alice has one \textcolor{Blue}{trusted storage} (that an attacker cannot
 read and modify), and an \textcolor{Red}{untrusted storage} (that an attacker
 can read and modify). Assume Alice can use two functions:
@@ -45,7 +45,7 @@ Then, Alice calculates $h_{root}$ and stores it the \textcolor{Blue}{trusted sto
 $h_{root} = H(H(h1||h2)||H(h3||h4))$
 Let's assume Bob modifies F3.}
 
-\textbf{P3Q - Can Alice detect the modification done by Bob?}
+\textbf{\\P3Q - Can Alice detect the modification done by Bob?}
 \begin{itemize}
     \item[A.] Yes, Alice recomputes h3 = H(F3) and sees that it doesn't match with the stored h3
     \item[B.] \sol{Yes, Alice recomputes $h_{root}$ and sees that it doesn't match with the stored $h_{root}$}
@@ -54,7 +54,7 @@ Let's assume Bob modifies F3.}
 \com{the change propagetes through all the tree}
 
 \section{Security of IP networks}
-\textbf{Q1 - Which protocol can be exploited for user authentication in dial-up, wireless, or virtual links (you can select multiple choices)?}
+\textbf{\\Q1 - Which protocol can be exploited for user authentication in dial-up, wireless, or virtual links (you can select multiple choices)?}
 \begin{itemize}
     \item[A.] RADIUS
     \item[B.] \sol{EAP}
@@ -69,7 +69,7 @@ Let's assume Bob modifies F3.}
     D -> Challenge Handshake Authentication Protocol 
 }
 
-\textbf{Q2 - At which level in the OSI stack is EAP (Extensible Authentication Protocol) exploited to support authentication?}
+\textbf{\\Q2 - At which level in the OSI stack is EAP (Extensible Authentication Protocol) exploited to support authentication?}
 \begin{itemize}
     \item[A.] \sol{L2 (data link layer)}
     \item[B.] L3 (network level)
@@ -78,7 +78,7 @@ Let's assume Bob modifies F3.}
 \end{itemize}
 \com{it support PPP and other L2 protocol }
 
-\textbf{Q3 - Assume that we have a small company which uses a NAS supporting EAP, PAP, CHAP. Look at the picture and tell which methods and protocol(s) can be used to authenticate a user (device) with the NAS to provide it access to Internet:}
+\textbf{\\Q3 - Assume that we have a small company which uses a NAS supporting EAP, PAP, CHAP. Look at the picture and tell which methods and protocol(s) can be used to authenticate a user (device) with the NAS to provide it access to Internet:}
 \begin{itemize}
     \item[A.] RADIUS
     \item[B.] \sol{PAP}
@@ -90,7 +90,7 @@ Let's assume Bob modifies F3.}
 \end{figure}
 \com{ authentication to the NAS  }
 
-\textbf{Q4 - Assume we have a small hotel that uses an Access Point (NAS) supporting EAP, CHAP. Take a look at the picture below and indicate which methods can be used to authenticate a user (device) with the AP to provide access to the Internet:}
+\textbf{\\Q4 - Assume we have a small hotel that uses an Access Point (NAS) supporting EAP, CHAP. Take a look at the picture below and indicate which methods can be used to authenticate a user (device) with the AP to provide access to the Internet:}
 \begin{itemize}
     \item[A.] \sol{EAP-TLS}
     \item[B.] CHAP
@@ -104,7 +104,7 @@ Let's assume Bob modifies F3.}
 \end{figure}
 \com{(I'm not sure but->) CHAP this time is not used because in a hotel because of the computational work }
 
-\textbf{Q5 - EAP transports authentication messages between a user (supplicant) and a NAS:}
+\textbf{\\Q5 - EAP transports authentication messages between a user (supplicant) and a NAS:}
 \begin{itemize}
     \item[A.] \sol{before the IP channel is established. Thus, EAP uses its own encapsulation protocol because IP packets are not available}
     \item[B.] after the IP channel is established. Thus, EAP packets are encapsulated inside IP packets
@@ -114,7 +114,7 @@ Let's assume Bob modifies F3.}
 3748, providing a flexible Layer 2 (L2) authentication framework. This L2 authentication
 occurs before accessing the internet, which operates at Layer 3 (L3)}
 
-\textbf{Q6 - EAP can transport authentication messages between a user and NAS (Network Access Server):}
+\textbf{\\Q6 - EAP can transport authentication messages between a user and NAS (Network Access Server):}
 \begin{itemize}
     \item[A.] only for PPP channels
     \item[B.] \sol{for any L2 protocol, such as PPP, 802.11 (Wi-Fi), 802.3 (Ethernet), 802.5 (token ring)}
@@ -124,7 +124,7 @@ occurs before accessing the internet, which operates at Layer 3 (L3)}
 
 
 
-\textbf{Q7 - What is an EAP method (e.g. EAP-TLS, EAP-TTLS, EAP-SRP, AKA-SIM)?}
+\textbf{\\Q7 - What is an EAP method (e.g. EAP-TLS, EAP-TTLS, EAP-SRP, AKA-SIM)?}
 \begin{itemize}
     \item[A.] it's a variant to allow EAP to be exploited in other (upper level) protocols
     \item[B.] it's the method used by EAP to perform user authentication
@@ -133,7 +133,7 @@ occurs before accessing the internet, which operates at Layer 3 (L3)}
 \end{itemize}
 \com{}
 
-\textbf{Q8 - RADIUS is a network authentication protocol that:}
+\textbf{\\Q8 - RADIUS is a network authentication protocol that:}
 \begin{itemize}
     \item[A.] is used for communication (client-server schema) between a user (supplicant) and a NAS
     \item[B.] \sol{is used for communication (client-server schema) between a NAS and a backend Authentication Server (AS)}
@@ -143,7 +143,7 @@ occurs before accessing the internet, which operates at Layer 3 (L3)}
 \end{itemize}
 \com{This question should help you understand previous questions about NAS. }
 
-\textbf{Q9 - Assume we have a corporate network which has an Authentication Server (AS) in place, and uses an AP for network access control. 
+\textbf{\\Q9 - Assume we have a corporate network which has an Authentication Server (AS) in place, and uses an AP for network access control. 
 Take a look at the picture below and indicate the protocol(s) typically used for the communication between AP and AS during authentication of supplicants:}
 \begin{itemize}
     \item[A.] \sol{RADIUS}
@@ -157,7 +157,7 @@ Take a look at the picture below and indicate the protocol(s) typically used for
 \com{}
 
 
-\textbf{Q10 - RADIUS implements the following security properties:}
+\textbf{\\Q10 - RADIUS implements the following security properties:}
 \begin{itemize}
     \item[A.] authentication and integrity of requests, where the RADIUS requests are protected with a digital signature
     \item[B.] \sol{authentication and integrity of requests, where the RADIUS requests are protected with a keyed-digest}
@@ -167,7 +167,7 @@ Take a look at the picture below and indicate the protocol(s) typically used for
 \end{itemize}
 \com{wip}
 
-\textbf{Q11 - RADIUS implements the following security properties:}
+\textbf{\\Q11 - RADIUS implements the following security properties:}
 \begin{itemize}
     \item[A.] confidentiality of the data in the RADIUS request by encrypting the data with an algorithm that can be negotiated
     \item[B.] \sol{confidentiality of the data in the RADIUS request by masking the (user) password (with an XOR operation)}
@@ -178,7 +178,7 @@ Take a look at the picture below and indicate the protocol(s) typically used for
 \end{itemize}
 \com{wip}
 
-\textbf{Q12 - Consider an architecture in which we have: a supplicant (user), a NAS, and a RADIUS server. If the
+\textbf{\\Q12 - Consider an architecture in which we have: a supplicant (user), a NAS, and a RADIUS server. If the
 RADIUS server and the user have a shared secret (named “secret”), does this mean that a (malicious) user can create
 a fake RADIUS response?}
 \begin{itemize}
@@ -188,7 +188,7 @@ a fake RADIUS response?}
 \end{itemize}
 \com{wip}
 
-\textbf{Q13 - Assume a company uses RADIUS to authenticate users and Wi-Fi access-points and switches enabled with support
+\textbf{\\Q13 - Assume a company uses RADIUS to authenticate users and Wi-Fi access-points and switches enabled with support
 for 802.1x. What is the main role of the Wi-Fi access points and switches and what needs to be done to allow them to
 work when new user authentication protocols appear (and are supported by EAP)?}
 \begin{itemize}
