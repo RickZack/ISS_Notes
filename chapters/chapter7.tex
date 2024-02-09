@@ -40,8 +40,8 @@ It is possible to \textbf{combine} these approaches to have \textbf{secure data 
 \vspace*{5mm}
 \noindent
 \begin{minipage}{0.65\textwidth}
-    Every network application shares a common component, essentially the TCP/IP stack, with the logical interface known as a \textbf{socket}, which allows for sending and receiving TCP or UDP data in a standardized manner. Therefore, when applications require security, they have an inherent capability to implement the security aspect internally. Each application implements security internally, while the common component is limited to managing the communication channels
-    (i.e., the socket). However, there could be potential implementation errors (developing security protocols is complex), and interoperability is not guaranteed due to potential differences in interpretation of specifications. While this approach was once a solution, it is no longer widely used today because, for compatibility reasons, it necessitated purchasing everything from the same vendor.
+    Every network application shares a common component, essentially the TCP/IP stack, with the logical interface known as a \textbf{socket}, which allows for sending and receiving TCP or UDP data in a standardized manner. Therefore, when applications require security, they have an inherent capability to implement the security aspect internally. Each application implements \textbf{security internally}, while the common component is limited to managing the communication channels
+    (i.e., the socket). However, there could be \textbf{potential implementation errors} (developing security protocols is complex), and \textbf{interoperability is not guaranteed} due to potential differences in interpretation of specifications. While this approach was once a solution, it is no longer widely used today because, for compatibility reasons, it necessitated purchasing everything from the same vendor.
 \end{minipage}
 \hspace{0.05\textwidth}
 \begin{minipage}{0.3\textwidth}
@@ -52,10 +52,10 @@ It is possible to \textbf{combine} these approaches to have \textbf{secure data 
 
 \noindent
 \begin{minipage}{0.65\textwidth}
-    The alternative approach is to implement security externally to applications. Ideally, the session level would be utilized to implement many security functions, but since the session level does not exist in TCP/IP, the concept of a "secure logical channel" level was introduced. This approach utilizes the socket to transmit data enriched with additional protection. It simplifies the task for application developers, reduces the risk of implementation errors, and allows applications to choose whether to utilize it or not, eliminating compatibility issues. Today, it is considered a de facto standard.
+    The alternative approach is to implement \textbf{security externally} to applications. Ideally, the \textbf{session level} would be utilized to implement many security functions, but since the session level does not exist in TCP/IP, the concept of a \textbf{"secure logical channel" level} was introduced. This approach utilizes the socket to transmit data enriched with additional protection. It simplifies the work of application developers, avoids implementation errors, and allows applications to choose whether to utilize it or not, eliminating compatibility issues. Today, it is considered a de facto standard.
 \end{minipage}
 \hspace{0.05\textwidth}
 \begin{minipage}{0.3\textwidth}
     \centering
-    \includegraphics[page = 6,trim = .5cm 3cm 18cm 4cm, clip, width = \linewidth]{\slides}
+    \includegraphics[page = 6,trim = .5cm 3cm 17.7cm 4cm, clip, width = \linewidth]{\slides}
 \end{minipage}
