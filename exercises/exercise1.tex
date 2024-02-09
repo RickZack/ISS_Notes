@@ -2,13 +2,13 @@
 
 \section{Security properties}
 
-\textbf{\\Q1 - Alice want to open a communication channel with Bob. Which of the following 
+\textbf{Q1 - Alice want to open a communication channel with Bob. Which of the following 
 security properties she must implement in order to check that she is really communicating with Bob?}
 \begin{enumerate}
 \item[A.] non-repudiation
 \item[B.] integrity
 \item[C.] availability
-\item[D.] \sol{peer authentication}
+\item[D.] \textbf{peer authentication}
 \item[E.] data authentication
 \item[F.] privacy
 \item[G.] accountability
@@ -16,196 +16,198 @@ security properties she must implement in order to check that she is really comm
 \end{enumerate}
 
 
-\textbf{\\Q2 - Assume Alice sends a message to Bob. Bob knows that he
+\textbf{Q2 - Assume Alice sends a message to Bob. Bob knows that he
 has to perform data authentication. What does it mean?:}
 \begin{enumerate}
     \item[A.] Bob must register the received data in a database
     \item[B.] Bob must identify Alice (e.g. check her identity card)
-    \item[C.] \sol{Bob must verify that the data really comes from Alice (for
+    \textbf{\item[C.] Bob must verify that the data really comes from Alice (for
     example, by verifying some sort of evidence attached to the
     data that only Alice may have created)}
     \item[D.] Bob must demonstrate his identity to Alice
 \end{enumerate}    
 
-\textbf{\\Q3 - Assume Alice wants to connect to two systems run by Bob. Alice and Bob must always perform the mutual authentication. What does it mean?:}
+\textbf{Q3 - Assume Alice wants to connect to two systems run by Bob. Alice and Bob must always perform the mutual authentication. What does it mean?:}
 \begin{enumerate}
-    \item[A.] \sol{Alice authenticates to every system run by Bob and each of the two systems of Bob authenticate to Alice}
+    \item[A.] Alice authenticates to every system run by Bob and each of the two systems of Bob authenticate to Alice
     \item[B.] Bob authenticates to Alice
     \item[C.] Alice authenticates to the two systems run by Bob
     \item[D.] each of the two systems of Bob authenticate to Alice
     \item[E.] Alice and Bob must identify themselves, e.g. by exchanging their identity cards
 \end{enumerate}
 
-\com{The mutual authentication requirement is not met by B, C and D. We don't care about Bob so exclude E}
+\textcolor{Comment}{The mutual authentication requirement is not met by B, C and D. We don't care about Bob so exclude E}
 
-\textbf{\\Q4 - Assume Alice is entering a password (or a PIN) to access her smartphone. Which security property is implemented by her smartphone for this operation?}
+\textbf{Q4 - Assume Alice is entering a password (or a PIN) to access her smartphone. Which security property is implemented by her smartphone for this operation?}
 \begin{enumerate}
     \item[A.] confidentiality
     \item[B.] integrity
-    \item[C.] \sol{authentication}
+    \item[C.] \textbf{authentication}
     \item[D.] availability
     \item[E.] authorization
 \end{enumerate}
 
-\com{The Purpose of Password, pin and secret key is authentication}
+\textcolor{Comment}{The Purpose of Password, pin and secret key is authentication}
 
-\textbf{\\Q5 - In Windows OS there are two types of users: normal and administrator. Assume a normal user tries to install a program and this operation is denied by the OS. Which security property the OS has implemented for software installation operation? (we assume the user has already logged in successfully with his credentials):}
+\textbf{Q5 - In Windows OS there are two types of users: normal and administrator. Assume a normal user tries to install a program and this operation is denied by the OS. Which security property the OS has implemented for software installation operation? (we assume the user has already logged in successfully with his credentials):}
 \begin{enumerate}
     \item[A.] authentication
-    \item[B.] \sol{authorization}
+    \textbf{\item[B.] authorization}
     \item[C.] traceability
     \item[D.] availability
 \end{enumerate}
 
 
 
-\textbf{\\Q6 - Alice writes some data on her disk. The disk is placed in a secure place. After some time she wants to check whether the data has been modified. Which security property does she have to implement?}
+\textbf{Q6 - Alice writes some data on her disk. The disk is placed in a secure place. After some time she wants to check whether the data has been modified. Which security property does she have to implement?}
 \begin{enumerate}
     \item[A.] authentication
     \item[B.] authorization
     \item[C.] traceability
-    \item[D.] \sol{integrity}
+    \textbf{\item[D.] integrity}
     \item[E.] availability
 \end{enumerate}
 
-\textbf{\\Q7 - Alice wants to protect the entrance in a building with a card reader. Which security property/properties must implement the card reader placed at the entrance?}
+\textbf{Q7 - Alice wants to protect the entrance in a building with a card reader. Which security property/properties must implement the card reader placed at the entrance?}
 \begin{enumerate}
-    \item[A.] \sol{authentication}
-    \item[B.] \sol{authorization}
+    \textbf{\item[A.] authentication}
+    \textbf{\item[B.] authorization}
     \item[C.] non-repudiation
     \item[D.] integrity
 \end{enumerate}
-\com{First authentication and after authorization}
+\textcolor{Comment}{First authentication and after authorization}
 
 \section{Basic Security Attacks}
 
 
-\textbf{\\Q8 - What is a replay attack?}
+\textbf{Q8 - What is a replay attack?}
 \begin{enumerate}
-    \item[A.] \sol{an attack in which some data (in clear or protected for confidentiality) can be intercepted and then sent more than once to the destination}
+    \textbf{\item[A.] an attack in which some data (in clear or protected for confidentiality) can be intercepted and then sent more than once to the destination}
     \item[B.] an attack in which only data in clear can be intercepted and then sent more than once to the destination
     \item[C.] an attack in which an attacker intercepts the data, then sends it to another attacker who will send it to the destination
 \end{enumerate}
 
-\com{We can exclude option C. Although it may be annoying it's not an attack.\\
+\textcolor{Comment}{We can exclude option C. Although it may be annoying it's not an attack.\\
 B - The example provided by Professor Lioy (Pay 1,000 EURO to Antonio Lioy) is perfect. A cyphertext can also cause problems.}
 
-\textbf{\\Q9 - What is a sniffing attack?}
+\textbf{Q9 - What is a sniffing attack?}
 \begin{enumerate}
-    \item[A.] \sol{an attack in which data (in clear or protected) is intercepted while in transmission}
+    \textbf{\item[A.] an attack in which data (in clear or protected) is intercepted while in transmission}
     \item[B.] an attack in which only data in clear can be intercepted
     \item[C.] an attack in which an attacker intercepts the data, then modifies it, then finally sends it to the destination
 \end{enumerate}
-\com{Sniffing is a passive attack, the C option describes a MITM attack. B no because we 'could' decrypt the text}
+\textcolor{Comment}{Sniffing is a passive attack, the C option describes a MITM attack. B no because we 'could' decrypt the text}
 
-\textbf{\\Q10 - What is an IP spoofing attack?}
+\textbf{Q10 - What is an IP spoofing attack?}
 \begin{enumerate}
     \item[A.] an attack in which the attacker creates fake data and inserts it into a connection
-    \item[B.] \sol{an attack in which an attacker modifies the IP source address and sends it to a destination}
+    \textbf{\item[B.] an attack in which an attacker modifies the IP source address and sends it to a destination}
     \item[C.] an attack in which an attacker modifies the IP destination address and sends it to the destination
     \item[D.] an attack in which an attacker modifies both the source and the destination addresses in an IP packet
 \end{enumerate}
-\com{A -> MITM/data spoofing; B -> IP spoofing is needed to hide our identity. }
+\textcolor{Comment}{A -> MITM/data spoofing; B -> IP spoofing is needed to hide our identity. }
 
-\textbf{\\Q11 - What kind of countermeasures are applicable for an IP spoofing attack aimed to gain unauthorized access to a remote resource?}
+\textbf{Q11 - What kind of countermeasures are applicable for an IP spoofing attack aimed to gain unauthorized access to a remote resource?}
 \begin{enumerate}
     \item[A.] instruct the browser's users to carefully check the URL they are connecting to
     \item[B.] avoid the use of broadcast networks
-    \item[C.] \sol{avoid the use of the IP address as "credential" to authenticate and get access to any remote resources}
+    \textbf{\item[C.] avoid the use of the IP address as "credential" to authenticate and get access to any remote resources}
     \item[D.] install (and regularly update) an anti-malware application on each device
 \end{enumerate}
-\com{A -> It's not about the destination; \\B -> we can have IP spoofing in a client-server communication(with different subnets);
+\textcolor{Comment}{A -> It's not about the destination; \\B -> we can have IP spoofing in a client-server communication(with different subnets);
 \\D -> wtf}
 
 
-\textbf{\\Q12 - What is a Denial of Service attack?}
+\textbf{Q12 - What is a Denial of Service attack?}
 \begin{enumerate}
-    \item[A.] \sol{an attack in which the attacker keeps a host busy by exhausting its resources (e.g. mail) so that it cannot provide its services}
-    \item[B.] \sol{an attack in which the attacker keeps a host busy by flooding it with traffic (e.g. DNS or ICMP) so that it cannot provide its services}
-    \item[C.] \sol{an attack in which an attacker keeps a host busy by exhausting its resources (e.g. by injecting malware that makes continuous calculations) so that to block the use of the host}
+    \textbf{\item[A.] an attack in which the attacker keeps a host busy by exhausting its resources (e.g. mail) so that it cannot provide its services}
+    \textbf{\item[B.] an attack in which the attacker keeps a host busy by flooding it with traffic (e.g. DNS or ICMP) so that it cannot provide its services}
+    \textbf{\item[C.] an attack in which an attacker keeps a host busy by exhausting its resources (e.g. by injecting malware that makes continuous calculations) so that to block the use of the host}
     \item[D.] an attack in which an attacker denies the use of a host to a user because he/she is not authorized
 \end{enumerate}
-\com{Denial-of-service refers to keep a host busy so that it cannot provide its services.\\ A single user (D) without service does not define a DOS attack.}
+\textcolor{Comment}{Denial-of-service refers to keep a host busy so that it cannot provide its services.\\ A single user (D) without service does not define a DOS attack.}
 
 
-\textbf{\\Q13 - What is Distributed Denial of Service (DoS) attack?}
+\textbf{Q13 - What is Distributed Denial of Service (DoS) attack?}
 \begin{enumerate}
-    \item[A.] \sol{attack in which the attacker (master) exploits multiple daemons installed on compromised nodes to run (upon command) a software implementing the DoS attack against one victim}
+    \textbf{\item[A.] attack in which the attacker (master) exploits multiple daemons installed on compromised nodes to run (upon command) a software implementing the DoS attack against one victim}
     \item[B.] attack in which an attacker (master) distributes the DoS software to multiple nodes that run independently the attack against different victims
     \item[C.] attack in which attackers (masters) collaborate and decide along with the zombies which type of DoS attack to run
 \end{enumerate}
-\com{A is pretty much the perfect definition (but i would also consider the case of multiple victims); \\
+\textcolor{Comment}{A is pretty much the perfect definition (but i would also consider the case of multiple victims); \\
 B the daemons must perform the attack at the same time.\\
 C zombies, daemons, malbot are compromised, they do not collaborate and they may also be considered victims.}
 
-\textbf{\\Q14 - Bob is an attacker who decides to activate a shadow server to attack Alice. What kind of attacks can he perform against Alice (to provoke damage)?}
+\textbf{Q14 - Bob is an attacker who decides to activate a shadow server to attack Alice. What kind of attacks can he perform against Alice (to provoke damage)?}
 \begin{enumerate}
     \item[A.] replay attack
-    \item[B.] \sol{Denial of Service}
-    \item[C.] \sol{redirect Alice to fake web sites}
+    \textbf{\item[B.] Denial of Service}
+    \textbf{\item[C.] redirect Alice to fake web sites}
     \item[D.] packet sniffing
 \end{enumerate}
-\com{The purpose of a shadow server is impersonate itself as service provider (not be just a MITM)\\
-D -> probability no because packet sniffing does not provoke damage directly and maybe because is MITM type of attack  \\
-B -> DoS as 'Alice can't do anything' 
+\textcolor{Comment}{The purpose of a shadow server is impersonate itself as service provider (not be just a MITM)\\
+D probability no because packet sniffing does not provoke damage directly and maybe because is MITM type of attack  \\
+%B is correct but-> I assume that a shadow server could lead to a denial-of-service attack on a service provider. 
+%However, I do not understand how it could cause a denial-of-service attack on Alice. 
+ B -> wip
 }
 
 
-\textbf{\\Q15 - Alice wants to communicate securely with Bob (server). What kind of security properties must she implement to protect from Man in the Middle attack? Note: we assume Alice and Bob have trusted devices and software}
+\textbf{Q15 - Alice wants to communicate securely with Bob (server). What kind of security properties must she implement to protect from Man in the Middle attack? Note: we assume Alice and Bob have trusted devices and software}
 \begin{enumerate}
     \item[A.] server authentication, data authentication, confidentiality of the data exchanged, integrity of the data exchanged
     \item[B.] server authentication, confidentiality of the data exchanged, integrity of the data exchanged, serialization of each packet
-    \item[C.] \sol{server authentication, data authentication, confidentiality of the data exchanged, integrity of the data exchanged, and serialization of each packet}
+    \textbf{\item[C.] server authentication, data authentication, confidentiality of the data exchanged, integrity of the data exchanged, and serialization of each packet}
     \item[D.] privacy of the data exchanged, server authentication, data authentication, integrity of the data exchanged, serialization of each packet
 \end{enumerate}
-\com{A - miss serialization\\ B - miss data authentication\\ D - privacy has a different meaning from confidentiality, has a more legal nounce(I don't know how to explain it clearly)}
+\textcolor{Comment}{A - miss serialization\\ B - miss data authentication\\ D - privacy has a different meaning from confidentiality, has a more legal nounce(I don't know how to explain it clearly)}
 
 \section{Risk Management}
 
 
-\textbf{\\Q16 - In risk analysis, assets are:}
+\textbf{Q16 - In risk analysis, assets are:}
 \begin{enumerate}
     \item[A.] any ICT resource, data, and people present or working inside a company
     \item[B.] any ICT resource, data, and people used for providing a service
     \item[C.] the ICT resources, data, people, and location used in providing a specific service
-    \item[D.] \sol{the ICT resources, data, people, and location used in providing the services offered by the company}
+    \textbf{\item[D.] the ICT resources, data, people, and location used in providing the services offered by the company}
 \end{enumerate}
-\com{For each services -> ICT resources, data, people and location}
+\textcolor{Comment}{For each services -> ICT resources, data, people and location}
 
-\textbf{\\Q17 - In risk analysis, vulnerabilities are:}
+\textbf{Q17 - In risk analysis, vulnerabilities are:}
 \begin{enumerate}
     \item[A.] weaknesses in the software that could be exploited by an attacker
     \item[B.] weaknesses in the design, implementation, configuration, and management that could be exploited by an attacker
     \item[C.] actions an attacker performs to damage an asset
-    \item[D.] \sol{weaknesses in the design, implementation, configuration, and management that could harm assets if exploited by an attacker or by occurrence of unintentional events (natural disasters, mistakes performed by individuals)}
+    \textbf{\item[D.] weaknesses in the design, implementation, configuration, and management that could harm assets if exploited by an attacker or by occurrence of unintentional events (natural disasters, mistakes performed by individuals)}
 \end{enumerate}
-\com{no action but weaknesses, not only of software but of every aspect, vulnerable to unintentional events as well }
+\textcolor{Comment}{no action but weaknesses, not only of software but of every aspect, vulnerable to unintentional events as well }
 
-\textbf{\\Q18 - In risk analysis, a security control is:}
+\textbf{Q18 - In risk analysis, a security control is:}
 \begin{enumerate}
-    \item[A.] \sol{a set of operational and management processes, and security mechanisms (including software techniques, algorithms, and protocols) used to protect against threats}
+    \textbf{\item[A.] a set of operational and management processes, and security mechanisms (including software techniques, algorithms, and protocols) used to protect against threats}
     \item[B.] functional and non-functional requirements that need to be satisfied in order to achieve security
-    \item[C.] \sol{a set of operational and management processes, and security mechanisms (including software techniques, algorithms, and protocols) adopted to reduce risks}
+    \textbf{\item[C.] a set of operational and management processes, and security mechanisms (including software techniques, algorithms, and protocols) adopted to reduce risks}
 \end{enumerate}
-\com{Figure of chapter 1.8; B is security requirements}
+\textcolor{Comment}{Figure of chapter 1.8; B is security requirements}
 
-\textbf{\\Q19 - In risk analysis, a risk is:}
+\textbf{Q19 - In risk analysis, a risk is:}
 \begin{enumerate}
-    \item[A.] \sol{a qualitative (e.g., low, medium, high, very high) or quantitative (e.g. 10, 15, 25) value calculated based on the impact and the probability of occurrence of a security event}
+    \textbf{\item[A.] a qualitative (e.g., low, medium, high, very high) or quantitative (e.g. 10, 15, 25) value calculated based on the impact and the probability of occurrence of a security event}
     \item[B.] a cost calculated based on the countermeasures to be selected and implemented to protect against a security event
     \item[C.] possible deliberate action/accidental event that can produce the loss of a security property
 \end{enumerate}
 
-\textbf{\\Q20 - What are the security controls and procedures?}
+\textbf{Q20 - What are the security controls and procedures?}
 \begin{enumerate}
-    \item[A.] \sol{documents expressing ‘how’ you implement the policies, both for the technical details (such as specific techniques, algorithms used) and organizational details}
+    \textbf{\item[A.] documents expressing ‘how’ you implement the policies, both for the technical details (such as specific techniques, algorithms used) and organizational details}
     \item[B.] documents expressing the vulnerabilities of a system or product
     \item[C.] documents expressing the flaws in the implementation of a system or product
 \end{enumerate}
 
-\textbf{\\Q21 - Which of the following is not a purpose of doing a risk analysis?}
+\textbf{Q21 - Which of the following is not a purpose of doing a risk analysis?}
 \begin{enumerate}
-    \item[A.] \sol{delegate responsibility}
+    \textbf{\item[A.] delegate responsibility}
     \item[B.] quantify impact of potential threats
     \item[C.] identify risks
     \item[D.] define the balance between the impact of a risk and the cost of the necessary countermeasure
