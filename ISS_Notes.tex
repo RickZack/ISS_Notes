@@ -33,6 +33,8 @@
 
 \newboolean{showSolution}
 \setboolean{showSolution}{true}
+\newboolean{showComments}
+\setboolean{showComments}{true}
 
 \newcommand{\sol}[1]{%
     \ifthenelse{\boolean{showSolution}}%
@@ -40,6 +42,11 @@
     {#1}%
 }
 
+\newcommand{\com}[1]{%
+	\ifthenelse{\boolean{showComments}}%
+	{#1}%
+	{}%
+}
 
 
 \setmarginsrb{2.5 cm}{2.5 cm}{2.5 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
@@ -147,18 +154,17 @@
 
 
 
-\appendix
 %\setboolean{showSolution}{true}
 %\sol{Prova con \texttt{showSolution = true}}
 
 %\setboolean{showSolution}{false}
 %\sol{Prova con \texttt{showSolution = false}}
 
-%\include{exercises/exercise1}
-%\include{exercises/exercise2}
-%\include{exercises/exercise3}
-%\include{exercises/exercise4}
-%\include{exercises/exercise5}
+\include{exercises/exercise1}
+\include{exercises/exercise2}
+\include{exercises/exercise3}
+\include{exercises/exercise4}
+\include{exercises/exercise5}
 
 
 \appendix
