@@ -59,3 +59,171 @@ It is possible to \textbf{combine} these approaches to have \textbf{secure data 
     \centering
     \includegraphics[page = 6,trim = .5cm 3cm 17.7cm 4cm, clip, width = \linewidth]{\slides}
 \end{minipage}
+
+
+\section{Security Channels protocols}
+
+\begin{itemize}
+    \item \textbf{SSL/TLS}:
+          \begin{itemize}
+              \item The most widely used protocol, initially known as SSL and later renamed TLS.
+          \end{itemize}
+    \item \textbf{SSH}:
+          \begin{itemize}
+              \item Initially a successful product, especially during the period when the export of cryptographic products from the USA was restricted. However, today it is considered a niche product suitable for use only in specific restricted environments.
+          \end{itemize}
+    \item \textbf{PCT}:
+          \begin{itemize}
+              \item Proposed by Microsoft as an alternative to SSL, but it failed to gain popularity and was eventually dropped from Microsoft's products.
+          \end{itemize}
+\end{itemize}
+
+
+\section{TLS}
+\textbf{TLS}, initially named \textbf{Secure Socket Layer (SSL)}, was proposed by \textit{Netscape Communications} (the inventor of the first graphical browser for computers), which needed a secure protocol to implement e-commerce on the web. SSL provides a \textbf{secure transport channel} (at the session level) with several properties:
+
+\begin{itemize}
+    \item \textbf{Peer authentication (server, server + client)}:
+          \begin{itemize}
+              \item Server authentication is mandatory when the SSL channel is opened, primarily due to its origin in e-commerce. Optionally, client authentication can also be requested. It's important to note that this authentication occurs at the session level, meaning that a username/password is not required.
+          \end{itemize}
+
+    \item \textbf{Message confidentiality:}
+          \begin{itemize}
+              \item Confidentiality is optional because authentication may suffice.
+          \end{itemize}
+
+    \item \textbf{Message authentication and integrity:}
+          \begin{itemize}
+              \item Authentication and integrity are compulsory to demonstrate the origin of the message and ensure that it hasn't been altered during transmission.
+          \end{itemize}
+
+    \item \textbf{Protection against replay and filtering attacks:}
+          \begin{itemize}
+              \item SSL includes mechanisms to detect replay attacks, where a copied message is sent again to the channel. Similarly, if an intermediate node filters part of the data, the receiver will detect the missing portion.
+          \end{itemize}
+\end{itemize}
+
+Since TSL is built on top of TCP, its success stems from its compatibility with all TCP-based protocols, including \textit{HTTP, SMTP, NNTP, FTP,} and \textit{TELNET}. One well-known example is \textit{HTTPS}, which operates on port \texttt{443/TCP}.
+
+The evolution of secure communication protocols started with SSL-2 and SSL-3, which eventually gave way to TLS (Transport Layer Security). Over time, TLS has seen several versions, including TLS-1.0, TLS-1.1, TLS-1.2, and TLS-1.3.
+It's worth noting that versions \textbf{prior to TLS-1.2} are considered insecure and have been \textbf{deprecated} due to vulnerabilities and weaknesses in their security protocols. Therefore, it's recommended to use TLS-1.2 or higher to ensure secure communication over the network.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 9,trim = .7cm 2.3cm .7cm 4cm, clip, width = 0.6\textwidth]{\slides}
+    \caption{Official ports for SSL/TLS applications}
+\end{figure}
+
+
+\subsection{TSL - authentication and integrity}
+During channel setup, peer authentication is enforced with robust methods:
+
+\begin{itemize}
+    \item The server authenticates itself by sending its \textbf{public key} (\textit{X.509 certificate}) \underline{and} responding to an \textbf{implicit asymmetric challenge}.
+    \item \textbf{Client authentication}, involving the use of a public key such as X.509 certificate, and explicit challenge to demonstrate possession of the private key, \textbf{is optional} due to the absence of X.509 certificates for many users.
+\end{itemize}
+If peer authentication fails, the channel remains closed. However, upon successful authentication, all data exchanged over the channel are protected.
+
+To maintain \textbf{authentication and integrity} of the data, SSL employs:
+\begin{itemize}
+    \item A \textbf{keyed digest}, \textit{typically SHA-1 or better}, to validate authentication and integrity.
+    \item An implicit \textbf{Message IDentifier}, such as a unique number to each message to prevent replay and cancellation attacks. \ul{Since SSL operates atop TCP}, \ul{message sequencing is guaranteed}, eliminating issues like missing, duplicate, or out-of-order messages within TCP.\\
+          For instance (after receiving a message with \texttt{id=1}), receiving a message with the same identifier (\texttt{id=1}) as a previous one indicates a replay attack, while receiving a message with a different identifier than the next one (\texttt{id=3}) suggests a cancellation attack, as TCP handles missing or delayed packets before delivering data to the application layer.
+\end{itemize}
+
+
+
+\subsection{TLS - confidentiality}
+TLS provides optional confidentiality features:
+
+\begin{itemize}
+    \item The client generates a \textbf{session key}, which is subsequently used for symmetric encryption of data (using algorithms such as RC4, 3DES, IDEA, AES, etc.).
+    \item Key exchange with the server is facilitated through \textbf{public key cryptography} methods like RSA, Diffie-Hellman, or Fortezza-KEA (a variant of Diffie-Hellman previously used by US military personnel).
+    \item Starting from TLS-1.2, \textbf{authenticated encryption} (Chapter \ref{chap:authenticated-encryption}) is also available.
+\end{itemize}
+
+
+\subsection{TLS handshake}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 12,trim = 1cm 2.25cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{TLS handshake}
+    \label{fig:tls-handshake}
+\end{figure}
+
+In Figure \ref{fig:tls-handshake}, there is a \textit{secure web server} and a \textit{browser}.
+
+\begin{itemize}
+    \item [1] The browser intends to establish a secure channel using HTTPS.
+    \item [2] The first step is to \textbf{negotiate a security configuration}. Since there are multiple algorithms available, the browser and the server each declare their list of algorithms and attempt to find a match. At this stage, \ul{the connection could fail} if a common algorithm is not found. \ul{TLS is a negotiation protocol}.
+    \item [3] If the browser and server agree on a set of algorithms, the \textbf{server} will then provide its \textbf{certificate}, \ul{which must contain the name corresponding to the connected URL}. Subsequently, the server uses its private key to implicitly respond to a challenge. Although not depicted in the picture, the browser would typically send a \textbf{challenge}. This implicit challenge involves decrypting a key known as the "\ul{pre-master secret}" (Chapter \ref{chap:pre-master-secret}), which is decided by the client and sent to the server encrypted with the public key found in the certificate.
+    \item [4] Optionally, the server may request the \textbf{browser} to send its own X.509 \textbf{certificate}. In this case, the server explicitly challenges the browser, which must use its private key to provide a response.
+    \item [5] If all steps are successful, a \textbf{secure channel is established}.
+\end{itemize}
+
+
+\subsection{TLS architecture}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 13,trim = .7cm 3cm .7cm 5cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{TLS architecture}
+    \label{fig:tls-architecture}
+\end{figure}
+
+At the base of the protocol stack are the \textbf{network protocol} (e.g., IP) and a \textbf{reliable transport protocol} (e.g., TCP). Built on top of TCP is a \textbf{record protocol} used to transmit SSL records, which contain protected data. Within the SSL record protocol are application data, initially used for the \textbf{handshake protocol} (i.e., the agreement phase depicted in the previous diagram). Additionally, there is the \textbf{Change Cipher Spec protocol}, used at the end of the handshake to signal the conclusion of the agreement. Finally, there is the \textbf{Alert protocol}, which is utilized to send alarms, such as notifications of missing or duplicated packets, or to indicate the end of communication.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 18,trim = .7cm 2cm .7cm 3.7cm, clip, width = 0.60\textwidth]{\slides}
+    \caption{TLS record protocol (authenticate-then-encrypt)}
+    \label{fig:tls-record-protocol}
+\end{figure}
+
+
+\subsubsection{TLS record protocol}
+When the record protocol (Figure \ref*{fig:tls-record-protocol}) is used to transmit application data, it may involve sending large files (e.g., large files from the server). However, SSL imposes a limitation whereby only packets of a specific length (32 Kbytes) can be sent. To accommodate larger files, the application data \textbf{is first fragmented} and \textbf{then compressed} (although compression is not utilized in newer versions due to potential vulnerabilities). Following compression, a Message Authentication Code (MAC) is computed to ensure \textbf{authentication} and \textbf{integrity}. If \textbf{confidentiality} is also desired, padding is added. As one of the final steps, the new \texttt{compressed+MAC+P} packet is encrypted, and then a header is prepended to make it recognizable as an SSL segment inside TCP.
+
+\subsubsection{TLS-1.x record format}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 19,trim = 15cm 4cm .5cm 8cm, clip, width = .45\textwidth]{\slides}
+\end{figure}
+
+\begin{itemize}
+    \item \texttt{uint8 type}: Indicates the type of record, which could be \texttt{change\_cipher\_spec} (20), \texttt{alert} (21), \texttt{handshake} (22), or \texttt{application\_data} (23).
+
+    \item \texttt{uint16 version}: Specifies the TLS version, consisting of a major (\texttt{uint8}) and a minor (\texttt{uint8}) version number.
+
+    \item \texttt{uint16 length}: Represents the length of the record payload.
+          \begin{itemize}
+              \item $\leq$ $2^{14}$ (record not compressed) for compatibility with SSL-2
+              \item $\leq$ $2^{14} + 1024$ (compressed records)
+          \end{itemize}
+
+    \item This results in a 5-byte header.
+
+    \item Additionally, there is a payload of maximum 16KB.
+\end{itemize}
+
+
+\subsubsection{SSL - computation of MAC}
+\begin{verbatim}
+    MAC = message_digest ( key, seq_number || type ||
+     version || length || fragment )
+\end{verbatim}
+
+In order to protect authentication and integrity, a MAC is computed using a specific cryptographic hash (digest algorithm) and the key negotiated during the handshake. \textbf{This MAC protects everything}, including the sequence number, type of packet, version, length, and the data itself (the fragment).
+
+Some notes:
+\begin{itemize}
+    \item \textbf{Message digest} \\
+    It depends on the chosen algorithm.
+    \item \textbf{Key} \\
+    \underline{It differs according to the direction}: one key to protect data from the client to the server and another key to protect data from the server to the client. This differentiation is important because otherwise, an attacker could copy a packet being sent from the client to the server and replay it as part of the server-to-client communication.
+    \item \textbf{Seq number} \\
+    It is a 64-bit integer that is \underline{never transmitted} but computed implicitly (since TCP is used and therefore no packets can be lost). This large integer allows the channel to remain open while sending a significant amount of data before reaching the maximum number expressible with 64 bits. When this limit is reached, the channel must be closed and another one will be opened.
+\end{itemize}
