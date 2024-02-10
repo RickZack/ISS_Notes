@@ -511,7 +511,7 @@ Taliban. Still full of classified information, such as names, sites, and weak po
 
 \section{Some classes of attacks}
 
-\subsection{Passive and attive attacks}
+\subsection{Passive and active attacks}
 A useful means of classifying security attacks is in terms of \emph{passive attacks and active attacks}.
 
 A \textbf{passive attack} attempts to {learn or make use of information from the system but does not affect system resources}. Examples of passive attacks are:
@@ -539,7 +539,7 @@ Packet sniffing refers to reading packets addressed to another network node. It 
 
 
 \subsection{Traffic Analysis}
-Traffic analysis is more subtle than packet sniffing. Suppose we had a way of masking the contents of messages or other information traffic so that opponents, so that the content of the messages cannot be understood by a third party. Even with encryption in place, the opponent could determine the location and identity of communicating hosts and could observe the frequency and length of messages being exchanged. This information might be useful in guessing the nature of the communication that was taking place.
+Traffic analysis is more subtle than packet sniffing. Suppose we had a way of masking the contents of messages or other information traffic, so that the content of the messages cannot be understood by a third party. Even with encryption in place, the opponent could determine the location and identity of communicating hosts and could observe the frequency and length of messages being exchanged. This information might be useful in guessing the nature of the communication that was taking place.
 
 \subsection{IP Spoofing (Masquerading)}
 \begin{wrapfigure}{r}{0.25\textwidth}
@@ -556,7 +556,7 @@ message “Message did not deliver because the destination mailbox is full”. W
 Other examples:
 \begin{itemize}
   \item \textbf{Mail/log saturation:} As explained before.
-  \item \textbf{Ping flooding ("ping bombing"):} The ICMP echo request usually uses a small number of bits (8 bytes) and starts a timer waiting some seconds for a response. We could use the largest amount of bytes possible: 64 Kbytes. We should send a lot of echo requests at maximum speed without starting timers. This will keep the host busy answering all these packets and prevent it from performing other tasks.
+  \item \textbf{Ping flooding ("ping bombing"):} The \texttt{ICMP echo request} usually uses a small number of bits (8 bytes) and starts a timer waiting some seconds for a response. We could use the largest amount of bytes possible: 64 KBytes. We should send a lot of echo requests at maximum speed without starting timers. This will keep the host busy answering all these packets and prevent it from performing other tasks.
   \item \textbf{SYN flood:} It is a form of denial-of-service attack in which an attacker rapidly initiates a connection to a server without finalizing the connection. The server must spend resources waiting for half-opened connections, which can consume enough resources to make the system unresponsive to legitimate traffic (see TCP SYN flooding).
 \end{itemize}
 
@@ -695,7 +695,7 @@ Some countermeasures are user awareness, correct configuration/secure software, 
 \subsection{Malware food chain}
 \begin{wrapfigure}{r}{0.40\textwidth}
   \centering
-  \includegraphics[page = 60,trim = 1cm 2cm 1cm 5cm, clip, width = 0.40\textwidth]{\slides}
+  \includegraphics[page = 60,trim = 1cm 2.2cm .7cm 4.7cm, clip, width = 0.40\textwidth]{\slides}
 \end{wrapfigure}
 When someone discovers a vulnerability, it can be exploited for the development of malicious code (for example, this code could be used to gain access to a website and manipulate its data). Such information can be exploited in two ways:
 \begin{itemize}
