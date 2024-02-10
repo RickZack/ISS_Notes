@@ -32,7 +32,12 @@ when getting access to the corporate network (via a password). What is the main 
     \item[C.] \sol{The response of the DHCP server is not authenticated.}
     \item[D.] The response of the DHCP server is not encrypted.
 \end{itemize}
-\com{wip}
+\com{
+    A -> is not important, the server assigne IP address to everyone in the net   \\ 
+    B -> anyone can receive the request and reply before the DHCP \\    
+    C -> the client receive the IP address sended by a malicious guy (point B) and can't notice it  \\
+    D -> they are just IP addresses, not sensitive information
+}
 
 \textbf{\\Q2 - Assume an attacker knows that a company uses DHCP to provide network configuration. What kind of security attacks can he mount (from the ones explained in the course)?}
 \begin{itemize}
@@ -43,7 +48,11 @@ when getting access to the corporate network (via a password). What is the main 
     \item[E.] Sniffing attack
     \item[F.] \sol{DNS attacks (malicious name-address translation)}
 \end{itemize}
-\com{wip}
+\com{
+    B,C,F -> giving wrong information, redirect the client to fake server, ect \\
+    E -> not sensitive information ( does't even need encryption) \\
+    D -> useless 
+}
 
 
 \textbf{\\Q3 - ICMP is a commonly used protocol. What kind of security attacks can be mounted by exploiting its features (from the ones explained in the course)?}
@@ -55,7 +64,10 @@ when getting access to the corporate network (via a password). What is the main 
     \item[E.] \sol{DoS attack (by exploiting source quench)}
     \item[F.] MITM attack (by exploiting time exceeded for a datagram)
 \end{itemize}
-\com{wip}
+\com{
+     chap 4.5 
+ }
+
 
 \textbf{\\Q4 - ARP is a commonly used protocol. ARP poisoning attack is possible because:}
 \begin{itemize}
@@ -63,7 +75,7 @@ when getting access to the corporate network (via a password). What is the main 
     \item[B.] \sol{the association between the MAC address to an IP address is changed by the attacker (e.g. by using attack tools)}
     \item[C.] no defense exists against ARP poisoning attack
 \end{itemize}
-\com{wip}
+\com{C -> Static ARP Tables, switch security and Other things not present in the slides so is not important}
 
 \textbf{\\Q5 - TCP SYN flooding is a:}
 \begin{itemize}
@@ -72,7 +84,9 @@ when getting access to the corporate network (via a password). What is the main 
     \item[C.] \sol{DoS attack which is possible because the victim allocates entries in the TCP connection table when receiving a SYN, and then is waiting for the corresponding ACK}
     \item[D.] an attack against which it is very difficult to defend from
 \end{itemize}
-\com{wip}
+\com{
+    the attacker does not send ACK. We can use SYN cookie to defend
+}
 
 \textbf{\\Q6 - Indicate (some of the) possible attacks against DNS:}
 \begin{itemize}
@@ -84,7 +98,11 @@ when getting access to the corporate network (via a password). What is the main 
     \item[F.] capture sensitive information from the DNS responses
     \item[G.] \sol{user privacy problems for the queries}
 \end{itemize}
-\com{wip}
+\com{ 
+    A -> if an attacker can intercept and sniff the request sent to the local DNS,
+     it may be possible to provide a fake response. This can result in the victim receiving a false IP address. \\
+    B -> the pirate nameserver responds with the correct information along with additional incorrect data
+}
 
 
 \section{IPsec and VPN}
@@ -99,7 +117,7 @@ when getting access to the corporate network (via a password). What is the main 
         \item via cryptographic protection of the network packets (secure IP tunnel)
     \end{itemize}}
 \end{itemize}
-\com{wip}
+\com{}
 
 \textbf{\\Q2 - assume that two companies (Oil Torino, and Food Melfi)
 decide to create a VPN via private IP addresses.}
@@ -114,7 +132,7 @@ decide to create a VPN via private IP addresses.}
     \item[C.] \sol{Assume an attacker inside the telecom operator: get unauthorized access to the communication devices (routers) to intercept the transmission, replay, or inject new packets}
     \item[D.] \sol{Assume an attacker (inside the telecom operator or in the network): the DoS attack}
 \end{itemize}
-\com{wip}
+\com{}
 
 
 \textbf{\\Q3 - Assume two companies (Oil Torino and Food Melfi) decide to create a VPN via IP tunnel (IP in IP).
@@ -130,7 +148,10 @@ Other two companies (Candies Milano and Chocolates Roma) also decide to create a
     \item[C.] \sol{Assume an attacker inside the telecom operator: if he can get unauthorized access to the communication devices (routers), then he can intercept the packets, replay, or inject new packets}
     \item[D.] \sol{Assume an attacker (inside the telecom operator or in the network): he can perform the DoS attack}
 \end{itemize}
-\com{wip}
+\com{
+    A -> everybody can create fake packets, but who will stop them? the router, it will allow to go to Oil Torino since is not in the red line (check the subnet)\\
+    B -> IP in IP does not protect data
+}
 
 
 \textbf{\\Q4 - Assume two companies (Candies Milano and Chocolates Roma) decide to create a VPN via secure IP tunnel}
@@ -145,7 +166,11 @@ Other two companies (Candies Milano and Chocolates Roma) also decide to create a
     \item[C.] An attacker inside the telecom operator: if he can get unauthorized access to the communication devices (routers), then he can intercept the packets, replay, or inject new packets
     \item[D.] \sol{An attacker (inside the telecom operator or in the network): he can perform the DoS attack}
 \end{itemize}
-\com{wip}
+\com{
+    A -> as before\\
+    B -> VPN via secure IP tunnel has MAC for integrity/authentication, encryption for confidentiality and numbering for guard against replay attack\\
+    C -> numbering, mac and encryption
+}
 
 \textbf{\\Q5 - The IPsec protocol provides security services:}
 \begin{itemize}
@@ -154,14 +179,15 @@ Other two companies (Candies Milano and Chocolates Roma) also decide to create a
     \item[C.] \sol{At network level}
     \item[D.] At data link level
 \end{itemize}
-\com{wip}
+\com{IPsec is the IETF architecture for Layer 3 security in IPv4/IPv6 designed to create a Secure
+VPN (S-VPN) over untrusted networks and create end-to-end secure packet flows.}
 
 \textbf{\\Q6 - The SPD in IPsec contains:}
 \begin{itemize}
     \item[A.] List of active algorithms, keys, parameters to apply for the protection of the IP packets
     \item[B.] \sol{List of rules that may depend on fields in the IP and transport-layer headers (e.g., destination address and port, source address and port, protocol) indicating whether IPsec needs to be applied to the packet}
 \end{itemize}
-\com{wip}
+\com{Security Policy Database. SAD Security Association Database}
 
 \textbf{\\Q7 - A company decides to adopt end-to-end security to protect communication between its end nodes. Moreover, it decides each node must protect the IP packets both with AH and ESP. Assume two nodes A and B. Consider the node A: how many SAs and SPs does it need to configure in the IPsec module to communicate with the node B?}
 \begin{itemize}
@@ -170,7 +196,7 @@ Other two companies (Candies Milano and Chocolates Roma) also decide to create a
     \item[C.] Two SAs and two SPs
     \item[D.] \sol{Four SAs and two SPs}
 \end{itemize}
-\com{wip}
+\com{Two SPs, one for each direction. Four SAs, two for each direction (one for ESP one for AH)}
 
 \textbf{\\Q8 - Assume a company decides to adopt end-to-end security IPsec schema between all its nodes (placed at different locations). 
 Which steps must be fulfilled to accomplish this task and which are the possible drawbacks?}
@@ -181,18 +207,20 @@ Which steps must be fulfilled to accomplish this task and which are the possible
     \item[D.] \sol{In case ESP is used, the IP header (original) is not protected when transmitted over the untrusted network}
     \item[E.] \sol{Possible performance problems can be encountered at some hosts (e.g. ones acting as servers) due to IPsec load}
 \end{itemize}
-\com{wip}
+\com{
+    A -> like in that orrible Lab \\
+}
 
 \textbf{\\Q9 - Assume a company decides to adopt Basic VPN IPsec schema between all its nodes (placed at different locations). 
 Which steps must be fulfilled to accomplish this task and which are the possible drawbacks?}
 \begin{itemize}
     \item[A.] Install (and configure) IPsec on all the nodes
-    \item[B.] In case ESP (with confidentiality) is used, then (internal) network monitoring, filtering of traffic based on the content, as well IDS will not be possible
+    \item[B.] \sol{In case ESP (with confidentiality) is used, then (internal) network monitoring, filtering of traffic based on the content, as well IDS will not be possible}
     \item[C.] \sol{Install (and configure) IPsec only on the gateway}
-    \item[D.] In case ESP is used, the IP header (tunnel) is not protected when transmitted over the untrusted network
+    \item[D.] \sol{In case ESP is used, the IP header (tunnel) is not protected when transmitted over the untrusted network}
     \item[E.] \sol{Possible performance problems can be encountered at the gateway due to IPsec load}
 \end{itemize}
-\com{wip}
+\com{}
 
 \textbf{\\Q10 - The (partial) protection against replay in IPsec is performed}
 \begin{itemize}
