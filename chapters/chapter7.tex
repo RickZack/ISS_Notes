@@ -566,3 +566,30 @@ An example is illustrated in the following with a security blog website, which e
     \centering
     \includegraphics[page = 46,trim = .5cm 2.3cm .5cm 2cm,  clip, width = 0.55\textwidth]{\slides}
 \end{figure}
+
+\section{E-payment systems}
+
+The motivations for dedicated payment protocols are:
+
+\begin{itemize}
+    \item Failure of digital cash, due to technical and political problems (e.g., the failure of DigiCash).
+    \item Failure of dedicated payment protocols (e.g., SET, Secure Electronic Transactions), caused by technical and organizational issues.
+    \item Currently, the most widely used approach involves \textbf{transmitting a credit card number over a TLS channel}. However, \textbf{this does not guarantee protection against fraud}. For instance, VISA Europe reported that internet transactions accounted for approximately 50\% of fraud attempts, despite constituting only 2\% of its total transaction volume.
+        \begin{itemize}
+            \item This indicates that the internet is not where credit card numbers are stolen, but rather \ul{where it is easier to utilize stolen credit card numbers}.
+            \item The fact that TLS protects the transmission of credit card numbers is not a guarantee against fraud, as the data may have been stolen prior to transmission (and then used online) or the server may be untrusted.
+        \end{itemize}
+\end{itemize}
+
+
+
+\subsection{A web-based payment architecture}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 48,trim = 1cm 2.3cm .5cm 4cm, clip, width = .6\textwidth]{\slides}
+    \caption{The most common architecture when implementing payment with credit card in Internet}
+    \label{fig:web-based-payment}
+\end{figure}
+
+The initial interaction in Figure \ref*{fig:web-based-payment} is initiated by the merchant: envision the cardholder browsing the shop, filling a market basket, and preparing to check out. When the cardholder places the order, the recommended approach is for the merchant not to request payment data directly. Doing so would pose significant risks and necessitate adherence to extremely high security standards. Instead, the optimal solution is for the merchant to have an agreement with a payment gateway and redirect the request to it. At this stage, the cardholder is no longer in direct contact with the merchant but with the payment gateway, which establishes a secure channel for the exchange of credit card data. The challenge here lies in validating this data: in a physical payment scenario, a Point Of Sale (POS) device would be used. Therefore, in this virtual scenario, the payment gateway creates a virtual POS. This virtual POS, starting from the credit card data, generates a transaction that is valid for the payment network, verifying the validity of the credit card data for the specific payment. Once the payment network confirms the validity of the data, the gateway will provide a positive response to the merchant, enabling the merchant to fulfill the cardholder's order.
