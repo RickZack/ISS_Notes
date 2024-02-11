@@ -158,7 +158,7 @@ In Figure \ref{fig:tls-handshake}, there is a \textit{secure web server} and a \
 \begin{itemize}
     \item [1] The browser intends to establish a secure channel using HTTPS.
     \item [2] The first step is to \textbf{negotiate a security configuration}. Since there are multiple algorithms available, the browser and the server each declare their list of algorithms and attempt to find a match. At this stage, \ul{the connection could fail} if a common algorithm is not found. \ul{TLS is a negotiation protocol}.
-    \item [3] If the browser and server agree on a set of algorithms, the \textbf{server} will then provide its \textbf{certificate}, \ul{which must contain the name corresponding to the connected URL}. Subsequently, the server uses its private key to implicitly respond to a challenge. Although not depicted in the picture, the browser would typically send a \textbf{challenge}. This implicit challenge involves decrypting a key known as the "\ul{pre-master secret}" (Chapter \ref{chap:pre-master-secret}), which is decided by the client and sent to the server encrypted with the public key found in the certificate.
+    \item [3] If the browser and server agree on a set of algorithms, the \textbf{server} will then provide its \textbf{certificate}, \ul{which must contain the name corresponding to the connected URL}. Subsequently, the server uses its private key to implicitly respond to a challenge. Although not depicted in the picture, the browser would typically send a \textbf{challenge}. This implicit challenge involves decrypting a key known as the "\ul{pre-master secret}" (Chapter \ref{chap:tls-session-keys}), which is decided by the client and sent to the server encrypted with the public key found in the certificate.
     \item [4] Optionally, the server may request the \textbf{browser} to send its own X.509 \textbf{certificate}. In this case, the server explicitly challenges the browser, which must use its private key to provide a response.
     \item [5] If all steps are successful, a \textbf{secure channel is established}.
 \end{itemize}
@@ -221,9 +221,184 @@ In order to protect authentication and integrity, a MAC is computed using a spec
 Some notes:
 \begin{itemize}
     \item \textbf{Message digest} \\
-    It depends on the chosen algorithm.
+          It depends on the chosen algorithm.
     \item \textbf{Key} \\
-    \underline{It differs according to the direction}: one key to protect data from the client to the server and another key to protect data from the server to the client. This differentiation is important because otherwise, an attacker could copy a packet being sent from the client to the server and replay it as part of the server-to-client communication.
+          \underline{It differs according to the direction}: one key to protect data from the client to the server and another key to protect data from the server to the client. This differentiation is important because otherwise, an attacker could copy a packet being sent from the client to the server and replay it as part of the server-to-client communication.
     \item \textbf{Seq number} \\
-    It is a 64-bit integer that is \underline{never transmitted} but computed implicitly (since TCP is used and therefore no packets can be lost). This large integer allows the channel to remain open while sending a significant amount of data before reaching the maximum number expressible with 64 bits. When this limit is reached, the channel must be closed and another one will be opened.
+          It is a 64-bit integer that is \underline{never transmitted} but computed implicitly (since TCP is used and therefore no packets can be lost). This large integer allows the channel to remain open while sending a significant amount of data before reaching the maximum number expressible with 64 bits. When this limit is reached, the channel must be closed and another one will be opened.
 \end{itemize}
+
+
+\subsubsection{Data protection (authenticate-then-encrypt)}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 22,trim = 1cm 2.3cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Data protection with authenticate-then-encrypt}
+\end{figure}
+From a data protection point of view, there are data (optionally compressed) that need to be protected. A MAC is computed by taking the data, the key, the implicit sequence number, and eventually the padding. Then the MAC is inserted. The packet is then symmetrically encrypted with one IV (considering CBC) and a \underline{specific key} for encryption. Finally, the data is protected, and the SSL header will be prepended to it.
+
+
+\subsubsection{Session-id}
+A typical web transaction looks like the following:
+\begin{enumerate}
+    \item Open, GET page.htm, page.htm, Close
+    \item Open, GET home.gif, home.gif, Close
+    \item Open, GET logo.gif, logo.gif, Close
+    \item Open, GET back.jpg, back.jpg, Close
+    \item Open, GET music.mid, music.mid, Close
+\end{enumerate}
+
+Channels are continuously opened and closed, which can be particularly burdensome when SSL is used due to the need to negotiate cryptographic parameters for each connection. This negotiation process, involving public key operations, can result in high computational loads. To mitigate this, SSL servers can utilize a \underline{permanent identifier} known as a \textbf{session identifier}. This session identifier represents a set of negotiated algorithms and keys from previous connections, allowing for quicker establishment of secure channels. When a client initiates an SSL connection, it can send a previously negotiated \textbf{session-id} before beginning the handshake, bypassing the negotiation phase and enabling immediate data exchange over the secure channel. It's important to note that servers may reject the use of session-IDs, either consistently or after a certain period since their issuance.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 16,trim = 1cm 2.5cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{TLS handshake with session-ID}
+    \label{fig:tls-handshake-sessionid}
+\end{figure}
+
+
+In Figure \ref{fig:tls-handshake-sessionid}, a session ID is sent before negotiation begins. If the session ID is still cached by the server, the secure channel is established without further negotiation. If an attacker attempts to use a valid session ID, they will be unable to send messages through the channel because they lack knowledge of the algorithms and keys used, preventing them from computing the correct MAC. However, careful consideration should be given to the duration for which session IDs (and related information) is retained to prevent server overload from tracking user sessions.
+
+So, there are two concepts to keep in mind when dealing with SSL:
+\begin{itemize}
+    \item \textbf{TLS session}
+          \begin{itemize}
+              \item It is a \textbf{logical association between the client and server}.
+              \item Created by the Handshake Protocol.
+              \item Defines a set of cryptographic parameters (algorithms, keys, and so on).
+              \item Is shared by one or more SSL connections (1:N).
+          \end{itemize}
+    \item \textbf{TLS connection}
+          \begin{itemize}
+              \item A transient TLS channel between the client and server.
+              \item Associated with one specific TLS session (1:1).
+          \end{itemize}
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 17,trim = 2cm 2.7cm 2cm 15cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+
+
+\subsubsection{Relationship among keys and sessions (between a server and the same client)}\label{chap:tls-session-keys}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 23,trim = .3cm 2.15cm 1cm 5cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Relationship among keys and sessions}
+    \label{fig:tls-session-keys}
+\end{figure}
+
+During the handshake protocol, two public keys are established, known as the \textbf{pre-master secret} (a long-term secret) and the \textbf{master secret}. When establishing the connection for the first time in the session, the pre-master secret is generated. Subsequently, for each connection, including the initial one, both the client and server generate a \textbf{random number}. These random numbers are \textbf{combined with the pre-master secret} to \textbf{create the master secret}, utilizing a symmetric operation, such as a key derivation function. For \underline{each connection}, the keys for Message Authentication Code \textit{MAC}, the keys for \textit{encryption}, and the Initialization Vectors (\textit{IV}) for encryption are derived by combining the master secret with the unique random values exchanged in clear text. \ul{The only persistent element in the same session is the master secret}; initially, it is generated from the pre-master secret and the random numbers generated each time a new connection is established.
+
+
+\subsubsection{Perfect forward secrecy}
+If a TLS server possesses a valid certificate for both signature and encryption, it can be utilized for both authentication (via a signature) and key exchange (by asymmetrically encrypting the session key). However, if an attacker intercepts and stores all encrypted traffic and subsequently gains access to the long-term private key, they can decrypt all the traffic, including past, present, and future communications. To mitigate this risk, "perfect forward secrecy" is implemented. In this scenario, compromising a private key only affects the current and future traffic, preserving the confidentiality of past communications.
+
+This necessitates that \textbf{the key used for authentication differs from the key used for encryption}.
+However, merely using separate keys is insufficient. \textbf{The encryption key must be unique for each session}, ensuring that it is a one-time key.
+
+\subsubsection{"Ephemeral" mechanisms}
+"Ephemeral" mechanisms are employed today to achieve Perfect Forward Secrecy (PFS). In this approach, an encryption one-time key is generated for each session:
+\begin{itemize}
+    \item \textbf{For authenticity, the key must be signed}. However, it cannot have an associated X.509 certificate due to the \textbf{slow} and often offline nature of the Certificate Authority (CA) process.
+    \item Diffie-Hellman (DH) is suitable for this purpose, whereas RSA is slower due to its reliance on prime numbers. An alternative is to use an ephemeral RSA key, generated once and reused multiple times (typically 10-100 times).
+\end{itemize}
+
+By generating encryption keys dynamically and signing them with the private key, the \textbf{server's private key is utilized only for signing}. This ensures Perfect Forward Secrecy:
+\begin{itemize}
+    \item If the (temporary or short-lived) private key is compromised, the attacker can only decrypt the corresponding traffic.
+    \item Compromise of the long-term private key poses an \textbf{authentication issue but does not compromise confidentiality}.
+\end{itemize}
+Examples: TLS servers nowadays utilize ECDHE (Elliptic Curve Diffie-Hellman Ephemeral), which ensures that the Diffie-Hellman parameters are not fixed but generated on-the-fly for each session.
+
+
+\subsection{TLS and virtual servers}
+
+\subsubsection{The problem}
+
+TLS establishes a secure channel before reaching the application level, which creates issues, especially with \textbf{virtual servers} - a common scenario in web hosting. Given the shortage of IP addresses, it's common practice to assign multiple domain names to the same IP address, such as \texttt{home.myweb.it} and \texttt{food.myweb.it} both pointing to \texttt{1.2.3.4}.\\
+In \textit{HTTP/1.1}, this is easily managed as the client sends a \textit{Host header} specifying the desired server after establishing a TCP connection. However, in \textbf{HTTPS}, where TLS is activated before HTTP, determining which certificate to provide poses a challenge: the name in the certificate must match the URL typed by the user.
+
+\subsubsection{The solutions}
+
+One solution is to utilize a \textbf{collective (wildcard) certificate}, such as \texttt{CN=*.myweb.it}.
+However, this approach requires sharing the private key among all servers using the certificate, and not all browsers handle wildcard certificates consistently.
+
+Another approach involves using the \textbf{"subject alternative name"} (\texttt{subjectAltName}) field to include a list of virtual servers sharing the same IP address. However, this still requires sharing the private key among servers and necessitates reissuing the certificate whenever a server is added or removed.
+
+The best solution is to employ the \textit{Server Name Indication} (\textbf{SNI}) extension in the \texttt{ClientHello} message, as standardized by RFC-4366. This extension allows the client to specify the intended server name during the initial connection. Unfortunately, due to its status as an extension, SNI has limited support among browsers and servers.
+
+
+
+\subsection*{ALPN extension (Application-Layer Protocol Negotiation)}
+Another issue arises once the TLS channel is established: the presence of an application protocol operating securely within it. However, these application protocols may exist in multiple versions, posing a challenge. This challenge is addressed by the \textbf{ALPN extension} (RFC-7301).
+
+ALPN facilitates Application Protocol Negotiation (for TLS-then-proto) to speed up the connection creation, avoiding additional roundtrips for application negotiation:
+\begin{itemize}
+    \item The \texttt{ClientHello} message indicates \texttt{ALPN=true} along with a list of supported application protocols.
+    \item In response, the \texttt{ServerHello} message confirms \texttt{ALPN=true} and specifies the selected application protocol.
+\end{itemize}
+
+However, if the client selects a protocol version that the server does not support, the connection is closed, requiring the client to attempt connection establishment again with a different version, possibly multiple times. ALPN mitigates the need for opening numerous TLS channels by enabling agreement on the application protocol version to be used.
+
+This negotiation mechanism is particularly crucial for negotiating HTTP/2 and QUIC (a UDP-based version of HTTP), as Chrome and Firefox support HTTP/2 \textbf{only over TLS}. Additionally, ALPN proves beneficial for servers employing distinct certificates for various application protocols.
+
+Some potential values include \texttt{http/1.0}, \texttt{http/1.1}, \texttt{h2} (representing HTTP/2), and \texttt{h2c}.
+
+
+\section{DTLS}
+
+Given the success of TLS, there has been an effort to extend its use to protect datagrams, as TLS can only be applied to level 4 reliable protocols like TCP. \textbf{Datagram Transport Layer Security} (\textbf{DTLS}), specified in RFC-4347, adapts TLS concepts to ensure \textbf{datagram security}, particularly for protocols like UDP. However, DTLS does not offer the same properties as TLS due to the unreliable nature of level 3 protocols, where packets can be lost or duplicated.
+
+DTLS competes with IPsec and application-level security, presenting various implementation choices for securing protocols like \textbf{SIP} (Session Initiation Protocol) used in VoIP (Voice over Internet Protocol).
+Security for SIP can be implemented in several ways:
+\begin{itemize}
+    \item With \textit{IPsec}, particularly as SIP typically employs UDP packets transported over IP.
+    \item With \textit{TLS}, although limited to SIP over TCP.
+    \item With \textit{DTLS}, applicable only to SIP over UDP.
+    \item With \textit{secure SIP}, which directly implements protection at the application level.
+\end{itemize}
+
+The choice often boils down to practical considerations: which approach is easier to implement?
+
+
+
+\subsection{The TLS downgrade problem}
+
+There are various versions of TLS: the original SSL, versions 2 and 3, and then TLS 1.0, 1.1, 1.2, and so on. Typically, the older versions have security vulnerabilities and should not be used unless explicitly required.
+
+Normally, the client sends the highest supported version within the ClientHello message, and the server notifies (in the ServerHello) the version to be used, which is the highest version common with the client.
+
+A typical version negotiation between the Client and Server proceeds as follows:
+\begin{itemize}
+    \item \textbf{Agreement on TLS 1.2}:
+          \begin{itemize}
+              \item (Client $\rightarrow$ Server) \texttt{3,3} (indicating major version 3, minor version 3, which by default is TLS 1.2)
+              \item (Server $\rightarrow$ Client) \texttt{3,3} (server agrees with the version proposed by the client)
+          \end{itemize}
+    \item \textbf{Fallback to TLS 1.1} (if TLS 1.2 is not supported by the server):
+          \begin{itemize}
+              \item (Client $\rightarrow$ Server) \texttt{3,3}
+              \item (Server $\rightarrow$ Client) \texttt{3,2} (server downgrades to a previous version)
+          \end{itemize}
+\end{itemize}
+
+However, there is a problem: \textbf{some servers, instead of sending the correct response, close the connection}. Consequently, the client has no choice but to try again with a lower protocol version. This \underline{vulnerability} leads to the \textbf{Downgrade attack}: the attacker sends a fake server response to force repeated downgrades until reaching a vulnerable version (e.g., SSL 3), enabling the execution of a suitable attack (e.g., Poodle). However, attacks are not the only concern, as network errors could also lead to connection closure with the server. For this reason, a new extension has been added.
+
+\subsection{TLS Fallback Signalling Cipher Suite Value (SCSV)}
+
+This extension, as reported in RFC-7507, aims to \textbf{prevent} protocol downgrade attacks. It achieves this by creating a new (dummy) cipher suite that does not list any specific algorithms but simply includes \texttt{TLS\_FALLBACK\_SCSV}. This \underline{should} be sent by the client when opening a downgraded connection, with \texttt{TLS\_FALLBACK\_SCSV} placed last in the cipher suite list.
+
+For example, if the client initially proposed TLS 1.1 but the connection was downgraded to TLS 1.0, the response will be sent with TLS 1.0. However, to signal that a better version is available, \texttt{TLS\_FALLBACK\_SCSV} is included in the cipher suite.
+
+If a better version is indeed available, the server \underline{must} send a new fatal alert value, \\ \texttt{inappropriate\_fallback}, when it receives \texttt{TLS\_FALLBACK\_SCSV} and detects a version lower than the highest supported one. 
+In case of an error, the channel is closed, and the client should retry with its highest supported protocol version.
+
+Although many servers do not yet support SCSV, most have corrected their behavior when the client requests a version higher than the one supported. Consequently, browsers can now disable insecure downgrade: Firefox since 2015 and Chrome since 2016.
+
+
+
+\section{HTTP security}
