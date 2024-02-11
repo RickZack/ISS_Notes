@@ -592,4 +592,69 @@ The motivations for dedicated payment protocols are:
     \label{fig:web-based-payment}
 \end{figure}
 
-The initial interaction in Figure \ref*{fig:web-based-payment} is initiated by the merchant: envision the cardholder browsing the shop, filling a market basket, and preparing to check out. When the cardholder places the order, the recommended approach is for the merchant not to request payment data directly. Doing so would pose significant risks and necessitate adherence to extremely high security standards. Instead, the optimal solution is for the merchant to have an agreement with a payment gateway and redirect the request to it. At this stage, the cardholder is no longer in direct contact with the merchant but with the payment gateway, which establishes a secure channel for the exchange of credit card data. The challenge here lies in validating this data: in a physical payment scenario, a Point Of Sale (POS) device would be used. Therefore, in this virtual scenario, the payment gateway creates a virtual POS. This virtual POS, starting from the credit card data, generates a transaction that is valid for the payment network, verifying the validity of the credit card data for the specific payment. Once the payment network confirms the validity of the data, the gateway will provide a positive response to the merchant, enabling the merchant to fulfill the cardholder's order.
+The initial interaction in Figure \ref*{fig:web-based-payment} is initiated by the merchant: envision the cardholder browsing the shop, filling a market basket, and preparing to check out. When the cardholder places the order, the recommended approach is for the merchant not to request payment data directly. Doing so would pose significant risks and necessitate adherence to extremely high security standards. Instead, \textbf{the optimal solution is for the merchant to have an agreement with a payment gateway and redirect the request to it}. At this stage, the cardholder is no longer in direct contact with the merchant but with the payment gateway, which establishes a secure channel for the exchange of credit card data. The challenge here lies in validating this data: in a physical payment scenario, a \textit{Point Of Sale} (\textbf{POS}) device would be used. Therefore, in this virtual scenario, the payment gateway creates a virtual POS. This virtual POS, starting from the credit card data, generates a transaction that is valid for the payment network, verifying the validity of the credit card data for the specific payment. Once the payment network confirms the validity of the data, the gateway will provide a positive response to the merchant, enabling the merchant to fulfill the cardholder's order.
+
+So, to summarize, the baseline of this architecture is:
+\begin{itemize}
+    \item The buyer possesses a credit card.
+    \item The buyer uses a TLS-enabled browser.
+\end{itemize}
+
+However, the actual security level depends on the configuration of both the server (payment gateway) and the client: TLS is a negotiation protocol, so the crucial factor is the \textbf{security level} negotiated between the security gateway and the user's browser. Additionally, \ul{the payment gateway possesses all the information (payment + goods), while the merchant only has information about the goods}. This is a good practice since it's important to provide the user with a list of the goods they are purchasing when they enter their credit card number. However, it also has the drawback that the gateway could potentially profile the user and may not respect their privacy.
+
+If the merchant chooses not to adopt this suggested architecture and instead prefers to handle the payment independently, they must comply with the \textbf{PCI DSS} standard.
+
+
+\subsubsection{PCI DSS}
+\textbf{PCI DSS} stands for \textit{Payment Card Industry Data Security Standard}, and it is required by all credit card issuers for internet-based transactions. It is a highly detailed set of technical prescriptions compared to other security standards (e.g., HIPAA = Health Insurance Portability and Accountability Act).
+
+It is a complex standard, which is why most companies prefer not to implement it themselves but instead rely on a security gateway. However, there are notable exceptions, such as Amazon.
+
+There have been several versions of PCI DSS, each with updates:
+\begin{itemize}
+    \item \textbf{v2.0} = Oct 2010;
+    \item \textbf{v3.0} = Nov 2013;
+    \item \textbf{v3.1} = Apr 2015 (no SSL or "old" TLS);
+    \item \textbf{v3.2} = Apr 2016 (MFA, test functions/procedures, describe architecture, ...)
+    \item \textbf{v3.2.1} = May 2018 (minor updates and clarifications)
+\end{itemize}
+
+The requirements of this standard are as follows:
+
+\begin{itemize}
+    \item \textbf{Design, build, and operate a protected network}:
+    \begin{itemize}
+        \item 1st requirement: Install and maintain a firewall configuration to protect external access to cardholders' data.
+        \item 2nd requirement: Avoid using pre-defined system passwords or other security parameters set by the manufacturer.
+    \end{itemize}
+
+    \item \textbf{Protect the cardholders' data}:
+    \begin{itemize}
+        \item 3rd requirement: Safeguard stored cardholders' data. This can involve encrypting data when stored on disk or implementing strong access control measures to ensure only authorized personnel can access the data. The standard does not mandate a specific solution; rather, it emphasizes the importance of demonstrating adequate protection.
+        \item 4th requirement: Encrypt cardholders' data when transmitted across an open public network. This is mandatory.
+    \end{itemize}
+
+    \item \textbf{Establish and follow a program for vulnerability management}:
+    \begin{itemize}
+        \item 5th requirement: Utilize antivirus software and keep it regularly updated.
+        \item 6th requirement: Develop and maintain secure applications and systems, ensuring security considerations are integrated from the outset of development and continuously verified and maintained.
+    \end{itemize}
+
+    \item \textbf{Implement strong access control}:
+    \begin{itemize}
+        \item 7th requirement: Restrict access to cardholders' data to only those individuals who require it for specific tasks.
+        \item 8th requirement: Assign a unique ID to each user. This ensures that each user within the organization has a single username, with no multiple authentication systems allowed. This requirement simplifies permission assignment and removal, as well as action tracing.
+        \item 9th requirement: Limit physical access to cardholders' data.
+    \end{itemize}
+
+    \item \textbf{Regularly monitor and test the networks}:
+    \begin{itemize}
+        \item 10th requirement: Monitor and track all accesses to network resources and cardholders' data. This necessitates maintaining secure log files that enable identification of individuals who have accessed servers and data.
+        \item 11th requirement: Periodically test protection systems and procedures.
+    \end{itemize}
+
+    \item \textbf{Adopt a Security Policy}:
+    \begin{itemize}
+        \item 12th requirement: Adopt a comprehensive Security Policy, ensuring the presence of a well-defined security plan rather than merely attempting to implement security features reactively after successful attacks.
+    \end{itemize}
+\end{itemize}
