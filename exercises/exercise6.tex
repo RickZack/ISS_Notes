@@ -2,20 +2,68 @@
 1 -> A
 
 2 -> A 
+\textbf{\\Q2 - TLS is:}
+\begin{itemize}
+    \item[A.] \sol{a security protocol used to establish secure transport channels (session level) supporting: peer authentication (server, server + client), message confidentiality, message authentication and integrity, and protection against replay and filtering attacks}
+    \item[B.] a security protocol used at application level supporting: peer authentication (server, server + client), message confidentiality, message authentication and integrity, and protection against replay and filtering attacks
+    \item[C.] a security protocol used at network level supporting: peer authentication (server, server + client), message confidentiality, message authentication and integrity, and protection against replay and filtering attacks
+\end{itemize}
+ 
+\textbf{\\Q3 - Peer authentication in TLS is implemented:}
+\begin{itemize}
+    \item[A.] in the TLS handshake phase, by sending the public key (X.509 certificate) to the communicating party
+    \item[B.] \sol{in the TLS handshake phase, by sending the public key (X.509 certificate) to the peer and by responding to an implicit/explicit asymmetric challenge}
+    \item[C.] in the TLS handshake phase, by using a keyed digest (SHA256 or better)
+\end{itemize}
+\com{}
 
-3 -> B 
+\textbf{\\Q4 - Confidentiality in TLS is implemented (select one of choices):}
+\begin{itemize}
+    \item[A.] by using symmetric encryption. The client generates a premaster secret key used for symmetric encryption of data and sends it protected via public key cryptography (RSA) to the server.
+    \item[B.] \sol{by using symmetric encryption. The client and server generate in the handshake a one-time key on the fly by using Diffie-Hellman. The key is used for confidentiality of data exchanged. In this way perfect forward secrecy is obtained too}
+    \item[C.] by using symmetric encryption. The server generates a session key used for symmetric encryption of data and sends it protected via public key cryptography (RSA, Diffie-Hellman, ..) to the client
+\end{itemize}
+\com{C -> is not the server to generate the symm key}
 
-4 -> B  (C -> is not the server to  generate the symm key )
 
-5 -> B
 
-6 -> C
+\textbf{\\Q5 - Data authentication and integrity in TLS is achieved:}
+\begin{itemize}
+    \item[A.] by calculation of a keyed digest. Both the client and the server compute a MAC by using (besides the fragment data) a negotiated algorithm, the master secret, and a sequence number
+    \item[B.] \sol{by calculation of a keyed digest. Both the client and the server compute a MAC by using (besides the fragment data) a negotiated algorithm, a key derived from the master secret (specific for the client or server), and a sequence number}
+    \item[C.] by calculation of a keyed digest. Both the client and the server compute a MAC by using (besides the fragment data) a negotiated algorithm, a key derived from the master secret (specific for the client or server), and a sequence number. If session-id is used, then the key for the calculation of the MAC is re-used for several TLS sessions
+\end{itemize}
+\com{}
 
-7 -> 
+\textbf{\\Q6 - The protection from replay/filtering attacks in TLS is achieved:}
+\begin{itemize}
+    \item[A.] by a sequence number written in the TCP record
+    \item[B.] by a sequence number written in the TCP segment
+    \item[C.] \sol{by a sequence number computed implicitly in the TLS record}
+    \item[D.] by an explicit ACK of each received fragment
+    \item[E.] by an explicit ACK of all the fragments in a receive window
+    \item[F.] none of the above
+\end{itemize}
+\com{}
 
-8 -> B
 
-9 -> A B C
+\textbf{\\Q7 - Two parties negotiated to use TLS 1.2. Data protection (both authentication and encryption) in the TLS record is possibly achieved by:}
+\begin{itemize}
+    \item[A.] encrypt-then-authenticate
+    \item[B.] \sol{authenticate-then-encrypt}
+    \item[C.] \sol{authenticated encryption}
+\end{itemize}
+\com{look at the version}
+
+\textbf{What is TLS record protocol?}
+\begin{itemize}
+    \item[A.] a protocol specifying the format of a record, which contains the application data protected with the keys and algorithm negotiated in the TLS handshake phase
+    \item[B.] \sol{a protocol specifying the format of a record, which contains either application data or TLS handshake messages, or TLS change cipher spec messages, or TLS alert messages protected with the keys and algorithm negotiated in the handshake phase}
+    \item[C.] none of the above
+\end{itemize}
+\com{}
+
+9 -> A B C 
 
 10 -> A
 

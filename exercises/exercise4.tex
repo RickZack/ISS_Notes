@@ -165,7 +165,7 @@ Take a look at the picture below and indicate the protocol(s) typically used for
     \item[D.] \sol{authentication and integrity of responses, where the RADIUS responses are protected with a keyed-digest}
     \item[E.] authentication of the server, through the calculation of an authenticator via keyed-digest
 \end{itemize}
-\com{wip}
+\com{ $password \oplus md5(key+authenticator)$ }
 
 \textbf{\\Q11 - RADIUS implements the following security properties:}
 \begin{itemize}
@@ -176,7 +176,11 @@ Take a look at the picture below and indicate the protocol(s) typically used for
     \item[E.] protection from replay of RADIUS response, by using a sequence number in the RADIUS response
     \textbf{\item[F.] protection from replay of RADIUS response, by binding the response to a specific request via a Request Authenticator}
 \end{itemize}
-\com{wip}
+\com{
+    A,C -> no negotiation   \\
+    D -> wip\\
+    E -> Request authenticator 
+}
 
 \textbf{\\Q12 - Consider an architecture in which we have: a supplicant (user), a NAS, and a RADIUS server. If the
 RADIUS server and the user have a shared secret (named “secret”), does this mean that a (malicious) user can create
