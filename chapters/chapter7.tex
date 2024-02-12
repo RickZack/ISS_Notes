@@ -333,7 +333,7 @@ The best solution is to employ the \textit{Server Name Indication} (\textbf{SNI}
 
 
 
-\subsection*{ALPN extension (Application-Layer Protocol Negotiation)}
+\subsection{ALPN extension (Application-Layer Protocol Negotiation)}
 Another issue arises once the TLS channel is established: the presence of an application protocol operating securely within it. However, these application protocols may exist in multiple versions, posing a challenge. This challenge is addressed by the \textbf{ALPN extension} (RFC-7301).
 
 ALPN facilitates Application Protocol Negotiation (for TLS-then-proto) to speed up the connection creation, avoiding additional roundtrips for application negotiation:

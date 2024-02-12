@@ -855,7 +855,7 @@ It is important because it is the prototype of a new kind of attack, since it ca
   \item two "zero-day" vulnerabilities (if there were countermeasures for the known vulnerability).
 \end{itemize}
 
-\paragraph*{Attack mode}
+\paragraph{Attack mode}
 It seems that the first infection came through a USB pen inserted in one of the computers that managed the
 SCADA system. Then it propagated through all the computers connected to the network of the enrichment
 plant in Iran thanks to shared disks, Microsoft Spooler Subsystem and RPC services bugs. The infection via
@@ -867,16 +867,16 @@ driver) \ul{with a digital signature validated by Microsoft and used two differe
 guilty was not only from Microsoft but also of the developers, because the SCADA system had only one shared
 default password for the back-end database.
 
-\paragraph*{Attack motivations}
+\paragraph{Attack motivations}
 Even the timing and the location are peculiar. First, on 17/6/10, the first damage was created, and it became known that Stuxnet existed. For this reason, an investigation started, and one week later, on 24/6/10, the analysts detected the use of the first signature certificate and revoked it on 17/7/10. However, the malware then started using a second signature certificate. Since its discovery, it took one month for security bulletins by CERT (Computer Emergency Response Team) and MS (Microsoft). Then, Microsoft started developing patches that were gradually released through October '10. This malware stopped propagating itself on 24/6/2012 (which was written inside its code). This suggests that the malware was targeted to a specific time window.
 
 Most of the attacks are against the most developed countries, but this malware was found in 52\% of cases in Iran. It seems to be targeted at a specific area: \emph{this worm had the target of destroying the uranium enrichment plant in Iran}.
 
-\paragraph*{Attack consequences}
+\paragraph{Attack consequences}
 The malware was able to manipulate the speed of the cylinders used for uranium enrichment beyond safe limits, all without triggering any alerts in the monitoring system used by the technicians. As a result, the technicians only managed to halt the system after significant damage had already occurred. This setback delayed the Iran Uranium Program by several years in their efforts to restore the proper functioning of the facilities.
 
 
-\paragraph*{Lessons learnt from this attack:}
+\paragraph{Lessons learnt from this attack:}
 \begin{itemize}
   \item Physical system separation (air gap) does not imply security: in fact, without any other standard protections (anti-virus, OS patches, firewall), these systems are not secure. In this specific case, the systems did not use any kind of standard protection, relying too much on the physical barrier;
   \item Unnecessary active services can be a source of vulnerabilities: MS-RPC, shared network print queues, shared network disks were not necessary but still running. In general, any unnecessary service should be disabled;
@@ -915,7 +915,7 @@ The kind of attacks, since it is a DoS network-based, is driven by C\&C that can
 \end{wrapfigure}
 In October 2017, a message appeared on blogs and chat platforms (as shown on the left side). In this particular case, Wind, a telecommunications company, was faced with an issue where they had to physically replace all the modems. They were unable to resolve the problem remotely. The modems had malfunctioned and needed replacement. The individual responsible for this attack claimed to have done it for the greater good, possibly to prevent the formation of a botnet. This incident bore some similarities to the Deutsche Telekom case in 2016, albeit with more severe consequences.
 
-\paragraph*{Lesons learnt:}
+\paragraph{Lesons learnt:}
 \begin{itemize}
   \item \textbf{Use strong passwords};
   \item \textbf{change default password} upon installation;
