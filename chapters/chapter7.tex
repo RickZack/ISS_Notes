@@ -59,3 +59,602 @@ It is possible to \textbf{combine} these approaches to have \textbf{secure data 
     \centering
     \includegraphics[page = 6,trim = .5cm 3cm 17.7cm 4cm, clip, width = \linewidth]{\slides}
 \end{minipage}
+
+
+\section{Security Channels protocols}
+
+\begin{itemize}
+    \item \textbf{SSL/TLS}:
+          \begin{itemize}
+              \item The most widely used protocol, initially known as SSL and later renamed TLS.
+          \end{itemize}
+    \item \textbf{SSH}:
+          \begin{itemize}
+              \item Initially a successful product, especially during the period when the export of cryptographic products from the USA was restricted. However, today it is considered a niche product suitable for use only in specific restricted environments.
+          \end{itemize}
+    \item \textbf{PCT}:
+          \begin{itemize}
+              \item Proposed by Microsoft as an alternative to SSL, but it failed to gain popularity and was eventually dropped from Microsoft's products.
+          \end{itemize}
+\end{itemize}
+
+
+\section{TLS}
+\textbf{TLS}, initially named \textbf{Secure Socket Layer (SSL)}, was proposed by \textit{Netscape Communications} (the inventor of the first graphical browser for computers), which needed a secure protocol to implement e-commerce on the web. SSL provides a \textbf{secure transport channel} (at the session level) with several properties:
+
+\begin{itemize}
+    \item \textbf{Peer authentication (server, server + client)}:
+          \begin{itemize}
+              \item Server authentication is mandatory when the SSL channel is opened, primarily due to its origin in e-commerce. Optionally, client authentication can also be requested. It's important to note that this authentication occurs at the session level, meaning that a username/password is not required.
+          \end{itemize}
+
+    \item \textbf{Message confidentiality:}
+          \begin{itemize}
+              \item Confidentiality is optional because authentication may suffice.
+          \end{itemize}
+
+    \item \textbf{Message authentication and integrity:}
+          \begin{itemize}
+              \item Authentication and integrity are compulsory to demonstrate the origin of the message and ensure that it hasn't been altered during transmission.
+          \end{itemize}
+
+    \item \textbf{Protection against replay and filtering attacks:}
+          \begin{itemize}
+              \item SSL includes mechanisms to detect replay attacks, where a copied message is sent again to the channel. Similarly, if an intermediate node filters part of the data, the receiver will detect the missing portion.
+          \end{itemize}
+\end{itemize}
+
+Since TSL is built on top of TCP, its success stems from its compatibility with all TCP-based protocols, including \textit{HTTP, SMTP, NNTP, FTP,} and \textit{TELNET}. One well-known example is \textit{HTTPS}, which operates on port \texttt{443/TCP}.
+
+The evolution of secure communication protocols started with SSL-2 and SSL-3, which eventually gave way to TLS (Transport Layer Security). Over time, TLS has seen several versions, including TLS-1.0, TLS-1.1, TLS-1.2, and TLS-1.3.
+It's worth noting that versions \textbf{prior to TLS-1.2} are considered insecure and have been \textbf{deprecated} due to vulnerabilities and weaknesses in their security protocols. Therefore, it's recommended to use TLS-1.2 or higher to ensure secure communication over the network.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 9,trim = .7cm 2.3cm .7cm 4cm, clip, width = 0.6\textwidth]{\slides}
+    \caption{Official ports for SSL/TLS applications}
+\end{figure}
+
+
+\subsection{TSL - authentication and integrity}
+During channel setup, peer authentication is enforced with robust methods:
+
+\begin{itemize}
+    \item The server authenticates itself by sending its \textbf{public key} (\textit{X.509 certificate}) \underline{and} responding to an \textbf{implicit asymmetric challenge}.
+    \item \textbf{Client authentication}, involving the use of a public key such as X.509 certificate, and explicit challenge to demonstrate possession of the private key, \textbf{is optional} due to the absence of X.509 certificates for many users.
+\end{itemize}
+If peer authentication fails, the channel remains closed. However, upon successful authentication, all data exchanged over the channel are protected.
+
+To maintain \textbf{authentication and integrity} of the data, SSL employs:
+\begin{itemize}
+    \item A \textbf{keyed digest}, \textit{typically SHA-1 or better}, to validate authentication and integrity.
+    \item An implicit \textbf{Message IDentifier}, such as a unique number to each message to prevent replay and cancellation attacks. \ul{Since SSL operates atop TCP}, \ul{message sequencing is guaranteed}, eliminating issues like missing, duplicate, or out-of-order messages within TCP.\\
+          For instance (after receiving a message with \texttt{id=1}), receiving a message with the same identifier (\texttt{id=1}) as a previous one indicates a replay attack, while receiving a message with a different identifier than the next one (\texttt{id=3}) suggests a cancellation attack, as TCP handles missing or delayed packets before delivering data to the application layer.
+\end{itemize}
+
+
+
+\subsection{TLS - confidentiality}
+TLS provides optional confidentiality features:
+
+\begin{itemize}
+    \item The client generates a \textbf{session key}, which is subsequently used for symmetric encryption of data (using algorithms such as RC4, 3DES, IDEA, AES, etc.).
+    \item Key exchange with the server is facilitated through \textbf{public key cryptography} methods like RSA, Diffie-Hellman, or Fortezza-KEA (a variant of Diffie-Hellman previously used by US military personnel).
+    \item Starting from TLS-1.2, \textbf{authenticated encryption} (Chapter \ref{chap:authenticated-encryption}) is also available.
+\end{itemize}
+
+
+\subsection{TLS handshake}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 12,trim = 1cm 2.25cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{TLS handshake}
+    \label{fig:tls-handshake}
+\end{figure}
+
+In Figure \ref{fig:tls-handshake}, there is a \textit{secure web server} and a \textit{browser}.
+
+\begin{itemize}
+    \item [1] The browser intends to establish a secure channel using HTTPS.
+    \item [2] The first step is to \textbf{negotiate a security configuration}. Since there are multiple algorithms available, the browser and the server each declare their list of algorithms and attempt to find a match. At this stage, \ul{the connection could fail} if a common algorithm is not found. \ul{TLS is a negotiation protocol}.
+    \item [3] If the browser and server agree on a set of algorithms, the \textbf{server} will then provide its \textbf{certificate}, \ul{which must contain the name corresponding to the connected URL}. Subsequently, the server uses its private key to implicitly respond to a challenge. Although not depicted in the picture, the browser would typically send a \textbf{challenge}. This implicit challenge involves decrypting a key known as the "\ul{pre-master secret}" (Chapter \ref{chap:tls-session-keys}), which is decided by the client and sent to the server encrypted with the public key found in the certificate.
+    \item [4] Optionally, the server may request the \textbf{browser} to send its own X.509 \textbf{certificate}. In this case, the server explicitly challenges the browser, which must use its private key to provide a response.
+    \item [5] If all steps are successful, a \textbf{secure channel is established}.
+\end{itemize}
+
+
+\subsection{TLS architecture}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 13,trim = .7cm 3cm .7cm 5cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{TLS architecture}
+    \label{fig:tls-architecture}
+\end{figure}
+
+At the base of the protocol stack are the \textbf{network protocol} (e.g., IP) and a \textbf{reliable transport protocol} (e.g., TCP). Built on top of TCP is a \textbf{record protocol} used to transmit SSL records, which contain protected data. Within the SSL record protocol are application data, initially used for the \textbf{handshake protocol} (i.e., the agreement phase depicted in the previous diagram). Additionally, there is the \textbf{Change Cipher Spec protocol}, used at the end of the handshake to signal the conclusion of the agreement. Finally, there is the \textbf{Alert protocol}, which is utilized to send alarms, such as notifications of missing or duplicated packets, or to indicate the end of communication.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 18,trim = .7cm 2cm .7cm 3.7cm, clip, width = 0.60\textwidth]{\slides}
+    \caption{TLS record protocol (authenticate-then-encrypt)}
+    \label{fig:tls-record-protocol}
+\end{figure}
+
+
+\subsubsection{TLS record protocol}
+When the record protocol (Figure \ref*{fig:tls-record-protocol}) is used to transmit application data, it may involve sending large files (e.g., large files from the server). However, SSL imposes a limitation whereby only packets of a specific length (32 Kbytes) can be sent. To accommodate larger files, the application data \textbf{is first fragmented} and \textbf{then compressed} (although compression is not utilized in newer versions due to potential vulnerabilities). Following compression, a Message Authentication Code (MAC) is computed to ensure \textbf{authentication} and \textbf{integrity}. If \textbf{confidentiality} is also desired, padding is added. As one of the final steps, the new \texttt{compressed+MAC+P} packet is encrypted, and then a header is prepended to make it recognizable as an SSL segment inside TCP.
+
+\subsubsection{TLS-1.x record format}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 19,trim = 15cm 4cm .5cm 8cm, clip, width = .45\textwidth]{\slides}
+\end{figure}
+
+\begin{itemize}
+    \item \texttt{uint8 type}: Indicates the type of record, which could be \texttt{change\_cipher\_spec} (20), \texttt{alert} (21), \texttt{handshake} (22), or \texttt{application\_data} (23).
+
+    \item \texttt{uint16 version}: Specifies the TLS version, consisting of a major (\texttt{uint8}) and a minor (\texttt{uint8}) version number.
+
+    \item \texttt{uint16 length}: Represents the length of the record payload.
+          \begin{itemize}
+              \item $\leq$ $2^{14}$ (record not compressed) for compatibility with SSL-2
+              \item $\leq$ $2^{14} + 1024$ (compressed records)
+          \end{itemize}
+
+    \item This results in a 5-byte header.
+
+    \item Additionally, there is a payload of maximum 16KB.
+\end{itemize}
+
+
+\subsubsection{SSL - computation of MAC}
+\begin{verbatim}
+    MAC = message_digest ( key, seq_number || type ||
+     version || length || fragment )
+\end{verbatim}
+
+In order to protect authentication and integrity, a MAC is computed using a specific cryptographic hash (digest algorithm) and the key negotiated during the handshake. \textbf{This MAC protects everything}, including the sequence number, type of packet, version, length, and the data itself (the fragment).
+
+Some notes:
+\begin{itemize}
+    \item \textbf{Message digest} \\
+          It depends on the chosen algorithm.
+    \item \textbf{Key} \\
+          \underline{It differs according to the direction}: one key to protect data from the client to the server and another key to protect data from the server to the client. This differentiation is important because otherwise, an attacker could copy a packet being sent from the client to the server and replay it as part of the server-to-client communication.
+    \item \textbf{Seq number} \\
+          It is a 64-bit integer that is \underline{never transmitted} but computed implicitly (since TCP is used and therefore no packets can be lost). This large integer allows the channel to remain open while sending a significant amount of data before reaching the maximum number expressible with 64 bits. When this limit is reached, the channel must be closed and another one will be opened.
+\end{itemize}
+
+
+\subsubsection{Data protection (authenticate-then-encrypt)}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 22,trim = 1cm 2.3cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Data protection with authenticate-then-encrypt}
+\end{figure}
+From a data protection point of view, there are data (optionally compressed) that need to be protected. A MAC is computed by taking the data, the key, the implicit sequence number, and eventually the padding. Then the MAC is inserted. The packet is then symmetrically encrypted with one IV (considering CBC) and a \underline{specific key} for encryption. Finally, the data is protected, and the SSL header will be prepended to it.
+
+
+\subsubsection{Session-id}
+A typical web transaction looks like the following:
+\begin{enumerate}
+    \item Open, GET page.htm, page.htm, Close
+    \item Open, GET home.gif, home.gif, Close
+    \item Open, GET logo.gif, logo.gif, Close
+    \item Open, GET back.jpg, back.jpg, Close
+    \item Open, GET music.mid, music.mid, Close
+\end{enumerate}
+
+Channels are continuously opened and closed, which can be particularly burdensome when SSL is used due to the need to negotiate cryptographic parameters for each connection. This negotiation process, involving public key operations, can result in high computational loads. To mitigate this, SSL servers can utilize a \underline{permanent identifier} known as a \textbf{session identifier}. This session identifier represents a set of negotiated algorithms and keys from previous connections, allowing for quicker establishment of secure channels. When a client initiates an SSL connection, it can send a previously negotiated \textbf{session-id} before beginning the handshake, bypassing the negotiation phase and enabling immediate data exchange over the secure channel. It's important to note that servers may reject the use of session-IDs, either consistently or after a certain period since their issuance.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 16,trim = 1cm 2.5cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{TLS handshake with session-ID}
+    \label{fig:tls-handshake-sessionid}
+\end{figure}
+
+
+In Figure \ref{fig:tls-handshake-sessionid}, a session ID is sent before negotiation begins. If the session ID is still cached by the server, the secure channel is established without further negotiation. If an attacker attempts to use a valid session ID, they will be unable to send messages through the channel because they lack knowledge of the algorithms and keys used, preventing them from computing the correct MAC. However, careful consideration should be given to the duration for which session IDs (and related information) is retained to prevent server overload from tracking user sessions.
+
+So, there are two concepts to keep in mind when dealing with SSL:
+\begin{itemize}
+    \item \textbf{TLS session}
+          \begin{itemize}
+              \item It is a \textbf{logical association between the client and server}.
+              \item Created by the Handshake Protocol.
+              \item Defines a set of cryptographic parameters (algorithms, keys, and so on).
+              \item Is shared by one or more SSL connections (1:N).
+          \end{itemize}
+    \item \textbf{TLS connection}
+          \begin{itemize}
+              \item A transient TLS channel between the client and server.
+              \item Associated with one specific TLS session (1:1).
+          \end{itemize}
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 17,trim = 2cm 2.7cm 2cm 15cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+
+
+\subsubsection{Relationship among keys and sessions (between a server and the same client)}\label{chap:tls-session-keys}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 23,trim = .3cm 2.15cm 1cm 5cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Relationship among keys and sessions}
+    \label{fig:tls-session-keys}
+\end{figure}
+
+During the handshake protocol, two public keys are established, known as the \textbf{pre-master secret} (a long-term secret) and the \textbf{master secret}. When establishing the connection for the first time in the session, the pre-master secret is generated. Subsequently, for each connection, including the initial one, both the client and server generate a \textbf{random number}. These random numbers are \textbf{combined with the pre-master secret} to \textbf{create the master secret}, utilizing a symmetric operation, such as a key derivation function. For \underline{each connection}, the keys for Message Authentication Code \textit{MAC}, the keys for \textit{encryption}, and the Initialization Vectors (\textit{IV}) for encryption are derived by combining the master secret with the unique random values exchanged in clear text. \ul{The only persistent element in the same session is the master secret}; initially, it is generated from the pre-master secret and the random numbers generated each time a new connection is established.
+
+
+\subsubsection{Perfect forward secrecy}
+If a TLS server possesses a valid certificate for both signature and encryption, it can be utilized for both authentication (via a signature) and key exchange (by asymmetrically encrypting the session key). However, if an attacker intercepts and stores all encrypted traffic and subsequently gains access to the long-term private key, they can decrypt all the traffic, including past, present, and future communications. To mitigate this risk, "perfect forward secrecy" is implemented. In this scenario, compromising a private key only affects the current and future traffic, preserving the confidentiality of past communications.
+
+This necessitates that \textbf{the key used for authentication differs from the key used for encryption}.
+However, merely using separate keys is insufficient. \textbf{The encryption key must be unique for each session}, ensuring that it is a one-time key.
+
+\subsubsection{"Ephemeral" mechanisms}
+"Ephemeral" mechanisms are employed today to achieve Perfect Forward Secrecy (PFS). In this approach, an encryption one-time key is generated for each session:
+\begin{itemize}
+    \item \textbf{For authenticity, the key must be signed}. However, it cannot have an associated X.509 certificate due to the \textbf{slow} and often offline nature of the Certificate Authority (CA) process.
+    \item Diffie-Hellman (DH) is suitable for this purpose, whereas RSA is slower due to its reliance on prime numbers. An alternative is to use an ephemeral RSA key, generated once and reused multiple times (typically 10-100 times).
+\end{itemize}
+
+By generating encryption keys dynamically and signing them with the private key, the \textbf{server's private key is utilized only for signing}. This ensures Perfect Forward Secrecy:
+\begin{itemize}
+    \item If the (temporary or short-lived) private key is compromised, the attacker can only decrypt the corresponding traffic.
+    \item Compromise of the long-term private key poses an \textbf{authentication issue but does not compromise confidentiality}.
+\end{itemize}
+Examples: TLS servers nowadays utilize ECDHE (Elliptic Curve Diffie-Hellman Ephemeral), which ensures that the Diffie-Hellman parameters are not fixed but generated on-the-fly for each session.
+
+
+\subsection{TLS and virtual servers}
+
+\subsubsection{The problem}
+
+TLS establishes a secure channel before reaching the application level, which creates issues, especially with \textbf{virtual servers} - a common scenario in web hosting. Given the shortage of IP addresses, it's common practice to assign multiple domain names to the same IP address, such as \texttt{home.myweb.it} and \texttt{food.myweb.it} both pointing to \texttt{1.2.3.4}.\\
+In \textit{HTTP/1.1}, this is easily managed as the client sends a \textit{Host header} specifying the desired server after establishing a TCP connection. However, in \textbf{HTTPS}, where TLS is activated before HTTP, determining which certificate to provide poses a challenge: the name in the certificate must match the URL typed by the user.
+
+\subsubsection{The solutions}
+
+One solution is to utilize a \textbf{collective (wildcard) certificate}, such as \texttt{CN=*.myweb.it}.
+However, this approach requires sharing the private key among all servers using the certificate, and not all browsers handle wildcard certificates consistently.
+
+Another approach involves using the \textbf{"subject alternative name"} (\texttt{subjectAltName}) field to include a list of virtual servers sharing the same IP address. However, this still requires sharing the private key among servers and necessitates reissuing the certificate whenever a server is added or removed.
+
+The best solution is to employ the \textit{Server Name Indication} (\textbf{SNI}) extension in the \texttt{ClientHello} message, as standardized by RFC-4366. This extension allows the client to specify the intended server name during the initial connection. Unfortunately, due to its status as an extension, SNI has limited support among browsers and servers.
+
+
+
+\subsection*{ALPN extension (Application-Layer Protocol Negotiation)}
+Another issue arises once the TLS channel is established: the presence of an application protocol operating securely within it. However, these application protocols may exist in multiple versions, posing a challenge. This challenge is addressed by the \textbf{ALPN extension} (RFC-7301).
+
+ALPN facilitates Application Protocol Negotiation (for TLS-then-proto) to speed up the connection creation, avoiding additional roundtrips for application negotiation:
+\begin{itemize}
+    \item The \texttt{ClientHello} message indicates \texttt{ALPN=true} along with a list of supported application protocols.
+    \item In response, the \texttt{ServerHello} message confirms \texttt{ALPN=true} and specifies the selected application protocol.
+\end{itemize}
+
+However, if the client selects a protocol version that the server does not support, the connection is closed, requiring the client to attempt connection establishment again with a different version, possibly multiple times. ALPN mitigates the need for opening numerous TLS channels by enabling agreement on the application protocol version to be used.
+
+This negotiation mechanism is particularly crucial for negotiating HTTP/2 and QUIC (a UDP-based version of HTTP), as Chrome and Firefox support HTTP/2 \textbf{only over TLS}. Additionally, ALPN proves beneficial for servers employing distinct certificates for various application protocols.
+
+Some potential values include \texttt{http/1.0}, \texttt{http/1.1}, \texttt{h2} (representing HTTP/2), and \texttt{h2c}.
+
+
+\section{DTLS}
+
+Given the success of TLS, there has been an effort to extend its use to protect datagrams, as TLS can only be applied to level 4 reliable protocols like TCP. \textbf{Datagram Transport Layer Security} (\textbf{DTLS}), specified in RFC-4347, adapts TLS concepts to ensure \textbf{datagram security}, particularly for protocols like UDP. However, DTLS does not offer the same properties as TLS due to the unreliable nature of level 3 protocols, where packets can be lost or duplicated.
+
+DTLS competes with IPsec and application-level security, presenting various implementation choices for securing protocols like \textbf{SIP} (Session Initiation Protocol) used in VoIP (Voice over Internet Protocol).
+Security for SIP can be implemented in several ways:
+\begin{itemize}
+    \item With \textit{IPsec}, particularly as SIP typically employs UDP packets transported over IP.
+    \item With \textit{TLS}, although limited to SIP over TCP.
+    \item With \textit{DTLS}, applicable only to SIP over UDP.
+    \item With \textit{secure SIP}, which directly implements protection at the application level.
+\end{itemize}
+
+The choice often boils down to practical considerations: which approach is easier to implement?
+
+
+
+\subsection{The TLS downgrade problem}
+
+There are various versions of TLS: the original SSL, versions 2 and 3, and then TLS 1.0, 1.1, 1.2, and so on. Typically, the older versions have security vulnerabilities and should not be used unless explicitly required.
+
+Normally, the client sends the highest supported version within the ClientHello message, and the server notifies (in the ServerHello) the version to be used, which is the highest version common with the client.
+
+A typical version negotiation between the Client and Server proceeds as follows:
+\begin{itemize}
+    \item \textbf{Agreement on TLS 1.2}:
+          \begin{itemize}
+              \item (Client $\rightarrow$ Server) \texttt{3,3} (indicating major version 3, minor version 3, which by default is TLS 1.2)
+              \item (Server $\rightarrow$ Client) \texttt{3,3} (server agrees with the version proposed by the client)
+          \end{itemize}
+    \item \textbf{Fallback to TLS 1.1} (if TLS 1.2 is not supported by the server):
+          \begin{itemize}
+              \item (Client $\rightarrow$ Server) \texttt{3,3}
+              \item (Server $\rightarrow$ Client) \texttt{3,2} (server downgrades to a previous version)
+          \end{itemize}
+\end{itemize}
+
+However, there is a problem: \textbf{some servers, instead of sending the correct response, close the connection}. Consequently, the client has no choice but to try again with a lower protocol version. This \underline{vulnerability} leads to the \textbf{Downgrade attack}: the attacker sends a fake server response to force repeated downgrades until reaching a vulnerable version (e.g., SSL 3), enabling the execution of a suitable attack (e.g., Poodle). However, attacks are not the only concern, as network errors could also lead to connection closure with the server. For this reason, a new extension has been added.
+
+\subsection{TLS Fallback Signalling Cipher Suite Value (SCSV)}
+
+This extension, as reported in RFC-7507, aims to \textbf{prevent} protocol downgrade attacks. It achieves this by creating a new (dummy) cipher suite that does not list any specific algorithms but simply includes \texttt{TLS\_FALLBACK\_SCSV}. This \underline{should} be sent by the client when opening a downgraded connection, with \texttt{TLS\_FALLBACK\_SCSV} placed last in the cipher suite list.
+
+For example, if the client initially proposed TLS 1.1 but the connection was downgraded to TLS 1.0, the response will be sent with TLS 1.0. However, to signal that a better version is available, \texttt{TLS\_FALLBACK\_SCSV} is included in the cipher suite.
+
+If a better version is indeed available, the server \underline{must} send a new fatal alert value, \\ \texttt{inappropriate\_fallback}, when it receives \texttt{TLS\_FALLBACK\_SCSV} and detects a version lower than the highest supported one.
+In case of an error, the channel is closed, and the client should retry with its highest supported protocol version.
+
+Although many servers do not yet support SCSV, most have corrected their behavior when the client requests a version higher than the one supported. Consequently, browsers can now disable insecure downgrade: Firefox since 2015 and Chrome since 2016.
+
+
+
+\section{HTTP security}
+
+On top of TLS, there is often HTTP. In HTTP/1.0, two security mechanisms are defined:
+
+\begin{itemize}
+    \item \textbf{Address-based}: The server performs access control based on the IP address of the client. However, this method is ineffective due to the possibility of IP spoofing.
+
+    \item \textbf{Password-based} (or Basic Authentication Scheme): Access control is based on a username and password, which are only Base64 encoded. It's important to note that Base64 encoding is not encryption, and no key is required.
+\end{itemize}
+
+Both schemes are highly insecure, particularly because HTTP assumes they are used on a secure channel. In HTTP/1.1, \textbf{"digest authentication"} was introduced, which is based on a \textit{symmetric challenge-response protocol}. This authentication method is documented in RFC-2617 titled \textit{"HTTP authentication: basic and digest access authentication"}.
+
+
+\subsection{HTTP - Basic Authentication}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 35,trim = .5cm 2.5cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{HTTP basic authentication}
+\end{figure}
+
+The client sends a request to the server (e.g., GET of a page) with HTTP/1.0. A protected page appears the same as an unprotected one to the client. If authentication fails, the client receives an Unauthorized error (status code 401). Unlike other errors, the server is allowed to keep the channel open rather than closing it immediately. This is because the client may not have been aware that authentication was required for the page. The server continues the dialogue by sending a new header called "WWW-Authenticate", which informs the client that authentication is needed (using the basic mechanism) for the \textbf{realm} "POLITO - didattica". This realm is a suggestion that will be displayed in a pop-up message, prompting the client to enter a username and password.
+
+When the browser receives this message, it opens a pop-up window for the user to enter their credentials. Once the user submits their credentials, the browser sends a new command: "\texttt{Authorization: Basic czEyMzQ1NjpTZWdyZXRpc3NpbWE=,}" which contains the Base64-encoded username and password. The server then compares this string with the username/password stored in its memory. If the credentials are valid, the server provides the originally requested page.
+
+Since the credentials are only encoded, they can be decoded using tools like OpenSSL without requiring any key. This means that anyone could potentially intercept the credentials unless they are transmitted within an encrypted channel.
+
+\subsection{HTTP digest authentication}
+HTTP 1.1 introduced a new method for client authentication, as described in RFC-2069 (technically obsoleted, but still the basis for RFC-2617). This method involves an implicit challenge, and the response must use the password. The digest computation proceeds as follows:
+
+\begin{itemize}
+    \item The browser computes a digest:
+          \texttt{HA1 = md5(A1) = md5(user ":" realm ":" pwd)};
+    \item Next, the browser computes another digest: \texttt{HA2 = md5(A2) = md5(method ":" URI)}
+    \item Finally, the browser sends to the server: \texttt{response = md5(HA1 ":" nonce ":" HA2)}
+          \begin{itemize}
+              \item access method, e.g. \texttt{GET}
+          \end{itemize}
+          \begin{itemize}
+              \item The nonce is generated by the server and is sent in the 401 response. Its purpose is to prevent replay attacks.
+              \item The authentication server may include an "opaque" field to carry \textbf{state information} (e.g., a SAML token) to the content server.
+          \end{itemize}
+\end{itemize}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 37,trim = 1cm 2.3cm .3cm 4cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{HTTP Digest Authentication}
+    \label{fig:http-digest-authentication}
+\end{figure}
+
+In this scenario depicted in Figure \ref*{fig:http-digest-authentication}, the GET request is made using HTTP/1.1 protocol. The server has two options for authentication: it can either use basic authentication or digest authentication. In this case, the server responds with a 401 error and subsequently proposes digest authentication by providing the \textit{realm}, \textit{nonce}, and \textit{opaque} parameters. The browser will prompt the user for a username and password, and then send back the encoded string (shown in blue in the image). The server will then respond with the requested page.
+
+
+\subsection{HTTP and TLS/SSL}
+
+There are two distinct approaches to integrating HTTP with SSL/TLS:
+\begin{itemize}
+    \item \textbf{"TLS then HTTP"} (RFC-2818 - HTTP over TLS): This method involves first establishing a TCP channel, upon which TLS encryption is applied. Once the TLS connection is active, HTTP communication begins.
+
+    \item \textbf{"HTTP then TLS"} (RFC-2817 - upgrading to TLS within HTTP/1.1): In this approach, two TCP ports, usually port 80, are utilized to initiate HTTP communication. When data requiring protection is identified, the connection can be upgraded to a secure one using a special command (\texttt{start TLS}), allowing browsers and servers to transition from a plain HTTP connection to TLS.
+\end{itemize}
+\textbf{Note}: While "SSL then HTTP" is commonly used, it lacks official documentation.
+
+
+Although both methods ultimately achieve a secure channel, they differ in their implementation and impact on applications, firewalls, and IDS (Intrusion Detection Systems):
+
+\begin{itemize}
+    \item \textbf{Applications}: If \underline{TLS then HTTP} is employed, the application developer faces no issues as TLS is managed either by the system manager of the node or by the network manager. The web developer knows that the connection is protected and does not encounter any problems. In this scenario, TLS is always active, even for pages that do not explicitly require TLS. Conversely, with \underline{HTTP then TLS}, the web developer has the option to activate TLS when necessary. However, in this case, the application developer assumes responsibility for this aspect and must comprehend the process to manage it effectively.
+
+    \item \textbf{Firewall}: The firewall is a filtering element that determines what traffic can pass through and what must be blocked. When \underline{TLS then HTTP} is utilized, it involves two different ports: TCP port 80 for HTTP and TCP port 443 for HTTP over TLS. The firewall can easily differentiate the traffic: traffic over port 80 is unprotected, while traffic over port 443 is protected. Conversely, when \underline{HTTP then TLS} is employed, the firewall cannot perform thorough checks because only port 80 for HTTP is used initially, and the developer can later decide to transition it from a plain to a secure channel. Hence, the firewall is no longer solely responsible for selecting secure channels.
+
+    \item \textbf{IDS}: The IDS is a system that inspects traffic. When \underline{TLS then HTTP} is used, the IDS cannot inspect anything because the traffic is encrypted. On the other hand, if \underline{HTTP then TLS} is employed, the IDS can at least examine the initial part of the traffic and detect when the channel transitions to a secure one.
+\end{itemize}
+
+This principle is universally applicable across protocols: the choice between 'TLS then protocol' and 'protocol then TLS'.
+
+
+\subsection{TLS client authentication at the application level}
+
+Through client authentication, it is possible to identify the user who initiated the TLS connection \textbf{without requiring their username and password}. Certain web servers offer (semi-) automatic mapping between the credentials extracted from the X.509 certificate and the users of the HTTP service and/or the operating system. Authentication performed at this level is automatically recognized at the application level as well.
+
+\subsubsection{Authentication in web applications}
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 40,trim = 1cm 2.3cm 1cm 8.3cm, clip, width = 0.55\textwidth]{\slides}
+    \caption{Authentication in web applications}
+\end{figure}
+
+When a web application is layered on TLS, authentication can be performed at several levels, as depicted in the diagram. The crucial point is that \textbf{the earlier the access control occurs, the smaller the attack surface}.
+
+With TLS enabled, the initial segment utilized for connection is the \textbf{TLS library}, which is relatively small and only implements TLS. The small red segment represents the potential attack surface.
+
+Enabling TLS client authentication ensures that if the attacker lacks an X.509 certificate or is unauthorized for access, the attack will be rejected at that level, limiting the attack surface to the TLS library itself. However, \textbf{if TLS is activated without client authentication}, both the TLS library and the web server become vulnerable, as HTTP is required before reaching the web application. Since an HTTP server is a substantial piece of software with more potential bugs than a TLS library, this increases the risk. Authentication at this level can be achieved through \textit{basic/digest authentication}, and failure at this stage results in termination of the connection.
+
+If HTTP is implemented without authentication, the application server is reached, which consists of the pages developed by the developer (e.g., ASP, PHP, JSP) with forms requesting username and password. At this stage, it is too late for authentication, and the attacker can exploit vulnerabilities in the TLS library, HTTP server, and application pages. Thus, \textbf{authentication should be performed as soon as possible} to minimize the attack surface. Note that it is possible to map authentication from TLS or HTTP to the application pages\footnote{as demonstrated by Prof. Lioy's example on the PoliTo website during Lesson 16 on November 20, 2020.}.
+
+
+
+\subsubsection{What about forms requesting user / password?}
+
+From a technical standpoint, the security of forms requesting user/password is not solely determined by whether the page containing the form is secure \\
+(e.g., \texttt{http://www.ecomm.it/login.html}),
+but rather by the URL of the method used to transmit the username and password to the server \\
+(e.g., \texttt{<form ... action=http\emph{s}://www.ecomm.it/login.php>}).
+
+If the page is not secured, users could be vulnerable to \textbf{phishing} attacks. Malicious actors could create a fake webpage with a similar URL address but a different action in the form. Unfortunately, only a few users possess the technical expertise to verify the URL of the HTTP method used to transmit user/password. Without HTTPS, there is no guarantee that the website is authentic.
+
+
+\subsection{HTTP Strict Transport Security (HSTS)}
+
+In HTTP, a new header named \textbf{HSTS} has been introduced, as specified in RFC-6797. Through this header, the HTTP server mandates that all interactions with user agents (UA) must occur exclusively via HTTPS.
+
+Features:
+\begin{itemize}
+    \item Prevents protocol downgrade and cookie hijacking
+    \item Valid only in HTTPS responses
+    \item The header has an expiration that is renewed with each access
+    \item May include subdomains (recommended)
+    \item Can be pre-loaded, meaning that browsers may already have the knowledge that when a specific domain is contacted, TLS must be used:
+          \begin{itemize}
+              \item This approach has a potential risk, as if HTTPS fails, there is no fallback option to contact the server.
+              \item Preload lists are maintained by Google and utilized by many browsers: \url{https://hstspreload.org/}
+          \end{itemize}
+\end{itemize}
+
+
+
+\subsubsection{HSTS - syntax and examples}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 43,trim = .5cm 5cm .5cm 4cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+
+The HTTP server, in response, can include the syntax depicted in the image \\(\texttt{Strict-Transport-Security}), indicating the expiration time and optionally incorporating subdomains and pre-load directives.
+
+In the latter part of the image, there is a check to determine if anyone is utilizing HSTS. The initial example concerns PayPal, where only the "strict" string is sought using the \texttt{grep} command. The response matches what is depicted in the image, signifying that PayPal will exclusively employ TLS for an extended period.
+The second example pertains to Google. The response is identical to the first, but it also includes subdomains.
+
+
+\subsection{HTTP Public Key Pinning (HPKP)}
+
+To prevent the creation of fake certificates for a website, the website manager can insert the hash of the public key it is using into the header. The user agent (browser) then caches this key and will refuse to connect to a site with a different key, even if the website presents a valid certificate. This measure became necessary due to instances where certification authorities were tricked into issuing certificates for unauthorized servers (RFC-7469).
+
+This technique employs \textit{Trust On First Use} (\textbf{TOFU}), which becomes risky when control over the key is lost or when the key requires updating (always include at least one backup/secondary key). The header also allows specification of a URI where browsers can report violations. The header can be used in two modes:
+\begin{itemize}
+    \item \textbf{Enforcing}: If a server lacks the specified public key, the connection is terminated.
+    \item \textbf{Report-only}: If the server possesses a different public key, the connection proceeds, but the user is alerted.
+\end{itemize}
+
+
+The syntax is outlined in the following, involving the computation of the base64-sha256 hash of the public key that needs to be fixed. It is also possible to specify the expiration time, subdomains, and the report-URI. To use Report-only instead of Enforcing, the second header in the figure must be employed, with the syntax remaining the same.
+\begin{figure}[H]
+    \centering
+    \includegraphics[page = 45,trim = .5cm 3cm .5cm 4cm, clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+
+
+An example is illustrated in the following with a security blog website, which employs multiple public keys for backup. It includes subdomains and specifies the report-URI for Enforce mode. Subsequently, a second section is provided, featuring only three keys and a different URI for reporting issues when compliance is not mandatory.
+\begin{figure}[H]
+    \centering
+    \includegraphics[page = 46,trim = .5cm 2.3cm .5cm 2cm,  clip, width = 0.55\textwidth]{\slides}
+\end{figure}
+
+\section{E-payment systems}
+
+The motivations for dedicated payment protocols are:
+
+\begin{itemize}
+    \item Failure of digital cash, due to technical and political problems (e.g., the failure of DigiCash).
+    \item Failure of dedicated payment protocols (e.g., SET, Secure Electronic Transactions), caused by technical and organizational issues.
+    \item Currently, the most widely used approach involves \textbf{transmitting a credit card number over a TLS channel}. However, \textbf{this does not guarantee protection against fraud}. For instance, VISA Europe reported that internet transactions accounted for approximately 50\% of fraud attempts, despite constituting only 2\% of its total transaction volume.
+        \begin{itemize}
+            \item This indicates that the internet is not where credit card numbers are stolen, but rather \ul{where it is easier to utilize stolen credit card numbers}.
+            \item The fact that TLS protects the transmission of credit card numbers is not a guarantee against fraud, as the data may have been stolen prior to transmission (and then used online) or the server may be untrusted.
+        \end{itemize}
+\end{itemize}
+
+
+
+\subsection{A web-based payment architecture}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[page = 48,trim = 1cm 2.3cm .5cm 4cm, clip, width = .6\textwidth]{\slides}
+    \caption{The most common architecture when implementing payment with credit card in Internet}
+    \label{fig:web-based-payment}
+\end{figure}
+
+The initial interaction in Figure \ref*{fig:web-based-payment} is initiated by the merchant: envision the cardholder browsing the shop, filling a market basket, and preparing to check out. When the cardholder places the order, the recommended approach is for the merchant not to request payment data directly. Doing so would pose significant risks and necessitate adherence to extremely high security standards. Instead, \textbf{the optimal solution is for the merchant to have an agreement with a payment gateway and redirect the request to it}. At this stage, the cardholder is no longer in direct contact with the merchant but with the payment gateway, which establishes a secure channel for the exchange of credit card data. The challenge here lies in validating this data: in a physical payment scenario, a \textit{Point Of Sale} (\textbf{POS}) device would be used. Therefore, in this virtual scenario, the payment gateway creates a virtual POS. This virtual POS, starting from the credit card data, generates a transaction that is valid for the payment network, verifying the validity of the credit card data for the specific payment. Once the payment network confirms the validity of the data, the gateway will provide a positive response to the merchant, enabling the merchant to fulfill the cardholder's order.
+
+So, to summarize, the baseline of this architecture is:
+\begin{itemize}
+    \item The buyer possesses a credit card.
+    \item The buyer uses a TLS-enabled browser.
+\end{itemize}
+
+However, the actual security level depends on the configuration of both the server (payment gateway) and the client: TLS is a negotiation protocol, so the crucial factor is the \textbf{security level} negotiated between the security gateway and the user's browser. Additionally, \ul{the payment gateway possesses all the information (payment + goods), while the merchant only has information about the goods}. This is a good practice since it's important to provide the user with a list of the goods they are purchasing when they enter their credit card number. However, it also has the drawback that the gateway could potentially profile the user and may not respect their privacy.
+
+If the merchant chooses not to adopt this suggested architecture and instead prefers to handle the payment independently, they must comply with the \textbf{PCI DSS} standard.
+
+
+\subsubsection{PCI DSS}
+\textbf{PCI DSS} stands for \textit{Payment Card Industry Data Security Standard}, and it is required by all credit card issuers for internet-based transactions. It is a highly detailed set of technical prescriptions compared to other security standards (e.g., HIPAA = Health Insurance Portability and Accountability Act).
+
+It is a complex standard, which is why most companies prefer not to implement it themselves but instead rely on a security gateway. However, there are notable exceptions, such as Amazon.
+
+There have been several versions of PCI DSS, each with updates:
+\begin{itemize}
+    \item \textbf{v2.0} = Oct 2010;
+    \item \textbf{v3.0} = Nov 2013;
+    \item \textbf{v3.1} = Apr 2015 (no SSL or "old" TLS);
+    \item \textbf{v3.2} = Apr 2016 (MFA, test functions/procedures, describe architecture, ...)
+    \item \textbf{v3.2.1} = May 2018 (minor updates and clarifications)
+\end{itemize}
+
+The requirements of this standard are as follows:
+
+\begin{itemize}
+    \item \textbf{Design, build, and operate a protected network}:
+    \begin{itemize}
+        \item 1st requirement: Install and maintain a firewall configuration to protect external access to cardholders' data.
+        \item 2nd requirement: Avoid using pre-defined system passwords or other security parameters set by the manufacturer.
+    \end{itemize}
+
+    \item \textbf{Protect the cardholders' data}:
+    \begin{itemize}
+        \item 3rd requirement: Safeguard stored cardholders' data. This can involve encrypting data when stored on disk or implementing strong access control measures to ensure only authorized personnel can access the data. The standard does not mandate a specific solution; rather, it emphasizes the importance of demonstrating adequate protection.
+        \item 4th requirement: Encrypt cardholders' data when transmitted across an open public network. This is mandatory.
+    \end{itemize}
+
+    \item \textbf{Establish and follow a program for vulnerability management}:
+    \begin{itemize}
+        \item 5th requirement: Utilize antivirus software and keep it regularly updated.
+        \item 6th requirement: Develop and maintain secure applications and systems, ensuring security considerations are integrated from the outset of development and continuously verified and maintained.
+    \end{itemize}
+
+    \item \textbf{Implement strong access control}:
+    \begin{itemize}
+        \item 7th requirement: Restrict access to cardholders' data to only those individuals who require it for specific tasks.
+        \item 8th requirement: Assign a unique ID to each user. This ensures that each user within the organization has a single username, with no multiple authentication systems allowed. This requirement simplifies permission assignment and removal, as well as action tracing.
+        \item 9th requirement: Limit physical access to cardholders' data.
+    \end{itemize}
+
+    \item \textbf{Regularly monitor and test the networks}:
+    \begin{itemize}
+        \item 10th requirement: Monitor and track all accesses to network resources and cardholders' data. This necessitates maintaining secure log files that enable identification of individuals who have accessed servers and data.
+        \item 11th requirement: Periodically test protection systems and procedures.
+    \end{itemize}
+
+    \item \textbf{Adopt a Security Policy}:
+    \begin{itemize}
+        \item 12th requirement: Adopt a comprehensive Security Policy, ensuring the presence of a well-defined security plan rather than merely attempting to implement security features reactively after successful attacks.
+    \end{itemize}
+\end{itemize}
