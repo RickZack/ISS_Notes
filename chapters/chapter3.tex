@@ -847,7 +847,7 @@ See Figure \ref{fig:kerberos}.
 \end{figure}
 
 % TODO This is just for comparison, consider removing it
-\paragraph*{User Client-based Login example without Kerberos}
+\paragraph{User Client-based Login example without Kerberos}
 
 \begin{enumerate}
   \item A user enters a username and password on the client machine(s). Other credential mechanisms like pkinit (RFC 4556) allow for the use of public keys in place of a password. The client transforms the password into the key of a symmetric cipher. This either uses the built-in key scheduling, or a one-way hash, depending on the cipher-suite used.
@@ -855,7 +855,7 @@ See Figure \ref{fig:kerberos}.
 \end{enumerate}
 
 
-\paragraph*{Client Authentication}
+\paragraph{Client Authentication}
 
 \begin{enumerate}
   \item The client sends a cleartext message of the user ID to the AS (Authentication Server) requesting services on behalf of the user. (Note: Neither the secret key nor the password is sent to the AS.)
@@ -869,7 +869,7 @@ See Figure \ref{fig:kerberos}.
 
 
 
-\paragraph*{Client Service Authorization}
+\paragraph{Client Service Authorization}
 \begin{enumerate}
   \item When requesting services, the client sends the following messages to the TGS:
         \begin{itemize}
@@ -886,7 +886,7 @@ See Figure \ref{fig:kerberos}.
 
 
 
-\paragraph*{Client Service Request}
+\paragraph{Client Service Request}
 
 \begin{enumerate}
   \item Upon receiving messages E and F from TGS, the client has enough information to authenticate itself to the Service Server (SS). The client connects to the SS and sends the following two messages:
@@ -907,7 +907,7 @@ See Figure \ref{fig:kerberos}.
 \end{enumerate}
 
 
-\paragraph*{Kerberos versions}
+\paragraph{Kerberos versions}
 Kerberos has evolved through various versions, with MIT V4 marking its original implementation. The subsequent version, MIT V5 (also known as RFC-1510), introduced significant enhancements.
 Unlike its predecessor, MIT V5 supports encryption beyond DES, offering increased security options. Notably, it extended the ticket lifetime by specifying explicit begin-end validity periods.
 Additionally, MIT V5 introduced features such as inter-realm authentication, forwardable tickets, and extendable tickets. This version enabled users to achieve a single login for access to all Kerberized services. These services encompassed a diverse range, including K-POP, K-NFS, K-LPD, K-telnet, K-ftp, and K-dbms.
@@ -917,7 +917,7 @@ The subsequent evolution of Kerberos is reflected in \texttt{RFC-4120}, which su
 
 To enhance security, \texttt{RFC-4120} introduced pre-authentication measures, aiming to thwart password enumeration or dictionary attacks on the Ticket Granting Ticket (TGT). For instance, in Windows, the \texttt{AS\_REQ} must contain encrypted forms of the user's key and timestamp.
 
-\paragraph*{TGT request with PKINIT}
+\paragraph{TGT request with PKINIT}
 \texttt{RFC-4120} (v5) brings support for asymmetric cryptography, applicable specifically in the \texttt{AS\_REQ} phase, the initial phase of the protocol when making a request to the authentication server.
 
 
@@ -940,7 +940,7 @@ This feature, known as \texttt{PKINIT} (Public Key Initialization), modifies the
 
 
 
-\subsubsection*{SSO (Single Sign-On)}
+\subsubsection{SSO (Single Sign-On)}
 
 Kerberos is an example of a more general concept of \textit{SSO} (Single Sign-On), where users possess a single "credential" to authenticate themselves and gain access to various services in the system.
 
@@ -981,7 +981,7 @@ So far, OATH has provided the following \href{http://www.openauthentication.org/
   \item \textbf{Dynamic Symmetric Key Provisioning Protocol} (DSKPP, RFC-6063): It is a client-server protocol for provisioning symmetric keys to a crypto-engine by a key-provisioning server.
 \end{itemize}
 
-\subsubsection*{HOTP}
+\subsubsection{HOTP}
 
 Let us define:
 \begin{itemize}
@@ -1047,7 +1047,7 @@ The FIDO protocols are designed from the ground up to protect user privacy. The 
 % \end{figure}
 
 
-\paragraph*{FIDO registration}
+\paragraph{FIDO registration}
 Differently from other systems, in which registration is usually performed by a new classical username and password creation, or by reusing the user's Facebook or Google identity, FIDO uses the user's device with asymmetric cryptography. When registering with FIDO:
 
 
@@ -1092,7 +1092,7 @@ After signing up, there are four steps to be performed to log in:
 \end{minipage}
 
 
-\paragraph*{FIDO U2F registration}
+\paragraph{FIDO U2F registration}
 \begin{figure}[h]
   \centering
   \includegraphics[page = 80,trim = 3.3cm 2.2cm 3.3cm 3.7cm, clip, width = 0.55\textwidth]{\slides}
@@ -1105,7 +1105,7 @@ When a registration request arrives, \ul{the backend will send a registration re
 The registration response is then sent along with the public key and the key handle. These items are validated in the final step (5), and the key-handle pair is stored.
 
 
-\paragraph*{FIDO U2F authentication}
+\paragraph{FIDO U2F authentication}
 
 \begin{figure}[h]
   \centering
@@ -1115,7 +1115,7 @@ The registration response is then sent along with the public key and the key han
 Authentication typically begins with the submission of the username and reusable password to the FIDO U2F backend. The backend initiates a challenge that must be addressed using the key associated with the provided username. Upon receiving the challenge, the user activates the device once again, selects the key (based on the key handle submitted by the server), and resolves the challenge. Subsequently, the solved challenge is sent to the server for verification.
 
 
-\paragraph*{FIDO: Other Characteristics \& Security Analysis}
+\paragraph{FIDO: Other Characteristics \& Security Analysis}
 
 FIDO uses:
 \begin{itemize}
@@ -1148,7 +1148,7 @@ The evolution of FIDO is as follows:
   \item Nov 2017: FIDO v2.0.
 \end{itemize}
 
-\paragraph*{FIDO 2.0}
+\paragraph{FIDO 2.0}
 
 With FIDO 2.0, a new protocol, the \textbf{CTAP} (\textit{Client To Authenticator Protocol}), is defined for connecting an external authenticator to the platform. During authentication initiation, the RP application can utilize the \texttt{web authN JS API} to access FIDO. The API operates within the browser, on top of a platform (such as Linux, iOS, Android). Two choices are available: \textbf{a local authenticator} (e.g., a private key stored in a file on Windows) or an \textbf{external device paired with the device using the CTAP protocol}. This protocol operates through USB, BT, NFC, etc., and keys are always present. This represents a kind of \textit{roaming authenticator} as the device can be used with multiple application devices.
 

@@ -91,7 +91,7 @@ There are three techniques for creating a VPN:
 \end{itemize}
 
 
-\paragraph*{VPN via Private Addresses}
+\paragraph{VPN via Private Addresses}
 
 In this basic VPN implementation, the networks included in the VPN use non-public addresses, making them unreachable from other networks (e.g., private IANA networks as listed in RFC-1918). Consequently, these networks are considered private, as they do not require authorization, and the packets in this case are not globally routable.
 
@@ -333,7 +333,7 @@ The first version (RFC-1827) provided only confidentiality. The basic mechanism 
 
 \textbf{REMINDER:} IPsec is an architecture that is implemented with two kinds of packets: AH or ESP, \underline{and they may be used simultaneously}.
 
-\paragraph*{}
+\paragraph{}
 ESP can be used in transport mode and tunnel mode as well.
 
 \vspace*{5mm}
@@ -451,7 +451,7 @@ Of course, this reduces global performance by increasing the data sent over the 
 
 
 \subsection{Ways to use IPsec}
-\subsubsection*{End-to-End security}
+\subsubsection{End-to-End security}
 \begin{wrapfigure}{r}{0.55\textwidth}
     \centering
     \includegraphics[page = 38,trim = 1cm 2.5cm 1cm 2cm, clip, width = 0.55\textwidth]{\slides}

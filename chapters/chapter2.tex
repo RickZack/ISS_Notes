@@ -36,7 +36,7 @@ If these properties are met,
 not only it has no importance that the encryption and decryption algorithms are kept secret, but it is better to
 make the algorithms public so that they can be widely analysed, and their possible flaws and vulnerabilities identified.
 
-\subsection*{Security through obscurity (STO)}
+\subsection{Security through obscurity (STO)}
 The Kerckhoffs' Principle is related to the concept of \textbf{Security through obscurity}: it means that a system is protected, but the details on how it has been protected are not disclosed.\\
 Generally, \ul{this alone is not considered a valid security mechanism} because if someone discovers how the system has been protected (and we have seen that there are also non-technical ways by which this can be achieved), it is no longer secure.
 
@@ -58,7 +58,7 @@ However, there is a category of people (such as military men) which tend to appl
 \section{Symmetric cryptography}
 Depending on which relation exists between key-1 and key-2 there are different kinds of cryptography.
 
-\subsection*{Secret key / symmetric cryptography}
+\subsection{Secret key / symmetric cryptography}
 \begin{figure}[h]
     \centering
     \includegraphics[page = 6,trim = 2.5cm 3cm 2.5cm 13cm, clip, width = 0.55\textwidth]{\slides}
@@ -103,7 +103,7 @@ The most commonly used algorithm of this kind is \textbf{AES}, currently recogni
 Why are there so many algorithms? Because there are various types of computers, and many algorithms are not suitable for low CPU power.
 
 
-\paragraph*{The EX-OR (XOR) function}
+\paragraph{The EX-OR (XOR) function}
 \begin{wrapfigure}{r}{0.255\textwidth}
     \centering
     \includegraphics[page = 8,trim = 21cm 7.2cm 0.5cm 8.5cm, clip, width = 0.25\textwidth]{\slides}
@@ -165,7 +165,7 @@ applications).
     \includegraphics[width = 0.30\textwidth]{chapter2/3des.png}
 \end{figure}
 
-\paragraph*{Why not Double DES?}
+\paragraph{Why not Double DES?}
 The double application of any encryption algorithm is susceptible to a \textbf{known-plaintext} attack known as \textit{meet-in-the-middle} see below), which allows for the decryption of data with at most \(2^{N+1}\) attempts (if the keys are \(N\) bits long), instead of the $2^{2n}$ steps one would expect from an ideally secure algorithm with $2n$ bits of key.
 If the attacker knows one plaintext, they can execute the attack. For this reason, \textbf{the double version of encryption algorithms is never used} because the computation time doubles, but the effective key length increases by just one bit.
 
@@ -178,7 +178,7 @@ Furthermore, it has been proven that if the base symmetric algorithm is a \href{
 This implies that in this case, the time needed for normal encryption/decryption doubles, but not a single bit is gained in terms of \(K_{eq}\).
 
 %TODO: migliora disposizione equazioni
-\subparagraph*{Meet-in-the-middle attack}\label{meetinthemiddle}
+\subparagraph{Meet-in-the-middle attack}\label{meetinthemiddle}
 By hypothesis, N-bit keys are used, and we have known plaintext (\(P\)) and ciphertext (\(C\)) such that
 \[C = \text{enc}(K_2, \text{enc}(K_1, P))\] \\
 Note that \(\exists M\) such that
@@ -229,7 +229,7 @@ the algorithm, the size of key, and if it is a block algorithm, also the mode of
 
 
 \subsubsection{ECB}
-\paragraph*{Encryption}
+\paragraph{Encryption}
 This mode splits the plaintext into blocks, and each block is encrypted separately with the key;
 that means that, for each block \(i = 0, \ldots, N\),
 \[
@@ -248,7 +248,7 @@ In particular, it must not be used on long messages (any message longer than 1 b
     \item Identical blocks generate identical ciphertexts, hence it is vulnerable to \textbf{known-plaintext attacks}. Plaintext attacks require the precomputation of all possible encryptions of a known plaintext: comparing the encrypted block with all the precomputed possible encryptions, it is possible to figure out what the key is.
 \end{itemize}
 
-\subparagraph*{Known-plaintext attack example}
+\subparagraph{Known-plaintext attack example}
 Let us suppose that we want to intercept a message sent by the rector of the Politecnico di Torino. It is possible
 to assume that his messages will contain the word “Torino”, so we start encrypting this word with all possible
 keys. Next, we can go sniffing the blocks sent by the rector: if any of these blocks is equal to the encryption
@@ -265,7 +265,7 @@ the first block of a Word file is encrypted, it can serve as a dictionary for Wo
 even have to guess some plaintext, but just the file format.
 
 
-\paragraph*{Decryption}
+\paragraph{Decryption}
 Decryption is a straightforward process as it involves taking the ciphertext block and decrypting it with the corresponding key. In the case of an error in transmission, it only affects the decryption of that specific block, and \textbf{there is no propagation of the error to other blocks}.
 \begin{itemize}
     \item For each block, $P_i = \text{enc}^{-1}(K, C_i)$
@@ -279,7 +279,7 @@ Decryption is a straightforward process as it involves taking the ciphertext blo
 
 \subsubsection{CBC (Cipher Block Chaining)}
 
-\paragraph*{Encryption}
+\paragraph{Encryption}
 This mode resolves all of ECB's problems.
 It divides the plaintext into blocks, but before each block is encrypted, it is \textbf{XORed with the ciphertext of the previous block}.
 This introduces unpredictability in the encryption process.
@@ -299,7 +299,7 @@ CBC also provides protection against block swapping because if blocks are swappe
 \end{figure}
 
 
-\paragraph*{Decryption}
+\paragraph{Decryption}
 The IV vector needs to be known at the receiver as well because, when the ciphertext is received, the IV must be known to decrypt the first block (since XOR is the inverse operator of itself).
 The IV must also be different every time (hopefully random) to avoid being guessed, as its purpose is to make it impossible to precompute the possible encryptions of the first block.
 It must also be a \textbf{NONCE} (Number used once), meaning that the IV should be generated and never reused in the future.
@@ -325,7 +325,7 @@ decryption of \textbf{two blocks}. For example, if there's an error in C1, it af
 
 
 
-\subsubsection*{Padding (aligning, filling)}
+\subsubsection{Padding (aligning, filling)}
 \begin{figure}[H]
     \centering
     \includegraphics[page = 18,trim = 3.5cm 7cm 3.5cm 9cm, clip, width = 0.55\textwidth]{\slides}
@@ -361,7 +361,7 @@ However, it has some problems since:
 
 
 % TODO L?
-\paragraph*{Some notes}
+\paragraph{Some notes}
 \begin{itemize}
     \item $B$ stands for the size of the algorithm's block
     \item $D$ stands for the size of data to process
@@ -404,7 +404,7 @@ For this description\footnote{\url{https://en.wikipedia.org/wiki/Ciphertext_stea
 
 
 
-\paragraph*{CTS Example with \textit{ECB} (encryption)}
+\paragraph{CTS Example with \textit{ECB} (encryption)}
 \begin{figure}[h]
     \centering
     \includegraphics[page = 23,trim = 2cm 1.5cm 0.4cm 4cm, clip, width = 0.55\textwidth]{\slides}
@@ -423,7 +423,7 @@ For this description\footnote{\url{https://en.wikipedia.org/wiki/Ciphertext_stea
 
 
 
-\subparagraph*{Shorter description}
+\subparagraph{Shorter description}
 \begin{enumerate}
     \item The plaintext is split into blocks;
     \item The second-to-last block is full, so it is possible to encrypt it with the key;
@@ -436,7 +436,7 @@ The receiver must reverse the procedure. Bits corresponding to the tail are encr
 
 Please note that \textbf{ECB must never be used}; the example is intended to make it easier to understand.
 
-\paragraph*{CTS Example with \textit{CBC} (encryption)}
+\paragraph{CTS Example with \textit{CBC} (encryption)}
 \begin{figure}[H]
     \centering
     \includegraphics[page = 24,trim = 2cm 1.5cm 0.4cm 4cm, clip, width = 0.55\textwidth]{\slides}
@@ -459,7 +459,7 @@ Please note that \textbf{ECB must never be used}; the example is intended to mak
 
 
 
-\subparagraph*{Shorter description}
+\subparagraph{Shorter description}
 The various blocks are encrypted with a key and XOR operation, particularly \(C_{N-2}\), which is utilized in the \(P_{N-1}\) XOR encryption.
 In the last step, \(P_N\) is padded with all zeros and XORed with the encrypted block \(E_{N-1}\) (encryption of \( P_{N-1} \)), thus encrypting the last block.
 \(E_N\) is then positioned in the \(N-1\) position. On the contrary, the \(E_{N-1}\) encryption is not transmitted completely, only the head is sent. It may seem that part of \(E_{N-1}\) is missing, but since the tail is XORed with all zeros, it will be recovered by \(C_{N-1}\).
@@ -486,7 +486,7 @@ Following this, we apply an XOR operation, generating the corresponding cipherte
 
 On the receiving end, another register must be present, initialized in the same manner as the sender, and undergo the same inverse operation. Naturally, the sender and receiver must share the same nonce and maintain identical counter values to stay synchronized. This type of transmission is vulnerable to \textbf{cancellation attacks}; if a message is removed, synchronization is lost. However, this risk can be mitigated using integrity techniques, which will be discussed later.
 
-\paragraph*{Example of CTR}
+\paragraph{Example of CTR}
 A long data stream must be enciphered in CTR mode, byte-
 oriented, with key $K$, nonce $N$, and $f(...)$ is just concatenation.
 For the sender:
@@ -541,7 +541,7 @@ a smaller block counter. In particular,
 \end{itemize}
 This has become famous because it is used by Google (for Chrome on Android), OpenSSH, and various CSPRNGs (e.g., \texttt{/dev/urandom} since Linux kernel 4.8).
 
-\paragraph*{Length of secret keys}
+\paragraph{Length of secret keys}
 If \ul{Kerchoff's conditions} are met, that is:
 \begin{itemize}
     \item the encryption algorithm was well designed
@@ -637,7 +637,7 @@ The main algorithms include Diffie-Hellman, RSA, DSA, ElGamal, and others.
     \label{fig:asymmcrypto}
 \end{figure}
 
-\paragraph*{Keys}
+\paragraph{Keys}
 
 In Figure \ref*{fig:asymmcrypto}, a message is encrypted with a private key and sent to the receiver, who will use the corresponding public key to decrypt the message. Typically, the sender uses its private key to encrypt something, and all other individuals will know the public key and be able to decrypt the message.
 
@@ -647,7 +647,7 @@ These two ways of using a pair of keys are employed to achieve two different fun
 
 
 
-\subparagraph*{Digital signature}
+\subparagraph{Digital signature}
 \begin{figure}[h]
     \centering
     \includegraphics[page = 39,trim = 2cm 1.3cm 1cm 12cm, clip, width = 0.55\textwidth]{\slides}
@@ -669,7 +669,7 @@ However, this is NOT the real implementation of the digital signature, that is c
     \caption{Confidentiality without shared secrets}
 \end{figure}
 
-\subparagraph*{Confidentiality without shared secrets}
+\subparagraph{Confidentiality without shared secrets}
 It is possible to generate a \textbf{secret message} for a receiver using only its public key.
 The message is encrypted with the public key, and only the intended recipient possesses the corresponding private key necessary for decryption.
 This approach eliminates the need for key sharing between the sender and receiver.
@@ -702,16 +702,16 @@ DSA is a standard defined by NIST for DSS (FIPS-186).
 
 
 
-\subsubsection*{Hardware and example}
+\subsubsection{Hardware and example}
 
-\paragraph*{Twinkle}
+\paragraph{Twinkle}
 Every year, there is a conference named Eurocrypt, focusing on cryptography in Europe. A scientist from RSA Laboratories attended the Ramp Session, where interesting and promising ideas are presented. Professor Adi Shamir (who contributed the "S" in RSA) showcased an unusual piece of hardware called \textit{TWINKLE} (The Weizmann Institute Key Locating Engine). It is an electro-optical computer that implements the sieving algorithm to find prime numbers. The Twinkle machine is expected to find the factors of an RSA key two to three orders of magnitude faster than a conventional fast PC. It operates at a very high clock rate (10 GHz), must trigger LEDs at precise intervals of time, and uses wafer-scale technology. According to estimates by Professor Shamir, the device can be fabricated for about \$5,000. Unfortunately, Shamir never returned to the next conference to showcase the device.
 
-\paragraph*{Twirl (The Weizmann Institute Relation Locator)}
+\paragraph{Twirl (The Weizmann Institute Relation Locator)}
 This is an electronic device designed for factoring large integers. It implements the sieving step of the Number Field Sieve integer factorization algorithm, which is, in practice, the most expensive step in factorization. TWIRL is more efficient than previous designs by several orders of magnitude, thanks to high algorithmic parallelization combined with adaptation to technological hardware constraints. Although the design is fairly detailed, it remains hypothetical since the device has not been actually built. TWIRL is constructed using current VLSI technology, and it would be possible to factor 1024-bit integers, thus breaking 1024-bit RSA keys in one year at the cost of a few dozen million US dollars.
 
 
-\paragraph*{Firmware Signature for TI Calculators}
+\paragraph{Firmware Signature for TI Calculators}
 These facts demonstrate that RSA is not totally secure: there is evidence that sooner or later, the factors will be found, and the mathematical problem will be solved. An example is the TI83+ graphing calculator, which has firmware protected by a 512-bit RSA signature. The signature key was factored in July 2009 after 73 days of computation on a 1.9 GHz dual-core Athlon64 PC. In 1999, the same computation would have required 8000 MIPS-years + Cray C916. Now, all users may autonomously modify the firmware themselves. A signed firmware means that a software is signed with a digital signature (which is a piece of software). If anybody alters the software, then the digital signature will fail, and there is a hardware control that will not operate if the software is modified.
 
 
@@ -743,7 +743,7 @@ In the example (Figure \ref*{fig:keyexchangeasymmetric}), \textit{X} is willing 
 Is this schema issue-safe? In some environments, the fact that X decides what key will be used for the actual communication is not acceptable. Y could argue that X's key is not safe, maybe it has been disclosed, and someone could be able to decrypt the message in the communication without violating the asymmetric encryption used to exchange the key. The same reasoning could apply to the opposite case, in which Y decides the key to be used. In such cases, the key can be produced jointly using the \textit{Diffie-Hellman algorithm}.
 
 % TODO: decidere una convenzione per i nomi di Alice and Bob. Il professore usa sia A,B che X,Y. 
-\subsubsection*{Diffie-Hellman algorithm}
+\subsubsection{Diffie-Hellman algorithm}
 The two parties (called Alice and Bob in this example\footnote{In this example, "Alice and Bob" were used; the figures uses A and B}) involved in the communication agree on two public integers $(p,g)$ , $p$ (a large prime number), and $g$ (called the "generator"), given the constraint $1 < g < p$.
 The length of a Diffie-Hellman key is defined as the number of bits in the binary representation of \(p\). Both numbers $p$ and $g$ are public values, and typically, $g = 2, 3, \text{ or } 5$.
 
@@ -758,7 +758,7 @@ It is easy to see that $K_A = K_B = g^{xy}\Mod p$, so the parties have decided t
     \label{fig:diffie-hellman}
 \end{figure}
 
-\subparagraph*{Recap:}
+\subparagraph{Recap:}
 \begin{itemize}
     \item Alice and Bob choose p (prime, large) and g (generator, a primitive root module p) such that $1 < g < p$, typically $g = 2,3,5$. The length of DH key will be equal to the number of bits of p.
     \item Alice arbitrarily chooses an integer $x >0$ and computes $ A = g^x \Mod p $\\
@@ -769,7 +769,7 @@ It is easy to see that $K_A = K_B = g^{xy}\Mod p$, so the parties have decided t
     \item It is easy to see that $K_A = K_B = g^{xy} \Mod p$
 \end{itemize}
 
-\paragraph*{Vulnerabilities}
+\paragraph{Vulnerabilities}
 From an attacker's perspective, even if they know the values for p and g, as well as the values A and B being exchanged (e.g., attempting a \underline{passive} man-in-the-middle attack), it is not possible to compute $K_{AB}$.
 This is because the attacker would need to also know $x$ or $y$.
 Therefore, the Diffie-Hellman algorithm is \textbf{resistant to sniffing attacks}.
@@ -778,7 +778,7 @@ This manipulation can be detected if the exchanged values are authenticated. In 
 
 As it uses only public information, it is referred to as the first public key algorithm ever invented. It is commonly used to agree on a secret key, earning it the title of a key-agreement algorithm, as opposed to the key-distribution algorithm discussed earlier. While it was patented in the USA, it has been royalty-free since April 29, 1997.
 
-\subparagraph*{DH: man-in-the-middle attack}
+\subparagraph{DH: man-in-the-middle attack}
 As stated, the only way to attack Diffie-Hellman after performing sniffing is to execute a brute-force attack to find \(x = \log_{g} A \Mod p\). However, solving this is infeasible since it involves a discrete logarithmic problem. In the case of an attacker performing an active man-in-the-middle attack, the outcome is different.
 \begin{figure}[h]
     \centering
@@ -798,7 +798,7 @@ One application of Diffie-Hellman (DH) could be in HTTPS: the browser could prod
 DH is widely used nowadays to agree on a key, and there is also the possibility to have authentication (because otherwise, such a Man-in-the-Middle attack is possible).
 
 
-\paragraph*{Elliptic curve cryptography}
+\paragraph{Elliptic curve cryptography}
 A new kind of cryptography of this type is ECC (Elliptic Curve Cryptosystem). The concept is the following: instead of using modular arithmetic, the operations are executed on the surface of a 2D (elliptic) curve. Not all the points in the Cartesian space are valid points, but only those that satisfy the 2D curve equation. The problem of the discrete logarithm on such a curve is that since the point representation is more complex, the problem, in general, is more complex than the one in normal modular arithmetic. This gives the opportunity to use keys shorter by a factor of approximately 1/10.
 
 Most algorithms have been revisited to adapt them to the elliptic curve (RSA cannot be adapted):
@@ -869,7 +869,7 @@ The hash function works like this:
 
 The IV is an initialization value that does not need to be announced or be random. Typically, it is fixed and specified inside the algorithm itself (source and destination must perform the same computation).
 
-\subsection*{SHA}
+\subsection{SHA}
 
 \subsubsection{SHA-2 family}
 The most widely used algorithms nowadays are those in the \textbf{SHA-2 family}: they have the same block size but an increasingly digest size. Because they inherit the structure of SHA-1, which has been broken\footnote{\url{https://www.schneier.com/blog/archives/2005/02/sha1_broken.html}} and should never be used anymore, it is possible that soon they will not be secure enough.
@@ -884,7 +884,7 @@ SHA-3 has already been developed and should be the choice to adopt once its stre
 
 The SHA-2 family was a quick fix after the SHA-1 attack, and it was developed by making the digest longer. The main algorithms are SHA-256, which uses a 32-bit word, and SHA-512, which uses a 64-bit word (suitable for 32/64-bit PCs, respectively).
 
-\paragraph*{Digest length}
+\paragraph{Digest length}
 The digest length is important to avoid \textbf{aliasing}, which is the collision of two different messages producing the same digest. Breaking a digest algorithm means finding a second message that will generate the same digest as the first one. If the algorithm is well-designed and generates a digest of \(N\) bits, then the probability of aliasing is \(P_{\text{A}} \propto \frac{1}{2^{N \text{bits}}}\).
 This is the reason why digests with many bits are required, as statistical events are involved.
 
@@ -950,7 +950,7 @@ There are two main key derivation functions that are based on cryptographic hash
 \end{itemize}
 
 
-\paragraph*{MAC, MIC, MID}
+\paragraph{MAC, MIC, MID}
 We have seen that a digest could be used in pair with a message to achieve integrity; typically, the part added
 to the message for integrity is called \textbf{MIC} (Message Integrity Code), because of the code added to the message
 to \textul{protect its integrity}. If a message is not being modified, it means that it is also authentic and in this case the code is also named \textbf{MAC} (Message Authentication Code). They mean the same thing, but MIC is usually used
@@ -985,15 +985,15 @@ The digest is sent along with the message, but it is calculated not only on the 
     \item \textbf{Verification:} if (\(d == d'\)) then OK else it means that something has been changed during transmission (the data or the digest, it does not matter).
 \end{itemize}
 
-\paragraph*{Advantages}
+\paragraph{Advantages}
 Advantages of this technique are that there is only one operation (calculation of the digest) and that only few data are added. It is worth noticing that this mechanism guarantees authentication, since only those who know the key can compare the transmitted digest with the digest calculated on the received data. This is the \underline{fastest solution} to provide integrity and authentication to the data. However, \underline{it does not provide non-repudiation}: let us suppose that the receiver of a commercial order wants to take the sender of that order to court because he repudiates the order itself; then the receiver would show as proof the message along with the digest that proves integrity and authenticity. In this case, it is not possible to say that the sender originated the order, since the receiver has all the means to create it by himself: he has the data and the key upon which to compute a valid keyed digest.
 
 So, this solution \textbf{guarantees authentication} since the receiver can be sure that the data is coming from the sender and has not been modified, but it does not provide non-repudiation by itself since it is impossible for one of the two parties to demonstrate to a third party that the other created the message.
 
 
-\paragraph*{Keyed digest:}
+\paragraph{Keyed digest:}
 
-\subparagraph*{HMAC}
+\subparagraph{HMAC}
 HMAC is defined in RFC-2104 and it uses a base hash function \(H\). So, HMAC is not a hash function but a way to compute a secure MAC starting from a hash function \(H\). The base hash function \(H\) must have a block size \(B\), with an output \(L\) bytes long, where \(B > L\). Then there are some definitions:
 \begin{itemize}
     \item \(ipad = 0x36\) repeated \(B\) times; it is a padding composed of \(0x36\) repeated \(B\) times to fill all the block.
@@ -1007,7 +1007,7 @@ Given that, \(hmac = H(K' \oplus opad \Vert H(K' \oplus ipad \Vert data))\).\\
 The \(K'\) is XORed with \(ipad\) and it is pre-appended to the data. Then, the hash is computed. After the hashing, the \(K'\) is XORed with \(opad\) and it is pre-appended to the result of the hash, and the hash is again computed. It is easy to see that basically HMAC is a double hash of the data composed in some way with the key. This is much stronger than just pre- or post-appending the key to the data. This is the most widely solution used when it is needed to create a MAC (or MIC, it is the same). HMAC is typically used to protect integrity. If confidentiality must also be protected, there is CBC-MAC.
 
 
-\paragraph*{CBC-MAC}
+\paragraph{CBC-MAC}
 Sometimes we do not need only integrity but \underline{also confidentiality}, so we compute encryption. In that case, rather than using another function (for example, we are using AES for encryption and we also need to have SHA-256 for integrity, which means we need to have more code, which is not always possible, for example, in embedded systems), it is possible to compute a MAC not based on a hash function but based on a symmetric algorithm: this is named CBC-MAC.
 
 It exploits a block-oriented symmetric encryption algorithm in CBC mode with a null IV, taking the last encrypted block as the MAC. The message \(M\) is split into \(N\) blocks \(M_1, \ldots, M_N\). Then, taking \(V_0 = 0\), for \(k = 1, \ldots, N\), do \(V_k = \text{enc}(K, M_k \oplus V_{k-1})\); finally, the CBC-MAC is equal to \(V_N\). So, the size of the CBC-MAC is equal to the size of one block of the underlying symmetric encryption algorithm. If, for example, we are using AES-CBC-MAC, then the digest will be 128 bits long. The best version of DES-based CBC-MAC is the Data Authentication Algorithm (standard FIPS 113, ANSI X9.17).
@@ -1046,7 +1046,7 @@ Improper combination of secure algorithms may lead to an insecure result!
 Because neither of these three solutions is perfect, current efforts are towards a joint AE algorithm: this is named \textbf{authenticated encryption}.
 
 
-\subsubsection*{Authenticated encryption}\label{chap:ae}
+\subsubsection{Authenticated encryption}\label{chap:ae}
 
 \textit{Authenticated Encryption} (\textbf{AE}) represents a cryptographic approach that integrates both \textbf{privacy} and \textbf{authentication/integrity} within a single operation.
 This unified approach ensures that the same dataset serves the dual purpose of maintaining confidentiality while simultaneously verifying the authenticity/integrity of the information.
@@ -1056,7 +1056,7 @@ This methodology is characterized by the use of a single key and algorithm, prom
 One notable advantage of AE is its ability to counter chosen-ciphertext attacks that may occur during online encryption processes. In such attacks, an adversary manipulates a ciphertext and observes the recipient's response to detect potential vulnerabilities, such as through padding or decryption oracle attacks. AE addresses this concern by emphasizing the need to verify the integrity of the ciphertext before decryption. This verification process ensures that the data maintains its confidentiality (through encryption) and authenticity/integrity simultaneously.
 
 
-\subparagraph*{IGE (Infinite Garble Extension)}
+\subparagraph{IGE (Infinite Garble Extension)}
 
 IGE\footnote{This algorithm is not recommended, but the professor explained it for teaching purposes.} is an authenticated encryption algorithm, providing \textbf{confidentiality, integrity, and authentication} all in one.
 Essentially, it is similar to CBC with one addition: in CBC, a modification in one block of the ciphertext affects only the block itself and the next one (and then propagation stops). In contrast, IGE uses a mechanism by which \ul{a modification in any block will affect every block after the mangled one}.
@@ -1070,7 +1070,7 @@ Essentially, it is similar to CBC with one addition: in CBC, a modification in o
 This is important because it means that by putting a last block of plaintext with fixed content (e.g., composed of all zeros or containing the number of blocks of the plaintext), in the decryption phase, it is sufficient to look at the last block and check if it contains the expected value. If not, one can immediately conclude that there has been an attack against integrity. In this context, the last block is what was previously called the tag.
 
 
-\subparagraph*{RFC 5116 - Interface and algorithms for authenticated encryption}
+\subparagraph{RFC 5116 - Interface and algorithms for authenticated encryption}
 There are various ways to perform authenticated encryption; one of the most important is \textit{Authenticated Encryption with Associated Data} (\textbf{AEAD}), documented in RFC 5116.
 
 This is precisely the type of solution needed for emails and network packets. In essence, authenticated encryption is an algorithm that provides both of the aforementioned functionalities on plaintext. Conversely, AEAD distinguishes between the part that requires privacy and the part that needs integrity.
@@ -1100,7 +1100,7 @@ ISO/IEC 19772:2009 defines six standard \textbf{modes}. By applying these modes 
 other modes exist and are/will be recommended by other bodies (e.g. NIST, IETF).
 
 
-\paragraph*{GCM as an example of AEAD}
+\paragraph{GCM as an example of AEAD}
 
 An algorithm applied in GCM mode encryption takes these parameters:
 
@@ -1124,13 +1124,13 @@ An algorithm applied in GCM mode encryption takes these parameters:
 GCM is defined for only the encryption algorithms with 128-bit block (for example we cannot have DES in
 GCM, but it is possible to have AES).
 
-\paragraph*{CCM as an example of AEAD}
+\paragraph{CCM as an example of AEAD}
 It is Counter-mode with CBC-MAC: first an authentication tag of (plaintext + associated data) is computed
 by CBC-MAC, then the plaintext and the tag are (separately) encrypted in CTR mode: so, it is a double pass
 algorithm. It is defined for encryption algorithms with 128-bit block
 
 
-\subsubsection*{Authenticated encryption: applications}
+\subsubsection{Authenticated encryption: applications}
 \begin{itemize}
     \item TLS-1.3 uses GCM and CCM;
     \item 802.11i uses CCM;
@@ -1159,11 +1159,11 @@ algorithm. It is defined for encryption algorithms with 128-bit block
 
 % Partially new
 \ifthenelse{\boolean{showNew}}{
-    \paragraph*{NIST lightweight crypto (LWC)}
+    \paragraph{NIST lightweight crypto (LWC)}
     The NIST Lightweight Cryptography (LWC) initiative, launched in August 2018, aimed to identify efficient Authenticated Encryption with Associated Data (AEAD) lightweight algorithms for embedded system.
     After two rigorous rounds of evaluation, the winner announced on July 2, 2023, is \textbf{ASCON}. ASCON is proven to be highly effective for encryption, AEAD, and hashing applications.
 
-    \subparagraph*{ASCON}
+    \subparagraph{ASCON}
     Ascon is a family of lightweight authenticated ciphers that had been selected by US National Institute of Standards and Technology (NIST) for future standardization of the lightweight cryptography.
 
     It is not designed to replace AES or SHA3 but rather serves as a lightweight solution suitable for resource-constrained environments. 
@@ -1338,7 +1338,7 @@ administrative (before creating a certificate, checking the identity of the requ
 So, this infrastructure oversees \textit{creating}, \textit{distributing}, and \textit{revoking} the public key certificates.
 
 
-\paragraph*{Certificate revocation}
+\paragraph{Certificate revocation}
 Every certificate has a certain validity, but it can be revoked before its expiration date. The revocation can be requested by the owner or by the creator of the certificate:
 
 \begin{itemize}
@@ -1351,7 +1351,7 @@ Every certificate has a certain validity, but it can be revoked before its expir
 When a certificate is revoked, the certification authority creates a list stating that the certificate is no longer valid. Since the certification authority does not know when and where the stolen key will be used, the transaction protected by a signature is received by various actors (the receivers). These receivers must check whether the certificate was valid at the time of the signature. The actor responsible for verifying if the signature was valid or not is called the \textbf{relying party} (\textbf{RP}).
 This means that before trusting the certificate, it should be checked if it is valid or not.
 
-\subparagraph*{Revocation mechanism}
+\subparagraph{Revocation mechanism}
 There are two mechanisms to perform a check on the signature:
 
 \begin{itemize}
@@ -1374,7 +1374,7 @@ However, the X.509 CRL structure introduces the "\textbf{thisUpdate}" parameter,
 This timestamp is crucial because if a signature check is conducted on a document signed before this date, the relevant information is found in the CRL. Conversely, if the verification pertains to an event occurring after the "thisUpdate" date, the current CRL may not be suitable, and a more recent CRL needs to be obtained. Following this parameter, there is a list of revoked certificates, each accompanied by the \textit{userCertificate} and \textit{revocationDate}.
 
 
-\subsubsection*{Verification of a signature / certificate}
+\subsubsection{Verification of a signature / certificate}
 
 \begin{figure}[h]
     \centering
@@ -1417,7 +1417,7 @@ Cryptographic performance is primarily dependent on the CPU, including its archi
 In such cases, cryptographic accelerators, such as \textbf{Hardware Security Modules} (\textbf{HSMs}), can be employed. These modules offer primitive instructions to execute various security algorithms. Additionally, \textbf{special-purpose accelerators} are available, which not only handle hardware-based cryptographic operations but also support packet processing for specific security protocols (e.g., SSL, IPsec). Alternatively, \textbf{generic accelerators} may focus on expediting computations related to a particular cryptographic algorithm, such as AES, for various protocols.
 
 
-\paragraph*{CNSA}
+\paragraph{CNSA}
 In 2018, the NSA released a new suite named CNSA (Commercial National Security Algorithm Suite), which includes the following algorithms:
 \begin{itemize}
     \item \textbf{Symmetric Encryption:} AES-256 - Any key shorter than 256 bits is now considered insufficient. To protect real-time (e.g., stream) data, it suggests using mode CTR for low bandwidth applications or GCM for those requiring high bandwidth. Moreover, GCM provides authenticated encryption, offering an additional advantage.
