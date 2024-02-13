@@ -635,7 +635,6 @@ The main algorithms include Diffie-Hellman, RSA, DSA, ElGamal, and others.
 \end{figure}
 
 \paragraph{Keys}
-
 In Figure \ref*{fig:asymmcrypto}, a message is encrypted with a private key and sent to the receiver, who will use the corresponding public key to decrypt the message. Typically, the sender uses its private key to encrypt something, and all other individuals will know the public key and be able to decrypt the message.
 
 On the bottom, there is the case where someone uses the public key of the destination, as only the destination will have the corresponding private key.
@@ -658,8 +657,7 @@ Suppose X wants to sign a document. X encrypts the document using his private ke
 
 If the message is too large, encrypting the entire message would be time-consuming. For this reason, only a summary (digest) of the data is encrypted. This process provides both \textbf{data authentication} and \textbf{integrity}.
 
-However, this is NOT the real implementation of the digital signature, that is completely explained next. %TODO: ref to Authentication by digest and asymmetric cryptography: digital signature 
-
+However, this is NOT the real implementation of the digital signature, that is completely explained in Chapter \ref{chap:digital_signature}. 
 \begin{figure}[h]
     \centering
     \includegraphics[page = 40,trim = 2cm 3cm 1cm 8cm, clip, width = 0.55\textwidth]{\slides}
@@ -963,8 +961,8 @@ that a file on disk has not been changed, a good approach could be to store the 
 place, so that it will not be altered. When sending data, the digest cannot be exchanged out of band, so it means
 that the digest must be intrinsically secure. There are two mostly adopted techniques:
 \begin{itemize}
-    \item Authentication by means of \textbf{keyed digest} (Chapter \ref{chap:keyed_digest});
-    \item Authenticated encryption (Chapter \ref{chap:ae}).
+    \item Authentication by means of \textbf{keyed digest} (Chapter \ref{chap:keyed_digest}), provides integrity and data authentication;
+    \item \textbf{Authenticated encryption} (Chapter \ref{chap:ae}), provides confidentiality, integrity and data authentication.
 \end{itemize}
 
 \subsubsection{Authentication by means of keyed digest}\label{chap:keyed_digest}
@@ -1085,7 +1083,7 @@ This is important because it means that by putting a last block of plaintext wit
 \subparagraph{RFC 5116 - Interface and algorithms for authenticated encryption}
 There are various ways to perform authenticated encryption; one of the most important is \textit{Authenticated Encryption with Associated Data} (\textbf{AEAD}), documented in RFC 5116.
 
-This is precisely the type of solution needed for emails and network packets. In essence, authenticated encryption is an algorithm that provides both of the aforementioned functionalities on plaintext. Conversely, AEAD distinguishes between the part that requires privacy and the part that needs integrity.
+This is precisely the type of solution needed for emails and network packets. In essence, authenticated encryption is an algorithm that provides both of the previously mentioned functionalities on plaintext. Conversely, AEAD distinguishes between the part that requires privacy and the part that needs integrity.
 \begin{figure}[h]
     \centering
     \includegraphics[page = 80,trim = 0.5cm 1.3cm 0.4cm 6cm, clip, width = 0.55\textwidth]{\slides}
@@ -1093,7 +1091,7 @@ This is precisely the type of solution needed for emails and network packets. In
     \label{fig:AEAD}
 \end{figure}
 
-Referring to Figure \ref{fig:AEAD}, the header is the portion that needs only integrity and authentication (also called associated data), while the payload is the part for which confidentiality is also required (hence referred to as plaintext).
+Referring to Figure \ref{fig:AEAD}, the \textbf{header} (also called associated data) is the portion that needs \textbf{only integrity and authentication}, while the \textbf{payload} (hence referred to as plaintext) is the part for which \textbf{confidentiality} is \textbf{also} required.
 
 This algorithm requires a single symmetric key and a nonce to prevent replay attacks. The result is the ciphertext, which is placed inside the packet as encrypted payload. In front of that, in clear, there are the header and the nonce. Inside the encrypted payload, there is one part that provides integrity not only for the payload itself but also for the header and the nonce; this part is typically referred to as the \textbf{tag}.
 
@@ -1217,7 +1215,7 @@ algorithm. It is defined for encryption algorithms with 128-bit block
         \end{table}
 }{}
 
-\subsection{Authentication by Digest and Asymmetric Cryptography: Digital Signature}
+\section{Authentication by Digest and Asymmetric Cryptography: Digital Signature}\label{chap:digital_signature}
 
 As mentioned earlier in Chapter \ref{chap:keyed_digest}, authenticated encryption offers data integrity, authentication, and confidentiality. However, as discussed in the context of keyed digest, it lacks the ability to provide non-repudiation. This limitation arises from the fact that peers share the key used to compute a valid keyed digest. Consequently, it becomes challenging to determine which of the two peers generated it.
 
@@ -1254,7 +1252,7 @@ An attack that is possible to perform against this schema is the \textit{modific
 Another case worth discussing is taking a digital signature performed by someone else, then taking that person's public key as well (to make sure the public key fits the digital signature), and then attaching it so as to make it appear that the file is attributed to that person. This will still result in a failure in the verification phase since the digital signature contains the encrypted digest of the original data; \ul{the digital signature is bound to the data, so it is not possible to attach a signature to other data.}
 
 
-\subsubsection{Authentication and integrity: analysis}
+\subsection{Authentication and integrity: analysis}
 We have examined two methods to achieve authentication and integrity:
 
 \begin{itemize}
@@ -1275,7 +1273,7 @@ We have examined two methods to achieve authentication and integrity:
 \end{itemize}
 
 
-\paragraph{Digital vs handwritten signature}
+\subsubsection{Digital vs handwritten signature}
 Digital signatures provide both authentication and integrity, whereas handwritten signatures offer only authentication. Therefore, digital signatures are considered superior due to their \underline{tight bound with the data}. It's important to note that each user possesses a private key, which can be utilized to generate an infinite number of digital signatures, each unique to a different document.
 
 
@@ -1292,6 +1290,7 @@ The security in this binding is provided by a digital signature: the entity that
 
 Like a common identity document, a public key certificate also has a \textbf{limited lifetime}. It can also \textbf{be
 revoked} on request, both by the user and the issuer.
+
 
 \subsubsection{Formats for public key certificates}
 
