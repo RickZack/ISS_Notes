@@ -1280,7 +1280,7 @@ Digital signatures provide both authentication and integrity, whereas handwritte
 \subsection{Public key certificate}\label{chap:public-key-certificate}
 As we have seen so far, a digital signature has a great benefit; it can provide non-repudiation. 
 However, non-repudiation is achieved if, in addition to performing a correct digital signature, it is possible to ascribe with certainty the public key to an actor's private key. 
-The attribution of a key to an actor is usually done through a \textbf{public key certificate}: it is \textit{“a data structure used to securely bind a public key to some attributes}.” 
+The attribution of a key to an actor is usually done through a \textbf{public key certificate}: it is \textbf{"a data structure used to securely bind a public key to some attributes"}. 
 Typically, it binds a key to an identity, but other associations are possible too (e.g., IP address). 
 The security in this binding is provided by a digital signature: the entity that created the certificate, named the \textit{certification authority} (\textbf{CA}), digitally signs the certificate, so that it is at the same time:
 \begin{itemize}
@@ -1317,7 +1317,7 @@ revoked} on request, both by the user and the issuer.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[page = 95,trim = 14cm 4cm 1.5cm 3.5cm, clip, width = 0.40\textwidth]{\slides}
+    \includegraphics[page = 99,trim = 14cm 4cm 1.5cm 3.5cm, clip, width = 0.40\textwidth]{\slides}
     \caption{Structure of a X.509 certificate}
 \end{figure}
 
@@ -1366,9 +1366,9 @@ This means that before trusting the certificate, it should be checked if it is v
 There are two mechanisms to perform a check on the signature:
 
 \begin{itemize}
-    \item \textbf{CRL (Certificate Revocation List):} The certification authority creates a list of revoked certificates. The list is digitally signed by the CA to ensure authenticity and integrity. Without the digital signature, someone could manipulate the list by removing or adding certificates. The CRL contains information about \underline{all} revoked certificates, allowing the receiver to verify the validity of a certificate at the time it was issued. For instance, if a document signed three months ago is received today, the verification must consider the validity status of the key three months ago. The drawback is that the entire list must be downloaded to check a single certificate, but it provides a comprehensive history of each certificate.
+    \item \textbf{CRL (Certificate Revocation List):} The certification authority creates a list of revoked certificates. The list is digitally \underline{signed by the CA} to ensure authenticity and integrity. Without the digital signature, someone could manipulate the list by removing or adding certificates. The CRL contains information about \underline{all} revoked certificates, allowing the receiver to verify the validity of a certificate at the time it was issued. For instance, if a document signed three months ago is received today, the verification must consider the validity status of the key three months ago. The drawback is that the entire list must be downloaded to check a single certificate, but it provides a comprehensive history of each certificate.
 
-    \item \textbf{OCSP (On-line Certificate Status Protocol):} This mechanism is preferred for real-time checks, such as transactions. OCSP is a client-server protocol where a specific service can be queried to determine the current validity status of a certificate. Unlike CRL, OCSP does not consider previous states of the certificate. The response from the server is signed, preventing anyone from providing a fake response.
+    \item \textbf{OCSP (On-line Certificate Status Protocol):} This mechanism is preferred for real-time checks, such as transactions. OCSP is a client-server protocol where a specific service can be queried to determine the current validity status of a certificate. Unlike CRL, OCSP does not consider previous states of the certificate. The \underline{response is signed by the server}, preventing anyone from providing a fake response.
 \end{itemize}
 
 
