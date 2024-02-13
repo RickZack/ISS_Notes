@@ -866,7 +866,6 @@ The hash function works like this:
 
 The IV is an initialization value that does not need to be announced or be random. Typically, it is fixed and specified inside the algorithm itself (source and destination must perform the same computation).
 
-\subsection{SHA}
 
 \subsubsection{SHA-2 family}
 The most widely used algorithms nowadays are those in the \textbf{SHA-2 family}: they have the same block size but an increasingly digest size. Because they inherit the structure of SHA-1, which has been broken\footnote{\url{https://www.schneier.com/blog/archives/2005/02/sha1_broken.html}} and should never be used anymore, it is possible that soon they will not be secure enough.
@@ -1004,10 +1003,16 @@ Given that, \(hmac = H(K' \oplus opad \Vert H(K' \oplus ipad \Vert data))\).\\
 The \(K'\) is XORed with \(ipad\) and it is pre-appended to the data. Then, the hash is computed. After the hashing, the \(K'\) is XORed with \(opad\) and it is pre-appended to the result of the hash, and the hash is again computed. It is easy to see that basically HMAC is a double hash of the data composed in some way with the key. This is much stronger than just pre- or post-appending the key to the data. This is the most widely solution used when it is needed to create a MAC (or MIC, it is the same). HMAC is typically used to protect integrity. If confidentiality must also be protected, there is CBC-MAC.
 
 
-\paragraph{CBC-MAC}
+\subsubsection{CBC-MAC}
 Sometimes we do not need only integrity but \underline{also confidentiality}, so we compute encryption. In that case, rather than using another function (for example, we are using AES for encryption and we also need to have SHA-256 for integrity, which means we need to have more code, which is not always possible, for example, in embedded systems), it is possible to compute a MAC not based on a hash function but based on a symmetric algorithm: this is named CBC-MAC.
 
-It exploits a block-oriented symmetric encryption algorithm in CBC mode with a null IV, taking the last encrypted block as the MAC. The message \(M\) is split into \(N\) blocks \(M_1, \ldots, M_N\). Then, taking \(V_0 = 0\), for \(k = 1, \ldots, N\), do \(V_k = \text{enc}(K, M_k \oplus V_{k-1})\); finally, the CBC-MAC is equal to \(V_N\). So, the size of the CBC-MAC is equal to the size of one block of the underlying symmetric encryption algorithm. If, for example, we are using AES-CBC-MAC, then the digest will be 128 bits long. The best version of DES-based CBC-MAC is the Data Authentication Algorithm (standard FIPS 113, ANSI X9.17).
+\textbf{It exploits a block-oriented symmetric encryption algorithm in CBC mode with a null IV, taking the last encrypted block as the MAC}.
+The message \(M\) is split into \(N\) blocks \(M_1, \ldots, M_N\). \begin{itemize}
+    \item Take \(V_0 = 0\).
+    \item For \(k = 1, \ldots, N\), compute \(V_k = \text{enc}(K, M_k \oplus V_{k-1})\).
+    \item Finally, the \( \text{cbc-mac} = V_N\).
+\end{itemize}
+So, the size of the CBC-MAC is equal to the size of one block of the underlying symmetric encryption algorithm. If, for example, we are using AES-CBC-MAC, then the digest will be 128 bits long. The best version of DES-based CBC-MAC is the Data Authentication Algorithm (standard FIPS 113, ANSI X9.17).
 
 CBC-MAC is secure only for fixed-length messages because attacks that extend the length of the message can be successful; for variable-length messages, it is better to use \textbf{CMAC} or OMAC.\\
 There exists a possible attack against variable-length messages:
