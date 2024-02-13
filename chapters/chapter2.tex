@@ -676,20 +676,20 @@ However, for large messages, the encryption and decryption processes can become 
 There are two mains algorithm used nowadays: \textbf{RSA} (Rivest - Shamir - Adleman) and \textbf{DSA} (Digital Signature
 Algorithm).
 
-\paragraph{RSA}
+\subsubsection{RSA}
 RSA consists in the computation of the product of \textbf{two prime numbers}. If you are the attacker, you observe the
 result, and if you want to compromise the system, you must discover what the two factors are. Therefore, very long
 keys are needed because if the result is for example 21, it will be easy to attack: 3 and 7 will be the prime numbers. The point is that there are no formulas to compute all prime numbers; for this reason, the larger the number you
 are considering, the harder it is to find the prime numbers, making the problem more complex for the attacker.
 
-RSA can be used to implement both functionalities: \textbf{digital signature} and \textbf{confidentiality without shared secrets}.
+RSA can be used to implement both functionalities: \ul{digital signature} and \ul{confidentiality without shared secrets}.
 
 It is patented only in the USA
 by RSA, but the patent expired on 20/09/2000 (no problems of royalties).
 
 
-\paragraph{DSA}
-DSA is the primary contender for digital signatures/ This algorithm exploits a similar mathematical problem: \textbf{given a base and an exponent, perform the power}. If you are the attacker, you see the result, but it is not easily known which is the base and the exponent of that number. This is like taking the logarithm of a number without knowing the base.
+\subsubsection{DSA}
+DSA is the primary contender for \underline{digital signatures}. This algorithm exploits a similar mathematical problem: \textbf{given a base and an exponent, perform the power}. If you are the attacker, you see the result, but it is not easily known which is the base and the exponent of that number. This is like taking the logarithm of a number without knowing the base.
 
 The limitation of DSA is that it can only be used to create a digital signature because, within the algorithm, there is a one-way lossy compression function. By losing information, the original plaintext cannot be recovered. This intentional design choice was made by the US government when creating DSA, aiming to prevent citizens from hiding information.
 
