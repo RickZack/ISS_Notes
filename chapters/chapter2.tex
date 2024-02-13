@@ -1009,7 +1009,17 @@ Sometimes we do not need only integrity but \underline{also confidentiality}, so
 
 It exploits a block-oriented symmetric encryption algorithm in CBC mode with a null IV, taking the last encrypted block as the MAC. The message \(M\) is split into \(N\) blocks \(M_1, \ldots, M_N\). Then, taking \(V_0 = 0\), for \(k = 1, \ldots, N\), do \(V_k = \text{enc}(K, M_k \oplus V_{k-1})\); finally, the CBC-MAC is equal to \(V_N\). So, the size of the CBC-MAC is equal to the size of one block of the underlying symmetric encryption algorithm. If, for example, we are using AES-CBC-MAC, then the digest will be 128 bits long. The best version of DES-based CBC-MAC is the Data Authentication Algorithm (standard FIPS 113, ANSI X9.17).
 
-CBC-MAC is secure only for fixed-length messages because attacks that extend the length of the message can be successful; for variable-length messages, it is better to use \textbf{CMAC}.
+CBC-MAC is secure only for fixed-length messages because attacks that extend the length of the message can be successful; for variable-length messages, it is better to use \textbf{CMAC} or OMAC.\\
+There exists a possible attack against variable-length messages:
+\begin{enumerate}
+    \item If $t = \text{E-cbc-mac}(K, M)$ and $t' = \text{E-cbc-mac}(K, M')$, then an attacker can create $M''$ with $t'' = \text{E-cbc-mac}(K, M'')'$ without knowing $K$.
+    \item The operational proof involves:
+    \begin{itemize}
+        \item Creating $M'' = M || (M'_1 \oplus t) || M'_2 || \ldots || M'_N$,
+        \item Resulting in $t'' = \text{E-cbc-mac}(K, M'') = t'$ because XOR-ing the first block of $M'$ with $t$ will actually delete its contribution.
+    \end{itemize}
+\end{enumerate}
+For more information, refer to \url{https://en.wikipedia.org/wiki/CBC-MAC}.
 
 
 \subsection{Integrity and secrecy: how to combine?}
