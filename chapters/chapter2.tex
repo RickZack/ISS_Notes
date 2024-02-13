@@ -1010,7 +1010,7 @@ The message \(M\) is split into \(N\) blocks \(M_1, \ldots, M_N\). \begin{itemiz
 \end{itemize}
 So, the size of the CBC-MAC is equal to the size of one block of the underlying symmetric encryption algorithm. If, for example, we are using AES-CBC-MAC, then the digest will be 128 bits long. The best version of DES-based CBC-MAC is the Data Authentication Algorithm (standard FIPS 113, ANSI X9.17).
 
-Please note that  \ul{cbc-mac does not provide confidentiality}; using a null IV (or non-random IV) would expose it to known-plaintext attacks. As mentioned earlier, it is used to provide integrity (and authentication) without using hash functions.
+Please note that  \ul{cbc-mac does not provide confidentiality}\footnote{Note that earlier versions of these notes may incorrectly state the opposite.}; using a null IV (or non-random IV) would expose it to known-plaintext attacks. As mentioned earlier, it is used to provide integrity (and authentication) without using hash functions.
 
 It is also worth nothing that CBC-MAC is secure only for fixed-length messages because attacks that extend the length of the message can be successful; for variable-length messages, it is better to use \textbf{CMAC} or OMAC.\\
 There exists a possible attack against variable-length messages:
