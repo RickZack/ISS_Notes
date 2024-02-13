@@ -424,7 +424,7 @@ For this description\footnote{\url{https://en.wikipedia.org/wiki/Ciphertext_stea
           Encrypt \(P_{n-1}\) to create \(E_{n-1}\). This is equivalent to the behavior of standard ECB mode.
     \item \(C_n = \text{Head}(E_{n-1}, M)\).\\
           Select the first \(M\) bits of \(E_{n-1}\) to create \(C_n\). The final ciphertext block, \(C_n\), is composed of the leading \(M\) bits of the second-to-last ciphertext block. In all cases, the last two blocks are sent in a different order than the corresponding plaintext blocks.
-    \item \(D_n = P_n  \: || \: \text{Tail}(E_{n-1}, B-M)\).\\
+    \item \(D_n = P_n  \ \Vert \  \text{Tail}(E_{n-1}, B-M)\).\\
           Pad \(P_n\) with the low-order bits from \(E_{n-1}\).
     \item \(C_{n-1} = \text{enc}(K, D_n)\).\\
           Encrypt \(D_n\) to create \(C_{n-1}\). For the first \(M\) bits, this is equivalent to what would happen in ECB mode (other than the ciphertext ordering). For the last \(B-M\) bits, this is the second time that these data have been encrypted under this key (It was already encrypted in the production of \(E_{n-1}\) in step 2).
@@ -501,12 +501,12 @@ oriented, with key $K$, nonce $N$, and $f(...)$ is just concatenation.
 For the sender:
 \begin{verbatim}
     for (i=0; i<data_size; i++)
-            ctext[i] = ptext[i] xor MSB( enc(K, nonce || i) )
+            ctext[i] = ptext[i] xor MSB( enc(K, nonce \ \Vert \ i) )
 \end{verbatim}
 For the receiver, if he needs to decipher only bytes no. 30 and 31:
 \begin{verbatim}
-        ptext[30] = ctext[30] xor MSB( enc(K, nonce || 30) )
-        ptext[31] = ctext[31] xor MSB( enc(K, nonce || 31) )
+        ptext[30] = ctext[30] xor MSB( enc(K, nonce \ \Vert \ 30) )
+        ptext[31] = ctext[31] xor MSB( enc(K, nonce \ \Vert \ 31) )
 \end{verbatim}
 
 \textbf{Note}: the byte-oriented CTR mode of a block algorithm may be considered a stream algorithm (see chapter \ref{chap:symmetricstream}).
@@ -1019,7 +1019,7 @@ There exists a possible attack against variable-length messages:
     \item then an attacker can create $M''$ with $t'' = \textit{E-cbc-mac}(K, M'')'$ without knowing $K$.
     \item The operational proof involves:
     \begin{itemize}
-        \item Creating $M'' = M || (M'_1 \oplus t) || M'_2 || \ldots || M'_N$,
+        \item Creating $M'' = M \ \Vert \ (M'_1 \oplus t) \ \Vert \ M'_2 \ \Vert \ \ldots \ \Vert \ M'_N$,
         \item Resulting in $t'' = \textit{E-cbc-mac}(K, M'') = t'$ because XOR-ing the first block of $M'$ with $t$ will actually delete its contribution.
     \end{itemize}
 \end{enumerate}
@@ -1030,19 +1030,20 @@ For more information, refer to \url{https://en.wikipedia.org/wiki/CBC-MAC}.
 Sometimes we do not need only integrity but \underline{also confidentiality}, so we compute encryption. This can be achieved through two orthogonal operations: symmetric encryption with a key \(K_1\) for secrecy and key digest (MAC) with \(K_2\) for integrity. There are various ways to combine these operations:
 
 \begin{enumerate}
-    \item \textbf{Authenticate-and-encrypt (A\&E)}: first, the plaintext is encrypted with \(K_1\), then the result is concatenated with the MAC computed on the plaintext with \(K_2\), in formulas, \[\text{enc}(K_1, p)\Vert  \text{mac}(K_2, p)\]
+    \item \textbf{Authenticate-and-encrypt (A\&E)}: first, the plaintext is encrypted with \(K_1\), then the result is concatenated with the MAC computed on the plaintext with \(K_2\), in formulas, 
+    \[\text{enc}(K_1, p)\ \Vert \  \text{mac}(K_2, p)\]
           In this way, nobody can read the plaintext because it is encrypted, and nobody can alter the ciphertext because after decryption, it is possible to compute the MAC again, and any difference will be noticed.
 
           The main drawback is that for verifying integrity, the message must be decrypted first (an operation that takes time), because the MAC is computed on the plaintext, so there is a vulnerability against DoS attacks. Moreover, for the same reason, the MAC may leak some information about the plaintext. It is not the best solution, but it is \ul{used by the SSH protocol}.
 
-    \item \textbf{Authenticate-then-encrypt (AtE)}: first, the MAC is computed with \(K_2\) on the plaintext, then it is concatenated with the plaintext, and the result is encrypted with \(K_1\), in formulas, \[\text{enc}(K_1, p \Vert \text{mac}(K_2, p))\]
+    \item \textbf{Authenticate-then-encrypt (AtE)}: first, the MAC is computed with \(K_2\) on the plaintext, then it is concatenated with the plaintext, and the result is encrypted with \(K_1\), in formulas, \[\text{enc}(K_1, p \ \Vert \ \text{mac}(K_2, p))\]
           For reasons like the previous case, this solution is still vulnerable to DoS attacks since it is necessary to decrypt the whole message before being able to verify integrity by computing the MAC. However, this solution is better than the previous one because it does not leak information, since the MAC is not sent in clear but is encrypted.
 
           This solution is \underline{used by SSL and TLS up to version 1.2}; TLS version 1.3 uses a completely different approach.
 
     \item \textbf{Encrypt-then-authenticate (EtA)}: first the plaintext is encrypted with \(K_1\), then the result is
           concatenated with the MAC computed on the ciphertext obtained in the previous step: in formulas,
-          \[\text{enc}(K_1, p) \Vert \text{mac}(K_2, \text{enc}(K_1, p))\]
+          \[\text{enc}(K_1, p) \ \Vert \ \text{mac}(K_2, \text{enc}(K_1, p))\]
           In this way, it is possible to avoid DoS attacks; in fact, an alteration on the ciphertext will be immediately noticed, that is, without first decrypting the message.
           This is the solution \underline{used by IPsec}.
 \end{enumerate}
