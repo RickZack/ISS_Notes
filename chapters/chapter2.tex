@@ -1012,7 +1012,8 @@ It exploits a block-oriented symmetric encryption algorithm in CBC mode with a n
 CBC-MAC is secure only for fixed-length messages because attacks that extend the length of the message can be successful; for variable-length messages, it is better to use \textbf{CMAC} or OMAC.\\
 There exists a possible attack against variable-length messages:
 \begin{enumerate}
-    \item If $t = \text{E-cbc-mac}(K, M)$ and $t' = \text{E-cbc-mac}(K, M')$, then an attacker can create $M''$ with $t'' = \text{E-cbc-mac}(K, M'')'$ without knowing $K$.
+    \item If $t = \text{E-cbc-mac}(K, M)$ and $t' = \text{E-cbc-mac}(K, M')$ 
+    \item then an attacker can create $M''$ with $t'' = \text{E-cbc-mac}(K, M'')'$ without knowing $K$.
     \item The operational proof involves:
     \begin{itemize}
         \item Creating $M'' = M || (M'_1 \oplus t) || M'_2 || \ldots || M'_N$,
