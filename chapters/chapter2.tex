@@ -981,15 +981,12 @@ The digest is sent along with the message, but it is calculated not only on the 
     \item \textbf{Verification:} if (\(d == d'\)) then OK else it means that something has been changed during transmission (the data or the digest, it does not matter).
 \end{itemize}
 
-\paragraph{Advantages}
 Advantages of this technique are that there is only one operation (calculation of the digest) and that only few data are added. It is worth noticing that this mechanism guarantees authentication, since only those who know the key can compare the transmitted digest with the digest calculated on the received data. This is the \underline{fastest solution} \textbf{to provide integrity and authentication} to the data. However, \underline{it does not provide non-repudiation}: let us suppose that the receiver of a commercial order wants to take the sender of that order to court because he repudiates the order itself; then the receiver would show as proof the message along with the digest that proves integrity and authenticity. In this case, it is not possible to say that the sender originated the order, since the receiver has all the means to create it by himself: he has the data and the key upon which to compute a valid keyed digest.
 
 So, this solution \textbf{guarantees authentication} since the receiver can be sure that the data is coming from the sender and has not been modified, \textbf{but it does not provide non-repudiation by itself} since it is impossible for one of the two parties to demonstrate to a third party that the other created the message.
 
 
-\paragraph{Keyed digest:}
-
-\subparagraph{HMAC}
+\paragraph{HMAC}
 HMAC is defined in RFC-2104 and it uses a base hash function \(H\). So, HMAC is not a hash function but a way to compute a secure MAC starting from a hash function \(H\). The base hash function \(H\) must have a block size \(B\), with an output \(L\) bytes long, where \(B > L\). Then there are some definitions:
 \begin{itemize}
     \item \(ipad = 0x36\) repeated \(B\) times; it is a padding composed of \(0x36\) repeated \(B\) times to fill all the block.
@@ -1004,32 +1001,33 @@ The \(K'\) is XORed with \(ipad\) and it is pre-appended to the data. Then, the 
 
 
 \paragraph{CBC-MAC}
-Sometimes we do not need only integrity but \underline{also confidentiality}, so we compute encryption. In that case, rather than using another function (for example, we are using AES for encryption and we also need to have SHA-256 for integrity, which means we need to have more code, which is not always possible, for example, in embedded systems), it is possible to compute a MAC not based on a hash function but based on a symmetric algorithm: this is named CBC-MAC.
-
-\textbf{It exploits a block-oriented symmetric encryption algorithm in CBC mode with a null IV, taking the last encrypted block as the MAC}.
+It is possible to compute a MAC not based on a hash function but based on a symmetric algorithm: this is named CBC-MAC.
+\textbf{It exploits a block-oriented symmetric encryption algorithm in CBC mode with a \emph{null IV}, taking the last encrypted block as the MAC}.
 The message \(M\) is split into \(N\) blocks \(M_1, \ldots, M_N\). \begin{itemize}
-    \item Take \(V_0 = 0\).
+    \item Take \(V_0  = \mathit{IV} = 0\).
     \item For \(k = 1, \ldots, N\), compute \(V_k = \text{enc}(K, M_k \oplus V_{k-1})\).
-    \item Finally, the \( \text{cbc-mac} = V_N\).
+    \item Finally, \( \textit{cbc-mac} = V_N\).
 \end{itemize}
 So, the size of the CBC-MAC is equal to the size of one block of the underlying symmetric encryption algorithm. If, for example, we are using AES-CBC-MAC, then the digest will be 128 bits long. The best version of DES-based CBC-MAC is the Data Authentication Algorithm (standard FIPS 113, ANSI X9.17).
 
-CBC-MAC is secure only for fixed-length messages because attacks that extend the length of the message can be successful; for variable-length messages, it is better to use \textbf{CMAC} or OMAC.\\
+Please note that  \ul{cbc-mac does not provide confidentiality}; using a null IV (or non-random IV) would expose it to known-plaintext attacks. As mentioned earlier, it is used to provide integrity (and authentication) without using hash functions.
+
+It is also worth nothing that CBC-MAC is secure only for fixed-length messages because attacks that extend the length of the message can be successful; for variable-length messages, it is better to use \textbf{CMAC} or OMAC.\\
 There exists a possible attack against variable-length messages:
 \begin{enumerate}
-    \item If $t = \text{E-cbc-mac}(K, M)$ and $t' = \text{E-cbc-mac}(K, M')$ 
-    \item then an attacker can create $M''$ with $t'' = \text{E-cbc-mac}(K, M'')'$ without knowing $K$.
+    \item If $t = \textit{E-cbc-mac}(K, M)$ and $t' = \textit{E-cbc-mac}(K, M')$ 
+    \item then an attacker can create $M''$ with $t'' = \textit{E-cbc-mac}(K, M'')'$ without knowing $K$.
     \item The operational proof involves:
     \begin{itemize}
         \item Creating $M'' = M || (M'_1 \oplus t) || M'_2 || \ldots || M'_N$,
-        \item Resulting in $t'' = \text{E-cbc-mac}(K, M'') = t'$ because XOR-ing the first block of $M'$ with $t$ will actually delete its contribution.
+        \item Resulting in $t'' = \textit{E-cbc-mac}(K, M'') = t'$ because XOR-ing the first block of $M'$ with $t$ will actually delete its contribution.
     \end{itemize}
 \end{enumerate}
 For more information, refer to \url{https://en.wikipedia.org/wiki/CBC-MAC}.
 
 
 \subsection{Integrity and secrecy: how to combine?}
-We discussed that in most applications, we need both integrity and confidentiality. This can be achieved through two orthogonal operations: symmetric encryption with a key \(K_1\) for secrecy and key digest (MAC) with \(K_2\) for integrity. There are various ways to combine these operations:
+Sometimes we do not need only integrity but \underline{also confidentiality}, so we compute encryption. This can be achieved through two orthogonal operations: symmetric encryption with a key \(K_1\) for secrecy and key digest (MAC) with \(K_2\) for integrity. There are various ways to combine these operations:
 
 \begin{enumerate}
     \item \textbf{Authenticate-and-encrypt (A\&E)}: first, the plaintext is encrypted with \(K_1\), then the result is concatenated with the MAC computed on the plaintext with \(K_2\), in formulas, \[\text{enc}(K_1, p)\Vert  \text{mac}(K_2, p)\]
