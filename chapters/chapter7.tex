@@ -155,13 +155,14 @@ TLS provides optional confidentiality features:
 
 In Figure \ref{fig:tls-handshake}, there is a \textit{secure web server} and a \textit{browser}.
 
-\begin{itemize}
-    \item [1] The browser intends to establish a secure channel using HTTPS.
-    \item [2] The first step is to \textbf{negotiate a security configuration}. Since there are multiple algorithms available, the browser and the server each declare their list of algorithms and attempt to find a match. At this stage, \ul{the connection could fail} if a common algorithm is not found. \ul{TLS is a negotiation protocol}.
-    \item [3] If the browser and server agree on a set of algorithms, the \textbf{server} will then provide its \textbf{certificate}, \ul{which must contain the name corresponding to the connected URL}. Subsequently, the server uses its private key to implicitly respond to a challenge. Although not depicted in the picture, the browser would typically send a \textbf{challenge}. This implicit challenge involves decrypting a key known as the "\ul{pre-master secret}" (Chapter \ref{chap:tls-session-keys}), which is decided by the client and sent to the server encrypted with the public key found in the certificate.
-    \item [4] Optionally, the server may request the \textbf{browser} to send its own X.509 \textbf{certificate}. In this case, the server explicitly challenges the browser, which must use its private key to provide a response.
-    \item [5] If all steps are successful, a \textbf{secure channel is established}.
-\end{itemize}
+\begin{enumerate}
+    \item The browser intends to establish a secure channel using HTTPS.
+    \item The first step is to \textbf{negotiate a security configuration}. Since there are multiple algorithms available, the browser and the server each declare their list of algorithms and attempt to find a match. At this stage, \ul{the connection could fail} if a common algorithm is not found. \ul{TLS is a negotiation protocol}.
+    \item If the browser and server agree on a set of algorithms, the \textbf{server} will then provide its \textbf{certificate}, \ul{which must contain the name corresponding to the connected URL}. Subsequently, the server uses its private key to implicitly respond to a challenge. Although it is condensed in a single step in the picture, the browser would typically send a \textbf{challenge} (\textit{3bis}). This implicit challenge involves decrypting a key known as the "\ul{pre-master secret}" (Chapter \ref{chap:tls-session-keys}), which is decided by the client and sent to the server encrypted with the public key found in the certificate.
+    \item Optionally, the server may request the \textbf{browser} to send its own X.509 \textbf{certificate}. In this case, the server explicitly challenges the browser (\textit{4bis}), which must use its private key to provide a response.
+    \item Key are exchanged
+    \item If all steps are successful, a \textbf{secure channel is established}.
+\end{enumerate}
 
 
 \subsection{TLS architecture}
