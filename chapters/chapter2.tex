@@ -1215,11 +1215,11 @@ algorithm. It is defined for encryption algorithms with 128-bit block
         \end{table}
 }{}
 
-\section{Authentication by Digest and Asymmetric Cryptography: Digital Signature}\label{chap:digital_signature}
+\section{Digital Signature}\label{chap:digital_signature}
 
 As mentioned earlier in Chapter \ref{chap:keyed_digest}, authenticated encryption offers data integrity, authentication, and confidentiality. However, as discussed in the context of keyed digest, it lacks the ability to provide non-repudiation. This limitation arises from the fact that peers share the key used to compute a valid keyed digest. Consequently, it becomes challenging to determine which of the two peers generated it.
 
-\underline{Non-repudiation} is achieved by using digest and asymmetric cryptography: the digest is encrypted with the private key of the sender, so that the use of his public key will prove the source.
+\underline{Non-repudiation} is achieved by using \textbf{digest and asymmetric cryptography}: the digest is encrypted with the private key of the sender, so that the use of his public key will prove the source.
 
 \begin{figure}[h]
     \centering
