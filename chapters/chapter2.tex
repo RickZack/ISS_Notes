@@ -995,7 +995,7 @@ HMAC is defined in RFC-2104 and it uses a base hash function \(H\). So, HMAC is 
 \end{itemize}
 
 Given that, \(hmac = H(K' \oplus opad \Vert H(K' \oplus ipad \Vert data))\).\\
-The \(K'\) is XORed with \(ipad\) and it is pre-appended to the data. Then, the hash is computed. After the hashing, the \(K'\) is XORed with \(opad\) and it is pre-appended to the result of the hash, and the hash is again computed. It is easy to see that basically HMAC is a double hash of the data composed in some way with the key. This is much stronger than just pre- or post-appending the key to the data. This is the most widely solution used when it is needed to create a MAC (or MIC, it is the same). HMAC is typically used to protect integrity. If confidentiality must also be protected, there is CBC-MAC.
+The \(K'\) is XORed with \(ipad\) and it is pre-appended to the data. Then, the hash is computed. After the hashing, the \(K'\) is XORed with \(opad\) and it is pre-appended to the result of the hash, and the hash is again computed. It is easy to see that basically HMAC is a double hash of the data composed in some way with the key. This is much stronger than just pre- or post-appending the key to the data. This is the most widely solution used when it is needed to create a MAC (or MIC, it is the same). HMAC is typically used to protect integrity.
 
 
 \paragraph{CBC-MAC}
