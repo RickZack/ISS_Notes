@@ -43,9 +43,7 @@
 
 
 \newboolean{showSolution}
-\setboolean{showSolution}{true}
 \newboolean{showComments}
-\setboolean{showComments}{true}
 
 \newcommand{\sol}[1]{%
     \ifthenelse{\boolean{showSolution}}%
@@ -139,6 +137,8 @@
 \tableofcontents
 \pagebreak
 
+
+\part{Theory}
 \def\slides{slides/01_intro.pdf}
 \include{chapters/chapter1}
 
@@ -162,16 +162,26 @@
 \def\slides{slides/07_schannels.pdf}
 \include{chapters/chapter7}
 
-\setcounter{chapter}{15}% Equivalent to "letter O"
+\setcounter{chapter}{8} % Reserving chap8
 
 
+\part{Exercises}
+\setboolean{showSolution}{true}
+\setboolean{showComments}{true}
+
+\setcounter{chapter}{20} 
+\include{exercises/exercise1}
+\include{exercises/exercise2}
+\include{exercises/exercise3}
+\include{exercises/exercise4}
+\include{exercises/exercise5}
+\include{exercises/exercise6}
 
 
-%\setboolean{showSolution}{true}
-%\sol{Prova con \texttt{showSolution = true}}
-
-%\setboolean{showSolution}{false}
-%\sol{Prova con \texttt{showSolution = false}}
+\part{Exercises without solutions}
+\setboolean{showSolution}{false}
+\setboolean{showComments}{false}
+\setcounter{chapter}{30}
 
 \include{exercises/exercise1}
 \include{exercises/exercise2}
@@ -183,6 +193,8 @@
 \appendix
 % TODO: include the GNU Documentation
 %\include{appendix/GNUFreeDocumentationLicense}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
