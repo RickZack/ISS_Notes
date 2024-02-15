@@ -164,7 +164,7 @@ In general, when working at the application level, there may be rules that are \
     \item Low performance (because they are user-mode processes).
 \end{itemize}
 
-It is possible to use SMP that may improve performance. However, this completely breaks the client/server model, which means:
+It is possible to use SMP that may improve performance. However, this \textbf{completely breaks the client/server model}, which means:
 
 \begin{itemize}
     \item More protection for the server.
@@ -184,7 +184,7 @@ Since it is not transparent, the OS of the firewall may be exposed to attacks be
     \item \textbf{Strong Application Proxy} (checking semantics, not just syntax):
           \begin{itemize}
               \item Only some commands/data are forwarded. For example, in the case of the HTTP protocol, this could allow only GET and POST commands to be allowed.
-              \item This is the only correct configuration for a proxy\footnote{according to Lioy.}.
+              \item This is the only correct configuration for a proxy\footnote{according to Professor Lioy.}.
           \end{itemize}
 \end{itemize}
 
