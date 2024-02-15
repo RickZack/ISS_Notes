@@ -137,22 +137,22 @@ This kind of solution has pros and cons:
 \end{itemize}
 
 
-% TODO: remove this, seems like it's no longer in the slides
-\subsubsection{Stateful (dynamic) packet filter [REMOVED?]}
+% Removed this, seems like it's no longer in the slides since 2023/24
+% \subsubsection{Stateful (dynamic) packet filter [REMOVED?]}
 
-\begin{itemize}
-    \item \textbf{Conceptually similar to packet filter but "state-aware":} it means that it remembers the previous packets in order to be faster in processing the new ones. It can look inside packets for commands that define the ports that will be used (e.g., FTP PORT command).
-    \item \textbf{It can distinguish new connections from those already open:}
-          \begin{itemize}
-              \item Keeps state tables for open connections;
-              \item Packets matching one row in the table are forwarded without any further control (fast transmission).
-          \end{itemize}
-    \item \textbf{Better performance than a packet filter:}
-          \begin{itemize}
-              \item SMP (Symmetrical Multi-Processing) support can be enabled, thanks to the use of state tables.
-          \end{itemize}
-    \item \textbf{Still has many of the static packet filter limitations}.
-\end{itemize}
+% \begin{itemize}
+%     \item \textbf{Conceptually similar to packet filter but "state-aware":} it means that it remembers the previous packets in order to be faster in processing the new ones. It can look inside packets for commands that define the ports that will be used (e.g., FTP PORT command).
+%     \item \textbf{It can distinguish new connections from those already open:}
+%           \begin{itemize}
+%               \item Keeps state tables for open connections;
+%               \item Packets matching one row in the table are forwarded without any further control (fast transmission).
+%           \end{itemize}
+%     \item \textbf{Better performance than a packet filter:}
+%           \begin{itemize}
+%               \item SMP (Symmetrical Multi-Processing) support can be enabled, thanks to the use of state tables.
+%           \end{itemize}
+%     \item \textbf{Still has many of the static packet filter limitations}.
+% \end{itemize}
 
 \subsubsection{Application-level gateway}
 It is composed of a set of proxies that inspect the packet payload at the application level. The gateway often \textbf{requires modifications to the client application} and may optionally \textbf{mask/renumber the internal IP addresses}. When used as part of a firewall, it usually also performs \textbf{peer authentication} (typically for egress firewall). Since the proxy understands the application-level commands, it can provide \textbf{top security}, for example, against buffer overflow attacks on the target application. There are differences between forward-proxy (egress) and reverse-proxy (ingress).
@@ -288,7 +288,7 @@ The most widely known and used WAF is \textbf{ModSecurity} (opensource project),
     \caption{"Packet filter" architecture}
 \end{figure}
 
-The core concept is to equip the switching element with filtering capabilities. Typically, since this is a Layer 3 (L3) network device, the kind of filtering it can perform is at the IP and upper levels, implementing a packet filter. The advantage of this architecture is that there is no need for dedicated hardware. Moreover, since this filter does not address the application level in any way, there is no need for a proxy, and hence, there is no need to modify the applications. It is a simple, easy, cheap, and... \textit{insecure} solution since the kind of controls it can make are very trivial, usually based on protocols, ports, and addresses. One final drawback is that the router is a single point of failure, meaning that a bug could allow the attacker to bypass the control and access the internal network.
+The core concept is to equip the switching element with filtering capabilities. Typically, since this is a Layer 3 (L3) network device, the kind of filtering it can perform is at the IP and upper levels, implementing a packet filter. The advantage of this architecture is that if implemented with a router then it's a "\textit{screening router}" there is no need for dedicated hardware. Moreover, since this filter does not address the application level in any way, there is no need for a proxy, and hence, there is no need to modify the applications. It is a simple, easy, cheap, and... \textit{insecure} solution since the kind of controls it can make are very trivial, usually based on protocols, ports, and addresses. One final drawback is that the router is a single point of failure, meaning that a bug could allow the attacker to bypass the control and access the internal network.
 
 \subsection{"Dual-homed gateway" architecture}
 
