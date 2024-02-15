@@ -72,7 +72,7 @@ After one year, Alice wants to check if F has been illegally modified, so she ta
 \end{enumerate}
 
 \textbf{\\Q7 - Alice wants to protect some messages m1, m2, … mN for data authentication and integrity. She constructs for each message a MAC in the following manner:}
-\textbf{$[for (i=1; i<=N; i++) \quad mac(i) = HMAC-SHA256( i, m_{i} );$]}
+\textbf{$[for (i=1; i<=N; i++) \quad mac(i) = HMAC-SHA256( i, m_{i} );]$}
 \textbf{She sends each message $m_{i}$ and the corresponding mac(i)
 to Bob over an unprotected channel.
 Is data authentication and integrity achieved for all messages $m_{i}$? (justify your answer)}
@@ -80,7 +80,8 @@ Is data authentication and integrity achieved for all messages $m_{i}$? (justify
     \item[A.] yes  
     \item[B.] \sol{no}
 \end{enumerate}
-\com{Look at Q2}
+\com{The keys used are stupid, like in Q2 Eve can send a new message with the mac computed using this for. Bob also compute the mac and he does not find errors, 
+he will mistakenly think there are integrity/authentication }
 
 \textbf{\\Q8 - Alice wants to send Bob a plaintext P protected for confidentiality, authentication, and integrity \\
 Alice and Bobs share two symmetric keys K1 and K2 \\
