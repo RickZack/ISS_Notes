@@ -64,7 +64,7 @@ It is possible to \textbf{combine} these approaches to have \textbf{secure data 
 \section{Security Channels protocols}
 
 \begin{itemize}
-    \item \textbf{SSL/TLS}:
+    \item \textbf{TLS/SSL}:
           \begin{itemize}
               \item The most widely used protocol, initially known as SSL and later renamed TLS.
           \end{itemize}
@@ -80,12 +80,12 @@ It is possible to \textbf{combine} these approaches to have \textbf{secure data 
 
 
 \section{TLS}
-\textbf{TLS} (\textit{Transport Layer Security}), initially named \textbf{Secure Socket Layer (SSL)}, was proposed by \textit{Netscape Communications} (the inventor of the first graphical browser for computers), which needed a secure protocol to implement e-commerce on the web. SSL provides a \textbf{secure transport channel} (at the session level) with several properties:
+\textbf{TLS} (\textit{Transport Layer Security}), initially named \textbf{Secure Socket Layer (SSL)}, was proposed by \textit{Netscape Communications} (the inventor of the first graphical browser for computers), which needed a secure protocol to implement e-commerce on the web. TLS provides a \textbf{secure transport channel} (at the session level) with several properties:
 
 \begin{itemize}
     \item \textbf{Peer authentication (server, server + client)}:
           \begin{itemize}
-              \item Server authentication is mandatory when the SSL channel is opened, primarily due to its origin in e-commerce. Optionally, client authentication can also be requested. It's important to note that this authentication occurs at the session level, meaning that a username/password is not required.
+              \item Server authentication is mandatory when the TLS channel is opened, primarily due to its origin in e-commerce. Optionally, client authentication can also be requested. It's important to note that this authentication occurs at the session level, meaning that a username/password is not required.
           \end{itemize}
 
     \item \textbf{Message confidentiality:}
@@ -100,11 +100,11 @@ It is possible to \textbf{combine} these approaches to have \textbf{secure data 
 
     \item \textbf{Protection against replay and filtering attacks:}
           \begin{itemize}
-              \item SSL includes mechanisms to detect replay attacks, where a copied message is sent again to the channel. Similarly, if an intermediate node filters part of the data, the receiver will detect the missing portion.
+              \item TLS includes mechanisms to detect replay attacks, where a copied message is sent again to the channel. Similarly, if an intermediate node filters part of the data, the receiver will detect the missing portion.
           \end{itemize}
 \end{itemize}
 
-Since TSL is built on top of TCP, its success stems from its compatibility with all TCP-based protocols, including \textit{HTTP, SMTP, NNTP, FTP,} and \textit{TELNET}. One well-known example is \textit{HTTPS}, which operates on port \texttt{443/TCP}.
+Since TLS is built on top of TCP, its success stems from its compatibility with all TCP-based protocols, including \textit{HTTP, SMTP, NNTP, FTP,} and \textit{TELNET}. One well-known example is \textit{HTTPS}, which operates on port \texttt{443/TCP}.
 
 The evolution of secure communication protocols started with SSL-2 and SSL-3, which eventually gave way to TLS (Transport Layer Security). Over time, TLS has seen several versions, including TLS-1.0, TLS-1.1, TLS-1.2, and TLS-1.3.
 It's worth noting that versions \textbf{prior to TLS-1.2} are considered insecure and have been \textbf{deprecated} due to vulnerabilities and weaknesses in their security protocols. Therefore, it's recommended to use TLS-1.2 or higher to ensure secure communication over the network.
@@ -113,7 +113,7 @@ It's worth noting that versions \textbf{prior to TLS-1.2} are considered insecur
 \begin{figure}[h]
     \centering
     \includegraphics[page = 9,trim = .7cm 2.3cm .7cm 4cm, clip, width = 0.6\textwidth]{\slides}
-    \caption{Official ports for SSL/TLS applications}
+    \caption{Official ports for TLS/SSL applications}
 \end{figure}
 
 
@@ -126,10 +126,10 @@ During channel setup, peer authentication is enforced with robust methods:
 \end{itemize}
 If peer authentication fails, the channel remains closed. However, upon successful authentication, all data exchanged over the channel are protected.
 
-To maintain \textbf{authentication and integrity} of the data, SSL employs:
+To maintain \textbf{authentication and integrity} of the data, TLS employs:
 \begin{itemize}
     \item A \textbf{keyed digest}, \textit{typically SHA-1 or better}, to validate authentication and integrity.
-    \item An implicit \textbf{Message IDentifier}, such as a unique number to each message to prevent replay and cancellation attacks. \ul{Since SSL operates atop TCP}, \ul{message sequencing is guaranteed}, eliminating issues like missing, duplicate, or out-of-order messages within TCP.\\
+    \item An implicit \textbf{Message IDentifier}, such as a unique number to each message to prevent replay and cancellation attacks. \ul{Since TLS operates atop TCP}, \ul{message sequencing is guaranteed}, eliminating issues like missing, duplicate, or out-of-order messages within TCP.\\
           For instance (after receiving a message with \texttt{id=1}), receiving a message with the same identifier (\texttt{id=1}) as a previous one indicates a replay attack, while receiving a message with a different identifier than the next one (\texttt{id=3}) suggests a cancellation attack, as TCP handles missing or delayed packets before delivering data to the application layer.
 \end{itemize}
 
@@ -173,7 +173,7 @@ In Figure \ref{fig:tls-handshake}, there is a \textit{secure web server} and a \
     \label{fig:tls-architecture}
 \end{figure}
 
-At the base of the protocol stack are the \textbf{network protocol} (e.g., IP) and a \textbf{reliable transport protocol} (e.g., TCP). Built on top of TCP is a \textbf{record protocol} used to transmit SSL records, which contain protected data. Within the SSL record protocol are application data, initially used for the \textbf{handshake protocol} (i.e., the agreement phase depicted in the previous diagram). Additionally, there is the \textbf{Change Cipher Spec protocol}, used at the end of the handshake to signal the conclusion of the agreement. Finally, there is the \textbf{Alert protocol}, which is utilized to send alarms, such as notifications of missing or duplicated packets, or to indicate the end of communication.
+At the base of the protocol stack are the \textbf{network protocol} (e.g., IP) and a \textbf{reliable transport protocol} (e.g., TCP). Built on top of TCP is a \textbf{record protocol} used to transmit TLS records, which contain protected data. Within the TLS record protocol are application data, initially used for the \textbf{handshake protocol} (i.e., the agreement phase depicted in the previous diagram). Additionally, there is the \textbf{Change Cipher Spec protocol}, used at the end of the handshake to signal the conclusion of the agreement. Finally, there is the \textbf{Alert protocol}, which is utilized to send alarms, such as notifications of missing or duplicated packets, or to indicate the end of communication.
 
 
 \begin{figure}[h]
@@ -211,7 +211,7 @@ When the record protocol (Figure \ref*{fig:tls-record-protocol}) is used to tran
 \end{itemize}
 
 
-\subsubsection{SSL - computation of MAC}
+\subsubsection{TLS - computation of MAC}
 \begin{verbatim}
     MAC = message_digest ( key, seq_number || type ||
      version || length || fragment )
@@ -236,7 +236,7 @@ Some notes:
     \includegraphics[page = 22,trim = 1cm 2.3cm 1cm 4cm, clip, width = 0.55\textwidth]{\slides}
     \caption{Data protection with authenticate-then-encrypt}
 \end{figure}
-From a data protection point of view, there are data (optionally compressed) that need to be protected. A MAC is computed by taking the data, the key, the implicit sequence number, and eventually the padding. Then the MAC is inserted. The packet is then symmetrically encrypted with one IV (considering CBC) and a \underline{specific key} for encryption. Finally, the data is protected, and the SSL header will be prepended to it.
+From a data protection point of view, there are data (optionally compressed) that need to be protected. A MAC is computed by taking the data, the key, the implicit sequence number, and eventually the padding. Then the MAC is inserted. The packet is then symmetrically encrypted with one IV (considering CBC) and a \underline{specific key} for encryption. Finally, the data is protected, and the TLS header will be prepended to it.
 
 
 \subsubsection{Session-id}
@@ -249,7 +249,7 @@ A typical web transaction looks like the following:
     \item Open, GET music.mid, music.mid, Close
 \end{enumerate}
 
-Channels are continuously opened and closed, which can be particularly burdensome when SSL is used due to the need to negotiate cryptographic parameters for each connection. This negotiation process, involving public key operations, can result in high computational loads. To mitigate this, SSL servers can utilize a \underline{permanent identifier} known as a \textbf{session identifier}. This session identifier represents a set of negotiated algorithms and keys from previous connections, allowing for quicker establishment of secure channels. When a client initiates an SSL connection, it can send a previously negotiated \textbf{session-id} before beginning the handshake, bypassing the negotiation phase and enabling immediate data exchange over the secure channel. It's important to note that servers may reject the use of session-IDs, either consistently or after a certain period since their issuance.
+Channels are continuously opened and closed, which can be particularly burdensome when TLS is used due to the need to negotiate cryptographic parameters for each connection. This negotiation process, involving public key operations, can result in high computational loads. To mitigate this, SSL servers can utilize a \underline{permanent identifier} known as a \textbf{session identifier}. This session identifier represents a set of negotiated algorithms and keys from previous connections, allowing for quicker establishment of secure channels. When a client initiates an TLS connection, it can send a previously negotiated \textbf{session-id} before beginning the handshake, bypassing the negotiation phase and enabling immediate data exchange over the secure channel. It's important to note that servers may reject the use of session-IDs, either consistently or after a certain period since their issuance.
 
 \begin{figure}[h]
     \centering
@@ -261,14 +261,14 @@ Channels are continuously opened and closed, which can be particularly burdensom
 
 In Figure \ref{fig:tls-handshake-sessionid}, a session ID is sent before negotiation begins. If the session ID is still cached by the server, the secure channel is established without further negotiation. If an attacker attempts to use a valid session ID, they will be unable to send messages through the channel because they lack knowledge of the algorithms and keys used, preventing them from computing the correct MAC. However, careful consideration should be given to the duration for which session IDs (and related information) is retained to prevent server overload from tracking user sessions.
 
-So, there are two concepts to keep in mind when dealing with SSL:
+So, there are two concepts to keep in mind when dealing with TLS:
 \begin{itemize}
     \item \textbf{TLS session}
           \begin{itemize}
               \item It is a \textbf{logical association between the client and server}.
               \item Created by the Handshake Protocol.
               \item Defines a set of cryptographic parameters (algorithms, keys, and so on).
-              \item Is shared by one or more SSL connections (1:N).
+              \item Is shared by one or more TLS connections (1:N).
           \end{itemize}
     \item \textbf{TLS connection}
           \begin{itemize}
@@ -459,13 +459,13 @@ In this scenario depicted in Figure \ref*{fig:http-digest-authentication}, the G
 
 \subsection{HTTP and TLS/SSL}
 
-There are two distinct approaches to integrating HTTP with SSL/TLS:
+There are two distinct approaches to integrating HTTP with TLS/SSL:
 \begin{itemize}
     \item \textbf{"TLS then HTTP"} (RFC-2818 - HTTP over TLS): This method involves first establishing a TCP channel, upon which TLS encryption is applied. Once the TLS connection is active, HTTP communication begins.
 
     \item \textbf{"HTTP then TLS"} (RFC-2817 - upgrading to TLS within HTTP/1.1): In this approach, two TCP ports, usually port 80, are utilized to initiate HTTP communication. When data requiring protection is identified, the connection can be upgraded to a secure one using a special command (\texttt{start TLS}), allowing browsers and servers to transition from a plain HTTP connection to TLS.
 \end{itemize}
-\textbf{Note}: While "SSL then HTTP" is commonly used, it lacks official documentation.
+\textbf{Note}: While "TLS then HTTP" is commonly used, it lacks official documentation.
 
 
 Although both methods ultimately achieve a secure channel, they differ in their implementation and impact on applications, firewalls, and IDS (Intrusion Detection Systems):

@@ -1037,7 +1037,7 @@ Sometimes we do not need only integrity but \underline{also confidentiality}, so
     \item \textbf{Authenticate-then-encrypt (AtE)}: first, the MAC is computed with \(K_2\) on the plaintext, then it is concatenated with the plaintext, and the result is encrypted with \(K_1\), in formulas, \[\text{enc}(K_1, p \ \Vert \ \text{mac}(K_2, p))\]
           For reasons like the previous case, this solution is still vulnerable to DoS attacks since it is necessary to decrypt the whole message before being able to verify integrity by computing the MAC. However, this solution is better than the previous one because it does not leak information, since the MAC is not sent in clear but is encrypted.
 
-          This solution is \underline{used by SSL and TLS up to version 1.2}; TLS version 1.3 uses a completely different approach.
+          This solution is \underline{used by TLS/SSL up to version 1.2}; TLS version 1.3 uses a completely different approach.
 
     \item \textbf{Encrypt-then-authenticate (EtA)}: first the plaintext is encrypted with \(K_1\), then the result is
           concatenated with the MAC computed on the ciphertext obtained in the previous step: in formulas,
