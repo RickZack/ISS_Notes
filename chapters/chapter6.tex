@@ -243,8 +243,9 @@ The answer is provided by the \textbf{SPD}. It can be \textit{"you should apply 
 If protection is needed and this is the first packet of this specific network flow, IPsec proceeds in creating a Security Association. Otherwise, there is already an existing SA, and it proceeds in reading the parameters associated with that SA by consulting the \textbf{SAD}. This will provide it with the algorithms and parameters to enrich the packet, and finally, the IP packet will be protected with IPsec and sent to L2 for the actual transmission.
 
 
+\subsection{Operating modes}
 
-\subsection{Transport mode IPsec}
+\subsubsection{Transport mode IPsec}
 \begin{figure}[h]
     \centering
     \includegraphics[page = 23,trim = 1cm 3cm 3cm 11cm, clip, width = 0.55\textwidth]{\slides}
@@ -258,11 +259,11 @@ Transport Mode IPsec is used for \textbf{end-to-end security}, primarily employe
 \end{itemize}
 
 
-\subsection{Tunnel mode IPsec}
+\subsubsection{Tunnel mode IPsec}
 \begin{figure}[h]
     \centering
     \includegraphics[page = 24,trim = 1cm 3cm 2cm 9cm, clip, width = 0.55\textwidth]{\slides}
-    \caption{IPsec used for end-to-end security in transport mode}
+    \caption{IPsec used in tunnel mode, to create a VPN}
 \end{figure}
 
 Tunnel Mode IPsec is utilized to \textbf{create a VPN}, typically among \underline{gateways}. It is not created among routers; the correct term is gateway, which serves as a contact point between a network assumed to be secure and a network that is not secure. The gateway enhances protection by establishing the secure IPsec tunnel. It takes the original packet with the end-to-end header and encapsulates it inside a tunnel. This tunnel is initiated by the sending gateway and has the destination gateway protecting the network where the destination is located. The sending gateway applies IPsec to this IP in IP packet.
