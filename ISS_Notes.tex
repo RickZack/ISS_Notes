@@ -45,17 +45,22 @@
 \newboolean{showSolution}
 \newboolean{showComments}
 
-\newcommand{\sol}[1]{%
-    \ifthenelse{\boolean{showSolution}}%
-    {\textbf{#1}}%
-    {#1}%
+\newcommand{\sol}[1]{
+    \ifthenelse{\boolean{showSolution}}
+    {
+		\textbf{#1}
+	}
+    {#1} % else
 }
 
-\newcommand{\com}[1]{%
-	\ifthenelse{\boolean{showComments}}%
-	{#1}%
-	{}%
+\newcommand{\com}[1]{
+    \ifthenelse{\boolean{showComments}}
+    {
+		\textbf{Explanation}: #1
+	}
+    {} % else
 }
+
 
 
 \setmarginsrb{2.5 cm}{2.5 cm}{2.5 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
@@ -165,7 +170,7 @@
 \setboolean{showSolution}{true}
 \setboolean{showComments}{true}
 
-\setcounter{chapter}{20} 
+\setcounter{chapter}{20}
 \include{exercises/exercise1}
 \include{exercises/exercise2}
 \include{exercises/exercise3}
