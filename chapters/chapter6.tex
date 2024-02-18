@@ -880,13 +880,6 @@ Potential attacks on this infrastructure include:
 
 As evident, there are numerous potential local attacks, such as data corruption, and some are network attacks primarily due to the \underline{lack of authentication}.
 
-
-
-\subsubsection{DoT and DoH}
-Apart from the attacks against from the DNS server which is providing wrong information, DNS has got another problem for user privacy, because when you are performing a query and there is someone who are sniffing that query, he can see the site that you rare going to visit and that can be read while your query is in transit, but i t can be read in the name server, so the attacker can track your activity. DNS over TLS means that the query and the response between the client and the local NS are encapsulated in a secure TLS channel, so that is protecting information from sniffing, but it still evident that it is a DNS exchange and the NS can still track your activities.
-
-An alternative is DNS over HTTPs, queries and responses are part in normal HTTPS exchange, so an external observer it looks like that you are visiting a secure webpage, they don't even understand that you are making a DNS request. They are adopted by cloudflare and google. These things protect against sniffing attack but not for the privacy for the server that you are contacting.
-
 \subsubsection{DoT and DoH}
 There is another thing called DNS over TLS or DNS over HTTPS. Apart from the attacks against the DNS server which may provide incorrect information, DNS presents another issue for user privacy. When you perform a query and someone is sniffing that query, they can see the site you are going to visit. This information \textbf{can be intercepted} while your query is \textbf{in transit} or even \textbf{within the name server}, allowing the attacker to track your activity.
 
