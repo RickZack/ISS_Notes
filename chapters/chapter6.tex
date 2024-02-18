@@ -378,6 +378,10 @@ ESP can be used in transport mode and tunnel mode as well.
 \begin{minipage}{0.4\textwidth}
     \paragraph{ESP in tunnel mode}
     If used in tunnel mode, the tunnel is first created, and then protection is applied to the tunnel payload. In this case, everything from the original packet is encrypted, including the end-to-end header.
+    \begin{itemize}
+        \item \textbf{Pro:} The payload and the (original) header are hidden.
+        \item \textbf{Con:} Larger packet size.
+    \end{itemize}
 \end{minipage}
 
 
