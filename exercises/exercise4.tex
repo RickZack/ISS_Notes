@@ -88,8 +88,9 @@ Let's assume Bob modifies F3.}
     \centering
     \includegraphics[width = 0.70\textwidth]{exercises4/question3.png}
 \end{figure}
-\com{ authentication to the NAS \\ 
-    A -> RADIUS itself doesn't authenticate the connection }
+\com{   
+    A -> RADIUS itself doesn't authenticate the connection and we need authentication to the NAS, so we don't use RADIUS anyway. go to Q8 
+}
 
 \textbf{\\Q4 - Assume we have a small hotel that uses an Access Point (NAS) supporting EAP, CHAP. Take a look at the picture below and indicate which methods can be used to authenticate a user (device) with the AP to provide access to the Internet:}
 \begin{itemize}
@@ -103,8 +104,11 @@ Let's assume Bob modifies F3.}
     \centering
     \includegraphics[width = 0.70\textwidth]{exercises4/question4.png}
 \end{figure}
-\com{CHAP is not possible since it needs a password for each user. And it may be possible in a small company, but not in a hotel
-    D 
+\com{
+    B -> CHAP is not supported over  wifi. \\
+    D -> as Q3 \\
+    Not needed/sure but good idea to think about: CHAP is not possible since it needs a password for each user. And it may be possible in a small company, but not in a hotel
+     
 }
 
 \textbf{\\Q5 - EAP transports authentication messages between a user (supplicant) and a NAS:}
@@ -123,7 +127,7 @@ occurs before accessing the internet, which operates at Layer 3 (L3)}
     \item[B.] \sol{for any L2 protocol, such as PPP, 802.11 (Wi-Fi), 802.3 (Ethernet), 802.5 (token ring)}
     \item[C.] only for 802.11 (Wi-Fi) and 802.3 (Ethernet)
 \end{itemize}
-\com{}
+\com{EAP support a lots of stuff}
 
 
 
@@ -144,7 +148,11 @@ occurs before accessing the internet, which operates at Layer 3 (L3)}
     \item[D.] supports user authentication only via EAP
     \item[E.] \sol{may act as a proxy towards other AS}
 \end{itemize}
-\com{This question should help you understand previous questions about NAS. }
+\com{This question should help you understand previous questions about NAS and RADIUS \\
+    A -> no, is B \\
+    C -> RADIUS relies over this PPP (protocol) \\ 
+    E -> see the email example in the notes
+}
 
 \textbf{\\Q9 - Assume we have a corporate network which has an Authentication Server (AS) in place, and uses an AP for network access control. 
 Take a look at the picture below and indicate the protocol(s) typically used for the communication between AP and AS during authentication of supplicants:}
@@ -157,7 +165,7 @@ Take a look at the picture below and indicate the protocol(s) typically used for
     \centering
     \includegraphics[width = 0.70\textwidth]{exercises4/question9.png}
 \end{figure}
-\com{}
+\com{Here is where RADIUS is needed}
 
 
 \textbf{\\Q10 - RADIUS implements the following security properties:}
@@ -177,7 +185,7 @@ Take a look at the picture below and indicate the protocol(s) typically used for
     \item[C.] confidentiality of the data in the RADIUS response by encrypting the data with an algorithm that can be negotiated
     \item[D.] confidentiality of the data in the RADIUS response by masking the password (with an XOR operation)
     \item[E.] protection from replay of RADIUS response, by using a sequence number in the RADIUS response
-    \textbf{\item[F.] protection from replay of RADIUS response, by binding the response to a specific request via a Request Authenticator}
+    \item[F.] \sol{protection from replay of RADIUS response, by binding the response to a specific request via a Request Authenticator}
 \end{itemize}
 \com{
     A,C -> no negotiation   \\
