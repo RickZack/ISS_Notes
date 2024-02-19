@@ -63,9 +63,9 @@ Let's assume Bob modifies F3.}
 \end{itemize}
 \com{
     Authentication of PPP channel\\
-    A -> Remote Authentication Dial-In User Service \\
-    B -> Extensible Authentication Protocol\\
-    C -> evoulition of RADIUS
+    A -> RADIUS doesn't provide authentication by itself, instead it relies on PAP CHAP or EAP \\ 
+    B -> Authentication protocol of PPP \\
+    C -> evoulition of RADIUS \\
     D -> Challenge Handshake Authentication Protocol 
 }
 
@@ -88,7 +88,8 @@ Let's assume Bob modifies F3.}
     \centering
     \includegraphics[width = 0.70\textwidth]{exercises4/question3.png}
 \end{figure}
-\com{ authentication to the NAS  }
+\com{ authentication to the NAS \\ 
+    A -> RADIUS itself doesn't authenticate the connection }
 
 \textbf{\\Q4 - Assume we have a small hotel that uses an Access Point (NAS) supporting EAP, CHAP. Take a look at the picture below and indicate which methods can be used to authenticate a user (device) with the AP to provide access to the Internet:}
 \begin{itemize}
@@ -102,7 +103,9 @@ Let's assume Bob modifies F3.}
     \centering
     \includegraphics[width = 0.70\textwidth]{exercises4/question4.png}
 \end{figure}
-\com{CHAP is not posssible since it needs a password for each user. And it may be possible in a small company, but not in a hotel}
+\com{CHAP is not possible since it needs a password for each user. And it may be possible in a small company, but not in a hotel
+    D 
+}
 
 \textbf{\\Q5 - EAP transports authentication messages between a user (supplicant) and a NAS:}
 \begin{itemize}
