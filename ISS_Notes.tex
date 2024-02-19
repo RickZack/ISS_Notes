@@ -45,17 +45,22 @@
 \newboolean{showSolution}
 \newboolean{showComments}
 
-\newcommand{\sol}[1]{%
-    \ifthenelse{\boolean{showSolution}}%
-    {\textbf{#1}}%
-    {#1}%
+\newcommand{\sol}[1]{
+    \ifthenelse{\boolean{showSolution}}
+    {
+		\textbf{#1}
+	}
+    {#1} % else
 }
 
-\newcommand{\com}[1]{%
-	\ifthenelse{\boolean{showComments}}%
-	{#1}%
-	{}%
+\newcommand{\com}[1]{
+    \ifthenelse{\boolean{showComments}}
+    {
+		\textbf{Explanation}: #1
+	}
+    {} % else
 }
+
 
 
 \setmarginsrb{2.5 cm}{2.5 cm}{2.5 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
@@ -149,13 +154,11 @@
 \def\slides{slides/04_netsec_p1.pdf}
 \include{chapters/chapter4}
 
-\def\slides{slides/06_netsec_p2.pdf}
-\include{chapters/chapter6}
-
 \def\slides{slides/05_firewall.pdf}
 \include{chapters/chapter5}
 
-\setcounter{chapter}{6} % Skipping chapter 6 as it is included in 4
+\def\slides{slides/06_netsec_p2.pdf}
+\include{chapters/chapter6}
 
 \def\slides{slides/07_schannels.pdf}
 \include{chapters/chapter7}
@@ -167,7 +170,7 @@
 \setboolean{showSolution}{true}
 \setboolean{showComments}{true}
 
-\setcounter{chapter}{20} 
+\setcounter{chapter}{20}
 \include{exercises/exercise1}
 \include{exercises/exercise2}
 \include{exercises/exercise3}

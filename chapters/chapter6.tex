@@ -1,8 +1,9 @@
-\section{Security implementation in OSI levels}
+\chapter{Security of IP networks part2}
+
 
 \begin{figure}[h]
     \centering
-    \includegraphics[page = 6,trim = 1cm 2.1cm 1cm 7cm, clip, width = 0.55\textwidth]{\slides}
+    \includegraphics[page = 6,trim = 1cm 2.1cm 1cm 2cm, clip, width = 0.55\textwidth]{\slides}
 \end{figure}
 
 The main question is, “\textit{Which is the best OSI level to implement security?}” with many possibilities and answers. Typically, the “Presentation” layer is the only one in which security measures are not useful.
@@ -14,7 +15,7 @@ Unfortunately, \underline{there is not a single optimal level}. \textbf{The high
 In short, there is not an optimal level. You can decide whether to take one of these two risks or make a mixture by placing some security features at lower levels and then focus most of the security at the application level.
 
 
-\subsection{DHCP (in)security}
+\section{DHCP (in)security}
 
 When Layer 3 is reached, one of the first things activated is \textit{DHCP} because access to the network is given, and now the user needs to know the network parameters. DHCP is the protocol by which a device can ask to be assigned a valid network address. Unfortunately, the protocol is \textbf{non-authenticated} and a \textbf{broadcast protocol} that provides a response carrying \textit{IP address, netmask, default gateway, local nameserver,} and \textit{local DNS suffix}.
 
@@ -58,8 +59,8 @@ Various manufacturers have tried to provide some security improvement, such as s
 There is also RFC-3118 "Authentication for DHCP messages," which uses HMAC-MD5 to authenticate the messages, but it is rarely adopted because it is hardly configurable. Since HMAC is a symmetric protocol, it is needed to install a key on all the machines that need to use DHCP. This leads to the problem of key distribution. Furthermore, there is a problem of key management because if a key is captured, then it will be reusable, and since it is symmetric, any DHCP client could work as a DHCP server too.
 
 
-\subsection{VPN}
-\subsubsection{Security at Network Level (Layer 3)}
+\section{VPN}
+\subsection{Security at Network Level (Layer 3)}
 
 \begin{figure}[h]
     \centering
@@ -71,7 +72,7 @@ Layer 3, which, given today's widespread use of the Internet, is predominantly I
 If it is possible to provide Layer 3 end-to-end protection, ensuring that data are secured as soon as they exit the server/client, it becomes irrelevant whether routers are properly managed or if the network being traversed is insecure. This is because the data are protected from the moment they exit the network interface until they reach the final network interface. Therefore, \ul{the only potential attacks are those originating from within the client/server}. Hence, security at Layer 3 allows us to disregard other attacks at the network level (except for Denial of Service - DoS).
 
 
-\subsubsection{What is a VPN?}
+\subsection{What is a VPN?}
 
 \begin{figure}[h]
     \centering
@@ -79,7 +80,8 @@ If it is possible to provide Layer 3 end-to-end protection, ensuring that data a
 \end{figure}
 
 
-A \textit{Virtual Private Network} (VPN) is a technique, employing both hardware and/or software, that allows the creation of a private network while utilizing shared (or otherwise untrusted) channels and transmission devices. Instead of laying down their own cables and managing dedicated infrastructure, companies may prefer to establish a virtual segment of the network.
+\textbf{A \textit{Virtual Private Network} (VPN) is a technique, employing both hardware and/or software, that allows the creation of a private network while utilizing shared (or otherwise untrusted) channels and transmission devices}.
+Instead of laying down their own cables and managing dedicated infrastructure, companies may prefer to establish a virtual segment of the network.
 
 For instance, one could designate FIAT packets as "blue", allowing them to be exchanged only between blue endpoints. Similarly, packets from ENI could be labeled as "red" and permitted to be exchanged exclusively through red endpoints. While this conceptualization is beneficial, the devil lies in the details. Since it is impossible to visualize packets as blue or red, and the exact mechanism of their switching is uncertain, implementation details become crucial.
 
@@ -90,10 +92,11 @@ There are three techniques for creating a VPN:
     \item \textbf{Cryptographic protection of network packets (secure IP tunnel)}
 \end{itemize}
 
+\subsection{VPN architectures}
 
-\paragraph{VPN via Private Addresses}
+\subsubsection{VPN via Private Addresses}
 
-In this basic VPN implementation, the networks included in the VPN use non-public addresses, making them unreachable from other networks (e.g., private IANA networks as listed in RFC-1918). Consequently, these networks are considered private, as they do not require authorization, and the packets in this case are not globally routable.
+In this basic VPN implementation, \textbf{the networks included in the VPN use non-public addresses, making them unreachable from other networks} (e.g., private IANA networks as listed in RFC-1918). Consequently, these networks are considered private, as they do not require authorization, and the packets in this case are not globally routable.
 
 For example, a telecom provider wishing to share its infrastructure with various customers might allocate a distinct class of addresses to each customer. Access control lists (ACLs) on routers could then be implemented to ensure that packets are directed only to the allowed destinations.
 
@@ -107,8 +110,7 @@ However, this protection can be compromised under several circumstances:
 There is minimal protection for packets, customers, and even for the infrastructure maintainer in this scenario. Consequently, the actual level of security is close to zero, despite the commercial availability of such services.
 
 
-\paragraph{VPN via Tunnel}
-
+\subsubsection{VPN via Tunnel}
 
 This solution represents an improvement over the previous one. In this approach, routers encapsulate the entire Layer 3 packet as a payload within another packet, which can be \textbf{IP in IP}, \textbf{IP over MPLS}, or other techniques. Before encapsulation, border routers implement access control to the VPN via \textit{Access Control Lists} (\textbf{ACL}s). For instance, if a network belongs to the 10.1 address range, the destination can only be another network within the 10.1 range.
 
@@ -118,7 +120,7 @@ However, this protection can be circumvented by anyone managing a router or capa
 If robust protection is desired, alternative techniques need to be considered.
 
 
-\subparagraph{VPN via IP Tunnel}
+\paragraph{VPN via IP Tunnel}
 
 \begin{figure}[h]
     \centering
@@ -132,10 +134,11 @@ Router R1 identifies that B is in subnet 2, reachable through the border router 
 
 \textbf{Throughout transmission, the packet remains susceptible to being readable, manipulated, or injected}, signifying a lack of real security for the end user of the VPN.
 
-The IP tunnel also presents a performance challenge: \textbf{fragmentation}. If the packet size equals the Maximum Transmission Unit (MTU), encapsulation will require fragmentation. In such instances, the maximum performance loss is 50\%, as two packets are generated instead of one. This impact is more pronounced for applications with large packets, typically non-interactive applications like file transfers. Consequently, this solution can also be a performance killer.
+% Removed
+% The IP tunnel also presents a performance challenge: \textbf{fragmentation}. If the packet size equals the Maximum Transmission Unit (MTU), encapsulation will require fragmentation. In such instances, the maximum performance loss is 50\%, as two packets are generated instead of one. This impact is more pronounced for applications with large packets, typically non-interactive applications like file transfers. Consequently, this solution can also be a performance killer.
 
 
-\paragraph{VPN via secure IP tunnel}
+\subsubsection{VPN via secure IP tunnel}
 
 \begin{figure}[h]
     \centering
@@ -175,15 +178,26 @@ The IPsec security services include:
 \begin{itemize}
     \item \textbf{Authentication of IP packets:}
           \begin{itemize}
-              \item \textit{Data integrity}: The receiver can \textit{detect} if the packet has been manipulated. It is \underline{not} designed to prevent manipulation.
-              \item \textit{Sender authentication}: A formal proof of the sender's identity. Note that this does not correspond to an IP address; IP addresses must not be trusted, as they can be completely fake (IP spoofing).
-              \item \textit{(Partial) protection against "replay" attacks}: Challenges arise due to working at Layer 3, where packets can be lost or duplicated.
+              \item By computing a keyed digest with a shared key.
+              \item Provides:
+                    \begin{itemize}
+                        \item \textit{Data integrity}: The receiver can \textit{detect} if the packet has been manipulated. It is \underline{not} designed to prevent manipulation.
+                        \item \textit{Sender authentication}: A formal proof of the sender's identity. Note that this does not correspond to an IP address; IP addresses must not be trusted, as they can be completely fake (IP spoofing).
+                        \item \textit{(Partial) protection against "replay" attacks}: Challenges arise due to working at Layer 3, where packets can be lost or duplicated.
+                    \end{itemize}
           \end{itemize}
     \item \textbf{Confidentiality of IP packets:}
           \begin{itemize}
-              \item Data encryption (for the payload only).
+              \item Payload encryption with a symmetric algorithm and a shared key.
+              \item Provides data privacy.
+          \end{itemize}
+    \item \textbf{Peer authentication when creating the SA:}
+          \begin{itemize}
+              \item Key agreement after authentication (shared key or digital signature).
+              \item Provides peer authentication
           \end{itemize}
 \end{itemize}
+
 
 
 
@@ -229,8 +243,9 @@ The answer is provided by the \textbf{SPD}. It can be \textit{"you should apply 
 If protection is needed and this is the first packet of this specific network flow, IPsec proceeds in creating a Security Association. Otherwise, there is already an existing SA, and it proceeds in reading the parameters associated with that SA by consulting the \textbf{SAD}. This will provide it with the algorithms and parameters to enrich the packet, and finally, the IP packet will be protected with IPsec and sent to L2 for the actual transmission.
 
 
+\subsection{Operating modes}
 
-\subsection{Transport mode IPsec}
+\subsubsection{Transport mode IPsec}
 \begin{figure}[h]
     \centering
     \includegraphics[page = 23,trim = 1cm 3cm 3cm 11cm, clip, width = 0.55\textwidth]{\slides}
@@ -244,11 +259,11 @@ Transport Mode IPsec is used for \textbf{end-to-end security}, primarily employe
 \end{itemize}
 
 
-\subsection{Tunnel mode IPsec}
+\subsubsection{Tunnel mode IPsec}
 \begin{figure}[h]
     \centering
     \includegraphics[page = 24,trim = 1cm 3cm 2cm 9cm, clip, width = 0.55\textwidth]{\slides}
-    \caption{IPsec used for end-to-end security in transport mode}
+    \caption{IPsec used in tunnel mode, to create a VPN}
 \end{figure}
 
 Tunnel Mode IPsec is utilized to \textbf{create a VPN}, typically among \underline{gateways}. It is not created among routers; the correct term is gateway, which serves as a contact point between a network assumed to be secure and a network that is not secure. The gateway enhances protection by establishing the secure IPsec tunnel. It takes the original packet with the end-to-end header and encapsulates it inside a tunnel. This tunnel is initiated by the sending gateway and has the destination gateway protecting the network where the destination is located. The sending gateway applies IPsec to this IP in IP packet.
@@ -363,6 +378,10 @@ ESP can be used in transport mode and tunnel mode as well.
 \begin{minipage}{0.4\textwidth}
     \paragraph{ESP in tunnel mode}
     If used in tunnel mode, the tunnel is first created, and then protection is applied to the tunnel payload. In this case, everything from the original packet is encrypted, including the end-to-end header.
+    \begin{itemize}
+        \item \textbf{Pro:} The payload and the (original) header are hidden.
+        \item \textbf{Con:} Larger packet size.
+    \end{itemize}
 \end{minipage}
 
 
@@ -845,35 +864,28 @@ Typically, the zone master is manually updated by the administrator. Unfortunate
 Potential attacks on this infrastructure include:
 \begin{itemize}
     \item \textbf{Data Corruption to Local Data:} If an attacker gains access to a client (e.g., through a keyboard or malware), they can attempt to insert incorrect information into its local data to create a false mapping.
-    
+
     \item \textbf{Unauthorized Configuration of Name Switch/Resolver:} Instead of pointing to the actual external name server, an attacker can redirect the name switch/resolver to a fake one, providing incorrect answers.
-    
+
     \item \textbf{Server Impersonation in Communication:} In the communication between the resolver and server, as well as between the caching server and zone server, server impersonation (someone posing as the real server) can occur because DNS lacks any form of authentication.
-    
+
     \item \textbf{Cache Poisoning:} Whenever there is a cache, there is a risk of cache poisoning.
-    
+
     \item \textbf{Data Corruption on Zone File:} An attacker penetrating the zone master could corrupt data on the zone file.
-    
+
     \item \textbf{Unauthorized Dynamic Updates:} Dynamic updates could be performed by unauthorized nodes.
-    
+
     \item \textbf{Server Impersonation in Zone File Transfer:} Since the master sends a copy of the zone file to secondary servers, there could be server impersonation, where a fake master sends a wrong copy to the secondary servers.
 \end{itemize}
 
 As evident, there are numerous potential local attacks, such as data corruption, and some are network attacks primarily due to the \underline{lack of authentication}.
-
-
-
-\subsubsection{DoT and DoH}
-Apart from the attacks against from the DNS server which is providing wrong information, DNS has got another problem for user privacy, because when you are performing a query and there is someone who are sniffing that query, he can see the site that you rare going to visit and that can be read while your query is in transit, but i t can be read in the name server, so the attacker can track your activity. DNS over TLS means that the query and the response between the client and the local NS are encapsulated in a secure TLS channel, so that is protecting information from sniffing, but it still evident that it is a DNS exchange and the NS can still track your activities. 
-
-An alternative is DNS over HTTPs, queries and responses are part in normal HTTPS exchange, so an external observer it looks like that you are visiting a secure webpage, they don't even understand that you are making a DNS request. They are adopted by cloudflare and google. These things protect against sniffing attack but not for the privacy for the server that you are contacting.
 
 \subsubsection{DoT and DoH}
 There is another thing called DNS over TLS or DNS over HTTPS. Apart from the attacks against the DNS server which may provide incorrect information, DNS presents another issue for user privacy. When you perform a query and someone is sniffing that query, they can see the site you are going to visit. This information \textbf{can be intercepted} while your query is \textbf{in transit} or even \textbf{within the name server}, allowing the attacker to track your activity.
 
 \textit{DNS over TLS} (\textbf{DoT}) ensures that the query and response between the client and the local name server are encapsulated in a secure TLS channel, protecting the information from sniffing. However, it is still evident that it is a DNS exchange, and the name server can still track your activities.
 
-An alternative is \textit{DNS over HTTPS} (\textbf{DoH}), where queries and responses are part of a normal HTTPS exchange. To an external observer, it appears as if you are visiting a secure webpage, making it indistinguishable from regular HTTPS traffic. 
+An alternative is \textit{DNS over HTTPS} (\textbf{DoH}), where queries and responses are part of a normal HTTPS exchange. To an external observer, it appears as if you are visiting a secure webpage, making it indistinguishable from regular HTTPS traffic.
 
 These protocols are adopted by Cloudflare and Google. While these methods protect against sniffing attacks, they do not guarantee privacy from the server you are contacting.
 
