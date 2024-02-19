@@ -927,18 +927,19 @@ There are two main key derivation functions that are based on cryptographic hash
 
 \begin{itemize}
     \item \textbf{PBKDF2} (RFC-2898) uses SHA-1, with \(|S| \geq 64\) and \(I \geq 1000\):
-          The function is \(DK = PBKDF2(PRF, PWD, \text{Salt}, C, dkLen)\), where:
+          The function is \\
+          \texttt{DK = PBKDF2(PRF, PWD, Salt, C, dkLen)}, where:
           \begin{itemize}
-              \item PRF = pseudorandom function of two parameters with output length \(hLen\) (e.g., a keyed HMAC);
-              \item PWD = password from which a derived key is generated;
-              \item Salt = cryptographic salt;
-              \item C = number of iterations desired;
-              \item dkLen = desired length of the derived key;
-              \item \(DK\) = generated derived key $T_1 \Vert T_2 \Vert \ldots \Vert T_{\text{dkLen/hLen}}$, where each $T_i$ has length \(hLen\).
+              \item \texttt{PRF} = pseudorandom function of two parameters with output length \(hLen\) (e.g., a keyed HMAC);
+              \item \texttt{PWD} = password from which a derived key is generated;
+              \item \texttt{Salt} = cryptographic salt;
+              \item \texttt{C} = number of iterations desired;
+              \item \texttt{dkLen} = desired length of the derived key;
+              \item \texttt{DK} = generated derived key $T_1 \Vert T_2 \Vert \ldots \Vert T_{\text{dkLen/hLen}}$, where each $T_i$ has length \(hLen\).
           \end{itemize}
-          An important application of this KDF is in wireless networks, specifically in WPA2 solutions. When the passphrase is entered, there is an implicit use of this function: $DK = PBKDF2(HMAC-SHA1, PWD, ssid, 4096, 256)$, where \(ssid\) is the name of the wireless connection.
+          An important application of this KDF is in wireless networks, specifically in WPA2 solutions. When the passphrase is entered, there is an implicit use of this function: \texttt{DK = PBKDF2 (HMAC-SHA1, PWD, ssid, 4096, 256)}, where \texttt{ssid} is the name of the wireless connection.
 
-          However, PBKDF2 can be attacked because \(C\) may be large, but this requires only a lot of computation but not a lot of RAM, hence it can be attacked by ASIC or GPU. A countermeasure is to increase the RAM needed for the attack. A public competition (Password Hashing Competition, \textit{PHC}) about that was launched in 2013, and on July 20, 2015, the winner was \textbf{Argon2}.
+          However, PBKDF2 can be attacked because \texttt{C} may be large, but this requires only a lot of computation but not a lot of RAM, hence it can be attacked by ASIC or GPU. A countermeasure is to increase the RAM needed for the attack. A public competition (Password Hashing Competition, \textit{PHC}) about that was launched in 2013, and on July 20, 2015, the winner was \textbf{Argon2}.
 
     \item \textbf{HKDF} (RFC-5869) uses HMAC.
 \end{itemize}
