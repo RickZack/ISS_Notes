@@ -110,6 +110,8 @@
     \item[B.] \sol{48B}
     \item[C.] 64B
 \end{enumerate}
+\com{32B = 256bit an exact multiple of 128, but 'Even if the plaintext is an exact multiple of the block, padding must be added anyhow to avoid
+errors in the interpretation of the last block. The biggest padding is required when there is no padding to add.' So 48B, 32B + 16B of only padding }
 
 \textbf{\\Q9b - If you encrypt 32B of plaintext with AES-128-CTR, how long is the ciphertext?}
 \begin{enumerate}
@@ -117,8 +119,7 @@
     \item[B.] 48B
     \item[C.] 64B
 \end{enumerate}
-\com{32B = 256bit an exact multiple of 128, but 'Even if the plaintext is an exact multiple of the block, padding must be added anyhow to avoid
-errors in the interpretation of the last block. The biggest padding is required when there is no padding to add.' So 48B, 32B + 16B of only padding }
+\com{CTR does not increment the size}
 
 \textbf{\\Q10 - Assume Alice wants to protect her data (1 TB) on disk, but she does not want to increase the space occupied on disk. Moreover, she would like to perform the encryption very fast and to keep her data protected for 10 years. Which algorithm should she use?}
 \begin{enumerate}
@@ -132,7 +133,7 @@ errors in the interpretation of the last block. The biggest padding is required 
     A -> padding = increasethe space occupied disk\\
     B -> never use ECB\\
     D -> AES is faster and more secure than 3DES\\
-    E -> Does AES 512 exist? probably yes, however it will be slower than aes256 
+    E -> Does AES 512 exist? probably no, however it will be slower than aes256 
 }
 
 \textbf{\\Q11 - Assume Alice wants to protect her data (1 TB) on disk, she has more space, but she would like to perform the encryption very fast. Which algorithm should she use?}
