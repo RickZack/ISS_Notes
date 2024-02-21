@@ -3,21 +3,21 @@
 \section{Short problems}
 
 \textbf{\\Problem 2 \\
-Assume Alice has two databases: a trusted storage (that an
-attacker cannot read and modify), and an \textcolor{Red}{untrusted storage}
-(that an attacker can read and modify). Assume Alice can
-use:
-\begin{itemize}
-    \item H : a secure cryptographic hash function, like SHA256
-    \item || : the concatenation function 
-\end{itemize}
-Alice creates and stores four files, F1, F2, F3, F4 in the
-\textcolor{Red}{untrusted storage}. Alice also computes and stores a hash of
-each file (content) in the \textcolor{Red}{untrusted storage}:
-h1 = H(F1), h2 = H(F2), h3 = H(F3), h4 = H(F4)
-Then, Alice calculates hchain and stores it in the \textcolor{Blue}{trusted storage}:
-hchain = H( h1 || h2 || h3 || h4 )
-Let's assume Bob modifies F3.}
+    Assume Alice has two databases: a trusted storage (that an
+    attacker cannot read and modify), and an \textcolor{Red}{untrusted storage}
+    (that an attacker can read and modify). Assume Alice can
+    use:
+    \begin{itemize}
+        \item H : a secure cryptographic hash function, like SHA256
+        \item || : the concatenation function
+    \end{itemize}
+    Alice creates and stores four files, F1, F2, F3, F4 in the
+    \textcolor{Red}{untrusted storage}. Alice also computes and stores a hash of
+    each file (content) in the \textcolor{Red}{untrusted storage}:
+    h1 = H(F1), h2 = H(F2), h3 = H(F3), h4 = H(F4)
+    Then, Alice calculates hchain and stores it in the \textcolor{Blue}{trusted storage}:
+    hchain = H( h1 || h2 || h3 || h4 )
+    Let's assume Bob modifies F3.}
 
 \textbf{\\P2Q - Can Alice detect the modification done by Bob?}
 \begin{itemize}
@@ -30,20 +30,20 @@ Let's assume Bob modifies F3.}
     C -> if h3 change, $h_{chain}$ will fail the match, so we can  detect it}
 
 \textbf{\\Problem 3 \\
-Assume Alice has one \textcolor{Blue}{trusted storage} (that an attacker cannot
-read and modify), and an \textcolor{Red}{untrusted storage} (that an attacker
-can read and modify). Assume Alice can use two functions:
-\begin{itemize}
-    \item H, a secure cryptographic hash function, like SHA256
-    \item || , the concatenation function
-\end{itemize}
-Alice creates and stores four files (F1, F2, F3, F4) in the
-\textcolor{Red}{untrusted storage}. Alice also computes a hash on each file
-(content):
-h1 = H(F1), h2 = H(F2), h3 = H(F3), h4 = H(F4)
-Then, Alice calculates $h_{root}$ and stores it the \textcolor{Blue}{trusted storage}:
-$h_{root} = H(H(h1||h2)||H(h3||h4))$
-Let's assume Bob modifies F3.}
+    Assume Alice has one \textcolor{Blue}{trusted storage} (that an attacker cannot
+    read and modify), and an \textcolor{Red}{untrusted storage} (that an attacker
+    can read and modify). Assume Alice can use two functions:
+    \begin{itemize}
+        \item H, a secure cryptographic hash function, like SHA256
+        \item || , the concatenation function
+    \end{itemize}
+    Alice creates and stores four files (F1, F2, F3, F4) in the
+    \textcolor{Red}{untrusted storage}. Alice also computes a hash on each file
+    (content):
+    h1 = H(F1), h2 = H(F2), h3 = H(F3), h4 = H(F4)
+    Then, Alice calculates $h_{root}$ and stores it the \textcolor{Blue}{trusted storage}:
+    $h_{root} = H(H(h1||h2)||H(h3||h4))$
+    Let's assume Bob modifies F3.}
 
 \textbf{\\P3Q - Can Alice detect the modification done by Bob?}
 \begin{itemize}
@@ -63,10 +63,10 @@ Let's assume Bob modifies F3.}
 \end{itemize}
 \com{
     Authentication of PPP channel\\
-    A -> RADIUS doesn't provide authentication by itself, instead it relies on PAP CHAP or EAP \\ 
-    B -> Authentication protocol of PPP \\
-    C -> evoulition of RADIUS \\
-    D -> Challenge Handshake Authentication Protocol 
+    A -> RADIUS operates as a client-server protocol between the \textbf{NAS} and \textbf{AS}, not user-NAS \\
+    B -> EAP Authentication flexible Layer 2 (L2) authentication \textit{framework}\\
+    C -> evolution of RADIUS, see A \\
+    D -> CHAP is a PPP authentication protocol; it is supported in wireless networks via EAP
 }
 
 \textbf{\\Q2 - At which level in the OSI stack is EAP (Extensible Authentication Protocol) exploited to support authentication?}
@@ -76,7 +76,7 @@ Let's assume Bob modifies F3.}
     \item[C.] L7 (application level)
     \item[D.] L4 (transport level)
 \end{itemize}
-\com{it support PPP and other L2 protocol }
+\com{EAP supports PPP and other L2 protocol }
 
 \textbf{\\Q3 - Assume that we have a small company which uses a NAS supporting EAP, PAP, CHAP. Look at the picture and tell which methods and protocol(s) can be used to authenticate a user (device) with the NAS to provide it access to Internet:}
 \begin{itemize}
@@ -88,8 +88,9 @@ Let's assume Bob modifies F3.}
     \centering
     \includegraphics[width = 0.70\textwidth]{exercises4/question3.png}
 \end{figure}
-\com{   
-    A -> RADIUS itself doesn't authenticate the connection and we need authentication to the NAS, so we don't use RADIUS anyway. go to Q8 
+\com{
+    A -> RADIUS operates as a client-server protocol between the \textbf{NAS} and \textbf{AS}, not user-NAS\\
+    B,C -> PAP and CHAP are PPP authentication protocols.
 }
 
 \textbf{\\Q4 - Assume we have a small hotel that uses an Access Point (NAS) supporting EAP, CHAP. Take a look at the picture below and indicate which methods can be used to authenticate a user (device) with the AP to provide access to the Internet:}
@@ -105,10 +106,9 @@ Let's assume Bob modifies F3.}
     \includegraphics[width = 0.70\textwidth]{exercises4/question4.png}
 \end{figure}
 \com{
-    B -> CHAP is not supported over  wifi. \\
-    D -> as Q3 \\
+    B -> CHAP is not supported over wifi. \\
+    D -> RADIUS operates as a client-server protocol between the \textbf{NAS} and \textbf{AS}, not user-NAS\\
     Not needed/sure but good idea to think about: CHAP is not possible since it needs a password for each user. And it may be possible in a small company, but not in a hotel
-     
 }
 
 \textbf{\\Q5 - EAP transports authentication messages between a user (supplicant) and a NAS:}
@@ -117,9 +117,10 @@ Let's assume Bob modifies F3.}
     \item[B.] after the IP channel is established. Thus, EAP packets are encapsulated inside IP packets
     \item[C.] None of the above
 \end{itemize}
-\com{EAP (Extensible Authentication Protocol ) is the PPP authentication mechanism defined in RFC-
-3748, providing a flexible Layer 2 (L2) authentication framework. This L2 authentication
-occurs before accessing the internet, which operates at Layer 3 (L3)}
+\com{
+    EAP (Extensible Authentication Protocol) is an authentication mechanism that provides a flexible Layer 2 (L2) authentication framework. This L2 authentication
+    occurs before accessing the internet, which operates at Layer 3 (L3)
+}
 
 \textbf{\\Q6 - EAP can transport authentication messages between a user and NAS (Network Access Server):}
 \begin{itemize}
@@ -127,7 +128,7 @@ occurs before accessing the internet, which operates at Layer 3 (L3)}
     \item[B.] \sol{for any L2 protocol, such as PPP, 802.11 (Wi-Fi), 802.3 (Ethernet), 802.5 (token ring)}
     \item[C.] only for 802.11 (Wi-Fi) and 802.3 (Ethernet)
 \end{itemize}
-\com{EAP support a lots of stuff}
+\com{EAP support all those protocols (PPP, Wi-Fi, Ethernet, token ring)}
 
 
 
@@ -138,7 +139,11 @@ occurs before accessing the internet, which operates at Layer 3 (L3)}
     \item[C.] \sol{it's the method used by EAP to transfer the messages of a specific (user) authentication protocol}
     \item[D.] none of the above
 \end{itemize}
-\com{}
+\com{
+    A -> While EAP methods can be used with upper-level protocols, the primary purpose isn't "exploitation" but secure integration. Not the best answer.
+    B -> EAP itself doesn't perform authentication; it provides the \textit{framework} for different methods to do so. Incorrect.
+    C ->  This accurately describes the role of EAP methods. They encapsulate and transport messages based on specific authentication protocols. Correct answer.
+}
 
 \textbf{\\Q8 - RADIUS is a network authentication protocol that:}
 \begin{itemize}
@@ -148,14 +153,16 @@ occurs before accessing the internet, which operates at Layer 3 (L3)}
     \item[D.] supports user authentication only via EAP
     \item[E.] \sol{may act as a proxy towards other AS}
 \end{itemize}
-\com{This question should help you understand previous questions about NAS and RADIUS \\
-    A -> no, is B \\
-    C -> RADIUS relies over this PPP (protocol) \\ 
-    E -> see the email example in the notes
+\com{
+    A -> no, it'a client-server schema between NAs and AS \\
+    B -> correct \\
+    C -> RADIUS supports those PPP authentication protocols \\
+    D -> false because of C
+    E -> see the email example in the notes ("RADIUS proxy") \\
 }
 
-\textbf{\\Q9 - Assume we have a corporate network which has an Authentication Server (AS) in place, and uses an AP for network access control. 
-Take a look at the picture below and indicate the protocol(s) typically used for the communication between AP and AS during authentication of supplicants:}
+\textbf{\\Q9 - Assume we have a corporate network which has an Authentication Server (AS) in place, and uses an AP for network access control.
+    Take a look at the picture below and indicate the protocol(s) typically used for the communication between AP and AS during authentication of supplicants:}
 \begin{itemize}
     \item[A.] \sol{RADIUS}
     \item[B.] PAP
@@ -165,7 +172,10 @@ Take a look at the picture below and indicate the protocol(s) typically used for
     \centering
     \includegraphics[width = 0.70\textwidth]{exercises4/question9.png}
 \end{figure}
-\com{Here is where RADIUS is needed}
+\com{
+    A -> Radius operateras between a \textit{NAS (PPP) / AP (Wi-Fi)} and the AS.
+    B,C -> PAP and CHAP are user authentication protocol (which means between user and NAS)
+}
 
 
 \textbf{\\Q10 - RADIUS implements the following security properties:}
@@ -176,7 +186,9 @@ Take a look at the picture below and indicate the protocol(s) typically used for
     \item[D.] \sol{authentication and integrity of responses, where the RADIUS responses are protected with a keyed-digest}
     \item[E.] authentication of the server, through the calculation of an authenticator via keyed-digest
 \end{itemize}
-\com{ $password \oplus md5(key+authenticator)$ }
+\com{
+    RADIUS requestes/responses are both authenticated with a \textbf{keyed-digest}.
+}
 
 \textbf{\\Q11 - RADIUS implements the following security properties:}
 \begin{itemize}
@@ -188,24 +200,24 @@ Take a look at the picture below and indicate the protocol(s) typically used for
     \item[F.] \sol{protection from replay of RADIUS response, by binding the response to a specific request via a Request Authenticator}
 \end{itemize}
 \com{
-    A,C -> no negotiation   \\
-    D -> wip\\
-    E -> Request authenticator 
+    A,C -> there's no negotiation \\
+    B -> correct, confidentiality of the data (in the request) is obtained with a "masking operation":\\
+    \( \text{password} \oplus \text{md5}(\text{key} + \text{authenticator}) \) \\
+    D -> not true for the response \\
+    E -> Request authenticator
 }
 
-\textbf{\\Q12 - Consider an architecture in which we have: a supplicant (user), a NAS, and a RADIUS server. If the
-RADIUS server and the user have a shared secret (named “secret”), does this mean that a (malicious) user can create
-a fake RADIUS response?}
+\textbf{\\Q12 - Consider an architecture in which we have: a supplicant (user), a NAS, and a RADIUS server. If the  RADIUS server and the user have a shared secret (named "secret"), does this mean that a (malicious) user can create
+    a fake RADIUS response?}
 \begin{itemize}
     \item[A.] yes, because the user knows the secret
     \item[B.] no, because in the construction of the RADIUS response it is used also a Request Authenticator generated by the NAS
-    \item[C.] \sol{no, because NAS and the RADIUS server have also a “secret” that the user does not know (used in protecting the RADIUS response)}
+    \item[C.] \sol{no, because NAS and the RADIUS server have also a "secret" that the user does not know (used in protecting the RADIUS response)}
 \end{itemize}
 \com{wip}
 
-\textbf{\\Q13 - Assume a company uses RADIUS to authenticate users and Wi-Fi access-points and switches enabled with support
-for 802.1x. What is the main role of the Wi-Fi access points and switches and what needs to be done to allow them to
-work when new user authentication protocols appear (and are supported by EAP)?}
+\textbf{\\Q13 - Assume a company uses RADIUS to authenticate users and Wi-Fi access-points and switches enabled with support for 802.1x. What is the main role of the Wi-Fi access points and switches and what needs to be done to allow them to
+    work when new user authentication protocols appear (and are supported by EAP)?}
 \begin{itemize}
     \item[A.] \sol{allow to perform authentication of the users connecting to the AP or switch by exploiting EAP}
     \item[B.] \sol{encapsulate the EAP messages received from the users (supplicant) into RADIUS messages sent to the AS}

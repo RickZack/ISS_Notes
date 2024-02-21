@@ -366,7 +366,7 @@ For \textbf{data protection}, RADIUS employs packet integrity and authentication
 
 \begin{itemize}
     \item The key is a shared secret between the NAS and the RADIUS Server, ensuring that inserting a fake NAS server into the network will result in the rejection of its requests.
-    \item In cases where packets contain a password (e.g., if a user decides to use PAP and the password is sent in clear), the password is transmitted in an "encrypted" manner (not true encryption, but rather obfuscated using MD5, which is a digest algorithm, not an encryption algorithm): \( \text{{password}} \oplus \text{{md5}}(\text{{key}} + \text{{authenticator}}) \). This is padded with NULL bytes until a multiple of 128 bits is reached.
+    \item In cases where packets contain a password (e.g., if a user decides to use PAP and the password is sent in clear), the password is transmitted in an "encrypted" manner (not true encryption, but rather obfuscated using MD5, which is a digest algorithm, not an encryption algorithm): \( \text{password} \oplus \text{md5}(\text{key} + \text{authenticator}) \). This is padded with NULL bytes until a multiple of 128 bits is reached.
 \end{itemize}
 
 RADIUS supports various authentication methods (PAP, CHAP, token-card, and EAP). Cisco provides a free server for CryptoCard, and others also support SecurID. Importantly, RADIUS is an \textbf{extensible protocol} because each packet carries attributes described in TLV form \texttt{(attribute type - length - value)}. This allows the introduction of new types without breaking compatibility.
