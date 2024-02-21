@@ -142,6 +142,7 @@
 
 
 \part{Theory}
+
 \def\slides{slides/01_intro.pdf}
 \include{chapters/chapter1}
 
@@ -166,9 +167,9 @@
 \setcounter{chapter}{8} % Reserving chap8
 
 
-\part{Exercises}
-\setboolean{showSolution}{true}
-\setboolean{showComments}{true}
+\part{Exercises without solutions}
+\setboolean{showSolution}{false}
+\setboolean{showComments}{false}
 
 \setcounter{chapter}{20}
 \include{exercises/exercise1}
@@ -179,11 +180,12 @@
 \include{exercises/exercise6}
 
 
-\part{Exercises without solutions}
-\setboolean{showSolution}{false}
-\setboolean{showComments}{false}
-\setcounter{chapter}{30}
 
+\part{Exercises}
+\setboolean{showSolution}{true}
+\setboolean{showComments}{true}
+
+\setcounter{chapter}{30}
 \include{exercises/exercise1}
 \include{exercises/exercise2}
 \include{exercises/exercise3}
