@@ -239,7 +239,7 @@ Some notes:
 From a data protection point of view, there are data (optionally compressed) that need to be protected. A MAC is computed by taking the data, the key, the implicit sequence number, and eventually the padding. Then the MAC is inserted. The packet is then symmetrically encrypted with one IV (considering CBC) and a \underline{specific key} for encryption. Finally, the data is protected, and the TLS header will be prepended to it.
 
 
-\subsubsection{Session-id}
+\subsection{Session-id}
 A typical web transaction looks like the following:
 \begin{enumerate}
     \item Open, GET page.htm, page.htm, Close
