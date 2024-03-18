@@ -37,5 +37,5 @@ See the COPYING file for details.
 - [x] Chapter 3
 - [x] Chapter 4
 - [x] Chapter 5
-- [x] Chapter 6: Network security part 2, included in chapter4
-- [x] Chapter 8
+- [x] Chapter 6
+- [x] Chapter 7
